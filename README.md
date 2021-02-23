@@ -1,5 +1,7 @@
 # tech @ vernacular.ai
 
+![github-pages](https://github.com/Vernacular-ai/tech/actions/workflows/github-pages.yml/badge.svg)
+
 This is source for the [tech team webpage][tech_blog] at Vernacular.ai. Template is [Mundana by WowThemes.net][mundana]
 
 ## Developing
