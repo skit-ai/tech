@@ -19,3 +19,5 @@ group :jekyll_plugins do
     gem 'jekyll-seo-tag'
     gem 'jekyll-katex'
 end
+
+gem "therubyracer"
