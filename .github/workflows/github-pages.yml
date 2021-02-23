@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: helaili/jekyll-action@2.0.5
-        env:
-          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+      - name: Setup ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      - uses: limjh16/jekyll-action-ts@v2
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.JEKYLL_PAT }}
+          publish_dir: ./_site
