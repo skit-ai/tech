@@ -14,7 +14,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7
-      - uses: limjh16/jekyll-action-ts@v2
+      - name: Build site
+        run: |
+          gem install bundler
+          bundle
+          bundle exec jekyll build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
