@@ -15,6 +15,8 @@ This is source for the [tech team webpage][tech_blog] at Vernacular.ai. Template
 - Run `bundle` for installing dependencies.
 - Run the blog locally: `bundle exec jekyll serve --host=0.0.0.0`
 
+Deployment is handled via github actions using [this workflow](./.github/workflows/github-pages.yml) which gets triggered on every push.
+
 [tech_blog]: https://tech.vernacular.ai/
 [mundana]: https://github.com/wowthemesnet/mundana-theme-jekyll
 
