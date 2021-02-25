@@ -1,3 +1,4 @@
+/* Code snippet CSS */
 div.highlighter-rouge {
     margin-top: 1em;
     margin-bottom: 1em;
@@ -10,4 +11,10 @@ div.highlighter-rouge {
 
 pre.highlight {
     margin-bottom: 0;
+}
+
+/* Font */
+.article-post {
+    font-size: 18px;
+    line-height: 1.46;
 }
