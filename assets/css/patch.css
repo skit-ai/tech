@@ -1,0 +1,12 @@
+div.highlighter-rouge {
+    margin-top: 1em;
+}
+
+.highlighter-rouge div.highlight {
+    padding: 10px;
+    border-radius: 6px;
+}
+
+pre.highlight {
+    margin-bottom: 0;
+}
