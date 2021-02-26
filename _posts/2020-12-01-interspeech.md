@@ -1,7 +1,7 @@
 ---
 title: Interspeech 2020
 date: 2020-12-01
-tags: []
+tags: [featured]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
