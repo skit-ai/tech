@@ -18,3 +18,7 @@ pre.highlight {
     font-size: 18px;
     line-height: 1.46;
 }
+
+article blockquote::before {
+  content: "";
+}
