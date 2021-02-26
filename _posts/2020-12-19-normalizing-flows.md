@@ -5,11 +5,8 @@ tags: [Normalizing Flows]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
-
 author: kritianandan, swarajdalmia
 ---
-
-# Introducing Normalizing Flows
 
 Normalizing flows, popularized by [(Rezende, & Mohamed,
 2015)](https://arxiv.org/abs/1505.05770), are techniques used in machine
