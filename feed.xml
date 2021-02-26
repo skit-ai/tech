@@ -1,4 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-02-26T16:04:28+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Bad Audio Detection</title><link href="/bad-audio-detection/" rel="alternate" type="text/html" title="Bad Audio Detection" /><published>2020-07-29T00:00:00+00:00</published><updated>2020-07-29T00:00:00+00:00</updated><id>/bad-audio-detection</id><content type="html" xml:base="/bad-audio-detection/">&lt;p&gt;This blog will be a short one, where we’ll talk about our approach on filtering
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-02-26T17:09:48+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">EMNLP 2020</title><link href="/emnlp/" rel="alternate" type="text/html" title="EMNLP 2020" /><published>2020-12-21T00:00:00+00:00</published><updated>2020-12-21T00:00:00+00:00</updated><id>/emnlp</id><content type="html" xml:base="/emnlp/">&lt;p&gt;We recently attended the all remote &lt;a href=&quot;https://2020.emnlp.org/&quot;&gt;EMNLP
+2020&lt;/a&gt;. Each of us made notes on what they did
+overall. But instead of posting those or going with a
+what-we-think-about-the-conference style post, we thought to just ask the team
+what interested them the most in a few sentences. Here are the individual
+responses:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ltbringer.github.io/blog&quot;&gt;Amresh&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I have recently been following the branch of model explainability for practical
+purposes. I was delighted to know EMNLP was experiencing a surge of similar
+research. I encountered Minumum Description Length (MDL) as a measure to
+understand a model’s ability to capture linguistic properties. The core idea
+being changing the probing task of identifying labels to transmitting data.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/karthik19967829&quot;&gt;Karthik&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Dialogue and Interactive systems track in EMNLP was very interesting and
+introduced novel techniques and approaches to some of the ML problems that I am
+currently working on for example, MAD-X: a framework for effective transfer
+learning to new languages using adapter base architecture , TOD-BERT:
+Pre-training Transformer LMs on open-source dialogue data-sets for better
+few-short learning capability this could be helpful to mitigate cold-start
+problem of SLU module. Also the generative approach based papers for dialogue
+state tracking were an interesting approach that might have few-shot learning
+capability as compared to discriminative ones.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/lohith-anandan&quot;&gt;Lohith&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“Productising” ML Models has become one of the primary answers for most of the
+complex problem we face in day to day life, and explaining how they work, has
+become a bigger concern. I was happy to see a lot of papers and demos in that
+direction, like the LIT tool, which helps both the developer and the user to
+understand the underlying workings of an ML model and how it looks at each input
+and how they help in the decision making process. I was glad to see a lot of
+papers working with various NLP techniques for better and efficient Health Care
+for people, which we can all say is more important than ever, given what we have
+seen this year.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/janaab11&quot;&gt;Manas&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Insights from Negative Results in NLP, Workshop was a highlight for me. It
+revolved around ideas of what an interesting question is and how to connect
+ideas that didn’t work out. These questions feel central to our research efforts
+in-team, and the keynotes offered a rewarding and scientific route to exploring
+open problems in speech tech.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/swarajdalmia&quot;&gt;Swaraj&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The papers i liked from this year’s EMNLP were : “Incremental Processing in the
+Age of Non-Incremental Encoders” by Madureira, B., &amp;amp; Schlangen, D (2020), which
+was similar to how humans incrementally process natural language and provided a
+way to probe the workings of transformer encoders; and “Digital Voicing of
+Silent Speech” by Gaddy, D., &amp;amp; Klein, D. (2020) which was presented very well
+and i felt they did a good job modelling the EMG features and got good
+improvements on silent speech. There were a lot of papers and workshops on
+interpretability of models which is essential considering the direction where
+the field is heading and the gather sessions did a good job of ensuring one
+doesn’t miss out on the social aspects of attending a conference.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>janaab11</name></author><category term="Machine Learning" /><summary type="html">We recently attended the all remote EMNLP 2020. Each of us made notes on what they did overall. But instead of posting those or going with a what-we-think-about-the-conference style post, we thought to just ask the team what interested them the most in a few sentences. Here are the individual responses:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Bad Audio Detection</title><link href="/bad-audio-detection/" rel="alternate" type="text/html" title="Bad Audio Detection" /><published>2020-07-29T00:00:00+00:00</published><updated>2020-07-29T00:00:00+00:00</updated><id>/bad-audio-detection</id><content type="html" xml:base="/bad-audio-detection/">&lt;p&gt;This blog will be a short one, where we’ll talk about our approach on filtering
 out inscrutable audios from &lt;a href=&quot;https://vernacular.ai/vasr&quot;&gt;&lt;strong&gt;VASR&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;There are situations in Call Center Automation (CCA) pipeline where user
@@ -137,7 +213,401 @@ improvements over time and after a few iterations we finally see these models
 in our production systems.&lt;/p&gt;
 
 &lt;p&gt;That’s all for now. Stay tuned to our &lt;a href=&quot;https://tech.vernacular.ai/feed.xml&quot;&gt;rss
-feed&lt;/a&gt; for updates and more.&lt;/p&gt;</content><author><name>anirudhdagar</name></author><category term="Audio Classification" /><summary type="html">This blog will be a short one, where we’ll talk about our approach on filtering out inscrutable audios from VASR.</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-02-04T00:00:00+00:00</published><updated>2019-02-04T00:00:00+00:00</updated><id>/welcome-to-jekyll</id><content type="html" xml:base="/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+feed&lt;/a&gt; for updates and more.&lt;/p&gt;</content><author><name>anirudhdagar</name></author><category term="Machine Learning" /><category term="Audio Classification" /><summary type="html">This blog will be a short one, where we’ll talk about our approach on filtering out inscrutable audios from VASR.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speaker Diarization</title><link href="/speaker-diarization/" rel="alternate" type="text/html" title="Speaker Diarization" /><published>2020-07-21T00:00:00+00:00</published><updated>2020-07-21T00:00:00+00:00</updated><id>/speaker-diarization</id><content type="html" xml:base="/speaker-diarization/">&lt;p&gt;This blog post is based on the work done by &lt;a href=&quot;https://github.com/AnirudhDagar&quot;&gt;Anirudh
+Dagar&lt;/a&gt; as an intern at Vernacular.ai&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/speaker_diarization_vernacular.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;contents&quot;&gt;Contents&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Diarization Introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#motivation&quot;&gt;Motivation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#dihard&quot;&gt;DIHARD?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#approach&quot;&gt;Approaching the Problem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#define&quot;&gt;Defining Our Problem&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#method&quot;&gt;Method&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#metric&quot;&gt;Evaluation Metrics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#resegmentation&quot;&gt;Resegmentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#uis-rnn&quot;&gt;UIS-RNN&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#simulated_data_gen&quot;&gt;Simulated Data Generation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;-diarization-introduction---who-spoke-when&quot;&gt;&lt;a name=&quot;intro&quot;&gt;&lt;/a&gt; Diarization Introduction - Who spoke when?&lt;/h4&gt;
+
+&lt;p&gt;Speaker diarisation (or diarization) is the process of partitioning an input audio stream into homogeneous segments according to the speaker identity.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Speaker diarization is the process of recognizing “who spoke when.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In an audio conversation with multiple speakers (phone calls, conference calls, dialogs etc.), the Diarization API identifies the speaker at precisely the time they spoke during the conversation.&lt;/p&gt;
+
+&lt;p&gt;Below is an example audio from calls recorded at a customer care center, where the agent is involved in a one-to-one dialog with the customer.&lt;/p&gt;
+
+&lt;p&gt;This can be particularly hard sometimes as we’ll discuss later in the blog. Just to give an example, this audio below seems to have a lot of background talking and noise making it difficult even for a human to accurately understand speaker timestamps.&lt;/p&gt;
+
+&lt;audio controls=&quot;controls&quot;&gt;
+    &lt;source src=&quot;https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539785.2420125.002.wav&quot; /&gt;
+&lt;/audio&gt;
+
+&lt;p&gt;Below we have an example of an audio along with its transcription and speech timestamp tags.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;audio controls=&quot;controls&quot;&gt;
+    &lt;source src=&quot;https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav&quot; /&gt;
+&lt;/audio&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Transcription&lt;/strong&gt;: “Barbeque nation mei naa wo book kia tha ok table book kia tha han toh abhi na uske baad ek phone aaya tha toh wo barbeque nation se hi phone aaya tha mai receive nhi kar paaya toh yehi”&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Diarization Tag&lt;/strong&gt;: AGENT: [(0, 5.376), (8.991, 12.213)], CUSTOMER: [(6.951, 7.554)]&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h5 id=&quot;what-diarization-is-not-&quot;&gt;What Diarization is NOT ?&lt;/h5&gt;
+
+&lt;p&gt;There is a fine line between speaker diarization and other related speech processing tasks.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Diarization != Speaker Change Detection&lt;/strong&gt; : Diarization systems spit a label, whenever a new speaker appears and if the same speaker comes again, it provides the same label. However, in speaker change detection no such labels are given, only the boundary of change is considered for prediction.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Diarization != Speaker Identification&lt;/strong&gt; : The goal is not to learn the voice prints of any known speaker. Speakers’ are not registered before running the model.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;-motivation&quot;&gt;&lt;a name=&quot;motivation&quot;&gt;&lt;/a&gt; Motivation?&lt;/h3&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/speaker_diarization_vernacular.png&quot; /&gt;
+  &lt;figcaption&gt;&lt;b&gt;&lt;center&gt;Fig 1.: ASR using Diarization tags to understand and segregate transcription.&lt;/center&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;With the rise of speech recognition systems both in terms of scale and accuracy, the ability to process audio of multiple speakers is crucial and has become quintessential to understand speech today.&lt;/p&gt;
+
+&lt;p&gt;As illustrated in &lt;strong&gt;Fig 1.&lt;/strong&gt; above, information gained through diarization helps in enriching and improving Spoken Language Understanding (SLU) based on the Automatic Speech Recognition (ASR) transcription. It can enhance the readability of the transcription by structuring the audio stream into speaker turns and, when used together with speaker recognition systems, by providing the speaker’s true identity. This can be valuable for downstream applications such as analytics for call-center transcription and meeting transcription etc.&lt;/p&gt;
+
+&lt;p&gt;Other than this, we at &lt;a href=&quot;https://vernacular.ai/&quot;&gt;Vernacular.ai&lt;/a&gt; work on &lt;strong&gt;&lt;em&gt;Call Center Automation (CCA)&lt;/em&gt;&lt;/strong&gt; among many other speech domains, and, at the very core this is powered by our products &lt;a href=&quot;https://vernacular.ai/viva&quot;&gt;VIVA&lt;/a&gt; and &lt;a href=&quot;https://vernacular.ai/vasr&quot;&gt;VASR&lt;/a&gt;. Information gained through diarization can be used to strengthen the VASR engine.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Let me explain the goal of every customer care call support service, if you are not already aware of. The ultimate aim is to provide best in class service to the customers of the respective company. Quantitatively, measure of the service quality is based on the assessment of the &lt;em&gt;AGENT’s&lt;/em&gt; (Call representative at customer care center) ability to disseminate relevant information to the &lt;em&gt;CUSTOMER&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;During the quality check phase, an &lt;em&gt;AGENT’s&lt;/em&gt; performance is scored on mutiple parameters, such as (but not limited to):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Whether the agent was patient enough listening to the customer or was rushing on the call&lt;/li&gt;
+  &lt;li&gt;Whether she/he was rude to the lead at any time or not&lt;/li&gt;
+  &lt;li&gt;Whether she/he used the proper language to communicate.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For such occasions, identifying different speakers in a call (&lt;em&gt;“AGENT”&lt;/em&gt; or &lt;em&gt;“CUSTOMER”&lt;/em&gt;) and finally connecting different sentences under the same speaker is a critical task for the assessment quality.&lt;/p&gt;
+
+&lt;p&gt;Speaker Diarization is the solution for those problems.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Other applications involve&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Information retrieval from broadcast news.&lt;/li&gt;
+  &lt;li&gt;Generating notes/minutes of meetings.&lt;/li&gt;
+  &lt;li&gt;Turn-taking analysis of telephone conversations.&lt;/li&gt;
+  &lt;li&gt;Call center Data analysis&lt;/li&gt;
+  &lt;li&gt;Court houses &amp;amp; Parliaments.&lt;/li&gt;
+  &lt;li&gt;Broadcast News(TV and Radio)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;-dihard&quot;&gt;&lt;a name=&quot;dihard&quot;&gt;&lt;/a&gt; DIHARD?&lt;/h3&gt;
+
+&lt;p&gt;This is not &lt;u&gt;2x2=4&lt;/u&gt;. This is &lt;strong&gt;Diarization&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;IT IS HARD&lt;/em&gt;&lt;/strong&gt;. One can say that it is one of the toughest ML problems intrinsically high on complexity, even for a human-being, in certain conditions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But Why???&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Real world audios are not always &lt;em&gt;sunshine and rainbows&lt;/em&gt;. They come with infinite complexities.
+To name a few:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;In most of the conversations, people will interrupt each other, overtalk etc., and, cutting the audio between sentences won’t be a trivial task due to this highly interactive nature.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Speakers are discovered dynamically. Although as you’ll see later, in our case we only have 2 speakers, a fixed number.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Sometimes the &lt;strong&gt;audio is noisy&lt;/strong&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;People &lt;strong&gt;talking&lt;/strong&gt; in the &lt;strong&gt;background&lt;/strong&gt;.&lt;/li&gt;
+      &lt;li&gt;The microphone picking up speakers’ &lt;strong&gt;environment noises&lt;/strong&gt; (roadside noises, industrial machinery noise, music in the background etc.).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;For telephony based audios, &lt;strong&gt;connection may be weak&lt;/strong&gt; at times, leading to:
+    &lt;ul&gt;
+      &lt;li&gt;Audio being &lt;strong&gt;dropped/corrupted&lt;/strong&gt; in some parts.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Static&lt;/strong&gt;  or just some &lt;strong&gt;buzzing&lt;/strong&gt; noise creeping in the conversation and finding it’s way into the audio recording.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Believe me&lt;/strong&gt;, this is not the end of many problems for diarization!&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Maybe in a conference call with multiple speakers, even if the audio is clear, the &lt;strong&gt;difference can be very subtle&lt;/strong&gt; between the speakers, and it is not always possible to identify/label the correct speaker for a particular timestamp/duration.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Ok, so that’s it?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If I have not made my point clear about the complexity of the problem, yet, then I’ll express my message through this legendary meme.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/diarization_hard.jpg&quot; /&gt;
+  &lt;figcaption&gt;&lt;b&gt;&lt;center&gt;Fig 2.: Diarization is hard!&lt;/center&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;More Problems?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;All the problems stated above are considering that preprocessing steps like VAD/SAD worked perfectly, which you may have guessed, are obviously not 100% accurate.&lt;/p&gt;
+
+    &lt;p&gt;What is this &lt;strong&gt;“preprocessing step”&lt;/strong&gt;?&lt;/p&gt;
+
+    &lt;p&gt;Voice Activity Detection (VAD) or Speech Activity Detection (SAD) is a widely used audio preprocessing technique, before running a typical diariaztion api based on the clustering of speaker embeddings. The objective of VAD/SAD is to get rid of all non-speech regions.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;-approaching-the-problem&quot;&gt;&lt;a name=&quot;approach&quot;&gt;&lt;/a&gt; Approaching the problem&lt;/h3&gt;
+
+&lt;p&gt;Keeping in mind the complexity and hardness of the problem, multiple approaches have been devised over the years to tackle diarization. Some earlier approaches were based on Hidden Markov Models (HMMs)/ Gaussian Mixture Models (GMMs). More recently, Neural Embedding (x-vectors/d-vectors) + Clustering and End2End Neural methods have demonstrated their power.&lt;/p&gt;
+
+&lt;p&gt;As stated in &lt;a href=&quot;https://arxiv.org/pdf/1909.06247.pdf&quot;&gt;this&lt;/a&gt; paper by Fujita et al., a x-vector/d-vector clustering-based system is commonly used for speaker diarization and most of our experiments are based around this approach.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/diarization_clustering.jpg&quot; /&gt;
+  &lt;figcaption&gt;&lt;b&gt;&lt;center&gt;Fig 3.: The image shows the cluster generated based on the speech pattern and precise time the speaker participated in the conversation.&lt;/center&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The aim of speaker clustering is to put together all the segments that belong to the same acoustic source in a recording. These don’t utilize any prior information of the speaker ID or the number of speakers in the recording. We’ll be covering a typical embedding-clustering based approach in detail in the latter sections of the blog.&lt;/p&gt;
+
+&lt;p&gt;However, speaker diarization systems which combine the two tasks in a unified framework are gaining popularity in recent times. &lt;strong&gt;Fig 4&lt;/strong&gt; visually summarizes the End2End idea. Due to the increased amounts of data being avaialable, joint End2End modeling methods are slowly taking over older approaches across ML domains, alleviating the complex preparation processes involved earlier.&lt;/p&gt;
+
+&lt;p&gt;One example is &lt;strong&gt;&lt;em&gt;&lt;a href=&quot;https://arxiv.org/abs/1909.06247&quot;&gt;EEND: End2End Neural Diarization&lt;/a&gt;&lt;/em&gt;&lt;/strong&gt; by Fujita et al. proposed recently showing some promise in regards to solving these complex steps jointly.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/EEND.jpg&quot; /&gt;
+  &lt;figcaption&gt;&lt;b&gt;&lt;center&gt;Fig 4.: An End to End approach diarization system.&lt;/center&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;-defining-our-problem&quot;&gt;&lt;a name=&quot;define&quot;&gt;&lt;/a&gt; Defining Our Problem&lt;/h3&gt;
+
+&lt;p&gt;We need to answer the question &lt;em&gt;“What should be a robust diarization system?”&lt;/em&gt; before moving forward. We decided to try out multiple approaches and model experiments explained in the sections below.&lt;/p&gt;
+
+&lt;p&gt;Our model should be powerful enough to capture global speaker characteristics in addition to local speech activity dynamics.
+A systems, that is able to accurately handle &lt;strong&gt;highly interactive&lt;/strong&gt; and &lt;strong&gt;overlapping speech&lt;/strong&gt; specifically in the telephony call audios conversational domain, while being resilient to variation in mobile microphones, recording environment, reverberation, ambient noise, speaker demographics. Since we have a more focused problem, for evaluating customer care center call audios, the number of speakers for our use case is fixed at two i.e “AGENT” and “CUSTOMER” for each call, we need to tune our model for the same.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;-method&quot;&gt;&lt;a name=&quot;method&quot;&gt;&lt;/a&gt; Method&lt;/h3&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/diarization_pipeline.png&quot; /&gt;
+  &lt;figcaption&gt;&lt;b&gt;&lt;center&gt;Fig 5.: A typical diarization pipeline.&lt;/center&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;VAD&lt;/strong&gt; — We employ &lt;a href=&quot;https://github.com/wiseman/py-webrtcvad&quot;&gt;WebRTC VAD&lt;/a&gt; to remove noise and non speech regions during our experiments. Raw audios are split into frames with specific duration (30 ms in our case). For each input frame, WebRTC generates output 1 or 0, where 1 denotes speech and 0 denotes nonspeech. An optional setting of WebRTC is the aggressive mode, an integer between 0 and 3. 0 is the least aggressive about filtering out nonspeech while 3 is the most aggressive. These VAD/SAD models have their own respective struggles with and set of problems.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Embedder&lt;/strong&gt; — &lt;a href=&quot;https://github.com/resemble-ai/Resemblyzer&quot;&gt;Resemblyzer&lt;/a&gt; allows you to derive a high-level representation of a voice through a deep learning model (referred to as the voice encoder). Given an audio file of speech, it creates a summary vector of size 256 (embedding) that summarizes the characteristics of the voice spoken.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Clustering&lt;/strong&gt; — We cluster the segment wise embedding using a simple &lt;strong&gt;K-Means&lt;/strong&gt; to produce diarization results and determine the number of speakers with each speakers time stamps.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Resegmentation&lt;/strong&gt; - Finally, an optional supervised classification step may be applied to actually identity every speaker cluster in a supervised way.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;-evaluation-metrics-diarization-error-rate&quot;&gt;&lt;a name=&quot;metric&quot;&gt;&lt;/a&gt; Evaluation Metrics (Diarization Error Rate)&lt;/h4&gt;
+
+&lt;p&gt;To evaluate the performance or to estimate the influence of errors on the
+complete pipeline, we use the standard metrics implemented in
+&lt;a href=&quot;https://pyannote.github.io/pyannote-metrics/reference.html&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pyannote-metrics&lt;/code&gt;&lt;/a&gt;.
+We also need to account for the fact that these time-stamps are manually
+annotated by data-annotators and hence cannot be precise at the audio sample
+level. It is a common practice in speaker diarization research to remove a
+fixed collar around each speaker turn boundary from being evaluated using our
+metric of choice. A 0.4sec collar would exclude 200ms before and after the
+boundary.&lt;/p&gt;
+
+&lt;p&gt;Diarization error rate (DER) is the &lt;strong&gt;de facto&lt;/strong&gt; standard metric for evaluating and comparing speaker diarization systems. It is measured as the fraction of time that is not attributed correctly to a speaker or non-speech.&lt;/p&gt;
+
+&lt;p&gt;The DER is composed of the following three errors:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;False Alarm&lt;/strong&gt;: It is the percentage of scored time that a hypothesized speaker is labelled as a non-speech in the reference. The false alarm error occurs mainly due to the the speech/non-speech detection error (i.e., the speech/non-speech detection considers a non-speech segment as a speech segment). Hence, false alarm error is not related to segmentation and clustering errors.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Missed Detection&lt;/strong&gt;: It is the percentage of scored time that a hypothesized non-speech segment corresponds to a reference speaker segment. The missed speech occurs mainly due to the the speech/non-speech detection error (i.e., the speech segment is considered as a non-speech segment). Hence, missed speech is not related to segmentation and clustering errors.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Confusion&lt;/strong&gt;: It is the percentage of scored time that a speaker ID is assigned to the wrong speaker. Confusion error is mainly a diarization system error (i.e., it is not related to speech/non-speech detection.) It also does not take into account the overlap speeches not detected.&lt;/p&gt;
+
+\[\text{DER} = \frac{\text{false alarm} + \text{missed detection} + \text{confusion}}{\text{total}}\]
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;-resegmentation&quot;&gt;&lt;a name=&quot;resegmentation&quot;&gt;&lt;/a&gt; Resegmentation&lt;/h4&gt;
+
+&lt;p&gt;As stated earlier, speaker diarization consists of automatically partitioning an input audio stream into homogeneous segments (segmentation) and assigning these segments to the same speaker (speaker clustering). Read more about segmentation &lt;a href=&quot;https://pyannote.github.io/pyannote-metrics/reference.html#segmentation&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Is it possible to &lt;strong&gt;resegment&lt;/strong&gt; these assignments, &lt;strong&gt;post clustering&lt;/strong&gt;, to achieve an improved lower DER?&lt;/p&gt;
+
+&lt;p&gt;This is exactly the job of a &lt;em&gt;resegmentation&lt;/em&gt; module. Simply put, we had a condition to be improved, a difficulty to be eliminated, and a troubling question that existed.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If yes, in what scenarios this optional (Resegmentation) module helps?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Before going ahead with resegmentation, we needed meaningful understanding and deliberate investigation of the predictions to answer the above question.&lt;/p&gt;
+
+&lt;p&gt;We brainstormed on this particular section involving post-processing of predictions in the diarization pipeline. After analysis and comparisons of predicted annotations made to the true annotations, our system, though good (with DER=0.05), was possibly facing an issue.&lt;/p&gt;
+
+&lt;p&gt;We were hit by something called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;oversegmentation&lt;/code&gt;, which can be seen in figure 6 below.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/resegmentation.jpg&quot; /&gt;
+  &lt;figcaption&gt;&lt;b&gt;&lt;center&gt;Fig 6.: Oversegmentation. Need for resegmentation?&lt;/center&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;To fix this problem and in the process making our system more robust, we tried multiple experiments tweaking the resegmentation module.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Standard Smoothing&lt;/strong&gt;: This is a simple annotation post processing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;smoothing function&lt;/code&gt; to solve the abrupt annotated segments (oversegmented regions) by merging these items smaller than or equal to the threshold (duration less than 0.2 seconds) with neighbouring annotation. We instantly got a 1% boost in DER (0.04) after smoothing.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Our initial hunch about oversegmentation based on the analysis was now supported by results from this simple exercise. This made us think about a few more questions:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Can we do even better?&lt;/li&gt;
+  &lt;li&gt;Can we use the labels and supervise the resegmentation module learning this smoothing function at the very least?&lt;/li&gt;
+  &lt;li&gt;Are there some other errors in the predictions which we may have overlooked, but probably a learned resegmentation model captures?&lt;/li&gt;
+  &lt;li&gt;Can we leverage clustering confidences to improve the resegmentation module?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Aiming to answer the above questions, we came up with a &lt;em&gt;Supervised Resegmentation Sequence2Sequence model&lt;/em&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Supervised Seq2Seq Resegmentation&lt;/strong&gt;: The goal of the model as shown below is to learn a mapping from the initial predictions to the ground truth sequence based on supervised training.&lt;/p&gt;
+
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+ &lt;span class=&quot;n&quot;&gt;Resegmentation&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Goal&lt;/span&gt;
+
+             &lt;span class=&quot;n&quot;&gt;PREDICTIONS&lt;/span&gt;                         &lt;span class=&quot;n&quot;&gt;GROUND&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRUTH&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;....]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;....]&lt;/span&gt;
+
+ &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Speaker&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Speaker&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; 
+
+       &lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;represents&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fixed&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;our&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;annotations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;To achieve such a mapping we worked on a simple Seq2Seq LSTM based model. We also enriched this model with information of cluster confidences after tweaking our Embedding+Clustering pipeline to do a soft clustering, i.e. return cluster scores based on the distance of each point in the cluster from the centroid along with the clustered predictions.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Overall all the above steps regarding a supervised resegmentation model were completely experimental and based on a few ideas. We are yet to achieve convincing results based on this approach but I thought it would be nice to mention this cool experiment :). Providing more resegmentation sequences for training could definitely and we also try to tackle diarization with limited data. See &lt;a href=&quot;####simulated-data-generation&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;-uis-rnn&quot;&gt;&lt;a name=&quot;uis-rnn&quot;&gt;&lt;/a&gt; UIS-RNN&lt;/h4&gt;
+
+&lt;p&gt;To explore more supervised methods, we also experimented with &lt;a href=&quot;https://arxiv.org/abs/1810.04719&quot;&gt;Fully Supervised Speaker Diarization&lt;/a&gt; or the UIS-RNN model, the current state of the art neural system for Speaker Diarization. Converting data to UIS Style format involves a set of preprocessing steps similar to what we had to for our supervised resegmentation model. More on the official &lt;a href=&quot;https://github.com/google/uis-rnn&quot;&gt;UIS-RNN Repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;But a caveat with UIS-RNN is that it requires huge amounts of data to form a convincing hypothesis after training. On realizing the limited amount of tagged data we had, we worked on simulating datasets for Speaker Diarization which in itself comes with some challenges.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;-simulated-data-generation&quot;&gt;&lt;a name=&quot;simulated_data_gen&quot;&gt;&lt;/a&gt; Simulated Data Generation&lt;/h4&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/sim_dia_data_generator_flow.jpg&quot; /&gt;
+  &lt;figcaption&gt;&lt;b&gt;&lt;center&gt;Fig 7.: Diarization Data Simulation&lt;/center&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We started with a large number of dual channel audio calls as a requirement for generating this Speaker Diarization Dataset.&lt;/p&gt;
+
+&lt;p&gt;These dual channel audios were then split and saved into mono channel audio files. The key idea is that each mono channel contains one speaker and if we are able to combine these mono channeled audios compunded with known timestamps of speakers, we can then possibly recreate the audios which are potentially useful for Supervised Speaker Diarization.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Steps as shown in Fig 7:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Split dual channel audio calls&lt;/strong&gt; into mono channel audios.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Running Webrtc VAD on the mono channels&lt;/strong&gt;:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Aggressive&lt;/strong&gt; : Speech Regions.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Mild&lt;/strong&gt; : Invert to get Gap Regions&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Compute statistics in real audios&lt;/strong&gt;: This step is required for us to understand the dynamics of overlaps and silences in a call on avergae. We compute the following ratios:
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;$ \text{Silence Ratio} = \frac{\text{Duration of Silences}}{\text{Total Duration}} $&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;$ \text{Overlap Ratio} = \frac{\text{Duration of Overlapping Utterances}}{\text{Total Duration}} $&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Combination of Speech from A and B with timestamps.&lt;/strong&gt; At the same time we needed to add &lt;strong&gt;real Gaps/Silence fills&lt;/strong&gt; and &lt;strong&gt;Overlaps (interrupts and overtalking)&lt;/strong&gt; to mimic real world call audios which are highly interactive.
+ To control the amount of overlap in data-generation, we used 2 parameters mainly.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scale_overlap&lt;/code&gt; : This allowed us to control the maximum possible duration of overlap and was set based on the stats gathered in step 3.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bias_overlap&lt;/code&gt; : This allowed us to control the percentage or probability if there is an overlapping segment. Eg: setting bias_overlap to 0.75 will give 33% chance each time to add overlap.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dump tagged speaker timestamps and simulated audios.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That’s all for now, and we’ll end this blog here. Stay tuned to our &lt;a href=&quot;https://vernacular-ai.github.io/ml/rss.xml&quot;&gt;rss feed&lt;/a&gt; for updates.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Until next time, Signing Off!&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://leap.ee.iisc.ac.in/sriram/publications/papers/Deep_Self_Supervised_Hierarchical_Clustering_for_Speaker_Diarization.pdf&quot;&gt;Deep Self-Supervised Hierarchical Clustering for Speaker Diarization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ai.googleblog.com/2019/08/joint-speech-recognition-and-speaker.html&quot;&gt;Joint Speech Recognition and Speaker Diarization via Sequence Transduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/wiseman/py-webrtcvad&quot;&gt;WebRTC VAD&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/2002.12761.pdf&quot;&gt;DIHARD II is Still Hard: Experimental Results and Discussions
+from the DKU-LENOVO Team&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/pyannote/pyannote-audio&quot;&gt;PyAnnote Audio&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/resemble-ai/Resemblyzer&quot;&gt;Resemblyzer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/wq2012/awesome-diarization&quot;&gt;Awesome Diarization&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=kEcUcfLmIS0&quot;&gt;Robust Speaker Diarization for Meetings&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1710.10467.pdf&quot;&gt;Generalized End-To-End Loss For Speaker Verification&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1810.04719&quot;&gt;Fully Supervised Speaker Diarization&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>anirudhdagar</name></author><category term="Machine Learning" /><category term="Speaker Diarization" /><summary type="html">This blog post is based on the work done by Anirudh Dagar as an intern at Vernacular.ai</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-02-04T00:00:00+00:00</published><updated>2019-02-04T00:00:00+00:00</updated><id>/welcome-to-jekyll</id><content type="html" xml:base="/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
 
@@ -267,24 +737,4 @@ feed&lt;/a&gt; for updates and more.&lt;/p&gt;</content><author><name>anirudhdag
 
 &lt;p&gt;For more information about how to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bundler&lt;/code&gt; in your Jekyll project, this tutorial should provide answers to the most common questions and explain how to get up and running quickly.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><summary type="html">gem install bundler installs the bundler gem through RubyGems. You only need to install it once - not every time you create a new Jekyll project. Here are some additional details:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/2.jpg" /><media:content medium="image" url="/assets/images/2.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">We all wait for summer</title><link href="/we-all-wait-for-summer/" rel="alternate" type="text/html" title="We all wait for summer" /><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><id>/we-all-wait-for-summer</id><content type="html" xml:base="/we-all-wait-for-summer/">&lt;p&gt;This is changed. As I engage in the so-called “bull sessions” around and about the school, I too often find that most college men have a misconception of the purpose of education. Most of the “brethren” think that &lt;a href=&quot;#&quot;&gt;education should equip&lt;/a&gt; them with the proper instruments of exploitation so that they can forever trample over the masses. Still others think that education should furnish them with noble ends rather than means to an end.&lt;/p&gt;
 
-&lt;p&gt;It seems to me that education has a two-fold function to perform in the life of man and in society: the one is utility and the other is culture. Education must enable a man to become more efficient, to achieve with increasing facility the ligitimate goals of his life.&lt;/p&gt;</content><author><name>jane</name></author><category term="Jekyll" /><category term="tutorial" /><category term="featured" /><summary type="html">This is changed. As I engage in the so-called “bull sessions” around and about the school, I too often find that most college men have a misconception of the purpose of education. Most of the “brethren” think that education should equip them with the proper instruments of exploitation so that they can forever trample over the masses. Still others think that education should furnish them with noble ends rather than means to an end.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/1.jpg" /><media:content medium="image" url="/assets/images/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Tree of Codes</title><link href="/tree-of-codes/" rel="alternate" type="text/html" title="Tree of Codes" /><published>2019-01-27T00:00:00+00:00</published><updated>2019-01-27T00:00:00+00:00</updated><id>/tree-of-codes</id><content type="html" xml:base="/tree-of-codes/">&lt;p&gt;The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.&lt;/p&gt;
-
-&lt;p&gt;As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;It would seem the claim could also extend to die cut books in general, as we can’t find anything sooner, but do let us know in the comments if you have further light to shed on this! Such books are, of course, still popular in children’s publishing today, though the die cutting is not now limited to mere outlines, as evidenced in a beautiful 2014 version of the same Little Red Riding Hood story.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;An 1868 Prang catalogue would later claim that such “books in the shape of a regular paper Doll… originated with us”.&lt;/p&gt;
-
-&lt;p&gt;The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><category term="tutorial" /><summary type="html">The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/2.jpg" /><media:content medium="image" url="/assets/images/2.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Red Riding Hood</title><link href="/red-riding/" rel="alternate" type="text/html" title="Red Riding Hood" /><published>2019-01-26T00:00:00+00:00</published><updated>2019-01-26T00:00:00+00:00</updated><id>/red-riding</id><content type="html" xml:base="/red-riding/">&lt;p&gt;The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.&lt;/p&gt;
-
-&lt;p&gt;An 1868 Prang catalogue would later claim that such “books in the shape of a regular paper Doll… originated with us”.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;It would seem the claim could also extend to die cut books in general, as we can’t find anything sooner, but do let us know in the comments if you have further light to shed on this! Such books are, of course, still popular in children’s publishing today, though the die cutting is not now limited to mere outlines, as evidenced in a beautiful 2014 version of the same Little Red Riding Hood story.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes.&lt;/p&gt;
-
-&lt;p&gt;As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><category term="tutorial" /><summary type="html">The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/3.jpg" /><media:content medium="image" url="/assets/images/3.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;It seems to me that education has a two-fold function to perform in the life of man and in society: the one is utility and the other is culture. Education must enable a man to become more efficient, to achieve with increasing facility the ligitimate goals of his life.&lt;/p&gt;</content><author><name>jane</name></author><category term="Jekyll" /><category term="tutorial" /><category term="featured" /><summary type="html">This is changed. As I engage in the so-called “bull sessions” around and about the school, I too often find that most college men have a misconception of the purpose of education. Most of the “brethren” think that education should equip them with the proper instruments of exploitation so that they can forever trample over the masses. Still others think that education should furnish them with noble ends rather than means to an end.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/1.jpg" /><media:content medium="image" url="/assets/images/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
