@@ -1,4 +1,143 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-02-25T17:39:18+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-02-04T00:00:00+00:00</published><updated>2019-02-04T00:00:00+00:00</updated><id>/welcome-to-jekyll</id><content type="html" xml:base="/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-02-26T16:01:50+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Bad Audio Detection</title><link href="/bad-audio-detection/" rel="alternate" type="text/html" title="Bad Audio Detection" /><published>2020-07-29T00:00:00+00:00</published><updated>2020-07-29T00:00:00+00:00</updated><id>/bad-audio-detection</id><content type="html" xml:base="/bad-audio-detection/">&lt;p&gt;This blog will be a short one, where we’ll talk about our approach on filtering
+out inscrutable audios from &lt;a href=&quot;https://vernacular.ai/vasr&quot;&gt;&lt;strong&gt;VASR&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are situations in Call Center Automation (CCA) pipeline where user
+utterances are bad. &lt;strong&gt;Bad&lt;/strong&gt; here is defined by things like noise, static,
+silences or background murmur etc. rendering the downstream SLU systems
+helpless. We started with a proposal and prepare a dataset for making an ML
+system learn to reject these audios.&lt;/p&gt;
+
+&lt;h3 id=&quot;benefits&quot;&gt;Benefits&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;No more misfires from SLU side which ultimately leads to a better user
+experience.&lt;/li&gt;
+  &lt;li&gt;Save compute and time by skipping bad audios.&lt;/li&gt;
+  &lt;li&gt;The whole system can be used for all our audio based tasks to predict and
+filter out the poor ones, hence avoiding sample noise for these tasks.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;dataset&quot;&gt;Dataset&lt;/h3&gt;
+
+&lt;p&gt;We prepared a dataset of intent tagged conversations with specially marked
+intents which tell us that these utterances are bad and them going further in
+SLU will result in errors. Also we have a sampling of non-bad utterances
+(tagged with regular intents) to make this a classification problem.&lt;/p&gt;
+
+&lt;p&gt;There are total 9928 samples of audios labelled as bad and 20000 samples
+labeled as good.&lt;/p&gt;
+
+&lt;p&gt;All the raw labels were not very useful, hence we clean and preprocess the data
+to finally create 2 broad categories with sub-classes.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-bad&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-noisy&lt;/code&gt;: Noisy audio.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-silent&lt;/code&gt;: Silent audio.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-talking&lt;/code&gt;: Background talking.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hold-phone&lt;/code&gt;: Music from keeping on hold.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-good&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h3&gt;
+
+&lt;p&gt;We needed to understand the class imbalance and hence we plot a histogram
+representing number of samples for each class.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/Class_Distribution.png&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/EDA.png&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;We also plot the frequency vs duration histogram plot to understand the general
+distribution of audio durations in the dataset.  Based on the mean duration of
+5.26 seconds and the peaks in the histogram, we decided to threshold our audios
+to 6.5 seconds.  Anything less than that will be padded to 6.5 seconds and
+anything greater than that duration will be truncated to 6.5 seconds.&lt;/p&gt;
+
+&lt;p&gt;Even though we have sub-classes for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-bad&lt;/code&gt; spanning different areas of
+what “bad” could be, we decided to focus only on the &lt;strong&gt;noisy audios&lt;/strong&gt;. Silent
+Audios can be treated separately, since they do not actually require something
+as complex as an ML model to classify them. We can simply use the age-old
+powerful signal processing methods to filter those out with some good
+confidence.&lt;/p&gt;
+
+&lt;h3 id=&quot;model&quot;&gt;Model&lt;/h3&gt;
+
+&lt;p&gt;If we are going to reject these bad audios then we need to do so with:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;High Precision&lt;/strong&gt;: We should not be rejecting good audios which are
+perfectly interpretable and understandable.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Low Latency:&lt;/strong&gt; This system should have little to no latency, otherwise it
+will just slow down our whole VASR flow after being deployed and integrated.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Online:&lt;/strong&gt; The model should be capable of running in an online setting where
+continuous chunks of audios are fed into the system.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We used a standard audio classification pipeline to train our binary
+classification task.&lt;/p&gt;
+
+&lt;p&gt;This involves generating log-mel spectrograms and then running a Convolution
+Neural Network (CNN) based feature extractor on top of this fixed size
+spectrogram image.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/model_architecture.png&quot; /&gt;
+  &lt;figcaption&gt;&lt;b&gt;&lt;center&gt;Binary Audio Classification based on Log-Mel Spectrograms&lt;/center&gt;&lt;/b&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;While these features (spectrograms) can be generated once after processing all
+the audios in the dataset, this feature generation needs to be done on the fly
+to make a model that can be used in deployment i.e given raw audios as input,
+it should be able to predict the class, that was easily incorporated through a
+few transforms done within the model using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;torch-audio&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Even though this architecture is simple, it got us an &lt;strong&gt;accuracy of about
+87%&lt;/strong&gt;. But it is not the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;accuracy&lt;/code&gt; we need to see, our choice of metric to
+measure the performance is &lt;strong&gt;precision&lt;/strong&gt; as explained earlier. We are still in
+the process improving these initial baseline numbers of the model. One simple
+approach for increasing the precision is to increase the threshold, trading-off
+some coverage in the form of support.&lt;/p&gt;
+
+&lt;h3 id=&quot;misclassification-analysis&quot;&gt;Misclassification Analysis&lt;/h3&gt;
+
+&lt;p&gt;We also do a post prediction analysis on the misclassified audios, which
+revealed an interesting pattern in the dataset and in the kind of audios that
+the model was finding hard to make predictions on.&lt;/p&gt;
+
+&lt;p&gt;Briefly these errors followed 3 major types which now helps to understand the
+places where we can make improvements.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Type 1 (Very Short Utterance)&lt;/strong&gt; : say 0.2 seconds in audio of 6 seconds.
+Due to noise in most part of such short utterance audios, our model predicts
+it to be noisy and not good in some occasions. This can probably be fixed
+with VAD which can trim the non speech segments in such short utterance
+audios.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Type 2 (Long audios)&lt;/strong&gt; : Audio duration is longer than 6.5 seconds with the
+speaker in latter half. Since we chose to threshold our features (log-mels)
+at 6.5 seconds, the latter part of the audio is basically truncated and hence
+such errors.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Type 3 (Ambiguous / Wrongly Labeled)&lt;/strong&gt; : There are samples in the dataset
+which are not perfectly labelled. One may say these audios are debatablem,
+some may find them to be bad others may think that they are ok. This type of
+label noise is something which needs to be tackled.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Needless to say, there are places where we can improve these results, but
+having a solid baseline model initially is important for incremental
+improvements over time and after a few iterations we finally see these models
+in our production systems.&lt;/p&gt;
+
+&lt;p&gt;That’s all for now. Stay tuned to our &lt;a href=&quot;https://tech.vernacular.ai/feed.xml&quot;&gt;rss
+feed&lt;/a&gt; for updates and more.&lt;/p&gt;</content><author><name>anirudhdagar</name></author><category term="Audio Classification" /><summary type="html">This blog will be a short one, where we’ll talk about our approach on filtering out inscrutable audios from VASR.</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-02-04T00:00:00+00:00</published><updated>2019-02-04T00:00:00+00:00</updated><id>/welcome-to-jekyll</id><content type="html" xml:base="/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
 
@@ -148,16 +287,4 @@
 
 &lt;p&gt;The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes.&lt;/p&gt;
 
-&lt;p&gt;As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><category term="tutorial" /><summary type="html">The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/3.jpg" /><media:content medium="image" url="/assets/images/3.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Press and education</title><link href="/press-and-education/" rel="alternate" type="text/html" title="Press and education" /><published>2019-01-25T00:00:00+00:00</published><updated>2019-01-25T00:00:00+00:00</updated><id>/press-and-education</id><content type="html" xml:base="/press-and-education/">&lt;p&gt;Even the press, the classroom, the platform, and the pulpit in many instances do not give us objective and unbiased truths. To save man from the morass of propaganda, in my opinion, is one of the chief aims of education. Education must enable one to sift and weigh evidence, to discern the true from the false, the real from the unreal, and the facts from the fiction.&lt;/p&gt;
-
-&lt;p&gt;Education must also train one for quick, &lt;strong&gt;resolute and effective thinking&lt;/strong&gt;. To think incisively and to think for one’s self is very difficult.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;We are prone to let our mental life become invaded by legions of half truths, prejudices, and propaganda. At this point, I often wonder whether or not education is fulfilling its purpose. A great majority of the so-called educated people do not think logically and scientifically.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The function of education, therefore, is to teach one to think intensively and to think critically. But education which stops with efficiency may prove the greatest menace to society. The most dangerous criminal may be the man gifted with reason, but with no morals.&lt;/p&gt;
-
-&lt;p&gt;The late Eugene Talmadge, in my opinion, possessed one of the better minds of Georgia, or even America. Moreover, he wore the Phi Beta Kappa key. By all measuring rods, Mr. Talmadge could think critically and intensively; yet he contends that I am an inferior being. Are those the types of men we call educated?&lt;/p&gt;
-
-&lt;p&gt;We must remember that intelligence is not enough. Intelligence plus character–that is the goal of true education. The complete education gives one not only power of concentration, but worthy objectives upon which to concentrate. The broad education will, therefore, transmit to one not only the accumulated knowledge of the race but also the accumulated experience of social living.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><category term="tutorial" /><summary type="html">Even the press, the classroom, the platform, and the pulpit in many instances do not give us objective and unbiased truths. To save man from the morass of propaganda, in my opinion, is one of the chief aims of education. Education must enable one to sift and weigh evidence, to discern the true from the false, the real from the unreal, and the facts from the fiction.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/7.jpg" /><media:content medium="image" url="/assets/images/7.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><category term="tutorial" /><summary type="html">The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/3.jpg" /><media:content medium="image" url="/assets/images/3.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
