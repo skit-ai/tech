@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-02-26T17:09:58+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">EMNLP 2020</title><link href="/emnlp/" rel="alternate" type="text/html" title="EMNLP 2020" /><published>2020-12-21T00:00:00+00:00</published><updated>2020-12-21T00:00:00+00:00</updated><id>/emnlp</id><content type="html" xml:base="/emnlp/">&lt;p&gt;We recently attended the all remote &lt;a href=&quot;https://2020.emnlp.org/&quot;&gt;EMNLP
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-02-26T17:11:06+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">EMNLP 2020</title><link href="/emnlp/" rel="alternate" type="text/html" title="EMNLP 2020" /><published>2020-12-21T00:00:00+00:00</published><updated>2020-12-21T00:00:00+00:00</updated><id>/emnlp</id><content type="html" xml:base="/emnlp/">&lt;p&gt;We recently attended the all remote &lt;a href=&quot;https://2020.emnlp.org/&quot;&gt;EMNLP
 2020&lt;/a&gt;. Each of us made notes on what they did
 overall. But instead of posting those or going with a
 what-we-think-about-the-conference style post, we thought to just ask the team
@@ -74,7 +74,78 @@ improvements on silent speech. There were a lot of papers and workshops on
 interpretability of models which is essential considering the direction where
 the field is heading and the gather sessions did a good job of ensuring one
 doesn’t miss out on the social aspects of attending a conference.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>janaab11</name></author><category term="Machine Learning" /><summary type="html">We recently attended the all remote EMNLP 2020. Each of us made notes on what they did overall. But instead of posting those or going with a what-we-think-about-the-conference style post, we thought to just ask the team what interested them the most in a few sentences. Here are the individual responses:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Bad Audio Detection</title><link href="/bad-audio-detection/" rel="alternate" type="text/html" title="Bad Audio Detection" /><published>2020-07-29T00:00:00+00:00</published><updated>2020-07-29T00:00:00+00:00</updated><id>/bad-audio-detection</id><content type="html" xml:base="/bad-audio-detection/">&lt;p&gt;This blog will be a short one, where we’ll talk about our approach on filtering
+&lt;/blockquote&gt;</content><author><name>janaab11</name></author><category term="Machine Learning" /><summary type="html">We recently attended the all remote EMNLP 2020. Each of us made notes on what they did overall. But instead of posting those or going with a what-we-think-about-the-conference style post, we thought to just ask the team what interested them the most in a few sentences. Here are the individual responses:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Interspeech 2020</title><link href="/interspeech/" rel="alternate" type="text/html" title="Interspeech 2020" /><published>2020-12-01T00:00:00+00:00</published><updated>2020-12-01T00:00:00+00:00</updated><id>/interspeech</id><content type="html" xml:base="/interspeech/">&lt;p&gt;We recently attended the all remote &lt;a href=&quot;http://www.interspeech2020.org/&quot;&gt;Interspeech
+2020&lt;/a&gt;. Each of us made notes on what they did
+overall. But instead of posting those or going with a
+what-we-think-about-the-conference style post, we thought to just ask the team
+what interested them the most in a few sentences. Here are the individual
+responses:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://lepisma.xyz/&quot;&gt;Abhinav&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I really liked the &lt;a href=&quot;https://zerospeech.com/&quot;&gt;ZeroSpeech&lt;/a&gt; challenge. As usual,
+they had few really interesting unsupervised problems and solutions. I find
+their tracks really ambitious as evident by this statement on their website
+“… infants learn to speak their native language, spontaneously, from raw
+sensory input, without supervision from text or linguists. It should be
+possible to do the same in machines”.&lt;/p&gt;
+
+  &lt;p&gt;Next year, 2021, the &lt;a href=&quot;https://zerospeech.com/2021/news.html&quot;&gt;target is Spoken Language
+Modeling&lt;/a&gt;. Looking forward to that too.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ltbringer.github.io/blog/&quot;&gt;Amresh&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Meta Learning Tutorial on day 1 was a detailed session on the topic. The
+promise of performing well on a set of task(s) with less amount of data had my
+attention. The authors take care of introduction, utility and comparison of
+this approach and its impact on tasks like speaker verification, keyword
+spotting, Emotion Recognition and my special interest conversational AI.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/janaab11/&quot;&gt;Manas&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A new thing here was Computational Paralinguistics, that covers the
+non-content parts of speech. Given my interest in the stylistic parts of
+speech, this was particularly interesting. Papers presented many ideas
+relevant to building a better voicebot, like - uncertainty aware methods for
+multiple labels, Autism Quotient as a perception feature, and predicting CSAT
+scores from sentiment.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/pskrunner14&quot;&gt;Prabhsimran&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Interspeech had some great sessions, from discussions on more fundamental
+concepts related to Speech Processing in the Brain, Phonetics and Phonology to
+novel ideas on Training Strategies for ASR like Semantic Word Masking,
+Efficient Vocoder implementations for faster Neural Waveform Synthesis and
+Automatic Prosody Analysis for Non-Semantic Speech Representations. It helped
+me connect alot of dots and exposed me to some great ideas we should be
+exploring in our work.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.linkedin.com/in/kaustavtamuly/&quot;&gt;Kaustav&lt;/a&gt; says&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I really liked attending the Speech Emotion Recognition tracks. The tracks
+covered a multitude of topics including self-supervised learning methods,
+non-semantic representations, etc. It was overall, a very balanced track with
+a lot of interaction among the attendees and the presenters. The speech signal
+representation track was pretty fun too with some really interesting papers on
+voice casting, universal non-semantic representations.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>lepisma</name></author><category term="Machine Learning" /><summary type="html">We recently attended the all remote Interspeech 2020. Each of us made notes on what they did overall. But instead of posting those or going with a what-we-think-about-the-conference style post, we thought to just ask the team what interested them the most in a few sentences. Here are the individual responses:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Bad Audio Detection</title><link href="/bad-audio-detection/" rel="alternate" type="text/html" title="Bad Audio Detection" /><published>2020-07-29T00:00:00+00:00</published><updated>2020-07-29T00:00:00+00:00</updated><id>/bad-audio-detection</id><content type="html" xml:base="/bad-audio-detection/">&lt;p&gt;This blog will be a short one, where we’ll talk about our approach on filtering
 out inscrutable audios from &lt;a href=&quot;https://vernacular.ai/vasr&quot;&gt;&lt;strong&gt;VASR&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;There are situations in Call Center Automation (CCA) pipeline where user
@@ -735,6 +806,4 @@ from the DKU-LENOVO Team&lt;/a&gt;&lt;/li&gt;
 
 &lt;p&gt;When you run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bundler&lt;/code&gt; uses the gems and versions as specified in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile.lock&lt;/code&gt; to ensure your Jekyll site builds with no compatibility or dependency conflicts.&lt;/p&gt;
 
-&lt;p&gt;For more information about how to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bundler&lt;/code&gt; in your Jekyll project, this tutorial should provide answers to the most common questions and explain how to get up and running quickly.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><summary type="html">gem install bundler installs the bundler gem through RubyGems. You only need to install it once - not every time you create a new Jekyll project. Here are some additional details:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/2.jpg" /><media:content medium="image" url="/assets/images/2.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">We all wait for summer</title><link href="/we-all-wait-for-summer/" rel="alternate" type="text/html" title="We all wait for summer" /><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><id>/we-all-wait-for-summer</id><content type="html" xml:base="/we-all-wait-for-summer/">&lt;p&gt;This is changed. As I engage in the so-called “bull sessions” around and about the school, I too often find that most college men have a misconception of the purpose of education. Most of the “brethren” think that &lt;a href=&quot;#&quot;&gt;education should equip&lt;/a&gt; them with the proper instruments of exploitation so that they can forever trample over the masses. Still others think that education should furnish them with noble ends rather than means to an end.&lt;/p&gt;
-
-&lt;p&gt;It seems to me that education has a two-fold function to perform in the life of man and in society: the one is utility and the other is culture. Education must enable a man to become more efficient, to achieve with increasing facility the ligitimate goals of his life.&lt;/p&gt;</content><author><name>jane</name></author><category term="Jekyll" /><category term="tutorial" /><category term="featured" /><summary type="html">This is changed. As I engage in the so-called “bull sessions” around and about the school, I too often find that most college men have a misconception of the purpose of education. Most of the “brethren” think that education should equip them with the proper instruments of exploitation so that they can forever trample over the masses. Still others think that education should furnish them with noble ends rather than means to an end.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/1.jpg" /><media:content medium="image" url="/assets/images/1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;For more information about how to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bundler&lt;/code&gt; in your Jekyll project, this tutorial should provide answers to the most common questions and explain how to get up and running quickly.&lt;/p&gt;</content><author><name>sal</name></author><category term="Jekyll" /><summary type="html">gem install bundler installs the bundler gem through RubyGems. You only need to install it once - not every time you create a new Jekyll project. Here are some additional details:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/2.jpg" /><media:content medium="image" url="/assets/images/2.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
