@@ -33,6 +33,38 @@ defaults:
     values:
       layout: page
 
+authors:
+    anirudhdagar:
+      name:           Anirudh Dagar
+      # site:         https://www.wowthemes.net
+      avatar:         /assets/images/avatar1.jpg
+      bio:            ""
+      twitter:        https://github.com/anirudhdagar
+    kritianandan:
+      name:           Kriti Anandan
+      # site:         https://www.wowthemes.net
+      avatar:         /assets/images/avatar1.jpg
+      bio:            ""
+      twitter:        https://github.com/kritianandan98
+    swarajdalmia:
+      name:           Swaraj Dalmia
+      # site:         https://www.wowthemes.net
+      avatar:         /assets/images/avatar1.jpg
+      bio:            ""
+      twitter:        https://github.com/swarajdalmia
+    janaab11:
+      name:           Kumar Manas
+      # site:         https://www.wowthemes.net
+      avatar:         /assets/images/avatar1.jpg
+      bio:            ""
+      twitter:        https://github.com/janaab11/
+    lepisma:
+      name:           Abhinav Tushar
+      # site:         https://www.wowthemes.net
+      avatar:         /assets/images/avatar1.jpg
+      bio:            ""
+      twitter:        https://lepisma.xyz/
+
 # Syntax
 markdown: kramdown
 highlighter: rouge
