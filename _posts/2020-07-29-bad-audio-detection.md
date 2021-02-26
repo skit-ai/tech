@@ -2,6 +2,9 @@
 title: Bad Audio Detection
 date: 2020-07-29
 tags: [Audio Classification]
+categories: [Machine Learning]
+image: assets/images/demo1.jpg
+layout: post
 author: anirudhdagar
 ---
 
