@@ -135,7 +135,7 @@ var documents = [{
     "id": 4,
     "url": "/authors-list.html",
     "title": "Authors",
-    "body": " {% for author in site. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                        &nbsp;        &nbsp;                      {% endfor %}"
+    "body": " {% for author in site. data. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                       {% if author[1]. website %}        &nbsp;       {% endif %}       {% if author[1]. github %}        &nbsp;       {% endif %}       {% if author[1]. twitter %}        &nbsp;       {% endif %}       {% if author[1]. linkedin %}        &nbsp;       {% endif %}                      {% endfor %}"
     }, {
     "id": 5,
     "url": "/buy-me-a-coffee.html",
@@ -284,6 +284,7 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         
+
 <div class="container">
 <div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
 		<div class="h-100 tofront">
@@ -298,8 +299,8 @@ function lunr_search(term) {
 					</p>
 					<h1 class="display-4 mb-4 article-headline">Part 1 - Introducing Normalizing Flows</h1>
 					<div class="d-flex align-items-center">
-                        
-						<small class="ml-3">  <span><a target="_blank" href="" class="btn btn-outline-success btn-sm btn-round ml-1">Follow</a></span>
+            
+						<small class="ml-3">  <span><a target="_blank" href="/authors/kritianandan, swarajdalmia.html" class="btn btn-outline-success btn-sm btn-round ml-1">Profile</a></span>
                             <span class="text-muted d-block mt-1">Dec 19, 2020 · <span class="reading-time">
   
   
@@ -319,10 +320,6 @@ function lunr_search(term) {
 		</div>
 	</div>
 </div>
-
-
-
-
 
 <div class="container-lg pt-4 pb-4">
 	<div class="row justify-content-center">
@@ -555,28 +552,9 @@ More generally, one can decompose T into $T_1, T_2…T_d$   s.t.   $x_i = T_i(z_
 
             <!-- Mailchimp Subscribe Form -->
             
-
-
-             <!-- Author Box -->
-                
-				<div class="row mt-5">
-					<div class="col-md-2 align-self-center">
-                         
-					</div>
-					<div class="col-md-10">
-                        <h5 class="font-weight-bold">Written by  </h5>
-						
-					</div>
-				</div>
-                
-
 		</div>
-
-
 	</div>
 </div>
-
-
 
     </main>
 

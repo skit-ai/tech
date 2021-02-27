@@ -10,7 +10,7 @@
 <title>EMNLP 2020 | Vernacular.ai Tech</title>
 <meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="EMNLP 2020" />
-<meta name="author" content="janaab11" />
+<meta name="author" content="Kumarmanas Nethil" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Individual summary notes from EMNLP 2020." />
 <meta property="og:description" content="Individual summary notes from EMNLP 2020." />
@@ -22,7 +22,7 @@
 <meta property="twitter:image" content="/assets/images/demo1.jpg" />
 <meta property="twitter:title" content="EMNLP 2020" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"janaab11"},"description":"Individual summary notes from EMNLP 2020.","url":"/emnlp/","@type":"BlogPosting","headline":"EMNLP 2020","dateModified":"2020-12-21T00:00:00+00:00","datePublished":"2020-12-21T00:00:00+00:00","image":"/assets/images/demo1.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"/emnlp/"},"author":{"@type":"Person","name":"janaab11"},"@context":"https://schema.org"}</script>
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Kumarmanas Nethil"},"description":"Individual summary notes from EMNLP 2020.","url":"/emnlp/","@type":"BlogPosting","headline":"EMNLP 2020","dateModified":"2020-12-21T00:00:00+00:00","datePublished":"2020-12-21T00:00:00+00:00","image":"/assets/images/demo1.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"/emnlp/"},"author":{"@type":"Person","name":"Kumarmanas Nethil"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -135,7 +135,7 @@ var documents = [{
     "id": 4,
     "url": "/authors-list.html",
     "title": "Authors",
-    "body": " {% for author in site. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                        &nbsp;        &nbsp;                      {% endfor %}"
+    "body": " {% for author in site. data. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                       {% if author[1]. website %}        &nbsp;       {% endif %}       {% if author[1]. github %}        &nbsp;       {% endif %}       {% if author[1]. twitter %}        &nbsp;       {% endif %}       {% if author[1]. linkedin %}        &nbsp;       {% endif %}                      {% endfor %}"
     }, {
     "id": 5,
     "url": "/buy-me-a-coffee.html",
@@ -284,6 +284,7 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         
+
 <div class="container">
 <div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
 		<div class="h-100 tofront">
@@ -298,10 +299,10 @@ function lunr_search(term) {
 					</p>
 					<h1 class="display-4 mb-4 article-headline">EMNLP 2020</h1>
 					<div class="d-flex align-items-center">
-                        
-                        <img class="rounded-circle" src="//assets/images/avatar1.jpg" alt="Kumar Manas" width="70"/>
-                        
-						<small class="ml-3"> Kumar Manas <span><a target="_blank" href="https://github.com/janaab11/" class="btn btn-outline-success btn-sm btn-round ml-1">Follow</a></span>
+            
+            <img class="rounded-circle" src="//assets/images/avatar1.jpg" alt="janaab11" width="70"/>
+            
+						<small class="ml-3"> Kumarmanas Nethil <span><a target="_blank" href="/authors/janaab11.html" class="btn btn-outline-success btn-sm btn-round ml-1">Profile</a></span>
                             <span class="text-muted d-block mt-1">Dec 21, 2020 · <span class="reading-time">
   
   
@@ -321,10 +322,6 @@ function lunr_search(term) {
 		</div>
 	</div>
 </div>
-
-
-
-
 
 <div class="container-lg pt-4 pb-4">
 	<div class="row justify-content-center">
@@ -420,30 +417,9 @@ doesn’t miss out on the social aspects of attending a conference.</p>
 
             <!-- Mailchimp Subscribe Form -->
             
-
-
-             <!-- Author Box -->
-                
-				<div class="row mt-5">
-					<div class="col-md-2 align-self-center">
-                         
-                        <img class="rounded-circle" src="//assets/images/avatar1.jpg" alt="Kumar Manas" width="90"/>
-                        
-					</div>
-					<div class="col-md-10">
-                        <h5 class="font-weight-bold">Written by Kumar Manas <span><a target="_blank" href="https://github.com/janaab11/" class="btn btn-outline-success btn-sm btn-round ml-2">Follow</a></span></h5>
-						
-					</div>
-				</div>
-                
-
 		</div>
-
-
 	</div>
 </div>
-
-
 
     </main>
 

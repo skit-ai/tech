@@ -130,7 +130,7 @@ var documents = [{
     "id": 4,
     "url": "/authors-list.html",
     "title": "Authors",
-    "body": " {% for author in site. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                        &nbsp;        &nbsp;                      {% endfor %}"
+    "body": " {% for author in site. data. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                       {% if author[1]. website %}        &nbsp;       {% endif %}       {% if author[1]. github %}        &nbsp;       {% endif %}       {% if author[1]. twitter %}        &nbsp;       {% endif %}       {% if author[1]. linkedin %}        &nbsp;       {% endif %}                      {% endfor %}"
     }, {
     "id": 5,
     "url": "/buy-me-a-coffee.html",

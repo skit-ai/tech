@@ -10,7 +10,7 @@
 <title>Reading Sessions | Vernacular.ai Tech</title>
 <meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="Reading Sessions" />
-<meta name="author" content="lepisma" />
+<meta name="author" content="Abhinav Tushar" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Studying researches and building on top of them is an important part of what a team of ML Engineers do on a regular basis. Usually, teams do this by organizing periodic, often weekly, paper reading sessions. Here is a snippet from an internal work memo by Manas explaining how we look at these sessions:" />
 <meta property="og:description" content="Studying researches and building on top of them is an important part of what a team of ML Engineers do on a regular basis. Usually, teams do this by organizing periodic, often weekly, paper reading sessions. Here is a snippet from an internal work memo by Manas explaining how we look at these sessions:" />
@@ -22,7 +22,7 @@
 <meta property="twitter:image" content="/assets/images/demo1.jpg" />
 <meta property="twitter:title" content="Reading Sessions" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"lepisma"},"description":"Studying researches and building on top of them is an important part of what a team of ML Engineers do on a regular basis. Usually, teams do this by organizing periodic, often weekly, paper reading sessions. Here is a snippet from an internal work memo by Manas explaining how we look at these sessions:","url":"/reading-sessions/","@type":"BlogPosting","headline":"Reading Sessions","dateModified":"2020-11-30T00:00:00+00:00","datePublished":"2020-11-30T00:00:00+00:00","image":"/assets/images/demo1.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"/reading-sessions/"},"author":{"@type":"Person","name":"lepisma"},"@context":"https://schema.org"}</script>
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Abhinav Tushar"},"description":"Studying researches and building on top of them is an important part of what a team of ML Engineers do on a regular basis. Usually, teams do this by organizing periodic, often weekly, paper reading sessions. Here is a snippet from an internal work memo by Manas explaining how we look at these sessions:","url":"/reading-sessions/","@type":"BlogPosting","headline":"Reading Sessions","dateModified":"2020-11-30T00:00:00+00:00","datePublished":"2020-11-30T00:00:00+00:00","image":"/assets/images/demo1.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"/reading-sessions/"},"author":{"@type":"Person","name":"Abhinav Tushar"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -135,7 +135,7 @@ var documents = [{
     "id": 4,
     "url": "/authors-list.html",
     "title": "Authors",
-    "body": " {% for author in site. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                        &nbsp;        &nbsp;                      {% endfor %}"
+    "body": " {% for author in site. data. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                       {% if author[1]. website %}        &nbsp;       {% endif %}       {% if author[1]. github %}        &nbsp;       {% endif %}       {% if author[1]. twitter %}        &nbsp;       {% endif %}       {% if author[1]. linkedin %}        &nbsp;       {% endif %}                      {% endfor %}"
     }, {
     "id": 5,
     "url": "/buy-me-a-coffee.html",
@@ -284,6 +284,7 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         
+
 <div class="container">
 <div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
 		<div class="h-100 tofront">
@@ -298,10 +299,10 @@ function lunr_search(term) {
 					</p>
 					<h1 class="display-4 mb-4 article-headline">Reading Sessions</h1>
 					<div class="d-flex align-items-center">
-                        
-                        <img class="rounded-circle" src="//assets/images/avatar1.jpg" alt="Abhinav Tushar" width="70"/>
-                        
-						<small class="ml-3"> Abhinav Tushar <span><a target="_blank" href="https://lepisma.xyz/" class="btn btn-outline-success btn-sm btn-round ml-1">Follow</a></span>
+            
+            <img class="rounded-circle" src="//assets/images/avatar1.jpg" alt="lepisma" width="70"/>
+            
+						<small class="ml-3"> Abhinav Tushar <span><a target="_blank" href="/authors/lepisma.html" class="btn btn-outline-success btn-sm btn-round ml-1">Profile</a></span>
                             <span class="text-muted d-block mt-1">Nov 30, 2020 · <span class="reading-time">
   
   
@@ -321,10 +322,6 @@ function lunr_search(term) {
 		</div>
 	</div>
 </div>
-
-
-
-
 
 <div class="container-lg pt-4 pb-4">
 	<div class="row justify-content-center">
@@ -523,30 +520,9 @@ months, similar to the old style
 
             <!-- Mailchimp Subscribe Form -->
             
-
-
-             <!-- Author Box -->
-                
-				<div class="row mt-5">
-					<div class="col-md-2 align-self-center">
-                         
-                        <img class="rounded-circle" src="//assets/images/avatar1.jpg" alt="Abhinav Tushar" width="90"/>
-                        
-					</div>
-					<div class="col-md-10">
-                        <h5 class="font-weight-bold">Written by Abhinav Tushar <span><a target="_blank" href="https://lepisma.xyz/" class="btn btn-outline-success btn-sm btn-round ml-2">Follow</a></span></h5>
-						
-					</div>
-				</div>
-                
-
 		</div>
-
-
 	</div>
 </div>
-
-
 
     </main>
 
