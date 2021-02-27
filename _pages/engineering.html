@@ -1,0 +1,62 @@
+---
+title: "Engineering"
+layout: page
+permalink: "/engineering.html"
+---
+
+{% assign category = "Engineering" %}
+{% assign pages_list = site.categories[category] | slice: 0, 5 %}
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div>
+    <p>
+      This is the home page of the Engineering team at Vernacular.ai.
+    </p>
+    </div>
+    <br>
+    <div>
+      <h4>Team</h4>
+      Current members of our Engineering team:
+      <ul>
+        {% for member in site.data.teams.engineering %}
+        {% if member.active %}
+        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}.html{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+
+      Past members:
+      <ul>
+        {% for member in site.data.teams.engineering %}
+        {% unless member.active %}
+        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}.html{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
+        {% endunless %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="sticky-top sticky-top-offset">
+      <h4 class="font-weight-bold spanborder"><span>Recent posts</span></h4>
+      <ol class="list-featured">
+        {% for post in pages_list %}
+        <li class="mb-4">
+          <span>
+            <h6 class="font-weight-bold">
+              <a href="{{site.baseurl}}{{ post.url }}" class="text-dark">{{ post.title }}</a>
+            </h6>
+            <small class="text-muted">
+		          {{ post.date | date: '%b %d, %Y' }}
+	          </small>
+          </span>
+        </li>
+        {% endfor %}
+      </ol>
+      <a class="btn btn-outline-success btn-sm btn-round" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">
+        All posts under Engineering
+      </a>
+    </div>
+  </div>
+</div>
