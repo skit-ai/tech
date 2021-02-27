@@ -5,7 +5,7 @@ tags: [Normalizing Flows]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
-author: kritianandan, swarajdalmia
+authors: [kritianandan, swarajdalmia]
 ---
 
 Normalizing flows, popularized by [(Rezende, & Mohamed,

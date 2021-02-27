@@ -5,7 +5,7 @@ tags: [work]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
-author: lepisma
+authors: [lepisma]
 ---
 
 Studying researches and building on top of them is an important part of

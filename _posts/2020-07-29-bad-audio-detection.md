@@ -5,7 +5,7 @@ tags: [Audio Classification]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
-author: anirudhdagar
+authors: [anirudhdagar]
 ---
 
 This blog will be a short one, where we'll talk about our approach on filtering

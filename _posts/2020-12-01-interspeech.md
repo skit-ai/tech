@@ -5,7 +5,7 @@ tags: [featured]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
-author: lepisma
+authors: [lepisma]
 ---
 
 We recently attended the all remote [Interspeech

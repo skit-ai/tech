@@ -5,7 +5,7 @@ tags: [Speaker Diarization]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
-author: anirudhdagar
+authors: [anirudhdagar]
 ---
 
 This blog post is based on the work done by [Anirudh
