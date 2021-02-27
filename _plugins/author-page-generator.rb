@@ -19,9 +19,8 @@ module Author
       self.process(@name)
       template = "author-page"
       @path = @site.layouts[template].path.dup
-
-      @data = @site.layouts[template].data
-      @content = @site.layouts[template].content
+      @data = @site.layouts[template].data.dup
+      @content = @site.layouts[template].content.dup
 
       @data["author"] = {
         "alias" => author_alias,
