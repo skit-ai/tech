@@ -18,7 +18,7 @@ layout: default
 					<div class="d-flex align-items-center">
 						<small>
               {% for author in page.authors %}
-              <a target="_blank" href="{{site.baseurl}}/authors/{{ author }}.html" class="">{{ site.data.authors[author].name }}</a>{% unless forloop.last %},{% endunless %}
+              <a target="_blank" href="{{site.baseurl}}/authors/{{ author }}" class="">{{ site.data.authors[author].name }}</a>{% unless forloop.last %},{% endunless %}
               {% endfor %}
               <span class="text-muted d-block mt-1">{{ page.date | date: '%b %d, %Y' }} · {% include meta-read-time.html %}</span>
 						</small>

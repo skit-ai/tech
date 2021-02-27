@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="row align-items-center mb-5">
+          <div class="col-md-9">
+            <h2 class="font-weight-bold">{{ page.author.info.name }}</h2>
+            <p class="excerpt">{{ page.author.info.bio }}</p>
+            <div class="icon-block mt-3 d-flex justify-content-between">
+            <div>
+              {% if page.author.info.website %}
+              <a target="_blank" href="{{ page.author.info.website }}"><i class="fa fa-globe text-muted" aria-hidden="true"></i></a> &nbsp;
+              {% endif %}
+              {% if page.author.info.github %}
+              <a target="_blank" href="https://github.com/{{ page.author.info.github }}"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
+              {% endif %}
+              {% if page.author.info.twitter %}
+              <a target="_blank" href="https://twitter.com/{{ page.author.info.twitter }}"><i class="fab fa-twitter text-muted" aria-hidden="true"></i></a>  &nbsp;
+              {% endif %}
+              {% if page.author.info.linkedin %}
+              <a target="_blank" href="https://www.linkedin.com/in/{{ page.author.info.linkedin }}"><i class="fab fa-linkedin text-muted" aria-hidden="true"></i></a> &nbsp;
+              {% endif %}
+            </div>
+            </div>
+          </div>
+          <div class="col-md-3 text-right">
+            <img alt="{{ page.author.info.name }}" src="{{site.baseurl}}/{{ page.author.info.avatar }}" class="rounded-circle" height="100" width="100">
+          </div>
+        </div>
+        <h4 class="font-weight-bold spanborder"><span>Posts</span></h4>
+        {% for post in page.author.posts %}
+        {% include main-loop-card.html %}
+        {% endfor %}
+    </div>
+</div>
+</div>
