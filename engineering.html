@@ -150,7 +150,7 @@ var documents = [{
     "id": 8,
     "url": "/engineering.html",
     "title": "Engineering",
-    "body": "WIP "
+    "body": "        This is the home page of the Engineering team at Vernacular. ai.            Team:    Current members of our Engineering team:               Akshay Deshraj (2016-)              Past members:                           Recent posts:                  All posts under Engineering      "
     }, {
     "id": 9,
     "url": "/",
@@ -160,7 +160,7 @@ var documents = [{
     "id": 10,
     "url": "/ml.html",
     "title": "Machine Learning",
-    "body": "WIP "
+    "body": "{% assign category = “Machine Learning” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of Machine Learning team at Vernacular. ai. We   work on Speech Conversational Systems. On this website, we keep notes and   artifacts from our work.        In case of queries, reach out to ai@vernacular. ai.            Team:    Current members of our ML team:       {% for member in site. data. teams. ml %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. ml %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:         {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under ML      "
     }, {
     "id": 11,
     "url": "/privacy-policy.html",
@@ -281,7 +281,49 @@ function lunr_search(term) {
         <div class="container">
 <h3 class="font-weight-bold spanborder"><span>Engineering</span></h3>
 <div class="page-content">
-<p>WIP</p>
+
+
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div>
+    <p>
+      This is the home page of the Engineering team at Vernacular.ai.
+    </p>
+    </div>
+    <br>
+    <div>
+      <h4>Team</h4>
+      Current members of our Engineering team:
+      <ul>
+        
+        
+        <li><a href="https://twitter.com/akshaydeshraj">Akshay Deshraj</a> (2016-)</li>
+        
+        
+      </ul>
+
+      Past members:
+      <ul>
+        
+        
+        
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="sticky-top sticky-top-offset">
+      <h4 class="font-weight-bold spanborder"><span>Recent posts</span></h4>
+      <ol class="list-featured">
+        
+      </ol>
+      <a class="btn btn-outline-success btn-sm btn-round" href="/categories.html#engineering">
+        All posts under Engineering
+      </a>
+    </div>
+  </div>
+</div>
 
 </div>
 </div>

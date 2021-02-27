@@ -155,7 +155,7 @@ var documents = [{
     "id": 8,
     "url": "/engineering.html",
     "title": "Engineering",
-    "body": "WIP "
+    "body": "{% assign category = “Engineering” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of the Engineering team at Vernacular. ai.            Team:    Current members of our Engineering team:       {% for member in site. data. teams. engineering %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. engineering %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:        {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under Engineering      "
     }, {
     "id": 9,
     "url": "/",
@@ -165,7 +165,7 @@ var documents = [{
     "id": 10,
     "url": "/ml.html",
     "title": "Machine Learning",
-    "body": "WIP "
+    "body": "{% assign category = “Machine Learning” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of Machine Learning team at Vernacular. ai. We   work on Speech Conversational Systems. On this website, we keep notes and   artifacts from our work.        In case of queries, reach out to ai@vernacular. ai.            Team:    Current members of our ML team:       {% for member in site. data. teams. ml %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. ml %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:         {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under ML      "
     }, {
     "id": 11,
     "url": "/privacy-policy.html",
