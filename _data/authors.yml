@@ -1,0 +1,40 @@
+# Author directory. Key is alias. Following fields are supported:
+# - name
+# - avatar
+# - bio
+# - github (id)
+# - website (url)
+# - twitter (id)
+# - linkedin (id)
+
+anirudhdagar:
+  name: Anirudh Dagar
+  avatar: /assets/images/avatar1.jpg
+  bio: ""
+  github: anirudhdagar
+
+kritianandan:
+  name: Kriti Anandan
+  avatar: /assets/images/avatar1.jpg
+  bio: ""
+  github: kritianandan98
+
+swarajdalmia:
+  name: Swaraj Dalmia
+  avatar: /assets/images/avatar1.jpg
+  bio: ""
+  github: swarajdalmia
+
+janaab11:
+  name: Kumarmanas Nethil
+  avatar: /assets/images/avatar1.jpg
+  bio: ""
+  github: janaab11
+
+lepisma:
+  name: Abhinav Tushar
+  avatar: /assets/images/avatar1.jpg
+  bio: ""
+  github: lepisma
+  website: https://lepisma.xyz/
+  linkedin: abhinav-tushar
