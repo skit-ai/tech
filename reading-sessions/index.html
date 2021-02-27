@@ -135,7 +135,7 @@ var documents = [{
     "id": 4,
     "url": "/authors-list.html",
     "title": "Authors",
-    "body": "{{page. title}}:     {% for author in site. authors %}                                         {{ author[1]. name }} :       (View Posts)      {{ author[1]. bio }}                          &nbsp;       &nbsp;                                    {% endfor %}  "
+    "body": " {% for author in site. authors %}                          {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                        &nbsp;        &nbsp;                      {% endfor %}"
     }, {
     "id": 5,
     "url": "/buy-me-a-coffee.html",
