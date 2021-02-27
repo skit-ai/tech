@@ -19,5 +19,5 @@ article blockquote::before {
 
 hr {
   margin-bottom: 2rem;
-  width: 80%;
+  margin-top: 2rem;
 }
