@@ -16,3 +16,8 @@ pre.highlight {
 article blockquote::before {
   content: "";
 }
+
+hr {
+  margin-bottom: 2rem;
+  width: 50%;
+}
