@@ -13,12 +13,6 @@ pre.highlight {
     margin-bottom: 0;
 }
 
-/* Font */
-.article-post {
-    font-size: 18px;
-    line-height: 1.46;
-}
-
 article blockquote::before {
   content: "";
 }
