@@ -19,9 +19,9 @@ jobs:
           gem install bundler
           bundle
       - name: Test site
-          bundle exec rake test
+        run: bundle exec rake test
       - name: Build site
-          bundle exec rake build
+        run: bundle exec rake build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
