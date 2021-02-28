@@ -1,7 +1,7 @@
 ---
 title: Bad Audio Detection
 date: 2020-07-29
-tags: [Audio Classification]
+tags: [classification]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
@@ -17,7 +17,7 @@ silences or background murmur etc. rendering the downstream SLU systems
 helpless. We started with a proposal and prepare a dataset for making an ML
 system learn to reject these audios.
 
-### Benefits
+## Benefits
 
 * No more misfires from SLU side which ultimately leads to a better user
   experience.
@@ -25,7 +25,7 @@ system learn to reject these audios.
 * The whole system can be used for all our audio based tasks to predict and
   filter out the poor ones, hence avoiding sample noise for these tasks.
 
-### Dataset
+## Dataset
 
 We prepared a dataset of intent tagged conversations with specially marked
 intents which tell us that these utterances are bad and them going further in
@@ -47,7 +47,7 @@ to finally create 2 broad categories with sub-classes.
 + `audio-good`
 
 
-### Exploratory Data Analysis
+## Exploratory Data Analysis
 
 We needed to understand the class imbalance and hence we plot a histogram
 representing number of samples for each class.
@@ -78,7 +78,7 @@ as complex as an ML model to classify them. We can simply use the age-old
 powerful signal processing methods to filter those out with some good
 confidence.
 
-### Model
+## Model
 
 If we are going to reject these bad audios then we need to do so with:
 
@@ -116,7 +116,7 @@ the process improving these initial baseline numbers of the model. One simple
 approach for increasing the precision is to increase the threshold, trading-off
 some coverage in the form of support.
 
-### Misclassification Analysis
+## Misclassification Analysis
 
 We also do a post prediction analysis on the misclassified audios, which
 revealed an interesting pattern in the dataset and in the kind of audios that
@@ -145,6 +145,4 @@ having a solid baseline model initially is important for incremental
 improvements over time and after a few iterations we finally see these models
 in our production systems.
 
-
-That's all for now. Stay tuned to our [rss
-feed](https://tech.vernacular.ai/feed.xml) for updates and more.
+That's all for now. Stay tuned to our [rss feed](/feed.xml) for updates and more.

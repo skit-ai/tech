@@ -1,7 +1,7 @@
 ---
 title: Speaker Diarization
 date: 2020-07-21
-tags: [Speaker Diarization]
+tags: [diarization]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post

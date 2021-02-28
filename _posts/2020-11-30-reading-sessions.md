@@ -8,12 +8,11 @@ layout: post
 authors: [lepisma]
 ---
 
-Studying researches and building on top of them is an important part of
-what a team of ML Engineers do on a regular basis. Usually, teams do
-this by organizing periodic, often weekly, paper reading sessions. Here
-is a snippet from an internal work memo by
-[Manas](https://github.com/janaab11/) explaining how
-[we](https://vernacular-ai.github.io/ml/) look at these sessions:
+Studying researches and building on top of them is an important part of what a
+team of ML Engineers do on a regular basis. Usually, teams do this by organizing
+periodic, often weekly, paper reading sessions. Here is a snippet from an
+internal work memo by [Manas](https://github.com/janaab11/) explaining how we
+look at these sessions:
 
 > Lets start with the basic motivation behind these sessions - we want
 > to read more papers. But beyond this individual goal, there is also
@@ -32,10 +31,9 @@ processes and structures are constantly in flux. As the team size keeps growing,
 different kinds of diversities start interfering. Diversities in interests,
 reading styles, and even bandwidth.
 
-This post covers how we organize reading sessions in the [ML
-team](https://vernacular-ai.github.io/ml/team) at
-[Vernacular.ai](https://vernacular.ai/). It might be helpful if you are
-trying to do the same in your group.
+This post covers how we organize reading sessions in the ML team at
+[Vernacular.ai](https://vernacular.ai/). It might be helpful if you are trying
+to do the same in your group.
 
 ------------------------------------------------------------------------
 
