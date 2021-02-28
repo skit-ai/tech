@@ -13,6 +13,11 @@ pre.highlight {
     margin-bottom: 0;
 }
 
+article blockquote {
+  padding-left: 30px;
+  border-left: 2px solid #ddd;
+}
+
 article blockquote::before {
   content: "";
 }
