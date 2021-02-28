@@ -26,3 +26,8 @@ hr {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+
+code {
+  font-size: 90%;
+  color: #333;
+}
