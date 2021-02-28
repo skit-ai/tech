@@ -11,7 +11,7 @@ authors: [anirudhdagar]
 This blog post is based on the work done by [Anirudh
 Dagar](https://github.com/AnirudhDagar) as an intern at Vernacular.ai
 
-<img alt="Can't See? Something went wrong!" src="/assets/images/speaker_diarization_vernacular.png" />
+<img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/speaker_diarization_vernacular.png" />
 
 # Contents
 
@@ -74,7 +74,7 @@ There is a fine line between speaker diarization and other related speech proces
 ### <a name="motivation"></a> Motivation?
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/speaker_diarization_vernacular.png" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/speaker_diarization_vernacular.png" />
   <figcaption><b><center>Fig 1.: ASR using Diarization tags to understand and segregate transcription.</center></b></figcaption>
 </figure>
 
@@ -139,7 +139,7 @@ To name a few:
 If I have not made my point clear about the complexity of the problem, yet, then I'll express my message through this legendary meme.
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/diarization_hard.jpg" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/diarization_hard.jpg" />
   <figcaption><b><center>Fig 2.: Diarization is hard!</center></b></figcaption>
 </figure>
 
@@ -161,7 +161,7 @@ Keeping in mind the complexity and hardness of the problem, multiple approaches 
 As stated in [this](https://arxiv.org/pdf/1909.06247.pdf) paper by Fujita et al., a x-vector/d-vector clustering-based system is commonly used for speaker diarization and most of our experiments are based around this approach.
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/diarization_clustering.jpg" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/diarization_clustering.jpg" />
   <figcaption><b><center>Fig 3.: The image shows the cluster generated based on the speech pattern and precise time the speaker participated in the conversation.</center></b></figcaption>
 </figure>
 
@@ -173,7 +173,7 @@ However, speaker diarization systems which combine the two tasks in a unified fr
 One example is ***[EEND: End2End Neural Diarization](https://arxiv.org/abs/1909.06247)*** by Fujita et al. proposed recently showing some promise in regards to solving these complex steps jointly.
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/EEND.jpg" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/EEND.jpg" />
   <figcaption><b><center>Fig 4.: An End to End approach diarization system.</center></b></figcaption>
 </figure>
 
@@ -191,7 +191,7 @@ A systems, that is able to accurately handle **highly interactive** and **overla
 ### <a name="method"></a> Method
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/diarization_pipeline.png" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/diarization_pipeline.png" />
   <figcaption><b><center>Fig 5.: A typical diarization pipeline.</center></b></figcaption>
 </figure>
 
@@ -252,7 +252,7 @@ We brainstormed on this particular section involving post-processing of predicti
 We were hit by something called `oversegmentation`, which can be seen in figure 6 below.
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/resegmentation.jpg" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/resegmentation.jpg" />
   <figcaption><b><center>Fig 6.: Oversegmentation. Need for resegmentation?</center></b></figcaption>
 </figure>
 
@@ -304,7 +304,7 @@ But a caveat with UIS-RNN is that it requires huge amounts of data to form a con
 #### <a name="simulated_data_gen"></a> Simulated Data Generation
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/sim_dia_data_generator_flow.jpg" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/sim_dia_data_generator_flow.jpg" />
   <figcaption><b><center>Fig 7.: Diarization Data Simulation</center></b></figcaption>
 </figure>
 

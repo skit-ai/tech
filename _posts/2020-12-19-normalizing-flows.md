@@ -116,7 +116,7 @@ The composition of all the individual flows is represented by $f_\theta$. Since 
 An example of a transformation obtained by a normalizing flow is shown below, which transforms a base gaussian distribution into a target multi-modal distribution with the help of a bijective function.
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/normalizing_flow.jpg" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/normalizing_flow.jpg" />
   <figcaption><b><center>Fig 1 : The transformation of a base distribution into a target distribution using a bijective function f.</center></b></figcaption>
 </figure>
 
@@ -194,7 +194,7 @@ Now if we want to introduce an additional constraint on T i.e. for T to be a tri
 For triangular maps/matrices, both the inverse and the determinant of the jacobian is easy to compute. The jacobian for a triangular map is shown below. The determinant is simply the product of the diagonals and has a complexity of $O(d)$ instead of $O(d^3)$. The complexity for the calculation of the inverse is $O(d^2)$ instead of $O(d^3)$.
 
 <figure>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/jacobian.jpg" />
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/jacobian.jpg" />
   <figcaption><b><center>Fig 2 : The jacobian for a triangular map. This is taken from here.</center></b></figcaption>
 </figure>
 
