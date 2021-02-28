@@ -27,7 +27,7 @@ permalink: "/ml.html"
       <ul>
         {% for member in site.data.teams.ml %}
         {% if member.active %}
-        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}.html{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
+        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
         {% endif %}
         {% endfor %}
       </ul>
@@ -36,7 +36,7 @@ permalink: "/ml.html"
       <ul>
         {% for member in site.data.teams.ml %}
         {% unless member.active %}
-        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}.html{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
+        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
         {% endunless %}
         {% endfor %}
       </ul>

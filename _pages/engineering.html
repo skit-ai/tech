@@ -21,7 +21,7 @@ permalink: "/engineering.html"
       <ul>
         {% for member in site.data.teams.engineering %}
         {% if member.active %}
-        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}.html{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
+        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
         {% endif %}
         {% endfor %}
       </ul>
@@ -30,7 +30,7 @@ permalink: "/engineering.html"
       <ul>
         {% for member in site.data.teams.engineering %}
         {% unless member.active %}
-        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}.html{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
+        <li><a href="{% if member.alias %}{{site.baseurl}}/authors/{{ member.alias }}{% else %}{{ member.url }}{% endif %}">{{ member.name }}</a> ({{ member.tenure }})</li>
         {% endunless %}
         {% endfor %}
       </ul>
