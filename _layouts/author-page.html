@@ -27,7 +27,7 @@ layout: default
             </div>
           </div>
           <div class="col-md-3 text-right">
-            <img alt="{{ page.author.info.name }}" src="{{site.baseurl}}/{{ page.author.info.avatar }}" class="rounded-circle" height="100" width="100">
+            <img alt="{{ page.author.info.name }}" src="{{site.baseurl}}/{% if page.author.info.avatar %}{{ page.author.info.avatar }}{% else %}assets/images/authors/avatar-person.svg{% endif %}" class="rounded-circle" height="100" width="100">
           </div>
         </div>
         <h4 class="font-weight-bold spanborder"><span>Posts</span></h4>
