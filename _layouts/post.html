@@ -23,6 +23,16 @@ layout: default
               <span class="text-muted d-block mt-1">{{ page.date | date: '%b %d, %Y' }} · {% include meta-read-time.html %}</span>
 						</small>
 					</div>
+
+			    <!-- Tags -->
+			    <div class="mb-4 mt-4">
+				    <span class="taglist">
+				      {% for tag in page.tags %}
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="{{site.baseurl}}/tags.html#{{ tag | downcase }}">{{ tag | downcase }}</a>
+				      {% endfor %}
+				    </span>
+			    </div>
+
 				</div>
 				<div class="col-md-6 pr-0 align-self-center">
 				</div>
@@ -38,15 +48,6 @@ layout: default
 			<article class="article-post">
 			{{ content }}
 			</article>
-
-			<!-- Tags -->
-			<div class="mb-4">
-				<span class="taglist">
-				{% for tag in page.tags %}
-				  <a class="sscroll btn btn-light btn-sm font-weight-bold" href="{{site.baseurl}}/tags.html#{{ tag | downcase }}">{{ tag | downcase }}</a>
-				{% endfor %}
-				</span>
-			</div>
 
             <!-- Mailchimp Subscribe Form -->
             {% if site.mailchimp-list %}
