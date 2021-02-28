@@ -53,11 +53,15 @@ We needed to understand the class imbalance and hence we plot a histogram
 representing number of samples for each class.
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/bad-audio-detection/Class_Distribution.png" />
+</center>
 </figure>
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/bad-audio-detection/EDA.png" />
+</center>
 </figure>
 
 
@@ -93,8 +97,10 @@ Neural Network (CNN) based feature extractor on top of this fixed size
 spectrogram image.
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/bad-audio-detection/model_architecture.png" />
-  <figcaption><b><center>Binary Audio Classification based on Log-Mel Spectrograms</center></b></figcaption>
+  <figcaption>Binary Audio Classification based on Log-Mel Spectrograms</figcaption>
+</center>
 </figure>
 
 While these features (spectrograms) can be generated once after processing all
