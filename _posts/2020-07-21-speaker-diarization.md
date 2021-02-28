@@ -287,7 +287,7 @@ Aiming to answer the above questions, we came up with a *Supervised Resegmentati
     To achieve such a mapping we worked on a simple Seq2Seq LSTM based model. We also enriched this model with information of cluster confidences after tweaking our Embedding+Clustering pipeline to do a soft clustering, i.e. return cluster scores based on the distance of each point in the cluster from the centroid along with the clustered predictions.
 
 
-Overall all the above steps regarding a supervised resegmentation model were completely experimental and based on a few ideas. We are yet to achieve convincing results based on this approach but I thought it would be nice to mention this cool experiment :). Providing more resegmentation sequences for training could definitely and we also try to tackle diarization with limited data. See [here](####simulated-data-generation)
+Overall all the above steps regarding a supervised resegmentation model were completely experimental and based on a few ideas. We are yet to achieve convincing results based on this approach but I thought it would be nice to mention this cool experiment :). Providing more resegmentation sequences for training could definitely and we also try to tackle diarization with limited data. See [here](#simulated_data_gen)
 
 
 <hr/>
