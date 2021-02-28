@@ -40,9 +40,6 @@ GEM
       safe_yaml (~> 1.0)
     jekyll-feed (0.15.1)
       jekyll (>= 3.7, < 5.0)
-    jekyll-katex (1.0.0)
-      execjs (~> 2.7)
-      jekyll (>= 3.6, < 5.0)
     jekyll-paginate (1.1.0)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
@@ -52,8 +49,13 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
+    katex (0.6.1)
+      execjs (~> 2.7)
     kramdown (2.3.0)
       rexml
+    kramdown-math-katex (1.0.1)
+      katex (~> 0.4)
+      kramdown (~> 2.0)
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     liquid (4.0.3)
@@ -93,10 +95,10 @@ PLATFORMS
 DEPENDENCIES
   html-proofer
   jekyll-feed
-  jekyll-katex
   jekyll-paginate
   jekyll-seo-tag
   jekyll-sitemap
+  kramdown-math-katex
   kramdown-parser-gfm
   rake
 
