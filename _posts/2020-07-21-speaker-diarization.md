@@ -6,29 +6,13 @@ categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
 authors: [anirudhdagar]
+katex: True
 ---
 
-This blog post is based on the work done by [Anirudh
-Dagar](https://github.com/AnirudhDagar) as an intern at Vernacular.ai
+> This blog post is based on the work done by [Anirudh
+> Dagar](https://github.com/AnirudhDagar) as an intern at Vernacular.ai
 
-<img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/speaker_diarization_vernacular.png" />
-
-# Contents
-
-+ [Diarization Introduction](#intro) 
-+ [Motivation](#motivation)
-+ [DIHARD?](#dihard)
-+ [Approaching the Problem](#approach)
-+ [Defining Our Problem](#define)
-+ [Method](#method)
-+ [Evaluation Metrics](#metric)
-+ [Resegmentation](#resegmentation)
-+ [UIS-RNN](#uis-rnn)
-+ [Simulated Data Generation](#simulated_data_gen)
-
-<hr/>
-
-#### <a name="intro"></a> Diarization Introduction - Who spoke when? 
+# Diarization - _Who_ spoke _when_? 
 
 Speaker diarisation (or diarization) is the process of partitioning an input audio stream into homogeneous segments according to the speaker identity.
 
@@ -46,22 +30,15 @@ This can be particularly hard sometimes as we'll discuss later in the blog. Just
 
 Below we have an example of an audio along with its transcription and speech timestamp tags.
 
-
-<hr/>
-
 <audio controls="controls">
     <source src="https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav" />
 </audio>
 
-<br/>
-
 **Transcription**: "Barbeque nation mei naa wo book kia tha ok table book kia tha han toh abhi na uske baad ek phone aaya tha toh wo barbeque nation se hi phone aaya tha mai receive nhi kar paaya toh yehi"
 
-**Diarization Tag**: AGENT: [(0, 5.376), (8.991, 12.213)], CUSTOMER: [(6.951, 7.554)]
+**Diarization Tag**: `AGENT: [(0, 5.376), (8.991, 12.213)], CUSTOMER: [(6.951, 7.554)]`
 
-<hr/>
-
-##### What Diarization is NOT ?
+## What Diarization is NOT ?
 
 There is a fine line between speaker diarization and other related speech processing tasks.
 
@@ -69,13 +46,13 @@ There is a fine line between speaker diarization and other related speech proces
 
 + **Diarization != Speaker Identification** : The goal is not to learn the voice prints of any known speaker. Speakers' are not registered before running the model.
 
-<hr/>
-
-### <a name="motivation"></a> Motivation?
+# Motivation
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/speaker_diarization_vernacular.png" />
-  <figcaption><b><center>Fig 1.: ASR using Diarization tags to understand and segregate transcription.</center></b></figcaption>
+  <figcaption>Fig 1.: ASR using Diarization tags to understand and segregate transcription.</figcaption>
+</center>
 </figure>
 
 With the rise of speech recognition systems both in terms of scale and accuracy, the ability to process audio of multiple speakers is crucial and has become quintessential to understand speech today.
@@ -107,9 +84,7 @@ Speaker Diarization is the solution for those problems.
 + Court houses & Parliaments.
 + Broadcast News(TV and Radio)
 
-<hr/>
-
-### <a name="dihard"></a> DIHARD? 
+## DIHARD?
 
 This is not <u>2x2=4</u>. This is **Diarization** and ***IT IS HARD***. One can say that it is one of the toughest ML problems intrinsically high on complexity, even for a human-being, in certain conditions. 
 
@@ -139,8 +114,10 @@ To name a few:
 If I have not made my point clear about the complexity of the problem, yet, then I'll express my message through this legendary meme.
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/diarization_hard.jpg" />
-  <figcaption><b><center>Fig 2.: Diarization is hard!</center></b></figcaption>
+  <figcaption>Fig 2.: Diarization is hard!</figcaption>
+</center>
 </figure>
 
 **More Problems?**
@@ -151,18 +128,17 @@ If I have not made my point clear about the complexity of the problem, yet, then
     
     Voice Activity Detection (VAD) or Speech Activity Detection (SAD) is a widely used audio preprocessing technique, before running a typical diariaztion api based on the clustering of speaker embeddings. The objective of VAD/SAD is to get rid of all non-speech regions.
 
-
-<hr/>
-
-### <a name="approach"></a> Approaching the problem
+# Approaching the problem
 
 Keeping in mind the complexity and hardness of the problem, multiple approaches have been devised over the years to tackle diarization. Some earlier approaches were based on Hidden Markov Models (HMMs)/ Gaussian Mixture Models (GMMs). More recently, Neural Embedding (x-vectors/d-vectors) + Clustering and End2End Neural methods have demonstrated their power.
 
 As stated in [this](https://arxiv.org/pdf/1909.06247.pdf) paper by Fujita et al., a x-vector/d-vector clustering-based system is commonly used for speaker diarization and most of our experiments are based around this approach.
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/diarization_clustering.jpg" />
-  <figcaption><b><center>Fig 3.: The image shows the cluster generated based on the speech pattern and precise time the speaker participated in the conversation.</center></b></figcaption>
+  <figcaption>Fig 3.: The image shows the cluster generated based on the speech pattern and precise time the speaker participated in the conversation.</figcaption>
+</center>
 </figure>
 
 The aim of speaker clustering is to put together all the segments that belong to the same acoustic source in a recording. These don't utilize any prior information of the speaker ID or the number of speakers in the recording. We'll be covering a typical embedding-clustering based approach in detail in the latter sections of the blog.
@@ -173,28 +149,27 @@ However, speaker diarization systems which combine the two tasks in a unified fr
 One example is ***[EEND: End2End Neural Diarization](https://arxiv.org/abs/1909.06247)*** by Fujita et al. proposed recently showing some promise in regards to solving these complex steps jointly.
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/EEND.jpg" />
-  <figcaption><b><center>Fig 4.: An End to End approach diarization system.</center></b></figcaption>
+  <figcaption>Fig 4.: An End to End approach diarization system.</figcaption>
+</center>
 </figure>
 
-<hr/>
-
-### <a name="define"></a> Defining Our Problem
+## Defining Our Problem
 
 We need to answer the question *"What should be a robust diarization system?"* before moving forward. We decided to try out multiple approaches and model experiments explained in the sections below.
 
 Our model should be powerful enough to capture global speaker characteristics in addition to local speech activity dynamics.
 A systems, that is able to accurately handle **highly interactive** and **overlapping speech** specifically in the telephony call audios conversational domain, while being resilient to variation in mobile microphones, recording environment, reverberation, ambient noise, speaker demographics. Since we have a more focused problem, for evaluating customer care center call audios, the number of speakers for our use case is fixed at two i.e "AGENT" and "CUSTOMER" for each call, we need to tune our model for the same.
 
-<hr/>
-
-### <a name="method"></a> Method
+## Method
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/diarization_pipeline.png" />
-  <figcaption><b><center>Fig 5.: A typical diarization pipeline.</center></b></figcaption>
+  <figcaption>Fig 5.: A typical diarization pipeline.</figcaption>
+</center>
 </figure>
-
 
 + **VAD** — We employ [WebRTC VAD](https://github.com/wiseman/py-webrtcvad) to remove noise and non speech regions during our experiments. Raw audios are split into frames with specific duration (30 ms in our case). For each input frame, WebRTC generates output 1 or 0, where 1 denotes speech and 0 denotes nonspeech. An optional setting of WebRTC is the aggressive mode, an integer between 0 and 3. 0 is the least aggressive about filtering out nonspeech while 3 is the most aggressive. These VAD/SAD models have their own respective struggles with and set of problems.
 
@@ -205,9 +180,7 @@ A systems, that is able to accurately handle **highly interactive** and **overla
 
 + **Resegmentation** - Finally, an optional supervised classification step may be applied to actually identity every speaker cluster in a supervised way.
 
-<hr/>
-
-#### <a name="metric"></a> Evaluation Metrics (Diarization Error Rate)
+## Evaluation Metrics
 
 To evaluate the performance or to estimate the influence of errors on the
 complete pipeline, we use the standard metrics implemented in
@@ -233,9 +206,7 @@ $$
 \text{DER} = \frac{\text{false alarm} + \text{missed detection} + \text{confusion}}{\text{total}}
 $$
 
-<hr/>
-
-#### <a name="resegmentation"></a> Resegmentation
+## Resegmentation
 
 As stated earlier, speaker diarization consists of automatically partitioning an input audio stream into homogeneous segments (segmentation) and assigning these segments to the same speaker (speaker clustering). Read more about segmentation [here](https://pyannote.github.io/pyannote-metrics/reference.html#segmentation).
 
@@ -252,8 +223,10 @@ We brainstormed on this particular section involving post-processing of predicti
 We were hit by something called `oversegmentation`, which can be seen in figure 6 below.
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/resegmentation.jpg" />
-  <figcaption><b><center>Fig 6.: Oversegmentation. Need for resegmentation?</center></b></figcaption>
+  <figcaption>Fig 6.: Oversegmentation. Need for resegmentation?</figcaption>
+</center>
 </figure>
 
 To fix this problem and in the process making our system more robust, we tried multiple experiments tweaking the resegmentation module.
@@ -289,23 +262,20 @@ Aiming to answer the above questions, we came up with a *Supervised Resegmentati
 
 Overall all the above steps regarding a supervised resegmentation model were completely experimental and based on a few ideas. We are yet to achieve convincing results based on this approach but I thought it would be nice to mention this cool experiment :). Providing more resegmentation sequences for training could definitely and we also try to tackle diarization with limited data. See [here](#simulated_data_gen)
 
-
-<hr/>
-
-#### <a name="uis-rnn"></a> UIS-RNN
+## UIS-RNN
 
 To explore more supervised methods, we also experimented with [Fully Supervised Speaker Diarization](https://arxiv.org/abs/1810.04719) or the UIS-RNN model, the current state of the art neural system for Speaker Diarization. Converting data to UIS Style format involves a set of preprocessing steps similar to what we had to for our supervised resegmentation model. More on the official [UIS-RNN Repo](https://github.com/google/uis-rnn).
 
 
 But a caveat with UIS-RNN is that it requires huge amounts of data to form a convincing hypothesis after training. On realizing the limited amount of tagged data we had, we worked on simulating datasets for Speaker Diarization which in itself comes with some challenges. 
 
-<hr/>
-
-#### <a name="simulated_data_gen"></a> Simulated Data Generation
+## Simulated Data Generation
 
 <figure>
+<center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-diarization/sim_dia_data_generator_flow.jpg" />
-  <figcaption><b><center>Fig 7.: Diarization Data Simulation</center></b></figcaption>
+  <figcaption>Fig 7.: Diarization Data Simulation</figcaption>
+</center>
 </figure>
 
 We started with a large number of dual channel audio calls as a requirement for generating this Speaker Diarization Dataset.
@@ -321,9 +291,9 @@ These dual channel audios were then split and saved into mono channel audio file
     * **Mild** : Invert to get Gap Regions
 
 3. **Compute statistics in real audios**: This step is required for us to understand the dynamics of overlaps and silences in a call on avergae. We compute the following ratios:
-    * $ \text{Silence Ratio} = \frac{\text{Duration of Silences}}{\text{Total Duration}} $
+    * $$ \text{Silence Ratio} = \frac{\text{Duration of Silences}}{\text{Total Duration}} $$
 
-    * $ \text{Overlap Ratio} = \frac{\text{Duration of Overlapping Utterances}}{\text{Total Duration}} $
+    * $$ \text{Overlap Ratio} = \frac{\text{Duration of Overlapping Utterances}}{\text{Total Duration}} $$
 
 4. **Combination of Speech from A and B with timestamps.** At the same time we needed to add **real Gaps/Silence fills** and **Overlaps (interrupts and overtalking)** to mimic real world call audios which are highly interactive.
     To control the amount of overlap in data-generation, we used 2 parameters mainly.
@@ -335,13 +305,9 @@ These dual channel audios were then split and saved into mono channel audio file
 
 That's all for now, and we'll end this blog here. Stay tuned to our [rss feed](https://vernacular-ai.github.io/ml/rss.xml) for updates.
 
-<br/>
-
-<hr/>
-
-<br/>
-
 Until next time, Signing Off!
+
+---
 
 ## References
 
