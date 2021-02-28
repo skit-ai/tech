@@ -100,13 +100,29 @@ engineering:
     tenure: 2018-
     url:
     active: true
+  - name: Akarsh T S
+    tenure: 2020-
+    url:
+    active: true
+  - name: Akash Sridhar
+    tenure: 2020-
+    url:
+    active: true
   - name: Akshay Deshraj
     tenure: 2016-
     url: https://twitter.com/akshaydeshraj
     active: true
+  - name: Ankit Ranjan
+    tenure: 2020-
+    url:
+    active: true
   - name: Anurag Shrivastava
     tenure: 2018-
     url: https://www.linkedin.com/in/anurag145/
+    active: true
+  - name: Charvee Punia
+    tenure: 2021-
+    url:
     active: true
   - name: Debmalya Paine
     tenure: 2020-
@@ -116,7 +132,15 @@ engineering:
     tenure: 2018-
     url: https://deep110.github.io/
     active: true
+  - name: Dimple Mathew
+    tenure: 2021-
+    url:
+    active: true
   - name: Hrushikesh Kolekar
+    tenure: 2020-
+    url:
+    active: true
+  - name: Jobin Varghese
     tenure: 2020-
     url:
     active: true
@@ -133,6 +157,26 @@ engineering:
     url:
     active: true
   - name: Narayan Ubale
+    tenure: 2020-
+    url:
+    active: true
+  - name: Sanath Bhargav
+    tenure: 2020-
+    url:
+    active: true
+  - name: Saumya Bakshi
+    tenure: 2020-
+    url:
+    active: true
+  - name: Shivanshu
+    tenure: 2021-
+    url:
+    active: true
+  - name: Subhrajit Prusty
+    tenure: 2020-
+    url:
+    active: true
+  - name: Sunil Vijay
     tenure: 2020-
     url:
     active: true
