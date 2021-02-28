@@ -88,7 +88,65 @@ ml:
     tenure: Summer Intern, 2020
     url: https://github.com/Mehul1107
 engineering:
+  - name: Abhishek Sachdeva
+    tenure: 2019-
+    url:
+    active: true
+  - name: Advait Raykar
+    tenure: 2020-
+    url:
+    active: true
+  - name: Aditya Satyavada
+    tenure: 2018-
+    url:
+    active: true
   - name: Akshay Deshraj
     tenure: 2016-
     url: https://twitter.com/akshaydeshraj
     active: true
+  - name: Anurag Shrivastava
+    tenure: 2018-
+    url: https://www.linkedin.com/in/anurag145/
+    active: true
+  - name: Debmalya Paine
+    tenure: 2020-
+    url:
+    active: true
+  - name: Deepankar Agrawal
+    tenure: 2018-
+    url: https://deep110.github.io/
+    active: true
+  - name: Hrushikesh Kolekar
+    tenure: 2020-
+    url:
+    active: true
+  - name: Krishna Khatri
+    tenure: 2020-
+    url:
+    active: true
+  - name: Mithun Arunan
+    tenure: 2018-
+    url: https://twitter.com/MithunArunan
+    active: true
+  - name: Mukunth Krishnasagar
+    tenure: 2020-
+    url:
+    active: true
+  - name: Narayan Ubale
+    tenure: 2020-
+    url:
+    active: true
+  - name: Vipul Sharma
+    tenure: 2018-
+    url: https://vipul.xyz/
+    active: true
+  - name: Yash Dev Lamba
+    tenure: 2020-
+    url:
+    active: true
+  - name: Kapil Karekar
+    tenure: 2019-2020
+    url:
+  - name: Rajdeep Kaur
+    tenure: 2017-2020
+    url:
