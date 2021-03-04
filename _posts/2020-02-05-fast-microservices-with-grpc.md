@@ -3,7 +3,7 @@ title: Building Fast and Efficient Microservices with gRPC
 date: 2020-02-05
 tags: [grpc, load balancing, microservices, interservice communication]
 categories: [Engineering]
-image: assets/images/posts/fast-microservices-with-grpc/highway.jpg
+image: assets/images/posts/fast-microservices-with-grpc/highway.png
 layout: post
 authors: [mithun]
 ---
