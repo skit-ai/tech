@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-01T19:20:27+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-04T16:28:00+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
 &lt;a href=&quot;https://vernacular-ai.github.io/engineering/&quot;&gt;Engineering&lt;/a&gt; and
 &lt;a href=&quot;https://vernacular-ai.github.io/ml/&quot;&gt;ML&lt;/a&gt; team in this new, central, Vernacular
 Tech page. From here on, this is going to be the main source of updates on
@@ -1039,4 +1039,216 @@ from the DKU-LENOVO Team&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=kEcUcfLmIS0&quot;&gt;Robust Speaker Diarization for Meetings&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1710.10467.pdf&quot;&gt;Generalized End-To-End Loss For Speaker Verification&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1810.04719&quot;&gt;Fully Supervised Speaker Diarization&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Anirudh Dagar</name></author><category term="Machine Learning" /><category term="diarization" /><summary type="html">This blog post is based on the work done by Anirudh Dagar as an intern at Vernacular.ai</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Anirudh Dagar</name></author><category term="Machine Learning" /><category term="diarization" /><summary type="html">This blog post is based on the work done by Anirudh Dagar as an intern at Vernacular.ai</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Building Fast and Efficient Microservices with gRPC</title><link href="/fast-microservices-with-grpc/" rel="alternate" type="text/html" title="Building Fast and Efficient Microservices with gRPC" /><published>2020-02-05T00:00:00+00:00</published><updated>2020-02-05T00:00:00+00:00</updated><id>/fast-microservices-with-grpc</id><content type="html" xml:base="/fast-microservices-with-grpc/">&lt;p&gt;Vernacular.ai processes millions of speech recognition requests every day, and to handle such a load we have focused on building a highly scalable technical stack.&lt;/p&gt;
+
+&lt;p&gt;Firstly, we realized the drawbacks of using HTTP/1.1 keeping in mind one of our requirements to do end to end streaming recognition to reduce the overall latency of the system. So, we decided to migrate all our core services from REST APIs (HTTP/1.1 + JSON) to gRPC (HTTP/2.0 + Protobuf).&lt;/p&gt;
+
+&lt;p&gt;In this article, I will take you through the benefits and challenges of adopting gRPC when compared to a REST-based communication style.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-microservices-architecture&quot;&gt;What is Microservices Architecture?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Defines an architecture that structures the application as a set of loosely coupled, collaborating services.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Services communicate using either synchronous protocols such as HTTP/REST, gRPC or asynchronous protocols such as AMQP. Services can be developed and deployed independently of one another.&lt;/p&gt;
+&lt;blockquote&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;what-are-the-challenges-of-adopting-microservices-architecture&quot;&gt;What are the challenges of adopting Microservices Architecture?&lt;/h2&gt;
+
+&lt;p&gt;While there are many strong benefits of moving to a microservices architecture — there are no silver bullets!&lt;/p&gt;
+
+&lt;p&gt;This means there are tradeoffs to make!&lt;/p&gt;
+
+&lt;p&gt;Microservices gives us a higher level of complexity, and there are several inherent challenges with microservices you need to take into account when changing from a monolithic architecture. Like,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Inter-service network communication&lt;/li&gt;
+  &lt;li&gt;Data serialization/de-serialization&lt;/li&gt;
+  &lt;li&gt;Security/Authentication&lt;/li&gt;
+  &lt;li&gt;Language Interoperability&lt;/li&gt;
+  &lt;li&gt;Streaming Data&lt;/li&gt;
+  &lt;li&gt;Monitoring&lt;/li&gt;
+  &lt;li&gt;Debugging&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;gRPC gives us the tools and capabilities to combat these issues without having to roll your custom frameworks.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-grpc&quot;&gt;What is gRPC?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;gRPC is a modern open-source high-performance RPC framework that can run in any environment. It can efficiently connect services in and across data centres with pluggable support for load balancing, tracing, health checking and authentication. It is also applicable in the last mile of distributed computing to connect devices, mobile applications and browsers to backend services.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;what-are-protocol-buffers&quot;&gt;What are Protocol buffers?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;Protocol Buffers, another open-source project by Google, is a language-neutral, platform-neutral, extensible mechanism for quickly serializing structured data in a small binary packet.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;p&gt;By default, gRPC used Protocol Buffers v3 for data serialisation.&lt;/p&gt;
+
+&lt;p&gt;When working with Protocol Buffers, we write a .proto file to define the data structures that we will be using in our RPC calls. This also tells protobuf how to serialise this data when sending it over the wire.&lt;/p&gt;
+
+&lt;p&gt;This results in small data packets being sent over the network, which keeps your RPC calls fast, as there are fewer data to transmit.&lt;/p&gt;
+
+&lt;p&gt;It also makes your code execute faster, as it spends less time serializing and deserializing the data that is being transmitted.&lt;/p&gt;
+
+&lt;p&gt;Here you can see, we are defining a Person data structure, with a name, an id and multiple phone numbers of different types.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;syntax = &quot;proto3&quot;;
+message Person {
+string name = 1;
+    int32 id = 2;
+    string email = 3;
+    enum PhoneType {
+      MOBILE = 0;
+      HOME = 1;
+      WORK = 2;
+    }
+    message PhoneNumber {
+      string number = 1;
+      PhoneType type = 2;
+    }
+    repeated PhoneNumber phone = 4;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Along with the data structures, we can also define RPC functions in the services section of our .proto file.&lt;/p&gt;
+
+&lt;p&gt;There are several types of RPC calls available — as we can see in GetFeature, we can do the standard synchronous request/response model, but we can also more advanced types of RPC calls, such as with RouteChat, where we can send information via bi-directional streams in a completely asynchronous way.&lt;/p&gt;
+
+&lt;p&gt;From these .proto files, we can use the gRPC tooling to generate both clients and server-side code that handles all the technical details of the RPC invocation, data serialisation, transmission and error handling.&lt;/p&gt;
+
+&lt;p&gt;This means we can focus on the logic of our application rather than worry about these implementation details.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;service RouteGuide {
+  rpc GetFeature(Point) returns (Feature);
+  rpc RouteChat(stream RouteNote) returns (stream RouteNote);
+}
+message Point {
+  int32 Latitude = 1;
+  int32 Longitude = 2;
+}
+message Feature {
+ string name = 1;
+ Point location = 2;
+}
+message RouteNote {
+  Point location = 1;
+  string message = 2;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;grpc-http20--protobuf-vs-rest-http11--json&quot;&gt;gRPC (HTTP/2.0 + Protobuf) vs REST (HTTP/1.1 + JSON)&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;HTTP/1.x&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;HTTP/0.9 was a one-line protocol to bootstrap the World Wide Web&lt;/p&gt;
+
+&lt;p&gt;HTTP/1.0 documented the popular extensions to HTTP/0.9 in an informational standard.&lt;/p&gt;
+
+&lt;p&gt;HTTP/1.1 introduced an official IETF standard.&lt;/p&gt;
+
+&lt;p&gt;HTTP/1.x clients need to use multiple connections to achieve concurrency and reduce latency; HTTP/1.x does not compress request and response headers, causing unnecessary network traffic; HTTP/1.x does not allow effective resource prioritization, resulting in poor use of the underlying TCP connection; and so on.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Advantages of HTTP/2.0&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The first advantage HTTP/2 gives you over HTTP/1.x is speed.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;HTTP/2 reduces latency by enabling full request and response multiplexing, minimize protocol overhead via efficient compression of HTTP header fields, support for request prioritization, allows multiple concurrent exchanges on the same connection and server push.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/fast-microservices-with-grpc/http-2.png&quot; /&gt;
+  &lt;figcaption&gt;HTTP/2 vs HTTP/1.1 &lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Multiplexing — HTTP/1.1 vs HTTP/2.0&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;HTTP/2 gives us multiplexing. Therefore, multiple gRPC calls can communicate over a single TCP/IP connection without the overhead of disconnecting and reconnecting over and over again as HTTP/1.1 will do for each request. This removes a huge overhead from traditional HTTP forms of communication.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/fast-microservices-with-grpc/traffic.png&quot; /&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/fast-microservices-with-grpc/highway.png&quot; /&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Bi-directional Streaming&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;HTTP/2 also has bi-directional streaming built-in. This means gRPC can send asynchronous, non-blocking data up and down, such as the RPC example we saw earlier, without having to resort to much slower techniques like HTTP-long polling.&lt;/p&gt;
+
+&lt;p&gt;A gRPC client can send data to the server and the gRPC server can send data to the client in a completely asynchronous manner.&lt;/p&gt;
+
+&lt;p&gt;This means that doing real-time, streaming communication over a microservices architecture is exceptionally easy to implement in our applications&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Multi-language support&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the big advantages of microservices architecture is using different languages for different services. gRPC works across multiple languages and platforms. Currently, these languages/frameworks are supported,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Go&lt;/li&gt;
+  &lt;li&gt;Ruby&lt;/li&gt;
+  &lt;li&gt;PHP&lt;/li&gt;
+  &lt;li&gt;Java / Android&lt;/li&gt;
+  &lt;li&gt;C++&lt;/li&gt;
+  &lt;li&gt;C#&lt;/li&gt;
+  &lt;li&gt;Objective-C / iOS&lt;/li&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+  &lt;li&gt;Node.js&lt;/li&gt;
+  &lt;li&gt;Dart&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The best part is that gRPC is not just a library, but tooling as well. Once you have your .proto file defined, you can generate client and server stubs for all of these languages, allowing your RPC services to use a single API no matter what language they are written in!&lt;/p&gt;
+
+&lt;p&gt;This means that you can choose the right tool for the job when building your microservices — you aren’t locked into just one language or platform.&lt;/p&gt;
+
+&lt;p&gt;gRPC will generate clients and servers stubs that are canonically written for the language you want to use, and also take care of the serialisation and deserialisation of data in a way that your language of choice will understand!&lt;/p&gt;
+
+&lt;p&gt;There’s no need to worry about transport protocols or how data should be sent over the wire. All this is simply handled for you, and you can focus instead on the logic of your services as you write them.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/fast-microservices-with-grpc/grpc-stub.png&quot; /&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This means that you can choose the right tool for the job when building your microservices — you aren’t locked into just one language or platform.&lt;/p&gt;
+
+&lt;p&gt;gRPC will generate clients and servers stubs that are canonically written for the language you want to use, and also take care of the serialisation and deserialisation of data in a way that your language of choice will understand!&lt;/p&gt;
+
+&lt;p&gt;There’s no need to worry about transport protocols or how data should be sent over the wire. All this is simply handled for you, and you can focus instead on the logic of your services as you write them.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-are-the-challenges-in-adopting-grpc&quot;&gt;What are the challenges in adopting gRPC?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Load Balancing&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Our microservices are containerized and deployed using &lt;a href=&quot;https://kubernetes.io/&quot;&gt;Kubernetes&lt;/a&gt;, an open-source container orchestration system. Kubernetes’s default load balancing often doesn’t work out of the box with gRPC, we use &lt;a href=&quot;https://linkerd.io/2/getting-started/&quot;&gt;Linkerd&lt;/a&gt; (Service Mesh) for gRPC load balancing with sidecar container injected to existing pods.&lt;/p&gt;
+
+&lt;p&gt;More about &lt;a href=&quot;https://kubernetes.io/blog/2018/11/07/grpc-load-balancing-on-kubernetes-without-tears/&quot;&gt;gRPC load balancing with Kubernetes&lt;/a&gt; and other &lt;a href=&quot;https://grpc.io/blog/grpc-load-balancing/&quot;&gt;gRPC load balancing options&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Manual Testing&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Since gRPC is a binary protocol, the RPC methods cannot be manually tested using GUI tools like Postman (generally used for HTTP/1.1 text-based protocol). We have used &lt;a href=&quot;https://github.com/ktr0731/evans&quot;&gt;Evans&lt;/a&gt; REPL for gRPC introspection and manual testing.&lt;/p&gt;
+
+&lt;p&gt;To conclude, I would highly recommend everyone to try out gRPC and start migrating to gRPC in production.&lt;/p&gt;
+
+&lt;p&gt;If you are interested in working with cutting-edge technologies, come work with us. Apply &lt;a href=&quot;https://angel.co/company/vernacular-ai/jobs&quot;&gt;here&lt;/a&gt;&lt;/p&gt;</content><author><name>Mithun Arunan</name></author><category term="Engineering" /><category term="grpc" /><category term="load balancing" /><category term="microservices" /><category term="interservice communication" /><summary type="html">Vernacular.ai processes millions of speech recognition requests every day, and to handle such a load we have focused on building a highly scalable technical stack.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/posts/fast-microservices-with-grpc/highway.png" /><media:content medium="image" url="/assets/images/posts/fast-microservices-with-grpc/highway.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
