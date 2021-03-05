@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-05T16:12:38+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-05T16:26:03+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
 &lt;a href=&quot;https://vernacular-ai.github.io/engineering/&quot;&gt;Engineering&lt;/a&gt; and
 &lt;a href=&quot;https://vernacular-ai.github.io/ml/&quot;&gt;ML&lt;/a&gt; team in this new, central, Vernacular
 Tech page. From here on, this is going to be the main source of updates on
@@ -1365,4 +1365,98 @@ message RouteNote {
 
 &lt;p&gt;To conclude, I would highly recommend everyone to try out gRPC and start migrating to gRPC in production.&lt;/p&gt;
 
-&lt;p&gt;If you are interested in working with cutting-edge technologies, come work with us. Apply &lt;a href=&quot;https://angel.co/company/vernacular-ai/jobs&quot;&gt;here&lt;/a&gt;&lt;/p&gt;</content><author><name>Mithun Arunan</name></author><category term="Engineering" /><category term="grpc" /><category term="load balancing" /><category term="microservices" /><category term="interservice communication" /><summary type="html">Vernacular.ai processes millions of speech recognition requests every day, and to handle such a load we have focused on building a highly scalable technical stack.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/posts/fast-microservices-with-grpc/highway.png" /><media:content medium="image" url="/assets/images/posts/fast-microservices-with-grpc/highway.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;If you are interested in working with cutting-edge technologies, come work with us. Apply &lt;a href=&quot;https://angel.co/company/vernacular-ai/jobs&quot;&gt;here&lt;/a&gt;&lt;/p&gt;</content><author><name>Mithun Arunan</name></author><category term="Engineering" /><category term="grpc" /><category term="load balancing" /><category term="microservices" /><category term="interservice communication" /><summary type="html">Vernacular.ai processes millions of speech recognition requests every day, and to handle such a load we have focused on building a highly scalable technical stack.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/posts/fast-microservices-with-grpc/highway.png" /><media:content medium="image" url="/assets/images/posts/fast-microservices-with-grpc/highway.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">A REPL for Conversations</title><link href="/repl-conversations/" rel="alternate" type="text/html" title="A REPL for Conversations" /><published>2020-01-30T00:00:00+00:00</published><updated>2020-01-30T00:00:00+00:00</updated><id>/repl-conversations</id><content type="html" xml:base="/repl-conversations/">&lt;p&gt;A REPL, in programming, is an interactive environment where a programmer
+can go through the cycle of writing code, getting it &lt;em&gt;Read&lt;/em&gt;,
+&lt;em&gt;Evaluated&lt;/em&gt;, output &lt;em&gt;Printed&lt;/em&gt; and then back in a &lt;em&gt;Loop&lt;/em&gt;. Fundamentally,
+a REPL merges &lt;em&gt;usage&lt;/em&gt; and &lt;em&gt;extension&lt;/em&gt; of a system in a single interface.
+This merger has been important in providing easy extensibility to the
+end programmers in many programming languages.&lt;/p&gt;
+
+&lt;h1 id=&quot;interaction-is-supervision&quot;&gt;Interaction is supervision&lt;/h1&gt;
+
+&lt;p&gt;We can envision a similar merger in human intelligence involving
+languages. After getting to a certain level of language understanding,
+our interactive behavior can be manipulated itself by interactions.
+Interactions cover all possible &lt;em&gt;dialogs&lt;/em&gt;. Manipulative interactions or
+supervision, as we like to call it, cover whatever is involved in
+updating the state of the internal model which, in turn, affects the
+behavior.&lt;/p&gt;
+
+&lt;p&gt;Most of the machine dialog platforms aren't designed to expose this
+equivalence explicitly. We have a different &lt;em&gt;language&lt;/em&gt; for providing
+supervision and different for building the interaction experiences and
+that's it. Consider the chatbots you see on various websites these
+days. These have an interaction language which is a natural language,
+and a separate supervision language which stays at the programmer's
+beck in the background. I can't improve my personal interaction with
+the system or extend it's behavior by talking to it. I can do that with
+a human agent easily.&lt;/p&gt;
+
+&lt;p&gt;We definitely are moving towards such systems by adding control knobs
+piece by piece. But still aren't looking very actively for a general
+framework of &lt;em&gt;user initiated supervision&lt;/em&gt;. Practically this is not going
+to be immediately helpful for many reasons known to all of us working in
+the field, but it's helpful to define various kinds of platforms for
+machine dialog involving users on a continuum who all &lt;em&gt;program&lt;/em&gt; their
+desired changes using their own interactive languages.&lt;/p&gt;
+
+&lt;p&gt;From the technical side, of course there are problems that need to be
+solved for this. Since natural languages are already there, as compared
+to a language &lt;em&gt;to be designed&lt;/em&gt;, this needs a lot of work in
+understanding and creating computational models of &lt;a href=&quot;https://en.wikipedia.org/wiki/Language_acquisition&quot;&gt;language
+acquisition&lt;/a&gt; from
+one end and works in zero and few shot learnings from the other.&lt;/p&gt;
+
+&lt;p&gt;Sublanguages are still going to be the more efficient way for working at
+a certain level, just like mathematical notations are for talking about
+mathematics, but we can target a natural language REPL layer on top of
+current dialog platforms and aim for a sort of interactive malleability
+for growing the system organically afterwards.&lt;/p&gt;
+
+&lt;h1 id=&quot;growing-a-conversational-agent&quot;&gt;Growing a conversational agent&lt;/h1&gt;
+
+&lt;p&gt;This malleability is not only a learning but also design problem at the
+moment&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. A problem similar to designing a programming language. What
+we want the language user to accomplish is our focus right now. How we
+can let the language itself grow is a problem we will be designing
+systems for in the future. Once this interaction language is capable
+enough, we can have an ecosystem of extensions and libraries making a
+minimal system malleable enough to allow building drastically different
+experiences on top of it.&lt;/p&gt;
+
+&lt;p&gt;And it’s important that the system accepts growth at various levels if it has to
+generalize across many use cases. In his talk ‘&lt;a href=&quot;https://www.youtube.com/watch?v=lw6TaiXzHAE&quot;&gt;Growing a Language&lt;/a&gt;’, Guy L.
+Steele cites lack of this growth as the difference between APL and Lisp. In APL
+“there was no way for a user to grow the language in a smooth way”. The
+smoothness here focuses on extensibility in terms of language primitives. From
+the same talk:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If I want to help other persons to write all sorts of programs, should
+I design a small programming language or a large one?&lt;/p&gt;
+
+  &lt;p&gt;I stand on this claim: I should not design a small language, and I
+should not design a large one. I need to design a language that can
+grow. I need to plan ways in which it might grow—but I need, too, to
+leave some choices so that other persons can make those choices at a
+later time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Conversational systems are interesting from many more angles than just
+what their components look like at the moment, which includes Speech To
+Text, Language Understanding, Dialog Management, Text To Speech, etc.
+Improving metrics under the current framework is a decent and important
+goal, but there are many interesting challenges in the design aspects of
+how we build and let others build conversational experiences themselves.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Many researches in self learning systems are orthogonal here as
+you can have low generalization and still make a natural language
+REPL. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><summary type="html">A REPL, in programming, is an interactive environment where a programmer can go through the cycle of writing code, getting it Read, Evaluated, output Printed and then back in a Loop. Fundamentally, a REPL merges usage and extension of a system in a single interface. This merger has been important in providing easy extensibility to the end programmers in many programming languages.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
