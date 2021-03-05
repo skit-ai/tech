@@ -17,6 +17,18 @@ This is source for the [tech team webpage][tech_blog] at Vernacular.ai. Template
 
 Deployment is handled via github actions using [this workflow](./.github/workflows/github-pages.yml) which gets triggered on every push.
 
+### LaTeX
+
+We use [KaTeX](https://katex.org/) to render LaTeX equations. For enabling in
+your post, add `katex: True` in your yaml frontmatter. After that, equations
+under `$$` (note the double dollar sign) will be rendered like below:
+
+```
+$$p_\theta(z_k) = p_\theta(z_0)* \prod_{i=1..k}|\det(\frac{\partial f_i}{\partial z_{i-1}})|^{-1}$$
+```
+
+![](./screens/latex.png)
+
 ### Fancy audio player
 
 Instead of the default HTML audio player, you can use a fancy audio player that
