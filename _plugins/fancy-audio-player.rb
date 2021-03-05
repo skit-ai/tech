@@ -25,6 +25,13 @@ class FancyAudioPlayer < Liquid::Tag
            document.getElementById('player-progress-#{@player_id}').innerHTML = progressText
          });
 
+         ws#{@player_id}.on('finish', function () {
+           let button = $('#controls-#{@player_id} > [data-action=\"play-pause\"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
          for (let button of document.getElementById('controls-#{@player_id}').children) {
            button.onclick = function (e) {
              let action = button.getAttribute('data-action')
