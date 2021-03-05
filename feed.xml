@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-05T13:26:02+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-05T15:52:11+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
 &lt;a href=&quot;https://vernacular-ai.github.io/engineering/&quot;&gt;Engineering&lt;/a&gt; and
 &lt;a href=&quot;https://vernacular-ai.github.io/ml/&quot;&gt;ML&lt;/a&gt; team in this new, central, Vernacular
 Tech page. From here on, this is going to be the main source of updates on
@@ -695,15 +695,113 @@ Dagar&lt;/a&gt; as an intern at Vernacular.ai&lt;/p&gt;
 
 &lt;p&gt;This can be particularly hard sometimes as we’ll discuss later in the blog. Just to give an example, this audio below seems to have a lot of background talking and noise making it difficult even for a human to accurately understand speaker timestamps.&lt;/p&gt;
 
-&lt;audio controls=&quot;controls&quot;&gt;
-    &lt;source src=&quot;https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539785.2420125.002.wav&quot; /&gt;
-&lt;/audio&gt;
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws1 = WaveSurfer.create({
+           container: '#waveform-1'
+         });
+         ws1.load('https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539785.2420125.002.wav');
+
+         ws1.on('audioprocess', function () {
+           let progressText = ws1.getCurrentTime().toFixed(2) + ' / ' + ws1.getDuration().toFixed(2)
+           document.getElementById('player-progress-1').innerHTML = progressText
+         });
+
+         ws1.on('ready', function () {
+           let progressText = ws1.getCurrentTime().toFixed(2) + ' / ' + ws1.getDuration().toFixed(2)
+           document.getElementById('player-progress-1').innerHTML = progressText
+         });
+
+         for (let button of document.getElementById('controls-1').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws1.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws1.skipBackward()
+                 break
+               case 'forward':
+                 ws1.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-1&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-1&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-1&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Below we have an example of an audio along with its transcription and speech timestamp tags.&lt;/p&gt;
 
-&lt;audio controls=&quot;controls&quot;&gt;
-    &lt;source src=&quot;https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav&quot; /&gt;
-&lt;/audio&gt;
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws2 = WaveSurfer.create({
+           container: '#waveform-2'
+         });
+         ws2.load('https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav');
+
+         ws2.on('audioprocess', function () {
+           let progressText = ws2.getCurrentTime().toFixed(2) + ' / ' + ws2.getDuration().toFixed(2)
+           document.getElementById('player-progress-2').innerHTML = progressText
+         });
+
+         ws2.on('ready', function () {
+           let progressText = ws2.getCurrentTime().toFixed(2) + ' / ' + ws2.getDuration().toFixed(2)
+           document.getElementById('player-progress-2').innerHTML = progressText
+         });
+
+         for (let button of document.getElementById('controls-2').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws2.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws2.skipBackward()
+                 break
+               case 'forward':
+                 ws2.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-2&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-2&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-2&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;Transcription&lt;/strong&gt;: “Barbeque nation mei naa wo book kia tha ok table book kia tha han toh abhi na uske baad ek phone aaya tha toh wo barbeque nation se hi phone aaya tha mai receive nhi kar paaya toh yehi”&lt;/p&gt;
 
