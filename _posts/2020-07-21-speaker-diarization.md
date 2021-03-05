@@ -7,6 +7,7 @@ image: assets/images/demo1.jpg
 layout: post
 authors: [anirudhdagar]
 katex: True
+fancy_audio_player: True
 ---
 
 > This blog post is based on the work done by [Anirudh
@@ -24,15 +25,11 @@ Below is an example audio from calls recorded at a customer care center, where t
 
 This can be particularly hard sometimes as we'll discuss later in the blog. Just to give an example, this audio below seems to have a lot of background talking and noise making it difficult even for a human to accurately understand speaker timestamps.
 
-<audio controls="controls">
-    <source src="https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539785.2420125.002.wav" />
-</audio>
+{% fancy_audio https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539785.2420125.002.wav %}
 
 Below we have an example of an audio along with its transcription and speech timestamp tags.
 
-<audio controls="controls">
-    <source src="https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav" />
-</audio>
+{% fancy_audio https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav %}
 
 **Transcription**: "Barbeque nation mei naa wo book kia tha ok table book kia tha han toh abhi na uske baad ek phone aaya tha toh wo barbeque nation se hi phone aaya tha mai receive nhi kar paaya toh yehi"
 
