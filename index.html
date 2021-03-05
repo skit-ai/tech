@@ -142,7 +142,7 @@ description: "Speech Technology from Vernacular.ai"
             <div class="col-md-6 pt-6 pb-6 pr-lg-4 align-self-center">
                 <h1 class="mb-3">{{post.title}}</h1>
                 <p class="mb-3 lead">
-                    {{ post.excerpt | strip_html | strip_newlines | truncate: 136 }}
+                  {{ post.excerpt | newline_to_br | strip_newlines | replace: '<br />', ' ' | strip_html | strip | truncate: 136 }}
                 </p>
                 <a href="{{site.baseurl}}{{post.url}}" class="btn btn-dark">Read More</a>
             </div>
