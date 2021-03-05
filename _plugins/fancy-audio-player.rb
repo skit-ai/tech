@@ -11,7 +11,8 @@ class FancyAudioPlayer < Liquid::Tag
     "<script>
        $(document).ready(function () {
          var ws#{@player_id} = WaveSurfer.create({
-           container: '#waveform-#{@player_id}'
+           container: '#waveform-#{@player_id}',
+           backend: 'MediaElement'
          });
          ws#{@player_id}.load('#{@content.strip}');
 
