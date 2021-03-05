@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-05T15:52:11+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-05T16:04:10+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
 &lt;a href=&quot;https://vernacular-ai.github.io/engineering/&quot;&gt;Engineering&lt;/a&gt; and
 &lt;a href=&quot;https://vernacular-ai.github.io/ml/&quot;&gt;ML&lt;/a&gt; team in this new, central, Vernacular
 Tech page. From here on, this is going to be the main source of updates on
@@ -698,7 +698,8 @@ Dagar&lt;/a&gt; as an intern at Vernacular.ai&lt;/p&gt;
 &lt;script&gt;
        $(document).ready(function () {
          var ws1 = WaveSurfer.create({
-           container: '#waveform-1'
+           container: '#waveform-1',
+           backend: 'MediaElement'
          });
          ws1.load('https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539785.2420125.002.wav');
 
@@ -710,6 +711,13 @@ Dagar&lt;/a&gt; as an intern at Vernacular.ai&lt;/p&gt;
          ws1.on('ready', function () {
            let progressText = ws1.getCurrentTime().toFixed(2) + ' / ' + ws1.getDuration().toFixed(2)
            document.getElementById('player-progress-1').innerHTML = progressText
+         });
+
+         ws1.on('finish', function () {
+           let button = $('#controls-1 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
          });
 
          for (let button of document.getElementById('controls-1').children) {
@@ -753,7 +761,8 @@ Dagar&lt;/a&gt; as an intern at Vernacular.ai&lt;/p&gt;
 &lt;script&gt;
        $(document).ready(function () {
          var ws2 = WaveSurfer.create({
-           container: '#waveform-2'
+           container: '#waveform-2',
+           backend: 'MediaElement'
          });
          ws2.load('https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav');
 
@@ -765,6 +774,13 @@ Dagar&lt;/a&gt; as an intern at Vernacular.ai&lt;/p&gt;
          ws2.on('ready', function () {
            let progressText = ws2.getCurrentTime().toFixed(2) + ' / ' + ws2.getDuration().toFixed(2)
            document.getElementById('player-progress-2').innerHTML = progressText
+         });
+
+         ws2.on('finish', function () {
+           let button = $('#controls-2 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
          });
 
          for (let button of document.getElementById('controls-2').children) {

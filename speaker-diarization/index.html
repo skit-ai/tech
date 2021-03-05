@@ -390,7 +390,8 @@ Dagar</a> as an intern at Vernacular.ai</p>
 <script>
        $(document).ready(function () {
          var ws1 = WaveSurfer.create({
-           container: '#waveform-1'
+           container: '#waveform-1',
+           backend: 'MediaElement'
          });
          ws1.load('https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539785.2420125.002.wav');
 
@@ -402,6 +403,13 @@ Dagar</a> as an intern at Vernacular.ai</p>
          ws1.on('ready', function () {
            let progressText = ws1.getCurrentTime().toFixed(2) + ' / ' + ws1.getDuration().toFixed(2)
            document.getElementById('player-progress-1').innerHTML = progressText
+         });
+
+         ws1.on('finish', function () {
+           let button = $('#controls-1 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
          });
 
          for (let button of document.getElementById('controls-1').children) {
@@ -445,7 +453,8 @@ Dagar</a> as an intern at Vernacular.ai</p>
 <script>
        $(document).ready(function () {
          var ws2 = WaveSurfer.create({
-           container: '#waveform-2'
+           container: '#waveform-2',
+           backend: 'MediaElement'
          });
          ws2.load('https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav');
 
@@ -457,6 +466,13 @@ Dagar</a> as an intern at Vernacular.ai</p>
          ws2.on('ready', function () {
            let progressText = ws2.getCurrentTime().toFixed(2) + ' / ' + ws2.getDuration().toFixed(2)
            document.getElementById('player-progress-2').innerHTML = progressText
+         });
+
+         ws2.on('finish', function () {
+           let button = $('#controls-2 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
          });
 
          for (let button of document.getElementById('controls-2').children) {
