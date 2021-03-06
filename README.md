@@ -19,9 +19,9 @@ Deployment is handled via github actions using [this workflow](./.github/workflo
 
 ### LaTeX
 
-We use [KaTeX](https://katex.org/) to render LaTeX equations. For enabling in
-your post, add `katex: True` in your yaml frontmatter. After that, equations
-under `$$` (note the double dollar sign) will be rendered like below:
+We use [MathJax v3](https://www.mathjax.org/) to render LaTeX equations. For
+enabling in your post, add `latex: True` in your yaml frontmatter. After that,
+equations under `$$` (note the double dollar sign) will be rendered like below:
 
 ```
 $$p_\theta(z_k) = p_\theta(z_0)* \prod_{i=1..k}|\det(\frac{\partial f_i}{\partial z_{i-1}})|^{-1}$$
