@@ -6,7 +6,7 @@ categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
 authors: [kritianandan, swarajdalmia]
-katex: True
+latex: True
 ---
 
 Normalizing flows, popularized by [(Rezende, & Mohamed,

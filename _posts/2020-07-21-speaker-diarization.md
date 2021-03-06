@@ -6,7 +6,7 @@ categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
 authors: [anirudhdagar]
-katex: True
+latex: True
 fancy_audio_player: True
 ---
 
