@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-25T21:25:32+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-03-25T21:32:45+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">What’s New in Kaldi-Serve 1.0</title><link href="/whats-new-kaldi-serve-10/" rel="alternate" type="text/html" title="What’s New in Kaldi-Serve 1.0" /><published>2021-03-25T00:00:00+00:00</published><updated>2021-03-25T00:00:00+00:00</updated><id>/whats-new-kaldi-serve-10</id><content type="html" xml:base="/whats-new-kaldi-serve-10/">&lt;p&gt;&lt;a href=&quot;https://github.com/Vernacular-ai/kaldi-serve&quot;&gt;Kaldi-Serve&lt;/a&gt; is our open source high performance Speech Recognition server framework capable of serving &lt;a href=&quot;https://github.com/kaldi-asr/kaldi&quot;&gt;Kaldi ASR&lt;/a&gt; models in production environments for real-time inference, and it’s got an upgrade!&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-changed&quot;&gt;What’s Changed?&lt;/h2&gt;
+
+&lt;p&gt;Originally designed as a standalone application, kaldi-serve had some issues mostly pertaining to it’s usability or extensibility for custom use cases thus greatly reducing the core’s potential to just a handful of rigid situations and dependencies.&lt;/p&gt;
+
+&lt;p&gt;After one too many requests for changes in the architecture to better fit the various production needs of our customers, we realised it’s time for a rewrite of the framework that allows us to better utilise the core’s scope and extend it’s capabilities in the form of general API consumable in most use cases.&lt;/p&gt;
+
+&lt;h3 id=&quot;library&quot;&gt;Library&lt;/h3&gt;
+
+&lt;p&gt;Kaldi-Serve is now a general extensible library with all the functionality necessary to serve Kaldi ASR models in production with any server framework of your choice, for ex. gRPC, Open CGI, HTTP, etc. or even import it in your own custom offline application.&lt;/p&gt;
+
+&lt;p&gt;The earlier standalone gRPC server is now and application that extends the core kaldi-serve library and only contains the frontend gRPC methods that call the general API. We’ll talk about how you can extend the library in your own applications below.&lt;/p&gt;
+
+&lt;h3 id=&quot;python-port&quot;&gt;Python Port&lt;/h3&gt;
+
+&lt;p&gt;We also made it easier to use kaldi-serve by porting the core library to python which can be easily installed as a package via pip. The transcription interface is much simpler and faster to get up and running.&lt;/p&gt;
+
+&lt;p&gt;Below is sample code snippet for transcribing a wav file with your Kaldi Chain model using the kaldiserve python package:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;io&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BytesIO&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;kaldiserve&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ChainModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parse_model_specs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_decoding&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# chain model contains all const components to be shared across multiple threads
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ChainModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse_model_specs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;model-spec.toml&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# initialize a decoder that references the chain model
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# read audio file as bytes
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sample.wav&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;audio_bytes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BytesIO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_decoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# decode the audio
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode_wav_audio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audio_bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# get the n-best alternatives
+&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;alts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_decoded_results&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;More Features Coming Soon&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Ontology&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;GPU Inference&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;MACE Integration&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Prabhsimran Singh</name></author><category term="Machine Learning" /><category term="speech recognition" /><category term="framework" /><category term="new release" /><summary type="html">Kaldi-Serve is our open source high performance Speech Recognition server framework capable of serving Kaldi ASR models in production environments for real-time inference, and it’s got an upgrade!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Our new Tech blog</title><link href="/new-blog/" rel="alternate" type="text/html" title="Our new Tech blog" /><published>2021-02-28T00:00:00+00:00</published><updated>2021-02-28T00:00:00+00:00</updated><id>/new-blog</id><content type="html" xml:base="/new-blog/">&lt;p&gt;We are merging past webpages of our
 &lt;a href=&quot;https://vernacular-ai.github.io/engineering/&quot;&gt;Engineering&lt;/a&gt; and
 &lt;a href=&quot;https://vernacular-ai.github.io/ml/&quot;&gt;ML&lt;/a&gt; team in this new, central, Vernacular
 Tech page. From here on, this is going to be the main source of updates on
