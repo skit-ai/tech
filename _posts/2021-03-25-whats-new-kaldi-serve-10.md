@@ -1,6 +1,6 @@
 ---
 title: What's New in Kaldi-Serve 1.0
-date: 2021-03-26
+date: 2021-03-25
 tags: [speech recognition, framework, new release]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
