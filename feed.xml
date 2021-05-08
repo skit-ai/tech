@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-08T06:19:24+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Normalizing Flows - Part 2</title><link href="/normalizing-flows-part-2/" rel="alternate" type="text/html" title="Normalizing Flows - Part 2" /><published>2021-05-08T00:00:00+00:00</published><updated>2021-05-08T00:00:00+00:00</updated><id>/normalizing-flows-part-2</id><content type="html" xml:base="/normalizing-flows-part-2/">&lt;p&gt;In &lt;a href=&quot;https://tech.vernacular.ai/normalizing-flows/&quot;&gt;Part-1&lt;/a&gt;, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-08T07:03:08+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Normalizing Flows - Part 2</title><link href="/normalizing-flows-part-2/" rel="alternate" type="text/html" title="Normalizing Flows - Part 2" /><published>2021-05-08T00:00:00+00:00</published><updated>2021-05-08T00:00:00+00:00</updated><id>/normalizing-flows-part-2</id><content type="html" xml:base="/normalizing-flows-part-2/">&lt;p&gt;In &lt;a href=&quot;https://tech.vernacular.ai/normalizing-flows/&quot;&gt;Part-1&lt;/a&gt;, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.&lt;/p&gt;
 
 &lt;h1 id=&quot;topics-covered&quot;&gt;Topics Covered:&lt;/h1&gt;
 &lt;ul&gt;
@@ -111,7 +111,7 @@
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;The probability distribution of an autoregressive model is given by, $$ p(x) = \prod^{D}_{i=1} {p(x_i&lt;/td&gt;
+      &lt;td&gt;The probability distribution of an autoregressive model is given by, $$ p(x) = \prod_{i=1..D} {p(x_i&lt;/td&gt;
       &lt;td&gt;x_{1:i-1}) } \(where the output at time-step\)i$$ is conditioned on all the previous outputs.&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
@@ -130,7 +130,7 @@
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;\(\det{(Dg)}\) = $$ \prod_{t=1}^{D}&lt;/td&gt;
+      &lt;td&gt;\(\det{(Dg)}\) = $$ \prod_{t=1..k}&lt;/td&gt;
       &lt;td&gt;\frac{\partial y_t}{\partial x_t}&lt;/td&gt;
       &lt;td&gt;$$&lt;/td&gt;
     &lt;/tr&gt;
@@ -271,9 +271,9 @@ Therefore, \(F(x+\delta) - F(x)\) is always &amp;gt;= 0 and hence monotonically 
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1908.09257.pdf&quot;&gt;Normalizing Flows IEEE&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1705.07057.pdf&quot;&gt;MAFs&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;[http://akosiorek.github.io/ml/2018/04/03/norm_flows.html]&lt;/li&gt;
-  &lt;li&gt;[https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html]&lt;/li&gt;
-  &lt;li&gt;[http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf]&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://akosiorek.github.io/ml/2018/04/03/norm_flows.html&quot;&gt;Adam Kosiorek’s Blog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html&quot;&gt;Lilian Weng’s Blog&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf&quot;&gt;Stanford Lecture&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What’s New in Kaldi-Serve 1.0</title><link href="/whats-new-kaldi-serve-10/" rel="alternate" type="text/html" title="What’s New in Kaldi-Serve 1.0" /><published>2021-03-25T00:00:00+00:00</published><updated>2021-03-25T00:00:00+00:00</updated><id>/whats-new-kaldi-serve-10</id><content type="html" xml:base="/whats-new-kaldi-serve-10/">&lt;p&gt;&lt;a href=&quot;https://github.com/Vernacular-ai/kaldi-serve&quot;&gt;Kaldi-Serve&lt;/a&gt; is our open source high performance Speech Recognition server framework capable of serving &lt;a href=&quot;https://github.com/kaldi-asr/kaldi&quot;&gt;Kaldi ASR&lt;/a&gt; models in production environments for real-time inference, and it’s got an upgrade!&lt;/p&gt;
 
 &lt;h2 id=&quot;whats-changed&quot;&gt;What’s Changed?&lt;/h2&gt;
