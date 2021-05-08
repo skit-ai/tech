@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-08T06:01:46+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Normalizing Flows - Part 2</title><link href="/normalizing-flows-part-2/" rel="alternate" type="text/html" title="Normalizing Flows - Part 2" /><published>2021-05-08T00:00:00+00:00</published><updated>2021-05-08T00:00:00+00:00</updated><id>/normalizing-flows-part-2</id><content type="html" xml:base="/normalizing-flows-part-2/">&lt;p&gt;In &lt;a href=&quot;https://tech.vernacular.ai/normalizing-flows/&quot;&gt;Part-1&lt;/a&gt;, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-08T06:19:24+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Normalizing Flows - Part 2</title><link href="/normalizing-flows-part-2/" rel="alternate" type="text/html" title="Normalizing Flows - Part 2" /><published>2021-05-08T00:00:00+00:00</published><updated>2021-05-08T00:00:00+00:00</updated><id>/normalizing-flows-part-2</id><content type="html" xml:base="/normalizing-flows-part-2/">&lt;p&gt;In &lt;a href=&quot;https://tech.vernacular.ai/normalizing-flows/&quot;&gt;Part-1&lt;/a&gt;, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.&lt;/p&gt;
 
 &lt;h1 id=&quot;topics-covered&quot;&gt;Topics Covered:&lt;/h1&gt;
 &lt;ul&gt;
@@ -58,10 +58,11 @@
 &lt;p&gt;\(y^A\) =  \(h(x^A, \theta(x^B))\)   &lt;br /&gt;
 \(y^{B}\) = \(x^B\)&lt;/p&gt;
 
-&lt;p&gt;The bijection \(h\) is called a &lt;strong&gt;coupling function&lt;/strong&gt;, and the resulting function &lt;strong&gt;**\(g\) that consists of both the mappings **&lt;/strong&gt;is called &lt;strong&gt;**a **coupling flow&lt;/strong&gt;. Coupling flow is invertible if and only if \(h\) is invertible and has an inverse.&lt;/p&gt;
+&lt;p&gt;The bijection \(h\) is called a &lt;strong&gt;coupling function&lt;/strong&gt;, and the resulting function \(g\) that consists of both the mappings is called a &lt;strong&gt;coupling flow&lt;/strong&gt;. Coupling flow is invertible if and only if \(h\) is invertible and has an inverse.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Let’s consider an example :&lt;/strong&gt;
-Let us consider an input with 4 dimensions \((x1,x2,x3,x4)\). Let \(x^A = (x1,x2)\) and \(x^B = (x3,x4)\). Let \(\theta(x^B) = x3+x4\) and let the coupling function \(h(x^A, \theta(x^B)) = \theta(x^B) * x^A\).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Let’s consider an example :&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Let us consider an input with 4 dimensions \((x1,x2,x3,x4)\). Let \(x^A = (x1,x2)\) and \(x^B = (x3,x4)\). Let \(\theta(x^B) = x3+x4\) and let the coupling function \(h(x^A, \theta(x^B)) = \theta(x^B) * x^A\).&lt;/p&gt;
 
 &lt;p&gt;Given this example, the coupling function \(h\) is invertible but only if \(\theta\) isn’t zero. Therefore, the invertibility requirement of \(h\) introduces a limitation on \(\theta\) as well. In this case, it can’t be defined as a simple additive function. The restriction for non-zero values needs to be taken into account.&lt;/p&gt;
 
@@ -110,8 +111,8 @@ Let us consider an input with 4 dimensions \((x1,x2,x3,x4)\). Let \(x^A = (x1,x2
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;The probability distribution of an autoregressive model is given by, $$p(x) = \prod^{D}_{i=1}{p(x_i&lt;/td&gt;
-      &lt;td&gt;x_{1:i-1})}\(where the output at time-step\)i$$ is conditioned on all the previous outputs.&lt;/td&gt;
+      &lt;td&gt;The probability distribution of an autoregressive model is given by, $$ p(x) = \prod^{D}_{i=1} {p(x_i&lt;/td&gt;
+      &lt;td&gt;x_{1:i-1}) } \(where the output at time-step\)i$$ is conditioned on all the previous outputs.&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -129,7 +130,7 @@ Let us consider an input with 4 dimensions \((x1,x2,x3,x4)\). Let \(x^A = (x1,x2
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;\(\det{(Dg)}\) = $$\prod_{t=1}^{D}&lt;/td&gt;
+      &lt;td&gt;\(\det{(Dg)}\) = $$ \prod_{t=1}^{D}&lt;/td&gt;
       &lt;td&gt;\frac{\partial y_t}{\partial x_t}&lt;/td&gt;
       &lt;td&gt;$$&lt;/td&gt;
     &lt;/tr&gt;
@@ -142,15 +143,16 @@ Let us consider an input with 4 dimensions \((x1,x2,x3,x4)\). Let \(x^A = (x1,x2
 
 &lt;p&gt;MAFs were inspired by the observation that on stacking several autoregressive models, where each model had unimodal conditionals, the normalizing flow can learn multi-modal conditionals (&lt;a href=&quot;https://arxiv.org/pdf/1705.07057.pdf&quot;&gt;MAF [2018]&lt;/a&gt;). The architecture consists of &lt;strong&gt;stacked MADEs&lt;/strong&gt; &lt;strong&gt;with Gaussian conditionals&lt;/strong&gt; which are explained below.&lt;/p&gt;
 
-&lt;p&gt;What are &lt;strong&gt;MADEs&lt;/strong&gt;?
-&lt;strong&gt;MADE&lt;/strong&gt; stands for Masked Auto-Encoder for Distribution Estimation (&lt;a href=&quot;https://arxiv.org/pdf/1502.03509.pdf&quot;&gt;MADE [2015]&lt;/a&gt;) are essentially auto-encoders with some modifications like masks. In a MADE, the autoregressive property is enforced by multiplying the weight matrices of the hidden layers of the auto-encoder with a binary mask. These masks ensure that the training of the sequential auto-regressive model can be done in parallel.&lt;/p&gt;
+&lt;p&gt;What are &lt;strong&gt;MADEs&lt;/strong&gt;?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MADE&lt;/strong&gt; stands for Masked Auto-Encoder for Distribution Estimation (&lt;a href=&quot;https://arxiv.org/pdf/1502.03509.pdf&quot;&gt;MADE [2015]&lt;/a&gt;) are essentially auto-encoders with some modifications like masks. In a MADE, the autoregressive property is enforced by multiplying the weight matrices of the hidden layers of the auto-encoder with a binary mask. These masks ensure that the training of the sequential auto-regressive model can be done in parallel.&lt;/p&gt;
 
 &lt;table&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;The masking is done such that forward passes with mask are equivalent to conditioning the output only on the earlier sequences of input. This is shown in the below image. On the left, a typical auto-encoder with 2 hidden layers is shown. Now, if one wants to represent the output as an autoregressive sequence s.t. $$p(x) = p(x_2)* p(x_3&lt;/td&gt;
-      &lt;td&gt;x_2)* p(x_1&lt;/td&gt;
-      &lt;td&gt;x_2,x_3)\(, masks are multiplied to the weights of the auto-encoder. The order of the inputs are\)x_2, x_3, x_1.\(The image on the right shows the network weights after masking. For example\)p(x_2)\(doesn’t depend on any of the other inputs since it is the first in the sequence.\)p(x_3)\(is dependent on only the nodes that depend on\)x_2\(and similarly for\)p(x_1).$$ The general form for masking is discussed in the MADE paper. The MADE architecture parallelizes the sequential autoregressive computation.&lt;/td&gt;
+      &lt;td&gt;The masking is done such that forward passes with mask are equivalent to conditioning the output only on the earlier sequences of input. This is shown in the below image. On the left, a typical auto-encoder with 2 hidden layers is shown. Now, if one wants to represent the output as an autoregressive sequence s.t. $$ p(x) = p(x_2) * p(x_3&lt;/td&gt;
+      &lt;td&gt;x_2) * p(x_1&lt;/td&gt;
+      &lt;td&gt;x_2,x_3) \(, masks are multiplied to the weights of the auto-encoder. The order of the inputs are\) x_2, x_3, x_1 \(The image on the right shows the network weights after masking. For example\)p(x_2)\(doesn’t depend on any of the other inputs since it is the first in the sequence.\)p(x_3)\(is dependent on only the nodes that depend on\)x_2\(and similarly for\)p(x_1)$$ The general form for masking is discussed in the MADE paper. The MADE architecture parallelizes the sequential autoregressive computation.&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
@@ -174,7 +176,7 @@ Let us consider an input with 4 dimensions \((x1,x2,x3,x4)\). Let \(x^A = (x1,x2
 &lt;/figure&gt;
 
 &lt;p&gt;The diagrams above demonstrate a forward pass and an inverse pass in a MAF.
-The output \(x_i\)’s depends upon the input \(z_{i}\) and the scalars \(\alpha_{i}\), \(\mu_{i}\) which are computed using \(x_{1:t-1}\).  It is these scalars that define the density parameters of the distribution. This is also called a scale and shift transform. The reason why it is designed this way is that inverting \(f(x)\) does not require us to invert the scalar functions \(\alpha_{i}\) and \(\mu_{i}\).&lt;/p&gt;
+The output \(x_i's\) depends upon the input \(z_{i}\) and the scalars \(\alpha_{i}\), \(\mu_{i}\) which are computed using \(x_{1:t-1}\).  It is these scalars that define the density parameters of the distribution. This is also called a scale and shift transform. The reason why it is designed this way is that inverting \(f(x)\) does not require us to invert the scalar functions \(\alpha_{i}\) and \(\mu_{i}\).&lt;/p&gt;
 
 &lt;p&gt;\(f^{-1}(x_{i}) = z_{i} = \frac{x_{i} - \mu_{i}}{exp(\alpha_{i})}\).&lt;/p&gt;
 
@@ -191,7 +193,7 @@ The output \(x_i\)’s depends upon the input \(z_{i}\) and the scalars \(\alpha
 
 &lt;p&gt;Since MAFs are better at training by exploiting parallel computation but slower during sampling, we modify the functions to get another flow architecture that is faster at sampling. This gives us Inverse Autoregressive flows (IAFs).&lt;/p&gt;
 
-&lt;p&gt;The figures above show a comparison between the inverse pass of a MAF and the forward pass in an IAF.  The only difference between both the architectures is that for IAF’s the autoregression is based on the latent variables and not the predicted distribution. The scale (\(\alpha_{i}\)) and shift (\(\mu_{i}\)) quantities are computed using previous data points from the base distribution instead of the transformed distribution.&lt;/p&gt;
+&lt;p&gt;The figures above show a comparison between the inverse pass of a MAF and the forward pass in an IAF.  The only difference between both the architectures is that for IAF’s the autoregression is based on the latent variables and not the predicted distribution. The scale(\(\alpha_{i}\)) and shift(\(\mu_{i}\)) quantities are computed using previous data points from the base distribution instead of the transformed distribution.&lt;/p&gt;
 
 &lt;p&gt;IAF can generate samples efficiently with one pass through the model since all the \(z_i's\)  are known. However, the training process  is slow, since estimating the \(z_i\) requires i sequential passes to calculate all the required input variables \(z_{1}\), \(z_{2}\), .. \(z_{i-1}\).&lt;/p&gt;
 
@@ -268,21 +270,11 @@ Therefore, \(F(x+\delta) - F(x)\) is always &amp;gt;= 0 and hence monotonically 
 &lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
 &lt;ol&gt;
   &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1908.09257.pdf&quot;&gt;Normalizing Flows IEEE&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1705.07057.pdf&quot;&gt;MAF&lt;/a&gt;s&lt;/li&gt;
-  &lt;li&gt;http://akosiorek.github.io/ml/2018/04/03/norm_flows.html&lt;/li&gt;
-  &lt;li&gt;https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html&lt;/li&gt;
-  &lt;li&gt;http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;need-to-check-out&quot;&gt;Need to check out&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://papers.nips.cc/paper/2019/file/1e44fdf9c44d7328fecc02d677ed704d-Paper.pdf&quot;&gt;Graph normalizing flows&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1806.07366.pdf&quot;&gt;Neural ODE&lt;/a&gt;
-    &lt;h2 id=&quot;relevant-reddit-posts&quot;&gt;Relevant reddit posts&lt;/h2&gt;
-  &lt;/li&gt;
-  &lt;li&gt;A&lt;a href=&quot;https://www.reddit.com/r/MachineLearning/comments/bvvq90/d_are_normalizing_flows_dead/&quot;&gt;re normalizing flows dead&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.reddit.com/r/MachineLearning/comments/g7rkd9/d_what_is_sota_in_normalizing_flows/&quot;&gt;SOTA in normalizing flows&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What’s New in Kaldi-Serve 1.0</title><link href="/whats-new-kaldi-serve-10/" rel="alternate" type="text/html" title="What’s New in Kaldi-Serve 1.0" /><published>2021-03-25T00:00:00+00:00</published><updated>2021-03-25T00:00:00+00:00</updated><id>/whats-new-kaldi-serve-10</id><content type="html" xml:base="/whats-new-kaldi-serve-10/">&lt;p&gt;&lt;a href=&quot;https://github.com/Vernacular-ai/kaldi-serve&quot;&gt;Kaldi-Serve&lt;/a&gt; is our open source high performance Speech Recognition server framework capable of serving &lt;a href=&quot;https://github.com/kaldi-asr/kaldi&quot;&gt;Kaldi ASR&lt;/a&gt; models in production environments for real-time inference, and it’s got an upgrade!&lt;/p&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1705.07057.pdf&quot;&gt;MAFs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;[http://akosiorek.github.io/ml/2018/04/03/norm_flows.html]&lt;/li&gt;
+  &lt;li&gt;[https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html]&lt;/li&gt;
+  &lt;li&gt;[http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf]&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What’s New in Kaldi-Serve 1.0</title><link href="/whats-new-kaldi-serve-10/" rel="alternate" type="text/html" title="What’s New in Kaldi-Serve 1.0" /><published>2021-03-25T00:00:00+00:00</published><updated>2021-03-25T00:00:00+00:00</updated><id>/whats-new-kaldi-serve-10</id><content type="html" xml:base="/whats-new-kaldi-serve-10/">&lt;p&gt;&lt;a href=&quot;https://github.com/Vernacular-ai/kaldi-serve&quot;&gt;Kaldi-Serve&lt;/a&gt; is our open source high performance Speech Recognition server framework capable of serving &lt;a href=&quot;https://github.com/kaldi-asr/kaldi&quot;&gt;Kaldi ASR&lt;/a&gt; models in production environments for real-time inference, and it’s got an upgrade!&lt;/p&gt;
 
 &lt;h2 id=&quot;whats-changed&quot;&gt;What’s Changed?&lt;/h2&gt;
 
