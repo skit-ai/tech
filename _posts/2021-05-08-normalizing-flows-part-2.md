@@ -98,9 +98,11 @@ More types of coupling flows can be found in this [paper](https://arxiv.org/pdf/
 
 An autoregressive flow is a type of normalizing flow where the transformations use autoregressive functions. The term **autoregressive** originates from time-series models where the predictions at the current time-step are dependent on the observations from the previous time-steps.
 
-The probability distribution of an autoregressive model is given by, $$p(x) = \prod_{i=1..D} p(x_i | x_{1:i-1})$$ where the output at time-step $$i$$ is conditioned on all the previous outputs.
+The probability distribution of an autoregressive model is given by, the equation below where the output at time-step $$i$$ is conditioned on all the previous outputs.
 
-An autoregressive function can be represented as a coupling flow as shown below.
+ $$p(x) = \prod_{i=1..D} p(x_i | x_{1:i-1})$$
+
+An autoregressive function can be represented as a coupling flow:
 
 Let the coupling function $$h(\cdot ;\theta)$$ : $$\mathbb{R} \rightarrow \mathbb{R}$$ be a bijection parameterized by $$\theta$$, and let $$x_{1:t}$$ be the set of inputs Then, an autoregressive model is a function $$g : \mathbb{R}^D \rightarrow \mathbb{R}^D$$, in which every entry of the output $$y = g(x)$$ is conditioned on the previous entries of the input:
 
