@@ -4,20 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Authors | Vernacular.ai Tech</title>
+    <title>Normalizing Flows - Part 2 | Vernacular.ai Tech</title>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Authors | Vernacular.ai Tech</title>
+<title>Normalizing Flows - Part 2 | Vernacular.ai Tech</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="Authors" />
+<meta property="og:title" content="Normalizing Flows - Part 2" />
+<meta name="author" content="Kriti Anandan" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Speech Technology from Vernacular.ai" />
-<meta property="og:description" content="Speech Technology from Vernacular.ai" />
+<meta name="description" content="In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible." />
+<meta property="og:description" content="In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible." />
 <meta property="og:site_name" content="Vernacular.ai Tech" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Authors" />
+<meta property="og:image" content="/assets/images/demo1.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-08T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/assets/images/demo1.jpg" />
+<meta property="twitter:title" content="Normalizing Flows - Part 2" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"description":"Speech Technology from Vernacular.ai","headline":"Authors","url":"/authors-list.html","@type":"WebPage","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Kriti Anandan"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Kriti Anandan"},"image":"/assets/images/demo1.jpg","description":"In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.","headline":"Normalizing Flows - Part 2","url":"/normalizing-flows-part-2/","@type":"BlogPosting","dateModified":"2021-05-08T00:00:00+00:00","datePublished":"2021-05-08T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"/normalizing-flows-part-2/"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -119,7 +124,7 @@ var documents = [{
     "id": 2,
     "url": "/authors-list.html",
     "title": "Authors",
-    "body": "                                    Anirudh Dagar :       View Posts                                            &nbsp;                                                                              Kriti Anandan :       View Posts                                            &nbsp;                                                                              Mithun Arunan :       View Posts      Minimalist                               &nbsp;                      &nbsp;                      &nbsp;                      &nbsp;                                                                Swaraj Dalmia :       View Posts                                            &nbsp;                                                                              Kumarmanas Nethil :       View Posts                                            &nbsp;                                                                              Shantanu Sharma :       View Posts                                            &nbsp;                                                                              Abhinav Tushar :       View Posts                                     &nbsp;                      &nbsp;                             &nbsp;                                                                Prabhsimran Singh :       View Posts                                            &nbsp;                             &nbsp;                             "
+    "body": " {% for author in site. data. authors %}                                   {{ author[1]. name }} :       View Posts      {{ author[1]. bio }}                       {% if author[1]. website %}        &nbsp;       {% endif %}       {% if author[1]. github %}        &nbsp;       {% endif %}       {% if author[1]. twitter %}        &nbsp;       {% endif %}       {% if author[1]. linkedin %}        &nbsp;       {% endif %}                      {% endfor %}"
     }, {
     "id": 3,
     "url": "/buy-me-a-coffee.html",
@@ -338,241 +343,351 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         <div class="container">
-<h3 class="font-weight-bold spanborder"><span>Authors</span></h3>
-<div class="page-content">
-<div class="row gap-y listrecent listrecent listauthor">
+<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
+		<div class="h-100 tofront">
+			<div class="row  justify-content-between ">
+				<div class=" col-md-6  pr-0 pr-md-4 pt-4 pb-4 align-self-center">
+					<p class="text-uppercase font-weight-bold">
+                        <span class="catlist">
+						
+                          <a class="sscroll text-danger" href="/categories.html#machine learning">machine learning</a><span class="sep">, </span>
+                        
+                        </span>
+					</p>
+					<h1 class="display-4 mb-4 article-headline">Normalizing Flows - Part 2</h1>
+					<div class="d-flex align-items-center">
+						<small>
+              
+              <a target="_blank" href="/authors/kritianandan" class="">Kriti Anandan</a>,
+              
+              <a target="_blank" href="/authors/swarajdalmia" class="">Swaraj Dalmia</a>
+              
+              <span class="text-muted d-block mt-1">May 08, 2021 · <span class="reading-time">
   
-  <div class="col-lg-6 mb-4">
-    <div class="p-4 border rounded">
-      <div class="row">
-        <div class="col-md-3 mb-4 mb-md-0">
-          <img alt="anirudhdagar" src="/assets/images/authors/avatar-person.svg" class="rounded-circle" height="80" width="80">
-        </div>
-        <div class="col-md-9">
-          <a href="/authors/anirudhdagar">
-            <h4 class="text-dark mb-0"> Anirudh Dagar </h4>
-            <small class="d-inline-block mt-1 mb-1 font-weight-normal">View Posts</small>
-            <div class="excerpt"></div>
-          </a>
-          <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              
-              <a target="_blank" href="https://github.com/anirudhdagar"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   
-  <div class="col-lg-6 mb-4">
-    <div class="p-4 border rounded">
-      <div class="row">
-        <div class="col-md-3 mb-4 mb-md-0">
-          <img alt="kritianandan" src="/assets/images/authors/avatar-person.svg" class="rounded-circle" height="80" width="80">
-        </div>
-        <div class="col-md-9">
-          <a href="/authors/kritianandan">
-            <h4 class="text-dark mb-0"> Kriti Anandan </h4>
-            <small class="d-inline-block mt-1 mb-1 font-weight-normal">View Posts</small>
-            <div class="excerpt"></div>
-          </a>
-          <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              
-              <a target="_blank" href="https://github.com/kritianandan98"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    16 mins read
   
-  <div class="col-lg-6 mb-4">
-    <div class="p-4 border rounded">
-      <div class="row">
-        <div class="col-md-3 mb-4 mb-md-0">
-          <img alt="mithun" src="/assets/images/authors/mithun.jpg" class="rounded-circle" height="80" width="80">
-        </div>
-        <div class="col-md-9">
-          <a href="/authors/mithun">
-            <h4 class="text-dark mb-0"> Mithun Arunan </h4>
-            <small class="d-inline-block mt-1 mb-1 font-weight-normal">View Posts</small>
-            <div class="excerpt">Minimalist</div>
-          </a>
-          <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              <a target="_blank" href="https://blog.mithun.pro/"><i class="fa fa-globe text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              <a target="_blank" href="https://github.com/MithunArunan"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              <a target="_blank" href="https://twitter.com/MithunArunan"><i class="fab fa-twitter text-muted" aria-hidden="true"></i></a>  &nbsp;
-              
-              
-              <a target="_blank" href="https://www.linkedin.com/in/mithun-arunan"><i class="fab fa-linkedin text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-lg-6 mb-4">
-    <div class="p-4 border rounded">
-      <div class="row">
-        <div class="col-md-3 mb-4 mb-md-0">
-          <img alt="swarajdalmia" src="/assets/images/authors/avatar-person.svg" class="rounded-circle" height="80" width="80">
-        </div>
-        <div class="col-md-9">
-          <a href="/authors/swarajdalmia">
-            <h4 class="text-dark mb-0"> Swaraj Dalmia </h4>
-            <small class="d-inline-block mt-1 mb-1 font-weight-normal">View Posts</small>
-            <div class="excerpt"></div>
-          </a>
-          <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              
-              <a target="_blank" href="https://github.com/swarajdalmia"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-lg-6 mb-4">
-    <div class="p-4 border rounded">
-      <div class="row">
-        <div class="col-md-3 mb-4 mb-md-0">
-          <img alt="janaab11" src="/assets/images/authors/avatar-person.svg" class="rounded-circle" height="80" width="80">
-        </div>
-        <div class="col-md-9">
-          <a href="/authors/janaab11">
-            <h4 class="text-dark mb-0"> Kumarmanas Nethil </h4>
-            <small class="d-inline-block mt-1 mb-1 font-weight-normal">View Posts</small>
-            <div class="excerpt"></div>
-          </a>
-          <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              
-              <a target="_blank" href="https://github.com/janaab11"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-lg-6 mb-4">
-    <div class="p-4 border rounded">
-      <div class="row">
-        <div class="col-md-3 mb-4 mb-md-0">
-          <img alt="shantanu28sharma" src="/assets/images/authors/avatar-person.svg" class="rounded-circle" height="80" width="80">
-        </div>
-        <div class="col-md-9">
-          <a href="/authors/shantanu28sharma">
-            <h4 class="text-dark mb-0"> Shantanu Sharma </h4>
-            <small class="d-inline-block mt-1 mb-1 font-weight-normal">View Posts</small>
-            <div class="excerpt"></div>
-          </a>
-          <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              
-              <a target="_blank" href="https://github.com/shantanu28sharma"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-lg-6 mb-4">
-    <div class="p-4 border rounded">
-      <div class="row">
-        <div class="col-md-3 mb-4 mb-md-0">
-          <img alt="lepisma" src="/assets/images/authors/lepisma.png" class="rounded-circle" height="80" width="80">
-        </div>
-        <div class="col-md-9">
-          <a href="/authors/lepisma">
-            <h4 class="text-dark mb-0"> Abhinav Tushar </h4>
-            <small class="d-inline-block mt-1 mb-1 font-weight-normal">View Posts</small>
-            <div class="excerpt"></div>
-          </a>
-          <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              <a target="_blank" href="https://lepisma.xyz/"><i class="fa fa-globe text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              <a target="_blank" href="https://github.com/lepisma"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              
-              <a target="_blank" href="https://www.linkedin.com/in/abhinav-tushar"><i class="fab fa-linkedin text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-lg-6 mb-4">
-    <div class="p-4 border rounded">
-      <div class="row">
-        <div class="col-md-3 mb-4 mb-md-0">
-          <img alt="prabhsimran" src="/assets/images/authors/pskrunner14.jpeg" class="rounded-circle" height="80" width="80">
-        </div>
-        <div class="col-md-9">
-          <a href="/authors/prabhsimran">
-            <h4 class="text-dark mb-0"> Prabhsimran Singh </h4>
-            <small class="d-inline-block mt-1 mb-1 font-weight-normal">View Posts</small>
-            <div class="excerpt"></div>
-          </a>
-          <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              
-              <a target="_blank" href="https://github.com/pskrunner14"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              
-              <a target="_blank" href="https://www.linkedin.com/in/pskrunner14"><i class="fab fa-linkedin text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+</span>
+    </span>
+						</small>
+					</div>
+
+			    <!-- Tags -->
+			    <div class="mb-4 mt-4">
+				    <span class="taglist">
+				      
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#normalizing-flows">normalizing-flows</a>
+				      
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#tts">tts</a>
+				      
+				    </span>
+			    </div>
+
+				</div>
+				<div class="col-md-6 pr-0 align-self-center">
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
-</div>
+<div class="container pt-4 pb-4">
+	<div class="row">
+		<div class="col-lg-10 col-md-12">
+      <!-- Article -->
+			<article class="article-post">
+			<p>In <a href="https://tech.vernacular.ai/normalizing-flows/">Part-1</a>, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.</p>
+
+<h1 id="topics-covered">Topics Covered:</h1>
+<ul>
+  <li>Element-wise Flows</li>
+  <li>Linear Flows</li>
+  <li>Planar and Radial Flows</li>
+  <li>Coupling Flows</li>
+  <li>Autoregressive Flows
+    <ul>
+      <li>Masked Autoregressive Flows</li>
+      <li>Inverse Autoregressive Flows</li>
+    </ul>
+  </li>
+  <li>Residual Flows</li>
+  <li>Convolutions and NFs</li>
+</ul>
+
+<h1 id="element-wise-flows">Element-wise Flows</h1>
+
+<p>This is the simplest normalizing flow. In this case, the bijective function \(T\) can be broken into individual components i.e.  \(T(x_1, x_2...x_d) = (h_1(x_1), h_2(x_2)...h_d(x_d))\) s.t. every \(h_i\) is a transform from \(R \rightarrow R\). Each dimension has its own bijective function. However, these simple flows don’t capture any dependency between dimensions. Some activation functions like Parametric Leaky RELU (bijective) can be considered element-wise NFs.</p>
+
+<h1 id="linear-flows">Linear Flows</h1>
+
+<p>Linear flows are able to capture correlations between dimensions and are of the form : \(T(x) = Ax+b\) , where \(A \in R^{D*D}\) and \(b \in R^D\) where \(D\) is the dimensionality of the input. For the transform T to be invertible, only the matrix A needs to be invertible. When matrix A is a non-diagonal matrix, it captures correlation between different dimensions.</p>
+
+<p>Linear flows are limited in their expressive power. Starting out with a Gaussian \(z \sim N(\mu, \sigma)\), we simply arrive at another Gaussian \(z' = N(A*\mu+b, A^T*\sigma*A)\), similarly for other distributions.</p>
+
+<p>However, they serve as important building blocks for NFs. In terms of computational complexity, computing the determinant and inverse are both of order \(O(D^3)\) where \(D\) is the dimensionality of matrix A. To make the calculation more efficient, there need to be some restrictions on A.</p>
+
+<p><strong>Possible restrictions on A:</strong></p>
+
+<ul>
+  <li>A is a diagonal matrix: this reduces computation time for the calculation of the det. and inverse to \(O(D)\). However, this is equivalent to element-wise bijections.</li>
+  <li>A is a triangular matrix: It is more expressive than a diagonal matrix. The computation time for calculation of the determinant is \(O(D)\) and for the inverse is \(O(D^2)\).</li>
+  <li>A is an orthogonal matrix: Inverse of an orthogonal matrix is simply its transpose and the determinant is either \(\pm 1\).</li>
+</ul>
+
+<p>There are some other methods that use <a href="https://papers.nips.cc/paper/2018/hash/d139db6a236200b21cc7f752979132d0-Abstract.html">LU factorisations</a>, <a href="https://arxiv.org/abs/1901.11137">QR decomposition</a> which essentially exploit matrix properties to make the computation of inverse and determinant efficient and at the same time allow A to be more expressive.</p>
+
+<h1 id="planar-and-radial-flows">Planar and Radial Flows</h1>
+
+<p>They were first introduced in <a href="https://arxiv.org/abs/1505.05770">Rezende and Mohamed [2015]</a>, but aren’t widely used in practice and therefore not covered in details here. Planar flows expand/contract the distribution around a certain direction (specified by a plane) and radial flows modify the distribution around specific points. The effect of the flows can be seen below. The left half shows the effect of planar NFs on an initial distribution of a Gaussian and uniform distribution, and the right half shows the effect of a radial flow.</p>
+
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/planar_radial_flows.png" />
+  <figcaption>Fig 1 : Examples of planar and radial flows on initial distributions like Gaussian and uniform distributions.</figcaption>
+</center>
+</figure>
+
+<h1 id="coupling-flows">Coupling Flows</h1>
+
+<p>Coupling flows are highly expressive and widely used flow architectures. They can either have linear or non-linear invertible transformations.</p>
+
+<p>Coupling flows are defined by two sets of mappings, an identity map and a coupling function \(h\). Consider a disjoint partition of the input \(x \in \mathbb{R}\) into two subspaces: \((x^A, x^B)\) \(\in\) \(\mathbb{R}^d \times \mathbb{R}^{D-d}\).  A bijective differentiable coupling function is defined as, \(h(\cdot ;\theta)\) : \(\mathbb{R}^d \rightarrow \mathbb{R}^{D}\) that is parameterized by \(\theta\).  The equations for both the mappings are shown below.</p>
+
+<p>\(y^A\) =  \(h(x^A, \theta(x^B))\)   <br />
+\(y^{B}\) = \(x^B\)</p>
+
+<p>The bijection \(h\) is called a <strong>coupling function</strong>, and the resulting function <strong>**\(g\) that consists of both the mappings **</strong>is called <strong>**a **coupling flow</strong>. Coupling flow is invertible if and only if \(h\) is invertible and has an inverse.</p>
+
+<p><strong>Let’s consider an example :</strong>
+Let us consider an input with 4 dimensions \((x1,x2,x3,x4)\). Let \(x^A = (x1,x2)\) and \(x^B = (x3,x4)\). Let \(\theta(x^B) = x3+x4\) and let the coupling function \(h(x^A, \theta(x^B)) = \theta(x^B) * x^A\).</p>
+
+<p>Given this example, the coupling function \(h\) is invertible but only if \(\theta\) isn’t zero. Therefore, the invertibility requirement of \(h\) introduces a limitation on \(\theta\) as well. In this case, it can’t be defined as a simple additive function. The restriction for non-zero values needs to be taken into account.</p>
+
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/coupling_flows.png" />
+  <figcaption>Fig 2 : Example coupling flow architectures.</figcaption>
+</center>
+</figure>
+
+<p>The figure above shows two examples of coupling flow architectures. In figure (a), \(x^{A}\) and \(x^{B}\) are the two input subspaces. The coupling function \(h\) is applied to \(x^{A}\) directly while it is parameterized on \(x^{B}\). In figure (b), there are two subsequent flows, where the size of input subspace on which the coupling function \(h\) is applied, gradually increases with each flow.</p>
+
+<p>There are various types of coupling functions. We discuss some of these briefly,</p>
+
+<ul>
+  <li>Additive coupling
+    <ul>
+      <li>This is one of the simplest form of coupling functions defined by,
+  \(h(x;\theta) =\)  \(x + \theta\),     where \(\theta\) is a constant \(\in \mathbb{R}\)</li>
+    </ul>
+  </li>
+  <li>Affine coupling
+    <ul>
+      <li>\(h(x;\theta) =\)  \(\theta_1x + \theta_2\),     \(\theta_1 \neq 0\),  \(\theta_2 \in \mathbb{R}\)
+  Both additive and affine coupling were introduced in <a href="https://arxiv.org/pdf/1410.8516.pdf">NICE</a>.</li>
+    </ul>
+  </li>
+  <li>Neural auto-regressive flows
+    <ul>
+      <li>This was first introduced by <a href="https://arxiv.org/pdf/1804.00779.pdf">Huang et al [2018]</a>. The coupling function \(h(\cdot;\theta)\) is modelled as a neural network. Every neural network can be considered as a parameterized function, the parameters being the weights. In this case, the weights of the neural network are defined by \(\theta\). To ascertain that the neural network follows bijectivity, the following proposition is applied :
+        <ul>
+          <li>If \(NN(\cdot)\) :  \(\mathbb{R} \rightarrow \mathbb{R}\) is a multilayer perceptron, such that all weights are positive and all activation functions are strictly monotone, then \(NN({\cdot})\) is a strictly monotone function.
+  So, since the neural network is monotone, it is also invertible and hence a normalizing flow.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>More types of coupling flows can be found in this <a href="https://arxiv.org/pdf/1908.09257.pdf">paper</a>.</p>
+
+<h1 id="autoregressive-flows">Autoregressive Flows</h1>
+
+<p>An autoregressive flow is a type of normalizing flow where the transformations use autoregressive functions. The term <strong>autoregressive</strong> originates from time-series models where the predictions at the current time-step are dependent on the observations from the previous time-steps.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The probability distribution of an autoregressive model is given by, $$p(x) = \prod^{D}_{i=1}{p(x_i</td>
+      <td>x_{1:i-1})}\(where the output at time-step\)i$$ is conditioned on all the previous outputs.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>An autoregressive function can be represented as a coupling flow as shown below.</p>
+
+<p>Let the coupling function \(h(\cdot ;\theta)\) : \(\mathbb{R} \rightarrow \mathbb{R}\) be a bijection parameterized by \(\theta\), and let \(x_{1:t}\) be the set of inputs Then, an autoregressive model is a function \(g : \mathbb{R}^D \rightarrow \mathbb{R}^D\), in which every entry of the output \(y = g(x)\) is conditioned on the previous entries of the input:</p>
+
+\[y_t = h(x_t ; \theta_t(x_{1:t-1})\]
+
+<p>The functions \(\theta_t(\cdot)\) are called <strong>conditioners</strong>. \(\theta_1\) is a constant whereas \(\theta_2\), \(\theta_3\) … , \(\theta_t\) are arbitrary functions mapping \(\mathbb{R}_{t-1}\) to the set of all parameters. The conditioners need to be arbitrarily complex for effective transformations and hence, are usually modelled as neural networks.</p>
+
+<p>Since each output depends only on the previous inputs, the Jacobian matrix of an autoregressive transformation \(g\) is triangular (refer to <a href="https://paper.dropbox.com/doc/Part-1-Introducing-Normalizing-Flows--BHah7N6t5K91Tds2Cz_e8oeWAQ-SMbUFvz9GWqRqcTsYW0Vm">P</a><a href="https://paper.dropbox.com/doc/Part-1-Introducing-Normalizing-Flows--BHah7N6t5K91Tds2Cz_e8oeWAQ-SMbUFvz9GWqRqcTsYW0Vm">art 1</a> for explanation). The determinant of a triangular matrix is simply a product of its diagonal entries.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>\(\det{(Dg)}\) = $$\prod_{t=1}^{D}</td>
+      <td>\frac{\partial y_t}{\partial x_t}</td>
+      <td>$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="masked-autoregressive-flows-mafs">Masked Autoregressive Flows (MAFs)</h2>
+
+<p>The time taken to train autoregressive flow models is very high because of the need to sequentially generate outputs. Using MAFs one can parallelize the training process.</p>
+
+<p>MAFs were inspired by the observation that on stacking several autoregressive models, where each model had unimodal conditionals, the normalizing flow can learn multi-modal conditionals (<a href="https://arxiv.org/pdf/1705.07057.pdf">MAF [2018]</a>). The architecture consists of <strong>stacked MADEs</strong> <strong>with Gaussian conditionals</strong> which are explained below.</p>
+
+<p>What are <strong>MADEs</strong>?
+<strong>MADE</strong> stands for Masked Auto-Encoder for Distribution Estimation (<a href="https://arxiv.org/pdf/1502.03509.pdf">MADE [2015]</a>) are essentially auto-encoders with some modifications like masks. In a MADE, the autoregressive property is enforced by multiplying the weight matrices of the hidden layers of the auto-encoder with a binary mask. These masks ensure that the training of the sequential auto-regressive model can be done in parallel.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The masking is done such that forward passes with mask are equivalent to conditioning the output only on the earlier sequences of input. This is shown in the below image. On the left, a typical auto-encoder with 2 hidden layers is shown. Now, if one wants to represent the output as an autoregressive sequence s.t. $$p(x) = p(x_2)* p(x_3</td>
+      <td>x_2)* p(x_1</td>
+      <td>x_2,x_3)\(, masks are multiplied to the weights of the auto-encoder. The order of the inputs are\)x_2, x_3, x_1.\(The image on the right shows the network weights after masking. For example\)p(x_2)\(doesn’t depend on any of the other inputs since it is the first in the sequence.\)p(x_3)\(is dependent on only the nodes that depend on\)x_2\(and similarly for\)p(x_1).$$ The general form for masking is discussed in the MADE paper. The MADE architecture parallelizes the sequential autoregressive computation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/MADEs.png" />
+  <figcaption>Fig 3 : This image is taken from the MADE paper an explains the idea of masking, so as to parallelizes the sequential autoregressive computation.</figcaption>
+</center>
+</figure>
+
+<h2 id="density-estimation-and-sampling">Density Estimation and Sampling</h2>
+
+<p>There are two important concepts when studying flow architectures : density estimation and sampling. Both these passes have different computation complexity and for auto-regressive models, the computation time of one is inversely related to the other.</p>
+
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/MAFs.png" />
+  <figcaption>Fig 4 : Forward pass of MAFs (left) vs. Inverse pass of MAFs (right).</figcaption>
+</center>
+</figure>
+
+<p>The diagrams above demonstrate a forward pass and an inverse pass in a MAF.
+The output \(x_i\)’s depends upon the input \(z_{i}\) and the scalars \(\alpha_{i}\), \(\mu_{i}\) which are computed using \(x_{1:t-1}\).  It is these scalars that define the density parameters of the distribution. This is also called a scale and shift transform. The reason why it is designed this way is that inverting \(f(x)\) does not require us to invert the scalar functions \(\alpha_{i}\) and \(\mu_{i}\).</p>
+
+<p>\(f^{-1}(x_{i}) = z_{i} = \frac{x_{i} - \mu_{i}}{exp(\alpha_{i})}\).</p>
+
+<p>MAFs can compute the density \(p(x)\) very efficiently. During the training process, all the \(x_i's\) are known. One can therefore parallelize this step using masks. Sampling on the other hand (predicting \(x_{D}\)) is slower as it requires it requires performing \(D\) sequential passes (where \(D\) is the dimensionality of \(x\)) to calculate the previous samples (\(x_{1}, x_{2} ... x_{D-1}\)) before computing \(x_{D}\).</p>
+
+<h2 id="inverse-autoregressive-flows-iafs">Inverse Autoregressive Flows (IAFs)</h2>
+
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/IAFs.png" />
+  <figcaption>Fig 5 : Inverse pass of MAF (left) vs. Forward pass of IAF (right).</figcaption>
+</center>
+</figure>
+
+<p>Since MAFs are better at training by exploiting parallel computation but slower during sampling, we modify the functions to get another flow architecture that is faster at sampling. This gives us Inverse Autoregressive flows (IAFs).</p>
+
+<p>The figures above show a comparison between the inverse pass of a MAF and the forward pass in an IAF.  The only difference between both the architectures is that for IAF’s the autoregression is based on the latent variables and not the predicted distribution. The scale (\(\alpha_{i}\)) and shift (\(\mu_{i}\)) quantities are computed using previous data points from the base distribution instead of the transformed distribution.</p>
+
+<p>IAF can generate samples efficiently with one pass through the model since all the \(z_i's\)  are known. However, the training process  is slow, since estimating the \(z_i\) requires i sequential passes to calculate all the required input variables \(z_{1}\), \(z_{2}\), .. \(z_{i-1}\).</p>
+
+<p>Aside : According to our understanding, during training, both the weights of the network parameters(\(\alpha, \mu\)) and \(z_i's\) are estimated i.e. the ith latent variable is itself treated as a parameter that is to be learned.</p>
+
+<p>One should use IAFs if fast sampling is needed, and MAFs if fast density estimation is desirable.</p>
+
+<p><a href="https://arxiv.org/abs/1711.10433">Parallel WaveNet</a> [2017] which was once the state-of-art model for speech synthesis made use of a MAF and an IAF. A fully trained “teacher” network that used MAF architecture was used to train a smaller and parallel “student” network that used IAF architecture. Since the teacher used MAF architecture it could be trained fast. Once the student network, an IAF model, was trained, it could then generate all the audio samples in parallel without depending on the previously generated audio samples and with no loss in audio quality.</p>
+
+<h1 id="residual-flows">Residual Flows</h1>
+
+<p>During training, deep networks find it difficult to reach a convergence point due to the vanishing/exploding gradient. In such cases, adding more layers to the network only results in a higher training error. Residual Networks or <a href="https://arxiv.org/pdf/1512.03385.pdf">ResNets</a> were introduced to solve this problem. ResNets consist of skip-connection blocks.</p>
+
+<p>A residual block is shown below. The output of the residual block is represented by the equation below, where \(F(x)\) represented the pass through the neural layers.</p>
+
+\[M(x) = F(x) + x\]
+
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/residual_flows.png" />
+  <figcaption>Fig 6 : A residual block.</figcaption>
+</center>
+</figure>
+
+<p>How does this help?
+Skip connections in a deep neural network allow the back-propagation signal to reach the initial layers of the neural network thereby solving the vanishing gradient problem.
+Instead of treating the number of layers as an important hyper-parameter to tune, by adding skip connections to our network, we are allowing the network to skip training for the layers that are not useful and do not add value to overall accuracy. In a way, skip connections make our neural networks dynamic, so that they may optimally tune the number of layers during training.</p>
+
+<p>Residual flows in their general form aren’t invertible and can only be used in flow architectures after applying some constraints(first introduced in <a href="https://arxiv.org/pdf/1906.02735.pdf">Chen et al. [2019]</a>). This is discussed next.</p>
+
+<p>A Lipschitz condition is necessary to enforce invertibility in residual flows.</p>
+
+<p>Lipchitz condition :
+A real valued function : \(f : \mathbb{R} \rightarrow \mathbb{R}\), is Lipchitz continuous if there exists a positive real constant \(K\) such that, for all real \(x_1\) and \(x_2\), \(|f(x_1) - f(x_2)| \leq  K| x_1 - x_2 |\)</p>
+
+<p>If \(K = 1\) the function is called a <a href="https://en.wikipedia.org/wiki/Short_map"><strong>short map</strong></a>, and if \(0 \leq K &lt; 1\) the function is called a <a href="https://en.wikipedia.org/wiki/Contraction_mapping"><strong>contraction</strong></a>.</p>
+
+<p><strong>Invertible Residual Flows:</strong>
+Given a residual flow of the form, \(F(x)=x+g(x)\), if the mapping \(g(x)\) has a lipschitz constant \(K\), \(0 \leq K &lt; 1\) then the residual flow is invertible. We discuss a short proof of this next.</p>
+
+<p>For the residual flow to be invertible, proving that \(F(x)\) is monotonically increasing is sufficient i.e. we need to prove \(F(x+\delta) - F(x) &gt;= 0\)</p>
+
+\[F(x+\delta) - F(x) = x+\delta + g(x+\delta) - (x - g(x)) = \delta + g(x+\delta) - g(x)\]
+
+<p>From the Lipschitz condition for \(g\), we have \(|g(x+\delta) - g(x)| \le |\delta|\), since \(0 \leq K &lt; 1\).
+Therefore, \(F(x+\delta) - F(x)\) is always &gt;= 0 and hence monotonically increasing.</p>
+
+<p>The addition of invertible residual blocks greatly enhances the class of neural network flow models and also ensures we can train deeper models without the fear of vanishing gradient.</p>
+
+<h1 id="convolutions-and-nfs">Convolutions and NFs</h1>
+
+<p>Convolutions are one of the most common operations used in the design of DNNs, however, the computation of their inverse and determinant is non-obvious. Since they aren’t invertible they can’t be used in the family of NF flows. However, recently [Hoogeboom et al. <a href="https://arxiv.org/abs/1901.11137">2019</a>] defined invertible \(d*d\) convolutions and designed an architecture using stacked masked autoregressive convolutions. This is explained next.</p>
+
+<p>In the figure below, on the right, the input x is shown along with the kernel matrix w. The convolution operation between these two can be represented as a matrix multiplication of the form \(A*x\)  shown on the right.  The matrix A is non-invertible here, however, if we consider \(f = g = h = i = 0\), then, we get a triangular matrix that can represent a normalizing flow.</p>
+
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/convolutions_nfs_1.png" />
+  <figcaption>Fig 7 : A convolution represented as a matrix multiplication.</figcaption>
+</center>
+</figure>
+
+<p>One of the issues of using a filter where \(f = g = h = i = 0\) is that the receptive field is narrow. However, one can rotate the filter and combine two filters to get different receptive fields as shown on the left in the image below. These can then which can be stacked to capture more expressive combinations as shown on the right. These are called “expressive convolutions” in the paper. The grey and orange filters are rotations of the same filter that result in a triangular matrix. They can be stacked to get different receptive fields shown in blue. These blue receptive fields can be stacked further to arrive at more expressive transforms that have the desired receptive field.</p>
+
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/normalizing-flows/bigger_kernels.png" />
+  <figcaption>Fig 8 : The part in grey is an example of an individual kernel that would result in a triangular matrix. The grey and orange matrices are all rotations of the standard matrix and the blue matrix shows the receptive field when the grey and orange filters are combined..</figcaption>
+</center>
+</figure>
+
+<p>This concludes our discussion of normalizing flow architectures. Incase of any doubts/questions please reach out to us at <em>kriti@vernacular.ai</em> or <em>swaraj@vernacular.ai</em>.</p>
+
+<h1 id="references">References</h1>
+<ol>
+  <li><a href="https://arxiv.org/pdf/1908.09257.pdf">Normalizing Flows IEEE</a></li>
+  <li><a href="https://arxiv.org/pdf/1705.07057.pdf">MAF</a>s</li>
+  <li>http://akosiorek.github.io/ml/2018/04/03/norm_flows.html</li>
+  <li>https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html</li>
+  <li>http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf</li>
+</ol>
+
+<h2 id="need-to-check-out">Need to check out</h2>
+<ul>
+  <li><a href="https://papers.nips.cc/paper/2019/file/1e44fdf9c44d7328fecc02d677ed704d-Paper.pdf">Graph normalizing flows</a></li>
+  <li><a href="https://arxiv.org/pdf/1806.07366.pdf">Neural ODE</a>
+    <h2 id="relevant-reddit-posts">Relevant reddit posts</h2>
+  </li>
+  <li>A<a href="https://www.reddit.com/r/MachineLearning/comments/bvvq90/d_are_normalizing_flows_dead/">re normalizing flows dead</a></li>
+  <li><a href="https://www.reddit.com/r/MachineLearning/comments/g7rkd9/d_what_is_sota_in_normalizing_flows/">SOTA in normalizing flows</a></li>
+</ul>
+
+			</article>
+
+            <!-- Mailchimp Subscribe Form -->
+            
+		</div>
+	</div>
 </div>
 
     </main>
@@ -587,6 +702,9 @@ function lunr_search(term) {
 
     
 
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
 
     <!-- Footer -->
