@@ -62,9 +62,10 @@ Coupling flows are defined by two sets of mappings, an identity map and a coupli
 $$y^A$$ =  $$h(x^A, \theta(x^B))$$     
 $$y^{B}$$ = $$x^B$$                         
 
-The bijection $$h$$ is called a **coupling function**, and the resulting function ****$$g$$ that consists of both the mappings ****is called ****a **coupling flow**. Coupling flow is invertible if and only if $$h$$ is invertible and has an inverse.
+The bijection $$h$$ is called a **coupling function**, and the resulting function $$g$$ that consists of both the mappings is called a **coupling flow**. Coupling flow is invertible if and only if $$h$$ is invertible and has an inverse.
 
 **Let's consider an example :**
+
 Let us consider an input with 4 dimensions $$(x1,x2,x3,x4)$$. Let $$x^A = (x1,x2)$$ and $$x^B = (x3,x4)$$. Let $$\theta(x^B) = x3+x4$$ and let the coupling function $$h(x^A, \theta(x^B)) = \theta(x^B) * x^A$$.
 
 Given this example, the coupling function $$h$$ is invertible but only if $$\theta$$ isn’t zero. Therefore, the invertibility requirement of $$h$$ introduces a limitation on $$\theta$$ as well. In this case, it can’t be defined as a simple additive function. The restriction for non-zero values needs to be taken into account.
@@ -97,7 +98,7 @@ More types of coupling flows can be found in this [paper](https://arxiv.org/pdf/
 
 An autoregressive flow is a type of normalizing flow where the transformations use autoregressive functions. The term **autoregressive** originates from time-series models where the predictions at the current time-step are dependent on the observations from the previous time-steps.
 
-The probability distribution of an autoregressive model is given by, $$p(x) = \prod^{D}_{i=1}{p(x_i|x_{1:i-1})}$$ where the output at time-step $$i$$ is conditioned on all the previous outputs.
+The probability distribution of an autoregressive model is given by, $$ p(x) = \prod^{D}_{i=1} {p(x_i | x_{1:i-1}) } $$ where the output at time-step $$i$$ is conditioned on all the previous outputs.
 
 An autoregressive function can be represented as a coupling flow as shown below.
 
@@ -109,7 +110,7 @@ The functions $$\theta_t(\cdot)$$ are called **conditioners**. $$\theta_1$$ is a
 
 Since each output depends only on the previous inputs, the Jacobian matrix of an autoregressive transformation $$g$$ is triangular (refer to [P](https://paper.dropbox.com/doc/Part-1-Introducing-Normalizing-Flows--BHah7N6t5K91Tds2Cz_e8oeWAQ-SMbUFvz9GWqRqcTsYW0Vm)[art 1](https://paper.dropbox.com/doc/Part-1-Introducing-Normalizing-Flows--BHah7N6t5K91Tds2Cz_e8oeWAQ-SMbUFvz9GWqRqcTsYW0Vm) for explanation). The determinant of a triangular matrix is simply a product of its diagonal entries.
 
-$$\det{(Dg)}$$ = $$\prod_{t=1}^{D}|\frac{\partial y_t}{\partial x_t}|$$
+$$ \det{(Dg)} $$ = $$ \prod_{t=1}^{D} |\frac{\partial y_t}{\partial x_t}| $$
 
 
 ## Masked Autoregressive Flows (MAFs)
@@ -119,9 +120,10 @@ The time taken to train autoregressive flow models is very high because of the n
 MAFs were inspired by the observation that on stacking several autoregressive models, where each model had unimodal conditionals, the normalizing flow can learn multi-modal conditionals ([MAF [2018]](https://arxiv.org/pdf/1705.07057.pdf)). The architecture consists of **stacked MADEs** **with Gaussian conditionals** which are explained below.
 
 What are **MADEs**?
+
 **MADE** stands for Masked Auto-Encoder for Distribution Estimation ([MADE [2015]](https://arxiv.org/pdf/1502.03509.pdf)) are essentially auto-encoders with some modifications like masks. In a MADE, the autoregressive property is enforced by multiplying the weight matrices of the hidden layers of the auto-encoder with a binary mask. These masks ensure that the training of the sequential auto-regressive model can be done in parallel.
 
-The masking is done such that forward passes with mask are equivalent to conditioning the output only on the earlier sequences of input. This is shown in the below image. On the left, a typical auto-encoder with 2 hidden layers is shown. Now, if one wants to represent the output as an autoregressive sequence s.t. $$p(x) = p(x_2)* p(x_3|x_2)* p(x_1|x_2,x_3)$$, masks are multiplied to the weights of the auto-encoder. The order of the inputs are $$x_2, x_3, x_1.$$ The image on the right shows the network weights after masking. For example $$p(x_2)$$ doesn’t depend on any of the other inputs since it is the first in the sequence. $$p(x_3)$$ is dependent on only the nodes that depend on $$x_2$$ and similarly for $$p(x_1).$$ The general form for masking is discussed in the MADE paper. The MADE architecture parallelizes the sequential autoregressive computation.
+The masking is done such that forward passes with mask are equivalent to conditioning the output only on the earlier sequences of input. This is shown in the below image. On the left, a typical auto-encoder with 2 hidden layers is shown. Now, if one wants to represent the output as an autoregressive sequence s.t. $$ p(x) = p(x_2) * p(x_3|x_2) * p(x_1|x_2,x_3) $$, masks are multiplied to the weights of the auto-encoder. The order of the inputs are $$ x_2, x_3, x_1 $$ The image on the right shows the network weights after masking. For example $$p(x_2)$$ doesn’t depend on any of the other inputs since it is the first in the sequence. $$p(x_3)$$ is dependent on only the nodes that depend on $$x_2$$ and similarly for $$p(x_1)$$ The general form for masking is discussed in the MADE paper. The MADE architecture parallelizes the sequential autoregressive computation.
 
 <figure>
 <center>
@@ -142,7 +144,7 @@ There are two important concepts when studying flow architectures : density esti
 </figure>
 
 The diagrams above demonstrate a forward pass and an inverse pass in a MAF.
-The output $$x_i$$’s depends upon the input $$z_{i}$$ and the scalars $$\alpha_{i}$$, $$\mu_{i}$$ which are computed using $$x_{1:t-1}$$.  It is these scalars that define the density parameters of the distribution. This is also called a scale and shift transform. The reason why it is designed this way is that inverting $$f(x)$$ does not require us to invert the scalar functions $$\alpha_{i}$$ and $$\mu_{i}$$.
+The output $$x_i's$$ depends upon the input $$z_{i}$$ and the scalars $$\alpha_{i}$$, $$\mu_{i}$$ which are computed using $$x_{1:t-1}$$.  It is these scalars that define the density parameters of the distribution. This is also called a scale and shift transform. The reason why it is designed this way is that inverting $$f(x)$$ does not require us to invert the scalar functions $$\alpha_{i}$$ and $$\mu_{i}$$.
 
 $$f^{-1}(x_{i}) = z_{i} = \frac{x_{i} - \mu_{i}}{exp(\alpha_{i})}$$.
 
@@ -159,7 +161,7 @@ MAFs can compute the density $$p(x)$$ very efficiently. During the training proc
 
 Since MAFs are better at training by exploiting parallel computation but slower during sampling, we modify the functions to get another flow architecture that is faster at sampling. This gives us Inverse Autoregressive flows (IAFs).
 
-The figures above show a comparison between the inverse pass of a MAF and the forward pass in an IAF.  The only difference between both the architectures is that for IAF’s the autoregression is based on the latent variables and not the predicted distribution. The scale ($$\alpha_{i}$$) and shift ($$\mu_{i}$$) quantities are computed using previous data points from the base distribution instead of the transformed distribution.
+The figures above show a comparison between the inverse pass of a MAF and the forward pass in an IAF.  The only difference between both the architectures is that for IAF’s the autoregression is based on the latent variables and not the predicted distribution. The scale($$\alpha_{i}$$) and shift($$\mu_{i}$$) quantities are computed using previous data points from the base distribution instead of the transformed distribution.
 
 IAF can generate samples efficiently with one pass through the model since all the $$z_i's$$  are known. However, the training process  is slow, since estimating the $$z_i$$ requires i sequential passes to calculate all the required input variables $$z_{1}$$, $$z_{2}$$, .. $$z_{i-1}$$.
 
@@ -235,15 +237,7 @@ This concludes our discussion of normalizing flow architectures. Incase of any d
 
 # References
 1. [Normalizing Flows IEEE](https://arxiv.org/pdf/1908.09257.pdf)
-2. [MAF](https://arxiv.org/pdf/1705.07057.pdf)s
-3. http://akosiorek.github.io/ml/2018/04/03/norm_flows.html
-4. https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html
-5. http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf
-
-
-## Need to check out
-- [Graph normalizing flows](https://papers.nips.cc/paper/2019/file/1e44fdf9c44d7328fecc02d677ed704d-Paper.pdf)
-- [Neural ODE](https://arxiv.org/pdf/1806.07366.pdf)
-## Relevant reddit posts
-- A[re normalizing flows dead](https://www.reddit.com/r/MachineLearning/comments/bvvq90/d_are_normalizing_flows_dead/)
-- [SOTA in normalizing flows](https://www.reddit.com/r/MachineLearning/comments/g7rkd9/d_what_is_sota_in_normalizing_flows/)
+2. [MAFs](https://arxiv.org/pdf/1705.07057.pdf)
+3. [http://akosiorek.github.io/ml/2018/04/03/norm_flows.html]
+4. [https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html]
+5. [http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf]
