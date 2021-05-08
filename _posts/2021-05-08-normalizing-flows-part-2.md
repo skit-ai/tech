@@ -1,6 +1,6 @@
 ---
 title: Normalizing Flows - Part 2
-date: 2021-05-18
+date: 2021-05-08
 tags: [normalizing-flows, tts]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
