@@ -98,7 +98,7 @@ More types of coupling flows can be found in this [paper](https://arxiv.org/pdf/
 
 An autoregressive flow is a type of normalizing flow where the transformations use autoregressive functions. The term **autoregressive** originates from time-series models where the predictions at the current time-step are dependent on the observations from the previous time-steps.
 
-The probability distribution of an autoregressive model is given by, $$ p(x) = \prod_{i=1..D} {p(x_i | x_{1:i-1}) } $$ where the output at time-step $$i$$ is conditioned on all the previous outputs.
+The probability distribution of an autoregressive model is given by, $$p(x) = \prod_{i=1..D} p(x_i | x_{1:i-1})$$ where the output at time-step $$i$$ is conditioned on all the previous outputs.
 
 An autoregressive function can be represented as a coupling flow as shown below.
 
@@ -110,7 +110,7 @@ The functions $$\theta_t(\cdot)$$ are called **conditioners**. $$\theta_1$$ is a
 
 Since each output depends only on the previous inputs, the Jacobian matrix of an autoregressive transformation $$g$$ is triangular (refer to [P](https://paper.dropbox.com/doc/Part-1-Introducing-Normalizing-Flows--BHah7N6t5K91Tds2Cz_e8oeWAQ-SMbUFvz9GWqRqcTsYW0Vm)[art 1](https://paper.dropbox.com/doc/Part-1-Introducing-Normalizing-Flows--BHah7N6t5K91Tds2Cz_e8oeWAQ-SMbUFvz9GWqRqcTsYW0Vm) for explanation). The determinant of a triangular matrix is simply a product of its diagonal entries.
 
-$$ \det{(Dg)} $$ = $$ \prod_{t=1..k} |\frac{\partial y_t}{\partial x_t}| $$
+$$\det{(Dg)} = \prod_{t=1..k} |\frac{\partial y_t}{\partial x_t}|$$
 
 
 ## Masked Autoregressive Flows (MAFs)
@@ -123,7 +123,11 @@ What are **MADEs**?
 
 **MADE** stands for Masked Auto-Encoder for Distribution Estimation ([MADE [2015]](https://arxiv.org/pdf/1502.03509.pdf)) are essentially auto-encoders with some modifications like masks. In a MADE, the autoregressive property is enforced by multiplying the weight matrices of the hidden layers of the auto-encoder with a binary mask. These masks ensure that the training of the sequential auto-regressive model can be done in parallel.
 
-The masking is done such that forward passes with mask are equivalent to conditioning the output only on the earlier sequences of input. This is shown in the below image. On the left, a typical auto-encoder with 2 hidden layers is shown. Now, if one wants to represent the output as an autoregressive sequence s.t. $$ p(x) = p(x_2) * p(x_3 | x_2) * p(x_1 | x_2,x_3) $$, masks are multiplied to the weights of the auto-encoder. The order of the inputs are $$ x_2, x_3, x_1 $$ The image on the right shows the network weights after masking. For example $$p(x_2)$$ doesn’t depend on any of the other inputs since it is the first in the sequence. $$p(x_3)$$ is dependent on only the nodes that depend on $$x_2$$ and similarly for $$p(x_1)$$ The general form for masking is discussed in the MADE paper. The MADE architecture parallelizes the sequential autoregressive computation.
+The masking is done such that forward passes with mask are equivalent to conditioning the output only on the earlier sequences of input. This is shown in the below image. On the left, a typical auto-encoder with 2 hidden layers is shown. If one wants to represent the output as an autoregressive sequence specified by the equation below, then masks are multiplied to the weights of the auto-encoder.
+
+$$p(x) = p(x_2) * p(x_3 | x_2) * p(x_1 | x_2, x_3)$$
+
+The order of the inputs are $$ x_2, x_3, x_1 $$ The image on the right shows the network weights after masking. For example $$p(x_2)$$ doesn’t depend on any of the other inputs since it is the first in the sequence. $$p(x_3)$$ is dependent on only the nodes that depend on $$x_2$$ and similarly for $$p(x_1)$$ The general form for masking is discussed in the MADE paper. The MADE architecture parallelizes the sequential autoregressive computation.
 
 <figure>
 <center>
