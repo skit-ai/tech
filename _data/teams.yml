@@ -87,6 +87,10 @@ ml:
   - name: Mehul Ramaswami
     tenure: Summer Intern, 2020
     url: https://github.com/Mehul1107
+  - name: Achintya Shankhdhar
+    tenure: 2021-
+    url: https://github.com/AchintyaX
+    active: true
 engineering:
   - name: Abhishek Sachdeva
     tenure: 2019-
