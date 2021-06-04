@@ -9,6 +9,10 @@ ml:
     tenure: 2018-
     alias: lepisma
     active: true
+  - name: Achintya Shankhdhar
+    tenure: 2021-
+    url: https://github.com/AchintyaX
+    active: true
   - name: Amresh Venugopal
     tenure: 2019-
     url: https://ltbringer.github.io/blog/
@@ -60,6 +64,10 @@ ml:
     tenure: 2020-
     url: https://sachinkum.github.io
     active: true
+  - name: Shashank Shailabh
+    tenure: 2021-
+    url: https://github.com/sshailabh
+    active: true
   - name: Swaraj Dalmia
     tenure: 2020-
     alias: swarajdalmia
@@ -86,14 +94,6 @@ ml:
   - name: Mehul Ramaswami
     tenure: Summer Intern, 2020
     url: https://github.com/Mehul1107
-  - name: Achintya Shankhdhar
-    tenure: 2021-
-    url: https://github.com/AchintyaX
-    active: true
-  - name: Shashank Shailabh
-    tenure: 2021-
-    url: https://github.com/sshailabh
-    active: true
 engineering:
   - name: Abhishek Sachdeva
     tenure: 2019-
