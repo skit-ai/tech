@@ -90,9 +90,9 @@ ml:
     tenure: 2021-
     url: https://github.com/AchintyaX
     active: true
-    name: Shashank Shailabh
-    tenure: ML RA Intern, 2021
-    alias: sshailabh
+  - name: Shashank Shailabh
+    tenure: 2021-
+    url: https://github.com/sshailabh
     active: true
 engineering:
   - name: Abhishek Sachdeva
