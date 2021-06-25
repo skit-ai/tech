@@ -7,11 +7,10 @@ body {
   padding-top: 69.75px;
 }
 .site-content {
-  margin-top: 30px;
   min-height: 400px;
 }
-.remove-site-content-margin {
-  margin-top: -30px;
+.content-highlights {
+  padding-top: 1.5rem;
 }
 img {
   max-width: 100%;
@@ -196,11 +195,15 @@ a.text-dark:hover {
 .navbar {
   transition: top 0.2s ease-in-out;
   font-weight: 400;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  padding: 0.8rem;
+  padding-top: 1.25rem; // Temp for pride month
 }
 .navbar .highlight .nav-link {
   color: #03a87c !important;
   border: 1px solid #03a87c;
-  padding: 0.3rem 1rem;
   border-radius: 3px;
   font-size: 0.93rem;
 }
@@ -209,9 +212,16 @@ a.text-dark:hover {
   color: #fff !important;
 }
 .navbar-brand {
+  padding: 0;
   margin-right: 2rem;
-  font-size: 1.55rem;
-  font-family: "Georgia", "Times New Roman", serif;
+  span {
+    font-family: sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: inherit;
+    vertical-align:middle;
+    margin-left: 0.25rem;
+  }
 }
 .dropdown-item {
   font-weight: 400;
