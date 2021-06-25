@@ -7,10 +7,8 @@ body {
   padding-top: 69.75px;
 }
 .site-content {
-  min-height: 400px;
-}
-.content-highlights {
   padding-top: 1.5rem;
+  min-height: 400px;
 }
 img {
   max-width: 100%;
@@ -671,6 +669,9 @@ footer {
 .excerpt {
   color: rgba(0, 0, 0, 0.59);
   margin-top: 10px;
+}
+.taglist a {
+  margin: 4px;
 }
 article {
   font-size: 20px;
