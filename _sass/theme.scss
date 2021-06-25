@@ -199,7 +199,7 @@ a.text-dark:hover {
   -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   padding: 0.8rem;
-  padding-top: 1.2rem; // Temp for pride month
+  padding-top: 1.25rem; // Temp for pride month
 }
 .navbar .highlight .nav-link {
   color: #03a87c !important;
@@ -215,11 +215,12 @@ a.text-dark:hover {
   padding: 0;
   margin-right: 2rem;
   span {
-    font-family: "Georgia", "Times New Roman", serif;
-    font-size: 1.55rem;
+    font-family: sans-serif;
+    font-size: 1.15rem;
     font-weight: 600;
     line-height: inherit;
     vertical-align:middle;
+    margin-left: 0.25rem;
   }
 }
 .dropdown-item {
