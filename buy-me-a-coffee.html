@@ -137,7 +137,7 @@ var documents = [{
     "id": 6,
     "url": "/engineering.html",
     "title": "Engineering",
-    "body": "{% assign category = “Engineering” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of the Engineering team at Vernacular. ai.            Team:    Current members of our Engineering team:       {% for member in site. data. teams. engineering %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. engineering %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:        {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under Engineering      "
+    "body": "{% assign category = “Engineering” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of the Engineering team at Vernacular. ai.            Team:    Current members:       {% for member in site. data. teams. engineering %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. engineering %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:        {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under Engineering      "
     }, {
     "id": 7,
     "url": "/",
@@ -147,7 +147,7 @@ var documents = [{
     "id": 8,
     "url": "/ml.html",
     "title": "Machine Learning",
-    "body": "{% assign category = “Machine Learning” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of Machine Learning team at Vernacular. ai. We   work on Speech Conversational Systems. On this website, we keep notes and   artifacts from our work.        In case of queries, reach out to machine-learning@vernacular. ai.            Team:    Current members of our ML team:       {% for member in site. data. teams. ml %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. ml %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:         {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under ML      "
+    "body": "{% assign category = “Machine Learning” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of Machine Learning team at Vernacular. ai. We   work on Speech Conversational Systems. On this website, we keep notes and   artifacts from our work.        In case of queries, reach out to machine-learning@vernacular. ai.            Team:    Current members:       {% for member in site. data. teams. ml %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. ml %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:         {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under ML      "
     }, {
     "id": 9,
     "url": "/privacy-policy.html",
@@ -358,7 +358,7 @@ function lunr_search(term) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <script src="/assets/js/theme.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Vernacular-ai/pride@main/index.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Vernacular-ai/pride@main/index.js"></script> -->
 
     
 
