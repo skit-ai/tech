@@ -5,6 +5,7 @@
 body {
   overflow-x: hidden;
   padding-top: 69.75px;
+  color: $black;
 }
 .site-content {
   padding-top: 1.5rem;
@@ -25,14 +26,8 @@ img {
 }
 a,
 a:hover {
-  transition: all 0.2s;
+  color: $black;
   text-decoration: none;
-}
-a {
-  color: #03a87c;
-}
-a.text-dark:hover {
-  color: #03a87c !important;
 }
 .c-pointer:hover {
   cursor: pointer;
@@ -181,6 +176,20 @@ a.text-dark:hover {
 .btn-white {
   background-color: #fff;
 }
+.btn-all-posts {
+  color: $black;
+  border: 1px solid #dee2e6;
+  transition: none;
+}
+.btn-all-posts:hover,
+.btn-all-posts:focus,
+.btn-all-posts:active {
+  color: $black;
+  background-color: #e9ecef;
+  border: 1px solid #dee2e6;
+  transition: none;
+  box-shadow: none;
+}
 .input-round {
   border-radius: 30px !important;
 }
@@ -197,7 +206,8 @@ a.text-dark:hover {
   -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   padding: 0.8rem;
-  padding-top: 1.25rem; // Temp for pride month
+  // Pride month padding fix
+  // padding-top: 1.25rem;
 }
 .navbar .highlight .nav-link {
   color: #03a87c !important;
@@ -216,7 +226,7 @@ a.text-dark:hover {
     font-family: sans-serif;
     font-size: 1.15rem;
     line-height: inherit;
-    vertical-align:middle;
+    vertical-align: middle;
     margin-left: 0.25rem;
   }
 }
@@ -288,6 +298,9 @@ a.text-dark:hover {
   height: 35px;
   border: 1px solid #eee;
 }
+.form-control:focus {
+  box-shadow: none;
+}
 .mb-2rem {
   margin-bottom: 2rem;
 }
@@ -347,7 +360,11 @@ a.text-dark:hover {
   background-color: rgba(23, 29, 90, 0.5);
 }
 .overlay-red:before {
-  background: linear-gradient(0deg, rgba(44, 44, 44, 0.2), rgba(224, 23, 3, 0.6));
+  background: linear-gradient(
+    0deg,
+    rgba(44, 44, 44, 0.2),
+    rgba(224, 23, 3, 0.6)
+  );
 }
 .overlay-blue:before {
   background-color: rgba(23, 29, 90, 0.5);
@@ -694,6 +711,11 @@ article iframed,
 article embed {
   margin-bottom: 2rem;
 }
+article a,
+article a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 9%;
+}
 article blockquote {
   padding-left: 40px;
   margin-left: 0px;
@@ -762,6 +784,24 @@ article .h6 {
   margin-top: 0.5rem;
   margin-left: auto;
   margin-right: auto;
+}
+.page-link {
+  color: $black;
+}
+.page-link:hover {
+  color: $black;
+}
+.page-link:focus {
+  box-shadow: none;
+}
+.team-members li {
+  padding: 2px;
+}
+.team-members li a {
+  color: rgba(0,0,0,0.6);
+}
+.mail {
+  font-style: italic;
 }
 @media (max-width: 1199.98px) {
   .display-4 {
