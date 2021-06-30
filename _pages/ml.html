@@ -17,13 +17,13 @@ permalink: "/ml.html"
     </p>
 
     <p>
-      In case of queries, reach out to <a href="mailto:machine-learning@vernacular.ai">machine-learning@vernacular.ai</a>.
+      In case of queries, reach out to <a class="mail" href="mailto:machine-learning@vernacular.ai">machine-learning@vernacular.ai</a>.
     </p>
     </div>
     <br>
-    <div>
+    <div class="team-members">
       <h4>Team</h4>
-      Current members of our ML team:
+      Current members:
       <ul>
         {% for member in site.data.teams.ml %}
         {% if member.active %}
@@ -60,7 +60,7 @@ permalink: "/ml.html"
         </li>
         {% endfor %}
       </ol>
-      <a class="btn btn-outline-success btn-sm btn-round" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">
+      <a class="btn btn-sm btn-round btn-all-posts" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">
         All posts under ML
       </a>
     </div>

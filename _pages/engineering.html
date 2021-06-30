@@ -15,9 +15,9 @@ permalink: "/engineering.html"
     </p>
     </div>
     <br>
-    <div>
+    <div class="team-members">
       <h4>Team</h4>
-      Current members of our Engineering team:
+      Current members:
       <ul>
         {% for member in site.data.teams.engineering %}
         {% if member.active %}
@@ -54,7 +54,7 @@ permalink: "/engineering.html"
         </li>
         {% endfor %}
       </ol>
-      <a class="btn btn-outline-success btn-sm btn-round" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">
+      <a class="btn btn-sm btn-round btn-all-posts" href="{{site.baseurl}}/categories.html#{{ category | downcase }}">
         All posts under Engineering
       </a>
     </div>
