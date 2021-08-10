@@ -22,24 +22,22 @@ Because how can one study a phenomena without having a requisite vocabulary.
 - **Language Span:** The number of monolingual words between 2 consecutive switch points in the corpus. The language span distribution is the aggregate of all such language spans into a discrete pdf.
 
 
-----------
-
 The performance of models on code-mixed corpora, would depend on the level of code-mixing. A minuscule level of code-mixing could be treated as noise/OOV and ignored. However, as the level of code-mixing increases, the performance of the model will vary. Therefore it is important to quantify the extent of code-mixing in a corpora; “how much” and
 “how often”. In the first [paper](https://arxiv.org/pdf/2004.12376.pdf) covered in the code-mixing seminar, there were several metrics presented, however they were not discussed in detail. We discuss them below.
 
 # Measuring the amount of Code-Mixing
+
 ## Word-frequency based metrics
 
-****
 - [**Code-Mixing Index (CMI)**](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.727.9087&rep=rep1&type=pdf) : An utterance level metric that measures the fraction of tokens(words) that are not from the matrix language.
 
 $$CMI = 100*(1 - \frac{max(w_i)}{n-u}) \text{ if } n>u$$  
 
-where,
-n = total number of words, irrespective of language
-u = language independent words
-$$w_i$$ = number of words in language i
-$$max(w_i)$$ measures the number of words in the matrix language
+where,  
+n = total number of words, irrespective of language  
+u = language independent words  
+$$w_i$$ = number of words in language i  
+$$max(w_i)$$ measures the number of words in the matrix language   
 
  If $$n=u$$ i.e. if the utterance contains only language independent words then CMI = 0.
 
@@ -51,9 +49,9 @@ $$max(w_i)$$ measures the number of words in the matrix language
 
 $$M-index = \frac{1-\sum p_j^2}{(k-1).\sum p_j^2}$$
 
-where,
-k = number of languages
-$$p_j$$ = number of words in language j divided by total number of words
+where,  
+k = number of languages  
+$$p_j$$ = number of words in language j divided by total number of words  
 
 The M-index = 0 when the corpus is monolingual and = 1 when there is equal distribution of token across all the languages i.e. $$p_j$$ for all $$j = 1/k$$.
 
@@ -62,9 +60,9 @@ The M-index = 0 when the corpus is monolingual and = 1 when there is equal distr
 
 $$LE = -\sum_{1...k} p_i*log_2(p_i)$$
 
-where,
-k = number of languages
-$$p_i$$ = number of words in language j divided by total number of words
+where,  
+k = number of languages  
+$$p_i$$ = number of words in language j divided by total number of words  
 
 This metric is 0 for a monolingual corpus and is bounded by $$log_2(k)$$ for equally distributed k languages. Both LE and M-index can be derived from one another.
 
@@ -76,9 +74,9 @@ However, just specifying the frequency of words belonging to another language do
 
 $$f_n = P/(N-1)$$
 
-where,
-P = number of code-switching points
-N-1 = possible switching points in a corpus that contains n tokens
+where,  
+P = number of code-switching points  
+N-1 = possible switching points in a corpus that contains n tokens  
 
 A token is considered a switch point, if the preceding token is from another language.
 
@@ -100,9 +98,9 @@ Burstiness is bounded by $$[-1,1]$$. For, corpus that have a periodicity in code
 
 $$SE = -\sum_{1...M} p_l*log_2(p_l)$$
 
-where,
-$$p_l$$ is the sample probability of a language span of length l
-M is the maximum language span
+where,  
+$$p_l$$ is the sample probability of a language span of length l  
+M is the maximum language span  
 
 
 - [Memory](https://www.isca-speech.org/archive/Interspeech_2017/pdfs/1429.PDF) : The above two metrics don’t make any claims about the time ordering of the language spans i.e. say if a long span occurs below or after the current span, then there would be no difference in the above metric values. Corpus’ with the same burstiness can have very different properties. This metric measures the extent to which the $$i^{th}$$ span length is influenced by span lengths occurring before it. This metric is bounded by $$[-1,1]$$. When it is closer to -1, then the length of consecutive spans in negative correlated i.e. long spans followed by short ones.
@@ -125,9 +123,9 @@ However, there are no standard metrics that exist as of now. Below two metrics t
 
 - [poWER](https://www.researchgate.net/profile/Brij-Srivastava-2/publication/327388676_Homophone_Identification_and_Merging_for_Code-switched_Speech_Recognition/links/5be04751299bf1124fbbf419/Homophone-Identification-and-Merging-for-Code-switched-Speech-Recognition.pdf) : Prononciation Optimised WER. It is defined as the Levenshtein distance between the pronunciation optimized hypothesis (H) and reference (R) sentence, normalised by the number of words in the reference sentence.
 
-poWER = Lev_Dist(po(H), po(R))/N
+poWER = Lev_Dist(f(H),f(R))/N
 
-Here, po = grapheme-to-phoneme (g2p) conversion of each word in the sentence
+Here, f = grapheme-to-phoneme (g2p) conversion of each word in the sentence
 
 So, for example, the following below sentences would have a poWER of zero.
 
