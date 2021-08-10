@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-10T17:30:58+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Code Mixing Metrics</title><link href="/Code-Mixing-Metrics/" rel="alternate" type="text/html" title="Code Mixing Metrics" /><published>2021-08-09T00:00:00+00:00</published><updated>2021-08-09T00:00:00+00:00</updated><id>/Code-Mixing-Metrics</id><content type="html" xml:base="/Code-Mixing-Metrics/">&lt;h1 id=&quot;metrics--code-mixing&quot;&gt;Metrics : Code-mixing&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-08-10T17:44:38+00:00</updated><id>/feed.xml</id><title type="html">Vernacular.ai Tech</title><subtitle>Speech Technology from Vernacular.ai</subtitle><entry><title type="html">Code Mixing Metrics</title><link href="/Code-Mixing-Metrics/" rel="alternate" type="text/html" title="Code Mixing Metrics" /><published>2021-08-09T00:00:00+00:00</published><updated>2021-08-09T00:00:00+00:00</updated><id>/Code-Mixing-Metrics</id><content type="html" xml:base="/Code-Mixing-Metrics/">&lt;h1 id=&quot;metrics--code-mixing&quot;&gt;Metrics : Code-mixing&lt;/h1&gt;
 
 &lt;h1 id=&quot;terminologies&quot;&gt;Terminologies&lt;/h1&gt;
 
@@ -12,25 +12,23 @@
   &lt;li&gt;&lt;strong&gt;Language Span:&lt;/strong&gt; The number of monolingual words between 2 consecutive switch points in the corpus. The language span distribution is the aggregate of all such language spans into a discrete pdf.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;hr /&gt;
-
 &lt;p&gt;The performance of models on code-mixed corpora, would depend on the level of code-mixing. A minuscule level of code-mixing could be treated as noise/OOV and ignored. However, as the level of code-mixing increases, the performance of the model will vary. Therefore it is important to quantify the extent of code-mixing in a corpora; “how much” and
 “how often”. In the first &lt;a href=&quot;https://arxiv.org/pdf/2004.12376.pdf&quot;&gt;paper&lt;/a&gt; covered in the code-mixing seminar, there were several metrics presented, however they were not discussed in detail. We discuss them below.&lt;/p&gt;
 
 &lt;h1 id=&quot;measuring-the-amount-of-code-mixing&quot;&gt;Measuring the amount of Code-Mixing&lt;/h1&gt;
+
 &lt;h2 id=&quot;word-frequency-based-metrics&quot;&gt;Word-frequency based metrics&lt;/h2&gt;
 
-&lt;hr /&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.727.9087&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;&lt;strong&gt;Code-Mixing Index (CMI)&lt;/strong&gt;&lt;/a&gt; : An utterance level metric that measures the fraction of tokens(words) that are not from the matrix language.&lt;/li&gt;
 &lt;/ul&gt;
 
 \[CMI = 100*(1 - \frac{max(w_i)}{n-u}) \text{ if } n&amp;gt;u\]
 
-&lt;p&gt;where,
-n = total number of words, irrespective of language
-u = language independent words
-\(w_i\) = number of words in language i
+&lt;p&gt;where,&lt;br /&gt;
+n = total number of words, irrespective of language&lt;br /&gt;
+u = language independent words&lt;br /&gt;
+\(w_i\) = number of words in language i&lt;br /&gt;
 \(max(w_i)\) measures the number of words in the matrix language&lt;/p&gt;
 
 &lt;p&gt;If \(n=u\) i.e. if the utterance contains only language independent words then CMI = 0.&lt;/p&gt;
@@ -43,8 +41,8 @@ u = language independent words
 
 \[M-index = \frac{1-\sum p_j^2}{(k-1).\sum p_j^2}\]
 
-&lt;p&gt;where,
-k = number of languages
+&lt;p&gt;where,&lt;br /&gt;
+k = number of languages&lt;br /&gt;
 \(p_j\) = number of words in language j divided by total number of words&lt;/p&gt;
 
 &lt;p&gt;The M-index = 0 when the corpus is monolingual and = 1 when there is equal distribution of token across all the languages i.e. \(p_j\) for all \(j = 1/k\).&lt;/p&gt;
@@ -55,8 +53,8 @@ k = number of languages
 
 \[LE = -\sum_{1...k} p_i*log_2(p_i)\]
 
-&lt;p&gt;where,
-k = number of languages
+&lt;p&gt;where,&lt;br /&gt;
+k = number of languages&lt;br /&gt;
 \(p_i\) = number of words in language j divided by total number of words&lt;/p&gt;
 
 &lt;p&gt;This metric is 0 for a monolingual corpus and is bounded by \(log_2(k)\) for equally distributed k languages. Both LE and M-index can be derived from one another.&lt;/p&gt;
@@ -71,8 +69,8 @@ k = number of languages
 
 \[f_n = P/(N-1)\]
 
-&lt;p&gt;where,
-P = number of code-switching points
+&lt;p&gt;where,&lt;br /&gt;
+P = number of code-switching points&lt;br /&gt;
 N-1 = possible switching points in a corpus that contains n tokens&lt;/p&gt;
 
 &lt;p&gt;A token is considered a switch point, if the preceding token is from another language.&lt;/p&gt;
@@ -97,8 +95,8 @@ N-1 = possible switching points in a corpus that contains n tokens&lt;/p&gt;
 
 \[SE = -\sum_{1...M} p_l*log_2(p_l)\]
 
-&lt;p&gt;where,
-\(p_l\) is the sample probability of a language span of length l
+&lt;p&gt;where,&lt;br /&gt;
+\(p_l\) is the sample probability of a language span of length l&lt;br /&gt;
 M is the maximum language span&lt;/p&gt;
 
 &lt;ul&gt;
@@ -124,9 +122,9 @@ M is the maximum language span&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;poWER = Lev_Dist(po(H), po(R))/N&lt;/p&gt;
+&lt;p&gt;poWER = Lev_Dist(f(H),f(R))/N&lt;/p&gt;
 
-&lt;p&gt;Here, po = grapheme-to-phoneme (g2p) conversion of each word in the sentence&lt;/p&gt;
+&lt;p&gt;Here, f = grapheme-to-phoneme (g2p) conversion of each word in the sentence&lt;/p&gt;
 
 &lt;p&gt;So, for example, the following below sentences would have a poWER of zero.&lt;/p&gt;
 
