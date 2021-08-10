@@ -9,8 +9,6 @@ authors: [swarajdalmia]
 latex: True
 ---
 
-# Metrics : Code-mixing
-
 # Terminologies
 
 Because how can one study a phenomena without having a requisite vocabulary.
@@ -129,8 +127,8 @@ Here, f = grapheme-to-phoneme (g2p) conversion of each word in the sentence
 
 So, for example, the following below sentences would have a poWER of zero.
 
-HYP : : रूम service आपको कै सी लग
-REF : room service आपको कै सी लग
+HYP : : रूम service आपको कै सी लग  
+REF : room service आपको कै सी लग  
 
 
 ## TTS
