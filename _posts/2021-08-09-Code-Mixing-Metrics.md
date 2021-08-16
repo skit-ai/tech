@@ -9,6 +9,8 @@ authors: [swarajdalmia]
 latex: True
 ---
 
+We, at vernacular, recently concluded a seminar series on code-mixing, where we covered research papers that looked at approaches to deal with code-mixed data across ASR, TTS and SLU related services. Code-mixing is a common phenomena in the Indian subcontinent. Code-mixing refers to the situation when two or more languages are present in an utterance or a corpus. It is important to formulate, discuss and deliberate on metrics because, it is improvement on metrics across benchmark datasets that spur continuous research in a field.
+
 # Terminologies
 
 Because how can one study a phenomena without having a requisite vocabulary.
@@ -18,7 +20,6 @@ Because how can one study a phenomena without having a requisite vocabulary.
 - **Intra-sentential switching** : Occurs *within* a sentence or a clause
 - **Intra-word switching** : Occurs *within* a word itself, sometimes at phoneme boundaries example : “I’m chalaaoing a car” → “i am driving a car”
 - **Language Span:** The number of monolingual words between 2 consecutive switch points in the corpus. The language span distribution is the aggregate of all such language spans into a discrete pdf.
-
 
 The performance of models on code-mixed corpora, would depend on the level of code-mixing. A minuscule level of code-mixing could be treated as noise/OOV and ignored. However, as the level of code-mixing increases, the performance of the model will vary. Therefore it is important to quantify the extent of code-mixing in a corpora; “how much” and
 “how often”. In the first [paper](https://arxiv.org/pdf/2004.12376.pdf) covered in the code-mixing seminar, there were several metrics presented, however they were not discussed in detail. We discuss them below.
@@ -37,7 +38,7 @@ u = language independent words
 $$w_i$$ = number of words in language i  
 $$max(w_i)$$ measures the number of words in the matrix language   
 
- If $$n=u$$ i.e. if the utterance contains only language independent words then CMI = 0.
+If $$n=u$$ i.e. if the utterance contains only language independent words then CMI = 0.
 
 One way calculate CMI for the entire corpus is to just calculate the above at a corpus level rather than an utterance level. However, this method doesn’t take into account the switching frequency. Another way is to combine the utterance level CMI as discussed [here](https://www.aclweb.org/anthology/L16-1292.pdf).
 
@@ -50,7 +51,6 @@ k = number of languages
 $$p_j$$ = number of words in language j divided by total number of words  
 
 The M-index = 0 when the corpus is monolingual and = 1 when there is equal distribution of token across all the languages i.e. $$p_j$$ for all $$j = 1/k$$.
-
 
 [**Language Entropy (LE)**](https://www.isca-speech.org/archive/Interspeech_2017/pdfs/1429.PDF) :  An information theoretic alternative to the M-index. Measures the number of bits required to describe the distribution of language tags.
 
@@ -96,12 +96,9 @@ where,
 $$p_l$$ is the sample probability of a language span of length l  
 M is the maximum language span  
 
-
 [**Memory**](https://www.isca-speech.org/archive/Interspeech_2017/pdfs/1429.PDF) : The above two metrics don’t make any claims about the time ordering of the language spans i.e. say if a long span occurs below or after the current span, then there would be no difference in the above metric values. Corpus’ with the same burstiness can have very different properties. This metric measures the extent to which the $$i^{th}$$ span length is influenced by span lengths occurring before it. This metric is bounded by $$[-1,1]$$. When it is closer to -1, then the length of consecutive spans in negative correlated i.e. long spans followed by short ones.
 
-
 # Evaluating Code-Mixed ASR and TTS
-
 
 ## ASR
 
@@ -111,9 +108,7 @@ One of the issues for transcription of code-mixed speech is transliteration. For
 
 However, there are no standard metrics that exist as of now. Below two metrics that measure different aspects are discussed.
 
-
 [**CM-WER**](https://www.cse.iitb.ac.in/~pjyothi/files/IS19.pdf) : If there are M words on both sides of switch points across all reference transcriptions and N edits in the ASR hypotheses corresponding to words surrounding the switch points in the references, then $$\text{CM-WER} = \frac{N}{M}$$ . This metric provides an estimate of how accurately the system predicts words at switch points.
-
 
 [**poWER**](https://www.researchgate.net/profile/Brij-Srivastava-2/publication/327388676_Homophone_Identification_and_Merging_for_Code-switched_Speech_Recognition/links/5be04751299bf1124fbbf419/Homophone-Identification-and-Merging-for-Code-switched-Speech-Recognition.pdf) : Prononciation Optimised WER. It is defined as the Levenshtein distance between the pronunciation optimized hypothesis (H) and reference (R) sentence, normalised by the number of words in the reference sentence.
 
@@ -127,6 +122,7 @@ HYP : रूम service आपको कै सी लग
 REF : room service आपको कै सी लग
 
 ## TTS
+
 **Degradation MOS :** Annotators listen to a sample audio which is considered to have no degradation. The next audio is rated in comparison to that, in terms of degradation, out of 5. A score of 5 means no degradation, a score of 1 means the highest degradation. While testing a code-mixed TTS, it one can use degradation score of monolingual sentences generated from Multi-lingual TTS as compared to Mono-lingual TTS.
 
 ## Notes
