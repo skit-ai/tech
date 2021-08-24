@@ -5,7 +5,7 @@ tags: [asr, tts, code-mixing]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
-authors: [kritianandan, ,swarajdalmia, greed2411, Shangeth, Shahid, Shashank]
+authors: [kritianandan, swarajdalmia, greed2411, Shangeth, Shahid, Shashank]
 latex: True
 ---
 
