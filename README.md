@@ -1,8 +1,8 @@
-# tech @ vernacular.ai
+# tech @ Skit
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Vernacular-ai/tech/github%20pages?style=flat-square)
 
-This is source for the [tech team webpage][tech_blog] at Vernacular.ai. Template is [Mundana by WowThemes.net][mundana]
+This is source for the [tech team webpage][tech_blog] at Skit. Template is [Mundana by WowThemes.net][mundana]
 
 ## Developing
 
@@ -43,5 +43,5 @@ and use `fancy_audio` tag like below:
 {% fancy_audio https://vai-diarization.s3.ap-south-1.amazonaws.com/1573539792.52506.003.wav %}
 ```
 
-[tech_blog]: https://tech.vernacular.ai/
+[tech_blog]: https://tech.skit.ai/
 [mundana]: https://github.com/wowthemesnet/mundana-theme-jekyll
