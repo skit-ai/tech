@@ -3,7 +3,7 @@ title: Normalizing Flows - Part 1
 date: 2020-12-19
 tags: [normalizing-flows, tts]
 categories: [Machine Learning]
-image: assets/images/demo1.jpg
+image: assets/images/normalising_flow.jpg
 layout: post
 authors: [kritianandan, swarajdalmia]
 latex: True
@@ -212,4 +212,3 @@ Note: For an increasing triangular map, $$\frac {\partial T_i}{\partial z_i} > 0
 - [Normalizing Flows: An Introduction and Review of Current Methods](https://arxiv.org/pdf/1908.09257.pdf)
 - [Flow-based Deep Generative Models](https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html#vae--flows)
 - [Lecture on NFs by Priyank Jaini](https://www.youtube.com/watch?v=3KUvxIOJD0k&ab_channel=PascalPoupart)
-

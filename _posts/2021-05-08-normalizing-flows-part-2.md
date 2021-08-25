@@ -3,7 +3,7 @@ title: Normalizing Flows - Part 2
 date: 2021-05-08
 tags: [normalizing-flows, tts]
 categories: [Machine Learning]
-image: assets/images/demo1.jpg
+image: assets/images/normalising_flow.jpg
 layout: post
 authors: [kritianandan, swarajdalmia]
 latex: True
