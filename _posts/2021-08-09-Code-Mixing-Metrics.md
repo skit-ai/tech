@@ -3,7 +3,7 @@ title: Code Mixing Metrics
 date: 2021-08-09
 tags: [code-mixing, tts, asr]
 categories: [Machine Learning]
-image: assets/images/demo1.jpg
+image: assets/images/ornament.jpg
 layout: post
 authors: [swarajdalmia]
 latex: True
