@@ -9,7 +9,7 @@ authors: [kritianandan, swarajdalmia, greed2411, Shangeth, Shahid, Shashank]
 latex: True
 ---
 
-Below are some pointers and insights from the papers that we covered in the recently concluded seminar on code-mixing in NLP and Speech. During the seminar we covered 6 papers, two each from NLP, Speech Synthesis and Speech Recognition.
+Below are some pointers and insights from the papers that we covered in the recently concluded [seminar on code-mixing in NLP and Speech](https://vernacular-ai.github.io/seminars/topics/). During the seminar we covered 6 papers, two each from NLP, Speech Synthesis and Speech Recognition.
 
 **Session-1 (NLP)**   
 Paper : [GLUECoS : An Evaluation Benchmark for Code-Switched NLP](https://arxiv.org/pdf/2004.12376.pdf)  
