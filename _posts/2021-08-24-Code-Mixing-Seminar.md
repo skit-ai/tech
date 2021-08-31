@@ -3,7 +3,7 @@ title: Seminar - Code Mixing in NLP and Speech
 date: 2021-08-24
 tags: [asr, tts, code-mixing]
 categories: [Machine Learning]
-image: assets/images/tile-work.jpg
+image: assets/images/tile-work.png
 layout: post
 authors: [kritianandan, swarajdalmia, greed2411, Shangeth, Shahid, Shashank]
 latex: True
