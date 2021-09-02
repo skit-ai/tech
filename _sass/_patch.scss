@@ -60,3 +60,18 @@ article .h5,
 article .h6 {
   font-style: italic;
 }
+
+
+/* careers page CSS */
+.rbox-opening-li {
+    padding: 20px 0 !important;
+    border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+    border-top: 1px solid rgba(127, 127, 127, 0.2);
+    border-bottom-color: #ccc;
+}
+
+.rbox-opening-li-title {
+    font-size: 1em !important;
+    line-height: 1.2em;
+    font-weight: bold;
+}
