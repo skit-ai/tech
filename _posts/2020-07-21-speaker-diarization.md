@@ -11,13 +11,13 @@ fancy_audio_player: True
 ---
 
 > This blog post is based on the work done by [Anirudh
-> Dagar](https://github.com/AnirudhDagar) as an intern at Vernacular.ai
+> Dagar](https://github.com/AnirudhDagar) as an intern at Skit.ai
 
-# Diarization - _Who_ spoke _when_? 
+# Diarization - _Who_ spoke _when_?
 
 Speaker diarisation (or diarization) is the process of partitioning an input audio stream into homogeneous segments according to the speaker identity.
 
-> Speaker diarization is the process of recognizing “who spoke when.” 
+> Speaker diarization is the process of recognizing “who spoke when.”
 
 In an audio conversation with multiple speakers (phone calls, conference calls, dialogs etc.), the Diarization API identifies the speaker at precisely the time they spoke during the conversation.
 
@@ -56,7 +56,7 @@ With the rise of speech recognition systems both in terms of scale and accuracy,
 
 As illustrated in **Fig 1.** above, information gained through diarization helps in enriching and improving Spoken Language Understanding (SLU) based on the Automatic Speech Recognition (ASR) transcription. It can enhance the readability of the transcription by structuring the audio stream into speaker turns and, when used together with speaker recognition systems, by providing the speaker’s true identity. This can be valuable for downstream applications such as analytics for call-center transcription and meeting transcription etc.
 
-Other than this, we at [Vernacular.ai](https://vernacular.ai/) work on ***Call Center Automation (CCA)*** among many other speech domains, and, at the very core this is powered by our products [VIVA](https://vernacular.ai/viva) and [VASR](https://vernacular.ai/vasr). Information gained through diarization can be used to strengthen the VASR engine. 
+Other than this, we at [Skit.ai](https://vskit.ai/) work on ***Call Center Automation (CCA)*** among many other speech domains, and, at the very core this is powered by our products [VIVA](https://skit.ai/viva) and [VASR](https://skit.ai/vasr). Information gained through diarization can be used to strengthen the VASR engine.
 
 **How?**
 
@@ -83,7 +83,7 @@ Speaker Diarization is the solution for those problems.
 
 ## DIHARD?
 
-This is not <u>2x2=4</u>. This is **Diarization** and ***IT IS HARD***. One can say that it is one of the toughest ML problems intrinsically high on complexity, even for a human-being, in certain conditions. 
+This is not <u>2x2=4</u>. This is **Diarization** and ***IT IS HARD***. One can say that it is one of the toughest ML problems intrinsically high on complexity, even for a human-being, in certain conditions.
 
 **But Why???**
 
@@ -104,7 +104,7 @@ To name a few:
 
 **Believe me**, this is not the end of many problems for diarization!
 
-5. Maybe in a conference call with multiple speakers, even if the audio is clear, the **difference can be very subtle** between the speakers, and it is not always possible to identify/label the correct speaker for a particular timestamp/duration. 
+5. Maybe in a conference call with multiple speakers, even if the audio is clear, the **difference can be very subtle** between the speakers, and it is not always possible to identify/label the correct speaker for a particular timestamp/duration.
 
 **Ok, so that's it?**
 
@@ -122,7 +122,7 @@ If I have not made my point clear about the complexity of the problem, yet, then
 6. All the problems stated above are considering that preprocessing steps like VAD/SAD worked perfectly, which you may have guessed, are obviously not 100% accurate.
 
     What is this **"preprocessing step"**?
-    
+
     Voice Activity Detection (VAD) or Speech Activity Detection (SAD) is a widely used audio preprocessing technique, before running a typical diariaztion api based on the clustering of speaker embeddings. The objective of VAD/SAD is to get rid of all non-speech regions.
 
 # Approaching the problem
@@ -249,10 +249,10 @@ Aiming to answer the above questions, we came up with a *Supervised Resegmentati
     [A, A, A, A, B, A, A, B, B, B ....] -> [A, A, A, A, A, A, A, B, B, B ....]
 
     where A : Speaker 1
-          B : Speaker 2 
+          B : Speaker 2
 
           each label represents fixed duration of 400ms in our annotations.
-    ``` 
+    ```
 
     To achieve such a mapping we worked on a simple Seq2Seq LSTM based model. We also enriched this model with information of cluster confidences after tweaking our Embedding+Clustering pipeline to do a soft clustering, i.e. return cluster scores based on the distance of each point in the cluster from the centroid along with the clustered predictions.
 
@@ -264,7 +264,7 @@ Overall all the above steps regarding a supervised resegmentation model were com
 To explore more supervised methods, we also experimented with [Fully Supervised Speaker Diarization](https://arxiv.org/abs/1810.04719) or the UIS-RNN model, the current state of the art neural system for Speaker Diarization. Converting data to UIS Style format involves a set of preprocessing steps similar to what we had to for our supervised resegmentation model. More on the official [UIS-RNN Repo](https://github.com/google/uis-rnn).
 
 
-But a caveat with UIS-RNN is that it requires huge amounts of data to form a convincing hypothesis after training. On realizing the limited amount of tagged data we had, we worked on simulating datasets for Speaker Diarization which in itself comes with some challenges. 
+But a caveat with UIS-RNN is that it requires huge amounts of data to form a convincing hypothesis after training. On realizing the limited amount of tagged data we had, we worked on simulating datasets for Speaker Diarization which in itself comes with some challenges.
 
 ## Simulated Data Generation
 
@@ -295,12 +295,12 @@ These dual channel audios were then split and saved into mono channel audio file
 4. **Combination of Speech from A and B with timestamps.** At the same time we needed to add **real Gaps/Silence fills** and **Overlaps (interrupts and overtalking)** to mimic real world call audios which are highly interactive.
     To control the amount of overlap in data-generation, we used 2 parameters mainly.
     * `scale_overlap` : This allowed us to control the maximum possible duration of overlap and was set based on the stats gathered in step 3.
-    * `bias_overlap` : This allowed us to control the percentage or probability if there is an overlapping segment. Eg: setting bias_overlap to 0.75 will give 33% chance each time to add overlap. 
+    * `bias_overlap` : This allowed us to control the percentage or probability if there is an overlapping segment. Eg: setting bias_overlap to 0.75 will give 33% chance each time to add overlap.
 
 5. **Dump tagged speaker timestamps and simulated audios.**
 
 
-That's all for now, and we'll end this blog here. Stay tuned to our [rss feed](https://vernacular-ai.github.io/ml/rss.xml) for updates.
+That's all for now, and we'll end this blog here. Stay tuned to our [rss feed](https://skit-ai.github.io/ml/rss.xml) for updates.
 
 Until next time, Signing Off!
 

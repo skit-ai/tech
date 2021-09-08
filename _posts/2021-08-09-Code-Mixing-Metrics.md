@@ -9,7 +9,7 @@ authors: [swarajdalmia]
 latex: True
 ---
 
-We, at vernacular, recently concluded a seminar series on code-mixing, where we covered research papers that looked at approaches to deal with code-mixed data across ASR, TTS and SLU related services. Code-mixing is a common phenomena in the Indian subcontinent. Code-mixing refers to the situation when two or more languages are present in an utterance or a corpus. It is important to formulate, discuss and deliberate on metrics because, it is improvement on metrics across benchmark datasets that spur continuous research in a field.
+We at skit, recently concluded a seminar series on code-mixing, where we covered research papers that looked at approaches to deal with code-mixed data across ASR, TTS and SLU related services. Code-mixing is a common phenomena in the Indian subcontinent. Code-mixing refers to the situation when two or more languages are present in an utterance or a corpus. It is important to formulate, discuss and deliberate on metrics because, it is improvement on metrics across benchmark datasets that spur continuous research in a field.
 
 # Terminologies
 
@@ -128,7 +128,7 @@ REF : room service आपको कै सी लग
 ## Notes
 - The above measures can be used to specify different patterns of code switching which have been termed as “[code-switching attitudes](http://grlmc.wdfiles.com/local--files/slsp-2013/Day2Session2_03Heike_CS-attitude_dependent_LM.pdf)”. These can be thought of as aspects of personality and are correlated with regional identities and other trait properties.
 
-If you have any questions please reach out to *swaraj@vernacular.ai*.
+If you have any questions please reach out to *swaraj@skit.ai*.
 
 # References
 - [Comparing the Level of Code-Switching in Corpora](https://www.aclweb.org/anthology/L16-1292.pdf)

@@ -8,7 +8,7 @@ layout: post
 authors: [mithun]
 ---
 
-Vernacular.ai processes millions of speech recognition requests every day, and to handle such a load we have focused on building a highly scalable technical stack.
+Skit.ai processes millions of speech recognition requests every day, and to handle such a load we have focused on building a highly scalable technical stack.
 
 Firstly, we realized the drawbacks of using HTTP/1.1 keeping in mind one of our requirements to do end to end streaming recognition to reduce the overall latency of the system. So, we decided to migrate all our core services from REST APIs (HTTP/1.1 + JSON) to gRPC (HTTP/2.0 + Protobuf).
 

@@ -32,7 +32,7 @@ different kinds of diversities start interfering. Diversities in interests,
 reading styles, and even bandwidth.
 
 This post covers how we organize reading sessions in the ML team at
-[Vernacular.ai](https://vernacular.ai/). It might be helpful if you are trying
+[Skit.ai](https://skit.ai/). It might be helpful if you are trying
 to do the same in your group.
 
 ------------------------------------------------------------------------

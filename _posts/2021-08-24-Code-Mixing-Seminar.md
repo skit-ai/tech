@@ -9,7 +9,7 @@ authors: [kritianandan, swarajdalmia, greed2411, Shangeth, Shahid, Shashank]
 latex: True
 ---
 
-Below are some pointers and insights from the papers that we covered in the recently concluded [seminar on Code-mixing in NLP and Speech](https://vernacular-ai.github.io/seminars/topics/). During the seminar we covered 6 papers, two each from NLP, Speech Synthesis and Speech Recognition.
+Below are some pointers and insights from the papers that we covered in the recently concluded [seminar on Code-mixing in NLP and Speech](https://skit-ai.github.io/seminars/topics/). During the seminar we covered 6 papers, two each from NLP, Speech Synthesis and Speech Recognition.
 
 # Session-1 (NLP)
 **Paper**: [GLUECoS : An Evaluation Benchmark for Code-Switched NLP](https://arxiv.org/pdf/2004.12376.pdf)<br>
@@ -68,4 +68,4 @@ The paper introduces the use of Bilingual PPG as a representation of speech as P
 
 From the experimental results, we can observe that the proposed method can synthesize high intelligible code-switched speech with a cross-lingual speaker (eg: Chinese speaker for English/code-switched text) with only training on a monolingual corpus. But the proposed method failed to beat the baseline in speech fidelity MOS score. The authors stated that the Bilingual PPG extracted was not accurate enough and needs to be further studied in future work.
 
-Do check out the blog on [Code-Mixing metrics](https://tech.skit.ai/Code-Mixing-Metrics/) if you haven’t already. Please write to us in case you want to join any of our future seminars.
+Do check out the blog on [Code-Mixing metrics](https://tech.skit.ai/Code-Mixing-Metrics/) if you haven’t already. Please write to us @ machine-learning@skit.ai in case you want to join any of our future seminars.

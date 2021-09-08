@@ -8,14 +8,14 @@ layout: post
 authors: [prabhsimran]
 ---
 
-[Kaldi-Serve](https://github.com/Vernacular-ai/kaldi-serve) is our open source high performance Speech Recognition server framework capable of serving [Kaldi ASR](https://github.com/kaldi-asr/kaldi) models in production environments for real-time inference, and it’s got an upgrade!
+[Kaldi-Serve](https://github.com/skit-ai/kaldi-serve) is our open source high performance Speech Recognition server framework capable of serving [Kaldi ASR](https://github.com/kaldi-asr/kaldi) models in production environments for real-time inference, and it’s got an upgrade!
 
 
 ## What’s Changed?
 
-Originally designed as a standalone application, kaldi-serve had some issues mostly pertaining to it’s usability or extensibility for custom use cases thus greatly reducing the core’s potential to just a handful of rigid situations and dependencies. 
+Originally designed as a standalone application, kaldi-serve had some issues mostly pertaining to it’s usability or extensibility for custom use cases thus greatly reducing the core’s potential to just a handful of rigid situations and dependencies.
 
-After one too many requests for changes in the architecture to better fit the various production needs of our customers, we realised it’s time for a rewrite of the framework that allows us to better utilise the core’s scope and extend it’s capabilities in the form of general API consumable in most use cases. 
+After one too many requests for changes in the architecture to better fit the various production needs of our customers, we realised it’s time for a rewrite of the framework that allows us to better utilise the core’s scope and extend it’s capabilities in the form of general API consumable in most use cases.
 
 ### Library
 
@@ -25,7 +25,7 @@ The earlier standalone gRPC server is now and application that extends the core 
 
 ### Python Port
 
-We also made it easier to use kaldi-serve by porting the core library to python which can be easily installed as a package via pip. The transcription interface is much simpler and faster to get up and running. 
+We also made it easier to use kaldi-serve by porting the core library to python which can be easily installed as a package via pip. The transcription interface is much simpler and faster to get up and running.
 
 Below is sample code snippet for transcribing a wav file with your Kaldi Chain model using the kaldiserve python package:
 

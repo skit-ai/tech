@@ -9,7 +9,7 @@ authors: [anirudhdagar]
 ---
 
 This blog will be a short one, where we'll talk about our approach on filtering
-out inscrutable audios from [**VASR**](https://vernacular.ai/vasr).
+out inscrutable audios from [**VASR**](https://skit.ai/vasr).
 
 There are situations in Call Center Automation (CCA) pipeline where user
 utterances are bad. **Bad** here is defined by things like noise, static,

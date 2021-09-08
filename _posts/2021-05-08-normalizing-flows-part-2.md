@@ -9,7 +9,7 @@ authors: [kritianandan, swarajdalmia]
 latex: True
 ---
 
-In [Part-1](https://tech.vernacular.ai/normalizing-flows/), we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.
+In [Part-1](https://tech.skit.ai/normalizing-flows/), we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.
 
 # Topics Covered:
 - Element-wise Flows   
@@ -239,7 +239,7 @@ One of the issues of using a filter where $$f = g = h = i = 0$$ is that the rece
 </center>
 </figure>
 
-This concludes our discussion of normalizing flow architectures. Incase of any doubts/questions please reach out to us at *kriti@vernacular.ai* or *swaraj@vernacular.ai*.
+This concludes our discussion of normalizing flow architectures. Incase of any doubts/questions please reach out to us at *kriti@skit.ai* or *swaraj@skit.ai*.
 
 # References
 1. [Normalizing Flows IEEE](https://arxiv.org/pdf/1908.09257.pdf)
