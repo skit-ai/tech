@@ -1,6 +1,6 @@
 # tech @ Skit
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Vernacular-ai/tech/github%20pages?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skit-ai/tech/github%20pages?style=flat-square)
 
 This is source for the [tech team webpage][tech_blog] at Skit. Template is [Mundana by WowThemes.net][mundana]
 
