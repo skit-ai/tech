@@ -147,7 +147,7 @@ var documents = [{
     "id": 7,
     "url": "/engineering.html",
     "title": "Engineering",
-    "body": "{% assign category = “Engineering” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of the Engineering team at Vernacular. ai.            Team:    Current members:       {% for member in site. data. teams. engineering %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. engineering %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:        {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under Engineering      "
+    "body": "{% assign category = “Engineering” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of the Engineering team at Skit.            Team:    Current members:       {% for member in site. data. teams. engineering %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. engineering %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:        {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under Engineering      "
     }, {
     "id": 8,
     "url": "/",
@@ -162,7 +162,7 @@ var documents = [{
     "id": 10,
     "url": "/ml.html",
     "title": "Machine Learning",
-    "body": "{% assign category = “Machine Learning” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of Machine Learning team at Vernacular. ai. We   work on Speech Conversational Systems. On this website, we keep notes and   artifacts from our work.        In case of queries, reach out to machine-learning@vernacular. ai.            Team:    Current members:       {% for member in site. data. teams. ml %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. ml %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:         {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under ML      "
+    "body": "{% assign category = “Machine Learning” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of Machine Learning team at Skit. We work on Speech   Conversational Systems. On this website, we keep notes and artifacts from   our work.        In case of queries, reach out to machine-learning@skit. ai.            Team:    Current members:       {% for member in site. data. teams. ml %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. ml %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:         {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under ML      "
     }, {
     "id": 11,
     "url": "/privacy-policy.html",
@@ -272,7 +272,7 @@ var documents = [{
     "id": 32,
     "url": "/new-blog/",
     "title": "Our new Tech blog",
-    "body": "2021/02/28 - We are merging past webpages of ourEngineering andML team in this new, central, VernacularTech page. From here on, this is going to be the main source of updates onspeech technology work from Skit. ai. Stay tuned to our rss feed for updates. "
+    "body": "2021/02/28 - We are merging past webpages of ourEngineering andML team in this new, central, SkitTech page. From here on, this is going to be the main source of updates onspeech technology work from Skit. ai. Stay tuned to our rss feed for updates. "
     }, {
     "id": 33,
     "url": "/emnlp/",
@@ -401,7 +401,7 @@ function lunr_search(term) {
     <div class="sticky-top sticky-top-offset">
       <h4 class="font-weight-bold spanborder"><span>Follow us</span></h4>
       <div>
-        <a class="text-dark ml-1" target="_blank" href="https://github.com/Vernacular-ai/"><i class="fab fa-github"></i> Github</a>
+        <a class="text-dark ml-1" target="_blank" href="https://github.com/skit-ai/"><i class="fab fa-github"></i> Github</a>
       </div>
       <div>
         <a class="text-dark ml-1" target="_blank" href="https://gitlab.com/vernacularai/"><i class="fab fa-gitlab"></i> Gitlab</a>
@@ -431,7 +431,6 @@ function lunr_search(term) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
     <script src="/assets/js/theme.js"></script>
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Vernacular-ai/pride@main/index.js"></script> -->
 
     
 
@@ -445,7 +444,7 @@ function lunr_search(term) {
               <span><span class="text-dark font-weight-bold">skit</span> © <script>document.write(new Date().getFullYear())</script></span>
 
                 <!--  Github Repo Star Btn-->
-                <a class="text-dark ml-1" target="_blank" href="https://github.com/Vernacular-ai/"><i class="fab fa-github"></i> Github</a>
+                <a class="text-dark ml-1" target="_blank" href="https://github.com/skit-ai/"><i class="fab fa-github"></i> Github</a>
                 <a class="text-dark ml-1" target="_blank" href="https://twitter.com/SkitTech"><i class="fab fa-twitter"></i> Twitter</a>
 
             </div>
