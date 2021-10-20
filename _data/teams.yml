@@ -121,6 +121,10 @@ ml:
     tenure: 2021-
     url: https://www.linkedin.com/in/astha-manchanda-0ab87b124/
     active: true
+  - name: Sanchit Ahuja
+    tenure: 2021-
+    url: https://sanchit-ahuja.github.io
+    active: true
 engineering:
   - name: Abhishek Sachdeva
     tenure: 2019-
