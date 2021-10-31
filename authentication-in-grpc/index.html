@@ -4,20 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> | Skit Tech</title>
+    <title>Authentication in gRPC | Skit Tech</title>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Skit Tech | Speech Technology from Skit</title>
+<title>Authentication in gRPC | Skit Tech</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Skit Tech" />
+<meta property="og:title" content="Authentication in gRPC" />
+<meta name="author" content="Deepankar Agrawal" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Speech Technology from Skit" />
-<meta property="og:description" content="Speech Technology from Skit" />
+<meta name="description" content="In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects." />
+<meta property="og:description" content="In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects." />
 <meta property="og:site_name" content="Skit Tech" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Skit Tech" />
+<meta property="og:image" content="/assets/images/thumbnail-authentication-in-grpc.svg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-31T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/assets/images/thumbnail-authentication-in-grpc.svg" />
+<meta property="twitter:title" content="Authentication in gRPC" />
 <script type="application/ld+json">
-{"url":"/authors/mithun/","description":"Speech Technology from Skit","@type":"WebPage","headline":"Skit Tech","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Deepankar Agrawal"},"url":"/authentication-in-grpc/","description":"In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects.","@type":"BlogPosting","image":"/assets/images/thumbnail-authentication-in-grpc.svg","headline":"Authentication in gRPC","dateModified":"2021-10-31T00:00:00+00:00","datePublished":"2021-10-31T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"/authentication-in-grpc/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Deepankar Agrawal"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -391,66 +396,180 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         <div class="container">
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="row align-items-center mb-5">
-          <div class="col-md-9">
-            <h2 class="font-weight-bold">Mithun Arunan</h2>
-            <p class="excerpt">Minimalist</p>
-            <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
+<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
+		<div class="h-100 tofront">
+			<div class="row  justify-content-between ">
+				<div class=" col-md-6  pr-0 pr-md-4 pt-4 pb-4 align-self-center">
+					<p class="text-uppercase font-weight-bold">
+                        <span class="catlist">
+						
+                          <a class="sscroll text-danger" href="/categories.html#engineering">engineering</a><span class="sep">, </span>
+                        
+                        </span>
+					</p>
+					<h1 class="display-4 mb-4 article-headline">Authentication in gRPC</h1>
+					<div class="d-flex align-items-center">
+						<small>
               
-              <a target="_blank" href="https://blog.mithun.pro/"><i class="fa fa-globe text-muted" aria-hidden="true"></i></a> &nbsp;
+              <a target="_blank" href="/authors/deepankar" class="">Deepankar Agrawal</a>
               
-              
-              <a target="_blank" href="https://github.com/MithunArunan"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              <a target="_blank" href="https://twitter.com/MithunArunan"><i class="fab fa-twitter text-muted" aria-hidden="true"></i></a>  &nbsp;
-              
-              
-              <a target="_blank" href="https://www.linkedin.com/in/mithun-arunan"><i class="fab fa-linkedin text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-            </div>
-            </div>
-          </div>
-          <div class="col-md-3 text-right">
-            <img alt="Mithun Arunan" src="/assets/images/authors/mithun.jpg" class="rounded-circle" height="100" width="100">
-          </div>
-        </div>
-        <h4 class="font-weight-bold spanborder"><span>Posts</span></h4>
-        
-        <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/fast-microservices-with-grpc/">Building Fast and Efficient Microservices with gRPC</a>
-	</h2>
-	<p class="excerpt">
-    Skit.ai processes millions of speech recognition requests every day, and to handle such a load we have focused on building a highly s...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#engineering">Engineering</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Feb 05, 2020
-	</small>
-</div>
+              <span class="text-muted d-block mt-1">Oct 31, 2021 · <span class="reading-time">
+  
+  
+    4 mins read
+  
+</span>
+    </span>
+						</small>
+					</div>
 
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/fast-microservices-with-grpc/">
-	<img class="w-100" src="/assets/images/posts/fast-microservices-with-grpc/highway.png" alt="Building Fast and Efficient Microservices with gRPC">
-	</a>
+			    <!-- Tags -->
+			    <div class="mb-4 mt-4">
+				    <span class="taglist">
+				      
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#authentication">authentication</a>
+				      
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#grpc">grpc</a>
+				      
+				    </span>
+			    </div>
+
+				</div>
+				<div class="col-md-6 pr-0 align-self-center">
+				</div>
+			</div>
+		</div>
 	</div>
-
 </div>
 
-        
-    </div>
-</div>
+<div class="container pt-4 pb-4">
+	<div class="row">
+		<div class="col-lg-10 col-md-12">
+      <!-- Article -->
+			<article class="article-post">
+			<p>In gRPC, there are a number of ways you can add authentication between client
+and server. It is handled via Credentials Objects.</p>
+
+<p>There are two types of credential objects:</p>
+<ol>
+  <li><strong>Channel Credentials</strong>: These are handled on the channel level, i.e when
+the connection is established and a channel is created.</li>
+  <li><strong>Call Credentials</strong>: These are handled on per request level, i.e for every
+RPC call that is made. These Credential objects can also be combined to
+create <code class="language-plaintext highlighter-rouge">CompositeChannelCredentials</code> with one Channel Credential and one
+Call Credential object.</li>
+</ol>
+
+<p>Now let us see how we can use these credential objects.</p>
+
+<h2 id="client-side-tlsssl-authentication">Client-Side TLS/SSL Authentication</h2>
+<p>gRPC provides a way to establish a connection without any secure connection i.e just like HTTP.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// client.go</span>
+<span class="n">conn</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">Dial</span><span class="p">(</span><span class="s">"localhost:5000"</span><span class="p">,</span> <span class="n">grpc</span><span class="o">.</span><span class="n">WithInsecure</span><span class="p">())</span>
+
+<span class="c">// server.go</span>
+<span class="n">lis</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">net</span><span class="o">.</span><span class="n">Listen</span><span class="p">(</span><span class="s">"tcp"</span><span class="p">,</span> <span class="s">":5000"</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">:=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">NewServer</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">Serve</span><span class="p">(</span><span class="n">lis</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>For secure communication, we will create <code class="language-plaintext highlighter-rouge">TransportCredentials</code> which is a type
+of <code class="language-plaintext highlighter-rouge">ChannelCredential</code> object.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// client.go</span>
+<span class="n">creds</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">credentials</span><span class="o">.</span><span class="n">NewClientTLSFromFile</span><span class="p">(</span><span class="n">certFile</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+<span class="n">conn</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">Dial</span><span class="p">(</span><span class="s">"localhost:5000"</span><span class="p">,</span> <span class="n">grpc</span><span class="o">.</span><span class="n">WithTransportCredentials</span><span class="p">(</span><span class="n">creds</span><span class="p">))</span>
+
+<span class="c">// server.go</span>
+<span class="n">lis</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">net</span><span class="o">.</span><span class="n">Listen</span><span class="p">(</span><span class="s">"tcp"</span><span class="p">,</span> <span class="s">"localhost:50051"</span><span class="p">)</span>
+<span class="n">creds</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">credentials</span><span class="o">.</span><span class="n">NewServerTLSFromFile</span><span class="p">(</span><span class="n">certFile</span><span class="p">,</span> <span class="n">keyFile</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">:=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">NewServer</span><span class="p">(</span><span class="n">grpc</span><span class="o">.</span><span class="n">Creds</span><span class="p">(</span><span class="n">creds</span><span class="p">))</span>
+<span class="n">s</span><span class="o">.</span><span class="n">Serve</span><span class="p">(</span><span class="n">lis</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>You can read more about generating own ssl certificates <a href="https://www.linuxjournal.com/content/understanding-public-key-infrastructure-and-x509-certificates">here</a>.</p>
+
+<p>In the case where you don’t own the client, it means you are creating a gRPC
+API for public use, you cannot give your certificate to everyone using your
+client. In that case, we rely on well known <a href="https://en.wikipedia.org/wiki/Certificate_authority">Certificate
+Authority</a> like LetsEncrypt, Amazon, etc. to generate a
+certificate. So let us change our client code a little.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// client.go</span>
+<span class="n">config</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">tls</span><span class="o">.</span><span class="n">Config</span><span class="p">{</span>
+  <span class="n">InsecureSkipVerify</span><span class="o">:</span> <span class="no">false</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">conn</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">Dial</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">grpc</span><span class="o">.</span><span class="n">WithTransportCredentials</span><span class="p">(</span><span class="n">credentials</span><span class="o">.</span><span class="n">NewTLS</span><span class="p">(</span><span class="n">config</span><span class="p">)))</span>
+<span class="c">// server code remains the same</span>
+</code></pre></div></div>
+
+<p>In this case what happens is that grpc loads the certificates of well-known
+Certificate Authorities from the OS and sends it to the server, hence no need
+to manually provide a certificate.</p>
+
+<h2 id="token-based-authentication--oauth2">Token-Based Authentication / OAuth2</h2>
+
+<p>Many a time we want to differentiate a client by issuing them different tokens.
+TLS Authentication is a good way to secure your connection but it does not tell
+us from which client the request is coming from. We will send the token in
+request metadata just like HTTP Headers.</p>
+
+<p>gRPC has <code class="language-plaintext highlighter-rouge">google.golang.org/grpc/metadata</code> package to send and receive metadata
+with a RPC request.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// client.go</span>
+
+<span class="c">// add metadata to request context</span>
+<span class="n">md</span> <span class="o">:=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">Pairs</span><span class="p">(</span><span class="s">"Authorization"</span><span class="p">,</span> <span class="s">"Bearer xxx-xxx-xxx"</span><span class="p">)</span>
+<span class="n">ctx</span> <span class="o">:=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">NewContext</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">Background</span><span class="p">(),</span> <span class="n">md</span><span class="p">)</span>
+
+<span class="c">// use this context to call rpc</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">CallRPC</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">requestObject</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We will use <code class="language-plaintext highlighter-rouge">UnaryInterceptor</code> on the server which acts as middleware and
+checks for the token for all the requests.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// create a middleware</span>
+<span class="k">func</span> <span class="n">AuthInterceptor</span><span class="p">(</span><span class="n">ctx</span> <span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span> <span class="n">req</span> <span class="k">interface</span><span class="p">{},</span> <span class="n">info</span> <span class="o">*</span><span class="n">grpc</span><span class="o">.</span><span class="n">UnaryServerInfo</span><span class="p">,</span> <span class="n">handler</span> <span class="n">grpc</span><span class="o">.</span><span class="n">UnaryHandler</span><span class="p">)</span> <span class="p">(</span><span class="k">interface</span><span class="p">{},</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">meta</span><span class="p">,</span> <span class="n">ok</span> <span class="o">:=</span> <span class="n">metadata</span><span class="o">.</span><span class="n">FromContext</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+    <span class="k">if</span> <span class="o">!</span><span class="n">ok</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="no">nil</span><span class="p">,</span> <span class="n">grpc</span><span class="o">.</span><span class="n">Errorf</span><span class="p">(</span><span class="n">codes</span><span class="o">.</span><span class="n">Unauthenticated</span><span class="p">,</span> <span class="s">"missing context metadata"</span><span class="p">)</span>
+    <span class="p">}</span>
+  
+    <span class="c">// Take care: grpc internally reduce key values to lowercase</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s">"authorization"</span><span class="p">])</span> <span class="o">!=</span> <span class="m">1</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="no">nil</span><span class="p">,</span> <span class="n">grpc</span><span class="o">.</span><span class="n">Errorf</span><span class="p">(</span><span class="n">codes</span><span class="o">.</span><span class="n">Unauthenticated</span><span class="p">,</span> <span class="s">"invalid token"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">meta</span><span class="p">[</span><span class="s">"authorization"</span><span class="p">][</span><span class="m">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s">"xxx-xxx-xxx"</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="no">nil</span><span class="p">,</span> <span class="n">grpc</span><span class="o">.</span><span class="n">Errorf</span><span class="p">(</span><span class="n">codes</span><span class="o">.</span><span class="n">Unauthenticated</span><span class="p">,</span> <span class="s">"invalid token"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">handler</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">req</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c">// pass this when creating server</span>
+<span class="n">server</span> <span class="o">:=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">NewServer</span><span class="p">(</span>
+   <span class="n">grpc</span><span class="o">.</span><span class="n">UnaryInterceptor</span><span class="p">(</span><span class="n">AuthInterceptor</span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>But above code only works for non-streaming RPCs. For Streaming RPCs you can
+implement <code class="language-plaintext highlighter-rouge">StreamInterceptor</code>. Instead of implementing it again you can use
+this package. I hope this article helps you with authentication in gRPC.</p>
+
+<p>If you are interested in working with cutting-edge technologies, come work with
+<a href="https://skit.ai">Skit</a>. Apply <a href="https://skit.recruiterbox.com/">here</a>.</p>
+
+
+			</article>
+
+            <!-- Mailchimp Subscribe Form -->
+            
+		</div>
+	</div>
 </div>
 
     </main>
@@ -465,6 +584,9 @@ function lunr_search(term) {
 
     
 
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
 
     <!-- Footer -->

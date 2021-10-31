@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-10-27T07:10:45+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Seminar - Code Mixing in NLP and Speech</title><link href="/Code-Mixing-Seminar/" rel="alternate" type="text/html" title="Seminar - Code Mixing in NLP and Speech" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-08-24T00:00:00+00:00</updated><id>/Code-Mixing-Seminar</id><content type="html" xml:base="/Code-Mixing-Seminar/">&lt;p&gt;Below are some pointers and insights from the papers that we covered in the recently concluded &lt;a href=&quot;https://skit-ai.github.io/seminars/topics/&quot;&gt;seminar on Code-mixing in NLP and Speech&lt;/a&gt;. During the seminar we covered 6 papers, two each from NLP, Speech Synthesis and Speech Recognition.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-10-31T09:03:00+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Authentication in gRPC</title><link href="/authentication-in-grpc/" rel="alternate" type="text/html" title="Authentication in gRPC" /><published>2021-10-31T00:00:00+00:00</published><updated>2021-10-31T00:00:00+00:00</updated><id>/authentication-in-grpc</id><content type="html" xml:base="/authentication-in-grpc/">&lt;p&gt;In gRPC, there are a number of ways you can add authentication between client
+and server. It is handled via Credentials Objects.&lt;/p&gt;
+
+&lt;p&gt;There are two types of credential objects:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Channel Credentials&lt;/strong&gt;: These are handled on the channel level, i.e when
+the connection is established and a channel is created.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Call Credentials&lt;/strong&gt;: These are handled on per request level, i.e for every
+RPC call that is made. These Credential objects can also be combined to
+create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CompositeChannelCredentials&lt;/code&gt; with one Channel Credential and one
+Call Credential object.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now let us see how we can use these credential objects.&lt;/p&gt;
+
+&lt;h2 id=&quot;client-side-tlsssl-authentication&quot;&gt;Client-Side TLS/SSL Authentication&lt;/h2&gt;
+&lt;p&gt;gRPC provides a way to establish a connection without any secure connection i.e just like HTTP.&lt;/p&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithInsecure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;// server.go&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tcp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For secure communication, we will create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TransportCredentials&lt;/code&gt; which is a type
+of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ChannelCredential&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewClientTLSFromFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;certFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithTransportCredentials&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;// server.go&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tcp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;localhost:50051&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServerTLSFromFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;certFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keyFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can read more about generating own ssl certificates &lt;a href=&quot;https://www.linuxjournal.com/content/understanding-public-key-infrastructure-and-x509-certificates&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the case where you don’t own the client, it means you are creating a gRPC
+API for public use, you cannot give your certificate to everyone using your
+client. In that case, we rely on well known &lt;a href=&quot;https://en.wikipedia.org/wiki/Certificate_authority&quot;&gt;Certificate
+Authority&lt;/a&gt; like LetsEncrypt, Amazon, etc. to generate a
+certificate. So let us change our client code a little.&lt;/p&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tls&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;InsecureSkipVerify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithTransportCredentials&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewTLS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;// server code remains the same&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this case what happens is that grpc loads the certificates of well-known
+Certificate Authorities from the OS and sends it to the server, hence no need
+to manually provide a certificate.&lt;/p&gt;
+
+&lt;h2 id=&quot;token-based-authentication--oauth2&quot;&gt;Token-Based Authentication / OAuth2&lt;/h2&gt;
+
+&lt;p&gt;Many a time we want to differentiate a client by issuing them different tokens.
+TLS Authentication is a good way to secure your connection but it does not tell
+us from which client the request is coming from. We will send the token in
+request metadata just like HTTP Headers.&lt;/p&gt;
+
+&lt;p&gt;gRPC has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google.golang.org/grpc/metadata&lt;/code&gt; package to send and receive metadata
+with a RPC request.&lt;/p&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;// add metadata to request context&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;md&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Bearer xxx-xxx-xxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;// use this context to call rpc&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CallRPC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We will use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnaryInterceptor&lt;/code&gt; on the server which acts as middleware and
+checks for the token for all the requests.&lt;/p&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// create a middleware&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AuthInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryServerInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FromContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;missing context metadata&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+    &lt;span class=&quot;c&quot;&gt;// Take care: grpc internally reduce key values to lowercase&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;invalid token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;xxx-xxx-xxx&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;invalid token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;// pass this when creating server&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AuthInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But above code only works for non-streaming RPCs. For Streaming RPCs you can
+implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StreamInterceptor&lt;/code&gt;. Instead of implementing it again you can use
+this package. I hope this article helps you with authentication in gRPC.&lt;/p&gt;
+
+&lt;p&gt;If you are interested in working with cutting-edge technologies, come work with
+&lt;a href=&quot;https://skit.ai&quot;&gt;Skit&lt;/a&gt;. Apply &lt;a href=&quot;https://skit.recruiterbox.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Deepankar Agrawal</name></author><category term="Engineering" /><category term="authentication" /><category term="gRPC" /><summary type="html">In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/thumbnail-authentication-in-grpc.svg" /><media:content medium="image" url="/assets/images/thumbnail-authentication-in-grpc.svg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Seminar - Code Mixing in NLP and Speech</title><link href="/Code-Mixing-Seminar/" rel="alternate" type="text/html" title="Seminar - Code Mixing in NLP and Speech" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-08-24T00:00:00+00:00</updated><id>/Code-Mixing-Seminar</id><content type="html" xml:base="/Code-Mixing-Seminar/">&lt;p&gt;Below are some pointers and insights from the papers that we covered in the recently concluded &lt;a href=&quot;https://skit-ai.github.io/seminars/topics/&quot;&gt;seminar on Code-mixing in NLP and Speech&lt;/a&gt;. During the seminar we covered 6 papers, two each from NLP, Speech Synthesis and Speech Recognition.&lt;/p&gt;
 
 &lt;h1 id=&quot;session-1-nlp&quot;&gt;Session-1 (NLP)&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: &lt;a href=&quot;https://arxiv.org/pdf/2004.12376.pdf&quot;&gt;GLUECoS : An Evaluation Benchmark for Code-Switched NLP&lt;/a&gt;&lt;br /&gt;
@@ -1024,148 +1138,4 @@ months, similar to the old style
 &lt;a href=&quot;https://github.com/janaab11/&quot;&gt;Manas&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Studying researches and building on top of them is an important part of what a team of ML Engineers do on a regular basis. Usually, teams do this by organizing periodic, often weekly, paper reading sessions. Here is a snippet from an internal work memo by Manas explaining how we look at these sessions:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Bad Audio Detection</title><link href="/bad-audio-detection/" rel="alternate" type="text/html" title="Bad Audio Detection" /><published>2020-07-29T00:00:00+00:00</published><updated>2020-07-29T00:00:00+00:00</updated><id>/bad-audio-detection</id><content type="html" xml:base="/bad-audio-detection/">&lt;p&gt;This blog will be a short one, where we’ll talk about our approach on filtering
-out inscrutable audios from &lt;a href=&quot;https://skit.ai/vasr&quot;&gt;&lt;strong&gt;VASR&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;There are situations in Call Center Automation (CCA) pipeline where user
-utterances are bad. &lt;strong&gt;Bad&lt;/strong&gt; here is defined by things like noise, static,
-silences or background murmur etc. rendering the downstream SLU systems
-helpless. We started with a proposal and prepare a dataset for making an ML
-system learn to reject these audios.&lt;/p&gt;
-
-&lt;h2 id=&quot;benefits&quot;&gt;Benefits&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;No more misfires from SLU side which ultimately leads to a better user
-experience.&lt;/li&gt;
-  &lt;li&gt;Save compute and time by skipping bad audios.&lt;/li&gt;
-  &lt;li&gt;The whole system can be used for all our audio based tasks to predict and
-filter out the poor ones, hence avoiding sample noise for these tasks.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;dataset&quot;&gt;Dataset&lt;/h2&gt;
-
-&lt;p&gt;We prepared a dataset of intent tagged conversations with specially marked
-intents which tell us that these utterances are bad and them going further in
-SLU will result in errors. Also we have a sampling of non-bad utterances
-(tagged with regular intents) to make this a classification problem.&lt;/p&gt;
-
-&lt;p&gt;There are total 9928 samples of audios labelled as bad and 20000 samples
-labeled as good.&lt;/p&gt;
-
-&lt;p&gt;All the raw labels were not very useful, hence we clean and preprocess the data
-to finally create 2 broad categories with sub-classes.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-bad&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-noisy&lt;/code&gt;: Noisy audio.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-silent&lt;/code&gt;: Silent audio.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-talking&lt;/code&gt;: Background talking.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hold-phone&lt;/code&gt;: Music from keeping on hold.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-good&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;exploratory-data-analysis&quot;&gt;Exploratory Data Analysis&lt;/h2&gt;
-
-&lt;p&gt;We needed to understand the class imbalance and hence we plot a histogram
-representing number of samples for each class.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/bad-audio-detection/Class_Distribution.png&quot; /&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/bad-audio-detection/EDA.png&quot; /&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;We also plot the frequency vs duration histogram plot to understand the general
-distribution of audio durations in the dataset.  Based on the mean duration of
-5.26 seconds and the peaks in the histogram, we decided to threshold our audios
-to 6.5 seconds.  Anything less than that will be padded to 6.5 seconds and
-anything greater than that duration will be truncated to 6.5 seconds.&lt;/p&gt;
-
-&lt;p&gt;Even though we have sub-classes for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;audio-bad&lt;/code&gt; spanning different areas of
-what “bad” could be, we decided to focus only on the &lt;strong&gt;noisy audios&lt;/strong&gt;. Silent
-Audios can be treated separately, since they do not actually require something
-as complex as an ML model to classify them. We can simply use the age-old
-powerful signal processing methods to filter those out with some good
-confidence.&lt;/p&gt;
-
-&lt;h2 id=&quot;model&quot;&gt;Model&lt;/h2&gt;
-
-&lt;p&gt;If we are going to reject these bad audios then we need to do so with:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;High Precision&lt;/strong&gt;: We should not be rejecting good audios which are
-perfectly interpretable and understandable.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Low Latency:&lt;/strong&gt; This system should have little to no latency, otherwise it
-will just slow down our whole VASR flow after being deployed and integrated.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Online:&lt;/strong&gt; The model should be capable of running in an online setting where
-continuous chunks of audios are fed into the system.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;We used a standard audio classification pipeline to train our binary
-classification task.&lt;/p&gt;
-
-&lt;p&gt;This involves generating log-mel spectrograms and then running a Convolution
-Neural Network (CNN) based feature extractor on top of this fixed size
-spectrogram image.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/bad-audio-detection/model_architecture.png&quot; /&gt;
-  &lt;figcaption&gt;Binary Audio Classification based on Log-Mel Spectrograms&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;While these features (spectrograms) can be generated once after processing all
-the audios in the dataset, this feature generation needs to be done on the fly
-to make a model that can be used in deployment i.e given raw audios as input,
-it should be able to predict the class, that was easily incorporated through a
-few transforms done within the model using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;torch-audio&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Even though this architecture is simple, it got us an &lt;strong&gt;accuracy of about
-87%&lt;/strong&gt;. But it is not the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;accuracy&lt;/code&gt; we need to see, our choice of metric to
-measure the performance is &lt;strong&gt;precision&lt;/strong&gt; as explained earlier. We are still in
-the process improving these initial baseline numbers of the model. One simple
-approach for increasing the precision is to increase the threshold, trading-off
-some coverage in the form of support.&lt;/p&gt;
-
-&lt;h2 id=&quot;misclassification-analysis&quot;&gt;Misclassification Analysis&lt;/h2&gt;
-
-&lt;p&gt;We also do a post prediction analysis on the misclassified audios, which
-revealed an interesting pattern in the dataset and in the kind of audios that
-the model was finding hard to make predictions on.&lt;/p&gt;
-
-&lt;p&gt;Briefly these errors followed 3 major types which now helps to understand the
-places where we can make improvements.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Type 1 (Very Short Utterance)&lt;/strong&gt; : say 0.2 seconds in audio of 6 seconds.
-Due to noise in most part of such short utterance audios, our model predicts
-it to be noisy and not good in some occasions. This can probably be fixed
-with VAD which can trim the non speech segments in such short utterance
-audios.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Type 2 (Long audios)&lt;/strong&gt; : Audio duration is longer than 6.5 seconds with the
-speaker in latter half. Since we chose to threshold our features (log-mels)
-at 6.5 seconds, the latter part of the audio is basically truncated and hence
-such errors.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Type 3 (Ambiguous / Wrongly Labeled)&lt;/strong&gt; : There are samples in the dataset
-which are not perfectly labelled. One may say these audios are debatablem,
-some may find them to be bad others may think that they are ok. This type of
-label noise is something which needs to be tackled.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Needless to say, there are places where we can improve these results, but
-having a solid baseline model initially is important for incremental
-improvements over time and after a few iterations we finally see these models
-in our production systems.&lt;/p&gt;
-
-&lt;p&gt;That’s all for now. Stay tuned to our &lt;a href=&quot;/feed.xml&quot;&gt;rss feed&lt;/a&gt; for updates and more.&lt;/p&gt;</content><author><name>Anirudh Dagar</name></author><category term="Machine Learning" /><category term="classification" /><summary type="html">This blog will be a short one, where we’ll talk about our approach on filtering out inscrutable audios from VASR.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Studying researches and building on top of them is an important part of what a team of ML Engineers do on a regular basis. Usually, teams do this by organizing periodic, often weekly, paper reading sessions. Here is a snippet from an internal work memo by Manas explaining how we look at these sessions:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
