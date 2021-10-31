@@ -131,9 +131,9 @@ ml:
     active: true
 engineering:
   - name: Abhishek Sachdeva
-    tenure: 2019-
+    tenure: 2019-2021
     url: https://www.linkedin.com/in/sachdeva-abhishek/
-    active: true
+    active: false
   - name: Advait Raykar
     tenure: 2020-
     url: https://advait.live/
@@ -159,17 +159,17 @@ engineering:
     url: https://ankitranjan.codes/
     active: true
   - name: Anurag Shrivastava
-    tenure: 2018-
+    tenure: 2018-2021
     url: https://www.linkedin.com/in/anurag145/
-    active: true
+    active: false
   - name: Avijeet Diwaker
     tenure: 2021-
     url: https://github.com/avvijeet
     active: true
   - name: Charvee Punia
-    tenure: 2021-
+    tenure: 2021-2021
     url:
-    active: true
+    active: false
   - name: Debmalya Paine
     tenure: 2020-
     url:
@@ -179,9 +179,9 @@ engineering:
     url: https://deep110.github.io/
     active: true
   - name: Dimple Mathew
-    tenure: 2021-
+    tenure: 2021-2021
     url:
-    active: true
+    active: false
   - name: Hrushikesh Kolekar
     tenure: 2020-
     url:
@@ -207,9 +207,9 @@ engineering:
     url:
     active: true
   - name: Sanath Bhargav
-    tenure: 2020-
+    tenure: 2020-2021
     url:
-    active: true
+    active: false
   - name: Saumya Bakshi
     tenure: 2020-
     url:
