@@ -22,6 +22,10 @@ article blockquote::before {
   content: "";
 }
 
+article p {
+    text-align: justify;
+}
+
 hr {
   margin-bottom: 2rem;
   margin-top: 2rem;
