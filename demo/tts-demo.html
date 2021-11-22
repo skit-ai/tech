@@ -4,20 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> | Skit Tech</title>
+    <title>Research Demo | Skit Tech</title>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Skit Tech | Speech Technology from Skit</title>
+<title>Research Demo | Skit Tech</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Skit Tech" />
+<meta property="og:title" content="Research Demo" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Speech Technology from Skit" />
 <meta property="og:description" content="Speech Technology from Skit" />
 <meta property="og:site_name" content="Skit Tech" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Skit Tech" />
+<meta property="twitter:title" content="Research Demo" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"description":"Speech Technology from Skit","@type":"WebPage","url":"/authors/janaab11/","headline":"Skit Tech","@context":"https://schema.org"}</script>
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"description":"Speech Technology from Skit","@type":"WebPage","url":"/demo/tts-demo.html","headline":"Research Demo","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -404,59 +404,607 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         <div class="container">
-<div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="row align-items-center mb-5">
-          <div class="col-md-9">
-            <h2 class="font-weight-bold">Kumarmanas Nethil</h2>
-            <p class="excerpt"></p>
-            <div class="icon-block mt-3 d-flex justify-content-between">
-            <div>
-              
-              
-              <a target="_blank" href="https://github.com/janaab11"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
-              
-              
-              
-            </div>
-            </div>
-          </div>
-          <div class="col-md-3 text-right">
-            <img alt="Kumarmanas Nethil" src="/assets/images/authors/avatar-person.svg" class="rounded-circle" height="100" width="100">
-          </div>
-        </div>
-        <h4 class="font-weight-bold spanborder"><span>Posts</span></h4>
-        
-        <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/emnlp/">EMNLP 2020</a>
-	</h2>
-	<p class="excerpt">
-    Individual summary notes from EMNLP 2020.
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Dec 21, 2020
-	</small>
+<h3 class="font-weight-bold spanborder"><span>Research Demo</span></h3>
+<div class="page-content">
+<h1 id="emotional-tts">Emotional TTS</h1>
+<p><br /></p>
+<h2 id="reference-audio-from-the-training-data">Reference Audio from the Training Data</h2>
+
+<!-- <script>
+       $(document).ready(function () {
+         var ws3 = WaveSurfer.create({
+           container: '#waveform-3',
+           backend: 'MediaElement'
+         });
+         ws3.load('https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_angry.wav');
+
+         ws3.on('audioprocess', function () {
+           let progressText = ws3.getCurrentTime().toFixed(2) + ' / ' + ws3.getDuration().toFixed(2)
+           document.getElementById('player-progress-3').innerHTML = progressText
+         });
+
+         ws3.on('ready', function () {
+           let progressText = ws3.getCurrentTime().toFixed(2) + ' / ' + ws3.getDuration().toFixed(2)
+           document.getElementById('player-progress-3').innerHTML = progressText
+         });
+
+         ws3.on('finish', function () {
+           let button = $('#controls-3 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-3').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws3.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws3.skipBackward()
+                 break
+               case 'forward':
+                 ws3.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+<div id='waveform-3'></div>
+<div class='player-controls' id='controls-3'>
+  <button class='btn btn-sml' data-action='backward'><i class='fa fa-backward'></i></button>
+  <button class='btn btn-sml' data-action='play-pause'><i class='fa fa-play'></i></button>
+  <button class='btn btn-sml' data-action='forward'><i class='fa fa-forward'></i></button>
+  <code class='btn btn-sml disabled' id='player-progress-3'></code>
 </div>
+ -->
 
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/emnlp/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="EMNLP 2020">
-	</a>
-	</div>
+<p><br /></p>
+<table style="width:100%">
+      <tr>
+        <th>Neutral</th>
+        <th>Happy</th>
+        <th>Sad</th>
+        <th>Angry</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Normal-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Normal-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Happy-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Happy-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Sad-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Sad-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Anger-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Anger-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Excited</th>
+        <th>Apologetic</th>
+        <th>Fear</th>
+        <th>Surprise</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Excited-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Excited-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Apologetic-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Apologetic-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Fear-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Fear-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Surprise-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Surprise-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Calm</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Calm-1.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          <br />
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/training_data/Calm-10.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        </tr>
+    </table>
 
-</div>
+<p><br /></p>
 
-        
-    </div>
+<p><br /></p>
+<h2 id="synthesized-audio-from-the-skits-emotional-tts">Synthesized Audio from the Skit’s Emotional TTS</h2>
+
+<p><br /></p>
+<p><b>Audio 1 :</b> <em>The swan dive was far short of perfect.</em> </p>
+<table style="width:100%">
+      <tr>
+        <th>Neutral</th>
+        <th>Happy</th>
+        <th>Sad</th>
+        <th>Angry</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_happy.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_happy.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_sad.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_angry.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Excited</th>
+        <th>Apologetic</th>
+        <th>Fear</th>
+        <th>Surprise</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_excited.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_apologetic.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_fear.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_surprise.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Calm</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_calm.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+    </table>
+<hr />
+
+<p><br /></p>
+<p><b>Audio 2 :</b> <em>The beauty of the view stunned the young boy.</em> </p>
+<table style="width:100%">
+      <tr>
+        <th>Neutral</th>
+        <th>Happy</th>
+        <th>Sad</th>
+        <th>Angry</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_normal.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_happy.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_sad.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_angry.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Excited</th>
+        <th>Apologetic</th>
+        <th>Fear</th>
+        <th>Surprise</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_excited.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_apologetic.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_fear.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_surprise.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Calm</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_1_calm.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+    </table>
+<hr />
+
+<p><br /></p>
+<p><b>Audio 3 :</b> <em>Two blue fish swam in the tank.</em> </p>
+<table style="width:100%">
+      <tr>
+        <th>Neutral</th>
+        <th>Happy</th>
+        <th>Sad</th>
+        <th>Angry</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_normal.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_happy.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_sad.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_angry.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Excited</th>
+        <th>Apologetic</th>
+        <th>Fear</th>
+        <th>Surprise</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_excited.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_apologetic.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_fear.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_surprise.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Calm</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_2_calm.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+    </table>
+<hr />
+
+<p><br /></p>
+<p><b>Audio 4 :</b> <em>Her purse was full of useless trash.</em> </p>
+<table style="width:100%">
+      <tr>
+        <th>Neutral</th>
+        <th>Happy</th>
+        <th>Sad</th>
+        <th>Angry</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_normal.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_happy.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_sad.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_angry.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Excited</th>
+        <th>Apologetic</th>
+        <th>Fear</th>
+        <th>Surprise</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_excited.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_apologetic.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_fear.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_surprise.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Calm</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_3_calm.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+    </table>
+<hr />
+
+<p><br /></p>
+<p><b>Audio 5 :</b> <em>The colt reared and threw the tall rider.</em> </p>
+<table style="width:100%">
+      <tr>
+        <th>Neutral</th>
+        <th>Happy</th>
+        <th>Sad</th>
+        <th>Angry</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_normal.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_happy.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_sad.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_angry.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Excited</th>
+        <th>Apologetic</th>
+        <th>Fear</th>
+        <th>Surprise</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_excited.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_apologetic.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_fear.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_surprise.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+      <tr>
+        <th>Calm</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 200px;">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_4_calm.wav" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+    </table>
+<hr />
+
+
 </div>
 </div>
 
@@ -470,6 +1018,8 @@ function lunr_search(term) {
 
     <script src="/assets/js/theme.js"></script>
 
+    
+      <script src="https://unpkg.com/wavesurfer.js"></script>
     
 
     
