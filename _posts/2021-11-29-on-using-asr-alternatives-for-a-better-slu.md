@@ -9,7 +9,7 @@ authors: [swarajdalmia, greed2411]
 latex: True
 ---
 
-This blog discusses some concepts from the recently published [paper](https://arxiv.org/pdf/2106.06519.pdf) by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.
+This blog discusses some concepts from the recently published [paper](https://arxiv.org/pdf/2106.06519.pdf) by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in [ACL-IJCNLP’21](https://2021.aclweb.org/).
 
 # Introduction
 
