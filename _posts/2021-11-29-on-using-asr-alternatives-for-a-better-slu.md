@@ -13,17 +13,20 @@ This blog discusses some concepts from the recently published [paper](https://ar
 
 # Introduction
 
-Voice bots in the industry heavily rely on the use of Automatic Speech Recognition (ASR) transcripts to understand the user and capture intents & entities which are then used to resolve the customer’s problem. ASR’s however are far from perfect, especially on noisy real world data and on instances with acoustic confusion. The downstream SLU (spoken language understanding) components would benefit greatly if they take the ASR’s confusion into account.
+Voice bots in the industry heavily rely on the use of Automatic Speech Recognition (ASR) transcripts to understand the user and capture intents & entities which are then used to resolve the customer’s problem. ASR’s however are far from perfect, especially on noisy real world data and on instances with acoustic confusion. The downstream Spoken Language Understanding (SLU) components would benefit greatly if they take the ASR’s confusion into account.
 
 Example use-case with confounding ASR transcripts (over voice):
-
+```
 Bot: When would you like to make the reservation ?
 User (actually said): right now
+```
 
 ASR alternatives for given user’s speech:
+```
 - like, now
 - right now
 - write no
+```
 
 Often the downstream SLU services which act on ASR transcripts use only the most probable alternative (also called 1-best alternative), thereby leaving out a lot of other information that exists in the form of alternative probabilities. This paper presents a simple way of using the information that exists in the alternatives to get SOTA performance on a standard benchmark for a SLU system.
 
@@ -38,7 +41,6 @@ Before we get into how to best use ASR’s confusion to increase the performance
 
 The transitions probabilities of both, word lattices and word confusion networks are weighted by the acoustic and language model probabilities.
 
-
 <figure>
 <center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/word-lattices.jpg"/>
@@ -46,9 +48,8 @@ The transitions probabilities of both, word lattices and word confusion networks
 </center>
 </figure>
 
-
 # Dataset
-****
+
 The task that is used to compare the modelling approaches is the [DSTC - 2 challenge](https://aclanthology.org/W14-4337.pdf) where one is required to predict intent act-slot-value triplets. Pairs of sentences i.e. a sentence whose intent is required to be predicted along with its context is given. For each sentence the top 10 best ASR alternatives are also provided.
 
 # Modelling Approach
