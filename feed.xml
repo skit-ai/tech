@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-30T17:25:26+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/On-using-ASR-alternatives-for-a-better-SLU/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/On-using-ASR-alternatives-for-a-better-SLU</id><content type="html" xml:base="/On-using-ASR-alternatives-for-a-better-SLU/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-30T17:34:44+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/On-using-ASR-alternatives-for-a-better-SLU/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/On-using-ASR-alternatives-for-a-better-SLU</id><content type="html" xml:base="/On-using-ASR-alternatives-for-a-better-SLU/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.&lt;/p&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
@@ -81,9 +81,8 @@ User (actually said): right now&lt;/p&gt;
 
 &lt;p&gt;The code for the project can be found &lt;a href=&quot;https://github.com/skit-ai/N-Best-ASR-Transformer&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;If you use our work, please cite using the following BibTex Citation:
-‘’’
-    @misc{ganesan2021nbest,
+&lt;p&gt;If you use our work, please cite using the following BibTex Citation:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    @misc{ganesan2021nbest,
           title={N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses},
           author={Karthik Ganesan and Pakhi Bamdev and Jaivarsan B and Amresh Venugopal and Abhinav Tushar},
           year={2021},
@@ -91,7 +90,7 @@ User (actually said): right now&lt;/p&gt;
           archivePrefix={arXiv},
           primaryClass={cs.CL}
     }
-‘’’&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;references-&quot;&gt;References :&lt;/h1&gt;
 &lt;ul&gt;
