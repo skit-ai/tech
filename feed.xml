@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-30T17:49:46+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/on-using-asr-alternatives-for-a-better-slu/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/on-using-asr-alternatives-for-a-better-slu</id><content type="html" xml:base="/on-using-asr-alternatives-for-a-better-slu/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-30T17:56:42+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/on-using-asr-alternatives-for-a-better-slu/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/on-using-asr-alternatives-for-a-better-slu</id><content type="html" xml:base="/on-using-asr-alternatives-for-a-better-slu/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in &lt;a href=&quot;https://2021.aclweb.org/&quot;&gt;ACL-IJCNLP’21&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
-&lt;p&gt;Voice bots in the industry heavily rely on the use of Automatic Speech Recognition (ASR) transcripts to understand the user and capture intents &amp;amp; entities which are then used to resolve the customer’s problem. ASR’s however are far from perfect, especially on noisy real world data and on instances with acoustic confusion. The downstream SLU (spoken language understanding) components would benefit greatly if they take the ASR’s confusion into account.&lt;/p&gt;
+&lt;p&gt;Voice bots in the industry heavily rely on the use of Automatic Speech Recognition (ASR) transcripts to understand the user and capture intents &amp;amp; entities which are then used to resolve the customer’s problem. ASR’s however are far from perfect, especially on noisy real world data and on instances with acoustic confusion. The downstream Spoken Language Understanding (SLU) components would benefit greatly if they take the ASR’s confusion into account.&lt;/p&gt;
 
 &lt;p&gt;Example use-case with confounding ASR transcripts (over voice):&lt;/p&gt;
-
-&lt;p&gt;Bot: When would you like to make the reservation ?
-User (actually said): right now&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Bot: When would you like to make the reservation ?
+User (actually said): right now
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;ASR alternatives for given user’s speech:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;like, now&lt;/li&gt;
-  &lt;li&gt;right now&lt;/li&gt;
-  &lt;li&gt;write no&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- like, now
+- right now
+- write no
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Often the downstream SLU services which act on ASR transcripts use only the most probable alternative (also called 1-best alternative), thereby leaving out a lot of other information that exists in the form of alternative probabilities. This paper presents a simple way of using the information that exists in the alternatives to get SOTA performance on a standard benchmark for a SLU system.&lt;/p&gt;
 
@@ -38,7 +37,7 @@ User (actually said): right now&lt;/p&gt;
 &lt;/figure&gt;
 
 &lt;h1 id=&quot;dataset&quot;&gt;Dataset&lt;/h1&gt;
-&lt;hr /&gt;
+
 &lt;p&gt;The task that is used to compare the modelling approaches is the &lt;a href=&quot;https://aclanthology.org/W14-4337.pdf&quot;&gt;DSTC - 2 challenge&lt;/a&gt; where one is required to predict intent act-slot-value triplets. Pairs of sentences i.e. a sentence whose intent is required to be predicted along with its context is given. For each sentence the top 10 best ASR alternatives are also provided.&lt;/p&gt;
 
 &lt;h1 id=&quot;modelling-approach&quot;&gt;Modelling Approach&lt;/h1&gt;
@@ -82,20 +81,27 @@ User (actually said): right now&lt;/p&gt;
 &lt;p&gt;The code for the project can be found &lt;a href=&quot;https://github.com/skit-ai/N-Best-ASR-Transformer&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;If you use our work, please cite using the following BibTex Citation:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    @misc{ganesan2021nbest,
-          title={N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses},
-          author={Karthik Ganesan and Pakhi Bamdev and Jaivarsan B and Amresh Venugopal and Abhinav Tushar},
-          year={2021},
-          eprint={2106.06519},
-          archivePrefix={arXiv},
-          primaryClass={cs.CL}
-    }
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@inproceedings{ganesan-etal-2021-n,
+    title = &quot;N-Best {ASR} Transformer: Enhancing {SLU} Performance using Multiple {ASR} Hypotheses&quot;,
+    author = &quot;Ganesan, Karthik  and
+      Bamdev, Pakhi  and
+      B, Jaivarsan  and
+      Venugopal, Amresh  and
+      Tushar, Abhinav&quot;,
+    booktitle = &quot;Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 2: Short Papers)&quot;,
+    month = aug,
+    year = &quot;2021&quot;,
+    address = &quot;Online&quot;,
+    publisher = &quot;Association for Computational Linguistics&quot;,
+    url = &quot;https://aclanthology.org/2021.acl-short.14&quot;,
+    doi = &quot;10.18653/v1/2021.acl-short.14&quot;,
+    pages = &quot;93--98&quot;,
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h1 id=&quot;references-&quot;&gt;References :&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Tür, G., Deoras, A., &amp;amp; Hakkani-Tür, D. (2013, September). Semantic parsing using word confusion networks with conditional random fields. In &lt;em&gt;INTERSPEECH&lt;/em&gt; (pp. 2579-2583).&lt;/li&gt;
-  &lt;li&gt;Ganesan, K., Bamdev, P., Venugopal, A., &amp;amp; Tushar, A. (2021). N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses. &lt;em&gt;arXiv preprint arXiv:2106.06519&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="SLU" /><summary type="html">This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/n-best-asr.jpg" /><media:content medium="image" url="/assets/images/n-best-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Authentication in gRPC</title><link href="/authentication-in-grpc/" rel="alternate" type="text/html" title="Authentication in gRPC" /><published>2021-10-31T00:00:00+00:00</published><updated>2021-10-31T00:00:00+00:00</updated><id>/authentication-in-grpc</id><content type="html" xml:base="/authentication-in-grpc/">&lt;p&gt;In gRPC, there are a number of ways you can add authentication between client
 and server. It is handled via Credentials Objects.&lt;/p&gt;
 
