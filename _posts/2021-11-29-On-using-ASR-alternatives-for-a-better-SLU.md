@@ -92,7 +92,7 @@ Lastly, this methodology can be used by users of third-party ASR APIs which do n
 The code for the project can be found [here](https://github.com/skit-ai/N-Best-ASR-Transformer).
 
 If you use our work, please cite using the following BibTex Citation:
-'''
+```
     @misc{ganesan2021nbest,
           title={N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses},
           author={Karthik Ganesan and Pakhi Bamdev and Jaivarsan B and Amresh Venugopal and Abhinav Tushar},
@@ -101,7 +101,7 @@ If you use our work, please cite using the following BibTex Citation:
           archivePrefix={arXiv},
           primaryClass={cs.CL}
     }
-'''  
+```
 
 # References :
 - Tür, G., Deoras, A., & Hakkani-Tür, D. (2013, September). Semantic parsing using word confusion networks with conditional random fields. In *INTERSPEECH* (pp. 2579-2583).
