@@ -94,16 +94,23 @@ The code for the project can be found [here](https://github.com/skit-ai/N-Best-A
 
 If you use our work, please cite using the following BibTex Citation:
 ```
-    @misc{ganesan2021nbest,
-          title={N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses},
-          author={Karthik Ganesan and Pakhi Bamdev and Jaivarsan B and Amresh Venugopal and Abhinav Tushar},
-          year={2021},
-          eprint={2106.06519},
-          archivePrefix={arXiv},
-          primaryClass={cs.CL}
-    }
+@inproceedings{ganesan-etal-2021-n,
+    title = "N-Best {ASR} Transformer: Enhancing {SLU} Performance using Multiple {ASR} Hypotheses",
+    author = "Ganesan, Karthik  and
+      Bamdev, Pakhi  and
+      B, Jaivarsan  and
+      Venugopal, Amresh  and
+      Tushar, Abhinav",
+    booktitle = "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 2: Short Papers)",
+    month = aug,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.acl-short.14",
+    doi = "10.18653/v1/2021.acl-short.14",
+    pages = "93--98",
+}
 ```
 
 # References :
 - Tür, G., Deoras, A., & Hakkani-Tür, D. (2013, September). Semantic parsing using word confusion networks with conditional random fields. In *INTERSPEECH* (pp. 2579-2583).
-- Ganesan, K., Bamdev, P., Venugopal, A., & Tushar, A. (2021). N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses. *arXiv preprint arXiv:2106.06519*.
