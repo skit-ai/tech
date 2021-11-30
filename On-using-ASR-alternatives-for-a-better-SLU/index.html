@@ -4,21 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home | Skit Tech</title>
+    <title>On using ASR Alternatives for a Better SLU | Skit Tech</title>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Home | Skit Tech</title>
+<title>On using ASR Alternatives for a Better SLU | Skit Tech</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Home" />
+<meta property="og:title" content="On using ASR Alternatives for a Better SLU" />
+<meta name="author" content="Swaraj Dalmia" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Speech Technology from Skit" />
-<meta property="og:description" content="Speech Technology from Skit" />
+<meta name="description" content="This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21." />
+<meta property="og:description" content="This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21." />
 <meta property="og:site_name" content="Skit Tech" />
-<link rel="next" href="/page2" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Home" />
+<meta property="og:image" content="/assets/images/n-best-asr.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/assets/images/n-best-asr.jpg" />
+<meta property="twitter:title" content="On using ASR Alternatives for a Better SLU" />
 <script type="application/ld+json">
-{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"description":"Speech Technology from Skit","@type":"WebSite","url":"/","headline":"Home","name":"Skit Tech","@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Swaraj Dalmia"},"mainEntityOfPage":{"@type":"WebPage","@id":"/On-using-ASR-alternatives-for-a-better-SLU/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Swaraj Dalmia"},"description":"This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.","@type":"BlogPosting","image":"/assets/images/n-best-asr.jpg","url":"/On-using-ASR-alternatives-for-a-better-SLU/","headline":"On using ASR Alternatives for a Better SLU","dateModified":"2021-11-29T00:00:00+00:00","datePublished":"2021-11-29T00:00:00+00:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -54,7 +58,7 @@
 
 </head>
 
-<body class=" homefirstpage ">
+<body class="">
 
     <!-- Navbar -->
     <nav id="MagicMenu" class="topnav navbar navbar-expand-lg navbar-light bg-white fixed-top">
@@ -410,560 +414,166 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         <div class="container">
-
-
-
-
-<!-- Begin post excerpts, let's highlight the first 4 posts on top -->
-<div class="row">
-
-    <!-- latest post -->
-    
-    <div class="col-md-6">
-    <div class="card border-0 mb-4 box-shadow">
-    <a href="/On-using-ASR-alternatives-for-a-better-SLU/">
-    <div class="topfirstimage" style="background-image: url( /assets/images/n-best-asr.jpg); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>
-    </a>
-    <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
-    <h2 class="h4 font-weight-bold">
-    <a class="text-dark" href="/On-using-ASR-alternatives-for-a-better-SLU/">On using ASR Alternatives for a Better SLU</a>
-    </h2>
-    <p class="excerpt">
-       This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The p...
-    </p>
-    <div>
-        <small class="d-block text-muted">
-            In <span class="catlist">
-                
-                <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-                
-                </span>
-        </small>
-        <small class="text-muted">
-            Nov 29, 2021
-        </small>
-    </div>
-    </div>
-    </div>
-    </div>
-
-    <div class="col-md-6">
-
-        <!-- second latest post --><div class="mb-3 d-flex align-items-center">
-                
-                <div class="col-md-4">
-                <a href="/authentication-in-grpc/">
-                 <img class="w-100" src="/assets/images/thumbnail-authentication-in-grpc.svg" alt="Authentication in gRPC">
-                </a>
-                </div>
-                
-                <div>
-                    <h2 class="mb-2 h6 font-weight-bold">
-                    <a class="text-dark" href="/authentication-in-grpc/">Authentication in gRPC</a>
-                    </h2>
-                    <small class="d-block text-muted">
-                        In <span class="catlist">
-                        
-                        <a class="text-capitalize text-muted smoothscroll" href="/categories.html#engineering">Engineering</a><span class="sep">, </span>
+<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
+		<div class="h-100 tofront">
+			<div class="row justify-content-center">
+				<div class="col-md-12 pr-0 pr-md-4 pt-4 align-self-center">
+					<p class="text-uppercase font-weight-bold">
+                        <span class="catlist">
+						
+                          <a class="sscroll text-danger" href="/categories.html#machine learning">machine learning</a><span class="sep">, </span>
                         
                         </span>
-                    </small>
-                    <small class="text-muted">
-                        Oct 31, 2021
-                    </small>
-                </div>
-            </div>
+					</p>
+					<h1 class="display-4 mb-4 article-headline">On using ASR Alternatives for a Better SLU</h1>
+					<div class="d-flex align-items-center">
+						<small>
+              
+              <a target="_blank" href="/authors/swarajdalmia" class="">Swaraj Dalmia</a>,
+              
+              <a target="_blank" href="/authors/greed2411" class="">Jaivarsan B</a>
+              
+              <span class="text-muted d-block mt-1">Nov 29, 2021 · <span class="reading-time">
+  
+  
+    5 mins read
+  
+</span>
+    </span>
+						</small>
+					</div>
 
-        <!-- third latest post --><div class="mb-3 d-flex align-items-center">
-                
-                <div class="col-md-4">
-                <a href="/Code-Mixing-Seminar/">
-                 <img class="w-100" src="/assets/images/tile-work.png" alt="Seminar - Code Mixing in NLP and Speech">
-                </a>
-                </div>
-                
-                <div>
-                    <h2 class="mb-2 h6 font-weight-bold">
-                    <a class="text-dark" href="/Code-Mixing-Seminar/">Seminar - Code Mixing in NLP and Speech</a>
-                    </h2>
-                    <small class="d-block text-muted">
-                        In <span class="catlist">
-                        
-                        <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-                        
-                        </span>
-                    </small>
-                    <small class="text-muted">
-                        Aug 24, 2021
-                    </small>
-                </div>
-            </div>
+			    <!-- Tags -->
+			    <div class="mb-4 mt-4">
+				    <span class="taglist">
+				      
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#asr">asr</a>
+				      
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#slu">slu</a>
+				      
+				    </span>
+			    </div>
 
-        <!-- fourth latest post --><div class="mb-3 d-flex align-items-center">
-                
-                <div class="col-md-4">
-                <a href="/Code-Mixing-Metrics/">
-                <img class="w-100" src="/assets/images/ornament.jpg" alt="Code Mixing Metrics">
-                </a>
-                </div>
-                
-                <div>
-                    <h2 class="mb-2 h6 font-weight-bold">
-                    <a class="text-dark" href="/Code-Mixing-Metrics/">Code Mixing Metrics</a>
-                    </h2>
-                    <small class="d-block text-muted">
-                        In <span class="catlist">
-                        
-                        <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-                        
-                        </span>
-                    </small>
-                    <small class="text-muted">
-                        Aug 09, 2021
-                    </small>
-                </div>
-            </div>
-
-    </div>
-
-</div>
-
-
-<!-- Sticky - add sticky tag to the post you want to highlight here - tags: [sticky] -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="jumbotron jumbotron-fluid jumbotron-home pt-0 pb-0 mt-3 mb-2rem bg-white border border-dark position-relative">
-    <div class="pl-4 pr-0 h-100 tofront">
-        <div class="row justify-content-between">
-            <div class="col-md-6 pt-6 pb-6 pr-lg-4 align-self-center">
-                <h1 class="mb-3">Our new Tech blog</h1>
-                <p class="mb-3 lead">
-                  We are merging past webpages of our Engineering and ML team in this new, central, Skit Tech page. From here on, this is going to be t...
-                </p>
-                <a href="/new-blog/" class="btn btn-dark">Read More</a>
-            </div>
-            <div class="col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url(/assets/images/demo1.jpg);">
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!--endif page url is / -->
-
-
-
-<!-- Now the rest of the posts with the usual loop but with an offset:4 on the first page so we can skeep the first 4 posts displayed above -->
-
-<div class="row mt-3">
-
-    <div class="col-md-8 main-loop">
-
-        <h4 class="font-weight-bold spanborder"><span>All Stories</span></h4>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/On-using-ASR-alternatives-for-a-better-SLU/">On using ASR Alternatives for a Better SLU</a>
-	</h2>
-	<p class="excerpt">
-    This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The p...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Nov 29, 2021
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/On-using-ASR-alternatives-for-a-better-SLU/">
-	<img class="w-100" src="/assets/images/n-best-asr.jpg" alt="On using ASR Alternatives for a Better SLU">
-	</a>
+				</div>
+				<div class="col-md-6 pr-0 align-self-center">
+				</div>
+			</div>
+		</div>
 	</div>
-
 </div>
 
+<div class="container pt-4 pb-4">
+	<div class="row">
+		<div class="col-lg-10 col-md-12">
+      <!-- Article -->
+			<article class="article-post">
+			<p>This blog discusses some concepts from the recently published <a href="https://arxiv.org/pdf/2106.06519.pdf">paper</a> by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.</p>
 
-        
+<h1 id="introduction">Introduction</h1>
 
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/authentication-in-grpc/">Authentication in gRPC</a>
-	</h2>
-	<p class="excerpt">
-    In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects.
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#engineering">Engineering</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Oct 31, 2021
-	</small>
-</div>
+<p>Voice bots in the industry heavily rely on the use of Automatic Speech Recognition (ASR) transcripts to understand the user and capture intents &amp; entities which are then used to resolve the customer’s problem. ASR’s however are far from perfect, especially on noisy real world data and on instances with acoustic confusion. The downstream SLU (spoken language understanding) components would benefit greatly if they take the ASR’s confusion into account.</p>
 
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/authentication-in-grpc/">
-	<img class="w-100" src="/assets/images/thumbnail-authentication-in-grpc.svg" alt="Authentication in gRPC">
-	</a>
-	</div>
+<p>Example use-case with confounding ASR transcripts (over voice):</p>
 
-</div>
+<p>Bot: When would you like to make the reservation ?
+User (actually said): right now</p>
 
+<p>ASR alternatives for given user’s speech:</p>
+<ul>
+  <li>like, now</li>
+  <li>right now</li>
+  <li>write no</li>
+</ul>
 
-        
+<p>Often the downstream SLU services which act on ASR transcripts use only the most probable alternative (also called 1-best alternative), thereby leaving out a lot of other information that exists in the form of alternative probabilities. This paper presents a simple way of using the information that exists in the alternatives to get SOTA performance on a standard benchmark for a SLU system.</p>
 
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/Code-Mixing-Seminar/">Seminar - Code Mixing in NLP and Speech</a>
-	</h2>
-	<p class="excerpt">
-    Below are some pointers and insights from the papers that we covered in the recently concluded seminar on Code-mixing in NLP and Spee...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Aug 24, 2021
-	</small>
-</div>
+<h1 id="types-of-asr-outputs">Types of ASR Outputs</h1>
 
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/Code-Mixing-Seminar/">
-	<img class="w-100" src="/assets/images/tile-work.png" alt="Seminar - Code Mixing in NLP and Speech">
-	</a>
-	</div>
+<p>Before we get into how to best use ASR’s confusion to increase the performance of the SLU, we discuss the different ways an ASR outputs the probable word sequence probabilities.</p>
 
-</div>
+<ul>
+  <li>N-best alternatives : this is a list of the top N alternative sentences for the given spoken utterance. These are usually ranked based on probability of occurrence.</li>
+  <li>Word lattices : As shown in the below figure, they have no a-priori structure per se. Every path from the start node to the end node represents a possible hypothesis transcript. Every transition adds a word to the hypothesis.</li>
+  <li>Word confusion networks : They are a more compact and normalised topology for word lattices. They enforce certain constaints such that competing words should be in the same group and there by also ensure aligment of words that occur at the same time interval. Though these graphs capture lesser number of possibilities, this topology can be used to get as high recognition accuracy as using word lattices.</li>
+</ul>
 
+<p>The transitions probabilities of both, word lattices and word confusion networks are weighted by the acoustic and language model probabilities.</p>
 
-        
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/word-lattices.jpg" />
+  <figcaption>Fig 1: The structure of a word lattice as contrasted with a word confusion network.</figcaption>
+</center>
+</figure>
 
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/Code-Mixing-Metrics/">Code Mixing Metrics</a>
-	</h2>
-	<p class="excerpt">
-    We at skit, recently concluded a seminar series on code-mixing, where we covered research papers that looked at approaches to deal wi...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Aug 09, 2021
-	</small>
-</div>
+<h1 id="dataset">Dataset</h1>
+<hr />
+<p>The task that is used to compare the modelling approaches is the <a href="https://aclanthology.org/W14-4337.pdf">DSTC - 2 challenge</a> where one is required to predict intent act-slot-value triplets. Pairs of sentences i.e. a sentence whose intent is required to be predicted along with its context is given. For each sentence the top 10 best ASR alternatives are also provided.</p>
 
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/Code-Mixing-Metrics/">
-	<img class="w-100" src="/assets/images/ornament.jpg" alt="Code Mixing Metrics">
-	</a>
-	</div>
+<h1 id="modelling-approach">Modelling Approach</h1>
 
-</div>
+<p>The central idea of the paper is to leverage pre-trained transformer models BERT and XLMRoBERTa and fine-tune them with a simple input representation shown below. The input consists of the ASR alternatives seperated by a seperator token concatenated with the context. A segment id (not shown below) is also used, which is used to contrast the context (in green) with the alternatives (in purple).</p>
 
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/example-input.jpg" />
+  <figcaption>Fig 2: Input representation used to fine-tune transformer models.</figcaption>
+</center>
+</figure>
 
-        
+<p>On top of the transformer model a semantic tuple classifier (STC) is applied to predict the act-slot-value triplets. Using this approach, we achieve a performance equivalent to the prior state-of-the-art model on DSTC-2 dataset. We get comparable F1 and SOTA accuracy. The previous SOTA model, WCN-BERT uses word confusion networks.</p>
 
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/normalizing-flows-part-2/">Normalizing Flows - Part 2</a>
-	</h2>
-	<p class="excerpt">
-    In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs t...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		May 08, 2021
-	</small>
-</div>
+<p>Here, using a simple ASR output such an N-best alternatives we get a comparable performance to the SOTA model that uses a much more informative probability graph such as a word confusion network.</p>
 
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/normalizing-flows-part-2/">
-	<img class="w-100" src="/assets/images/normalising_flow.jpg" alt="Normalizing Flows - Part 2">
-	</a>
-	</div>
+<h1 id="ablation-experiments">Ablation Experiments</h1>
 
-</div>
+<p>Two ablation experiments are performed. One on low data regimes and another to check the impact of the context on performance.</p>
 
+<h2 id="low-data-regime">Low Data Regime</h2>
 
-        
+<p>Here, the baseline models are compared with our approach using 5%, 10%, 20% and 50% of the training data respectively. In all these situations our approach beats SOTA by a considerable margin, proving that our training approach effectively transfer learns. We hypothesise, that this is due to the structural similarity between the input representations of the initial training of these open sourced models and the fine-turning that is done on DSTC-2 dataset. It also demonstrates that n-best alternatives are a more natural representation to fine-tune transformer models compared to word lattices or word confusion networks.</p>
 
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/whats-new-kaldi-serve-10/">What's New in Kaldi-Serve 1.0</a>
-	</h2>
-	<p class="excerpt">
-    Kaldi-Serve is our open source high performance Speech Recognition server framework capable of serving Kaldi ASR models in production...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Mar 25, 2021
-	</small>
-</div>
+<h2 id="context-dependency">Context Dependency</h2>
 
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/whats-new-kaldi-serve-10/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="What's New in Kaldi-Serve 1.0">
-	</a>
-	</div>
+<p>In this experiment we wanted to test the impact of adding context (last turn) to performance and to check if it is relevant at all. An improvement of around ~1.5% F1 score is obtained using context. An example situation where context is relevance is shown below. Dialog context can help in resolving ambiguities in parses and reducing the impact of ASR noise.</p>
 
-</div>
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/context-dependence.jpg" />
+  <figcaption>Fig 3: Example to demonstrate context dependence.</figcaption>
+</center>
+</figure>
 
+<p>Lastly, this methodology can be used by users of third-party ASR APIs which do not provide word-lattice information and thereby is more accessible.</p>
 
-        
+<h1 id="implementation-and-citation">Implementation and Citation</h1>
 
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/new-blog/">Our new Tech blog</a>
-	</h2>
-	<p class="excerpt">
-    We are merging past webpages of our Engineering and ML team in this new, central, Skit Tech page. From here on, this is going to be t...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#engineering">Engineering</a><span class="sep">, </span>
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Feb 28, 2021
-	</small>
-</div>
+<p>The code for the project can be found <a href="https://github.com/skit-ai/N-Best-ASR-Transformer">here</a>.</p>
 
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/new-blog/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Our new Tech blog">
-	</a>
-	</div>
+<p>If you use our work, please cite using the following BibTex Citation:
+‘’’
+    @misc{ganesan2021nbest,
+          title={N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses},
+          author={Karthik Ganesan and Pakhi Bamdev and Jaivarsan B and Amresh Venugopal and Abhinav Tushar},
+          year={2021},
+          eprint={2106.06519},
+          archivePrefix={arXiv},
+          primaryClass={cs.CL}
+    }
+‘’’</p>
 
-</div>
+<h1 id="references-">References :</h1>
+<ul>
+  <li>Tür, G., Deoras, A., &amp; Hakkani-Tür, D. (2013, September). Semantic parsing using word confusion networks with conditional random fields. In <em>INTERSPEECH</em> (pp. 2579-2583).</li>
+  <li>Ganesan, K., Bamdev, P., Venugopal, A., &amp; Tushar, A. (2021). N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses. <em>arXiv preprint arXiv:2106.06519</em>.</li>
+</ul>
 
+			</article>
 
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/emnlp/">EMNLP 2020</a>
-	</h2>
-	<p class="excerpt">
-    Individual summary notes from EMNLP 2020.
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Dec 21, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/emnlp/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="EMNLP 2020">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/normalizing-flows/">Normalizing Flows - Part 1</a>
-	</h2>
-	<p class="excerpt">
-    Normalizing flows, popularized by (Rezende, &amp; Mohamed, 2015), are techniques used in machine learning to transform simple probabi...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Dec 19, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/normalizing-flows/">
-	<img class="w-100" src="/assets/images/normalising_flow.jpg" alt="Normalizing Flows - Part 1">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/interspeech/">Interspeech 2020</a>
-	</h2>
-	<p class="excerpt">
-    We recently attended the all remote Interspeech 2020. Each of us made notes on what they did overall. But instead of posting those or...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Dec 01, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/interspeech/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Interspeech 2020">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-        <div class="mt-5">
-         <!-- Pagination links -->
+            <!-- Mailchimp Subscribe Form -->
             
-            <ul class="pagination">
-              
-                <li class="page-item disabled"><span class="prev page-link">&laquo;</span></li>
-              
-
-              
-                
-                <li class="page-item disabled"><span class="webjeda page-link">1</span></li>
-                
-              
-                
-                <li class="page-item"><a class="page-link" href="/page2">2</a></li>
-                
-              
-
-              
-                <li class="page-item"><a class="page-link" href="/page2">Next &raquo;</a></li>
-              
-            </ul>
-            
-        </div>
-
-    </div>
-
-    <div class="col-md-4">
-        <div class="sticky-top sticky-top-offset">
-    <h4 class="font-weight-bold spanborder"><span>Featured</span></h4>  
-    <ol class="list-featured">				
-                        
-            <li class="mb-4">
-            <span>
-                <h6 class="font-weight-bold">
-                    <a href="/interspeech/" class="text-dark">Interspeech 2020</a>
-                </h6>
-                <span class="d-block text-muted">
-                    In <span class="catlist">
-                    
-                    <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-                    
-                    </span>
-                </span>
-            </span>
-            </li>                
-           
-    </ol>
-</div> 
-    </div>
-
-</div>
-
-
-
+		</div>
+	</div>
 </div>
 
     </main>
@@ -978,6 +588,9 @@ function lunr_search(term) {
 
     
 
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
 
     <!-- Footer -->
