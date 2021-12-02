@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-11-30T17:59:11+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/on-using-asr-alternatives-for-a-better-slu/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/on-using-asr-alternatives-for-a-better-slu</id><content type="html" xml:base="/on-using-asr-alternatives-for-a-better-slu/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in &lt;a href=&quot;https://2021.aclweb.org/&quot;&gt;ACL-IJCNLP’21&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-12-02T05:59:57+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/on-using-asr-alternatives-for-a-better-slu/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/on-using-asr-alternatives-for-a-better-slu</id><content type="html" xml:base="/on-using-asr-alternatives-for-a-better-slu/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in &lt;a href=&quot;https://2021.aclweb.org/&quot;&gt;ACL-IJCNLP’21&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
@@ -53,6 +53,15 @@ User (actually said): right now
 
 &lt;p&gt;On top of the transformer model a semantic tuple classifier (STC) is applied to predict the act-slot-value triplets. Using this approach, we achieve a performance equivalent to the prior state-of-the-art model on DSTC-2 dataset. We get comparable F1 and SOTA accuracy. The previous SOTA model, WCN-BERT uses word confusion networks.&lt;/p&gt;
 
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/n-best-asr/model-architecture.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 3: Model Architecture, The input representation is encoded by a transformer model which forms an
+input for a Semantic Tuple Classifier (STC). STC uses binary classifiers to predict the presence of act-slot pairs,
+followed by a multi-class classifier that predicts the value for each act-slot pair.&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
 &lt;p&gt;Here, using a simple ASR output such an N-best alternatives we get a comparable performance to the SOTA model that uses a much more informative probability graph such as a word confusion network.&lt;/p&gt;
 
 &lt;h1 id=&quot;ablation-experiments&quot;&gt;Ablation Experiments&lt;/h1&gt;
@@ -70,7 +79,7 @@ User (actually said): right now
 &lt;figure&gt;
 &lt;center&gt;
   &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/n-best-asr/context-dependence.jpg&quot; /&gt;
-  &lt;figcaption&gt;Fig 3: Example to demonstrate context dependence.&lt;/figcaption&gt;
+  &lt;figcaption&gt;Fig 4: Example to demonstrate context dependence.&lt;/figcaption&gt;
 &lt;/center&gt;
 &lt;/figure&gt;
 
