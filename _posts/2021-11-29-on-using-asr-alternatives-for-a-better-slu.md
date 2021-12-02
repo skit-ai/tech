@@ -65,6 +65,15 @@ The central idea of the paper is to leverage pre-trained transformer models BERT
 
  On top of the transformer model a semantic tuple classifier (STC) is applied to predict the act-slot-value triplets. Using this approach, we achieve a performance equivalent to the prior state-of-the-art model on DSTC-2 dataset. We get comparable F1 and SOTA accuracy. The previous SOTA model, WCN-BERT uses word confusion networks.
 
+<figure>
+<center>
+  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/model-architecture.png"/>
+  <figcaption>Fig 3: Model Architecture, The input representation is encoded by a transformer model which forms an
+input for a Semantic Tuple Classifier (STC). STC uses binary classifiers to predict the presence of act-slot pairs,
+followed by a multi-class classifier that predicts the value for each act-slot pair.</figcaption>
+</center>
+</figure> 
+
  Here, using a simple ASR output such an N-best alternatives we get a comparable performance to the SOTA model that uses a much more informative probability graph such as a word confusion network.
 
 # Ablation Experiments
@@ -82,7 +91,7 @@ In this experiment we wanted to test the impact of adding context (last turn) to
 <figure>
 <center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/context-dependence.jpg"/>
-  <figcaption>Fig 3: Example to demonstrate context dependence.</figcaption>
+  <figcaption>Fig 4: Example to demonstrate context dependence.</figcaption>
 </center>
 </figure>
 
