@@ -1,13 +1,18 @@
 ---
-title: "Research Demo"
+title: "Emotional TTS"
 layout: page
 permalink: "/explore/emotional-tts"
 fancy_audio_player: True
 ---
 
-# Emotional TTS
-<br/>
-## Reference Audio from the Training Data
+Using our rich Emotional TTS system, we deliver the right tonality and superior
+customer experience in our dialog systems. This page showcases a sample of
+emotional presets and variations from our synthesizer.
+
+<br>
+
+## Reference Audios
+These are audio files from the training data.
 
 <!-- {% fancy_audio https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/tc2_emotions/TC2_0_angry.wav %} -->
 
@@ -139,7 +144,9 @@ fancy_audio_player: True
 
 
 <br/>
-## Synthesized Audio from the Skit's Emotional TTS
+## Synthesized Audios
+
+These are audios synthesized from Skit's Emotional TTS system.
 
 <br/>
 <p><b>Audio 1 :</b> <em>The swan dive was far short of perfect.</em> </p>

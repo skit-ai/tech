@@ -5,7 +5,7 @@ permalink: "/explore"
 ---
 <script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
 
-Explore Speech Technologies from Skit. _More items coming soon_.
+Explore Speech Technologies from Skit.
 
 <br>
 
