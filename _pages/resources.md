@@ -4,15 +4,50 @@ layout: page
 permalink: "/resources.html"
 ---
 
-# Projects
+Datasets, reading resources, and other artifacts. For technology demos go to the
+[Explore](/explore.html) tab.
 
 <br>
 
+## Library
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <p>
+      Collection of our readings and notes on ML, Speech, NLP, and Technology in
+      general. We organize various reading sessions and seminars internally.
+      This page keeps publicly accessible notes and lists from those.
+    </p>
+
+    <ul>
+      <li><a href="https://www.zotero.org/groups/2198932/skit/library" target="_blank"><u>Zotero public library</u></a></li>
+      <li><a href="https://skit-ai.github.io/seminars/" target="_blank"><u>Seminars</u></a></li>
+      <li>Old <a href="https://skit-ai.github.io/paper-reading/" target="_blank"><u>Paper Reading Archive</u></a></li>
+    </ul>
+  </div>
+
+  <div class="col-md-4">
+  </div>
+</div>
+
+---
+
+## `WIP` Problems and Ideas
+
+Open problem statements and idea pages.
+
+---
+
+## `WIP` Publications
+
+...
+
+---
+
+## Projects
 Here is a selection of projects from our [<u>GitHub
 portfolio</u>](https://github.com/skit-ai/). [<u>Subscribe to our
 blog</u>](/feed.xml) to stay updated on upcoming items.
-
-<br>
 
 [![skit-ai/kaldi-serve - GitHub](https://gh-card.dev/repos/skit-ai/kaldi-serve.svg)](https://github.com/skit-ai/kaldi-serve) [![skit-ai/dialogy - GitHub](https://gh-card.dev/repos/skit-ai/dialogy.svg)](https://github.com/skit-ai/dialogy)
 
@@ -28,6 +63,6 @@ blog</u>](/feed.xml) to stay updated on upcoming items.
 
 ---
 
-# Datasets
+## `WIP` Datasets
 
-WIP
+...
