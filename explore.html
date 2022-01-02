@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Explore" />
 <script type="application/ld+json">
-{"description":"Speech Technology from Skit","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@type":"WebPage","url":"/explore.html","headline":"Explore","@context":"https://schema.org"}</script>
+{"description":"Speech Technology from Skit","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@type":"WebPage","url":"/explore","headline":"Explore","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -145,7 +145,7 @@ var documents = [{
     "body": "  Please send your message to {{site. name}}. We will reply as soon as possible!   "
     }, {
     "id": 7,
-    "url": "/explore/emotional-tts.html",
+    "url": "/explore/emotional-tts",
     "title": "Research Demo",
     "body": "Emotional TTS Reference Audio from the Training Data:        Neutral    Happy    Sad    Angry                           Your browser does not support the audio element.                            Your browser does not support the audio element.                               Your browser does not support the audio element.                            Your browser does not support the audio element.                               Your browser does not support the audio element.                            Your browser does not support the audio element.                               Your browser does not support the audio element.                            Your browser does not support the audio element.                    Excited    Apologetic    Fear    Surprise                           Your browser does not support the audio element.                            Your browser does not support the audio element.                               Your browser does not support the audio element.                            Your browser does not support the audio element.                               Your browser does not support the audio element.                            Your browser does not support the audio element.                               Your browser does not support the audio element.                            Your browser does not support the audio element.                    Calm                           Your browser does not support the audio element.                            Your browser does not support the audio element.                 Synthesized Audio from the Skit’s Emotional TTS: Audio 1 : The swan dive was far short of perfect.         Neutral    Happy    Sad    Angry                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Excited    Apologetic    Fear    Surprise                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Calm                           Your browser does not support the audio element.               Audio 2 : The beauty of the view stunned the young boy.         Neutral    Happy    Sad    Angry                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Excited    Apologetic    Fear    Surprise                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Calm                           Your browser does not support the audio element.               Audio 3 : Two blue fish swam in the tank.         Neutral    Happy    Sad    Angry                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Excited    Apologetic    Fear    Surprise                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Calm                           Your browser does not support the audio element.               Audio 4 : Her purse was full of useless trash.         Neutral    Happy    Sad    Angry                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Excited    Apologetic    Fear    Surprise                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Calm                           Your browser does not support the audio element.               Audio 5 : The colt reared and threw the tall rider.         Neutral    Happy    Sad    Angry                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Excited    Apologetic    Fear    Surprise                           Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                               Your browser does not support the audio element.                    Calm                           Your browser does not support the audio element.               "
     }, {
@@ -155,9 +155,9 @@ var documents = [{
     "body": "{% assign category = “Engineering” %}{% assign pages_list = site. categories[category] | slice: 0, 5 %}         This is the home page of the Engineering team at Skit.            Team:    Current members:       {% for member in site. data. teams. engineering %}    {% if member. active %}    {{ member. name }} ({{ member. tenure }})    {% endif %}    {% endfor %}      Past members:       {% for member in site. data. teams. engineering %}    {% unless member. active %}    {{ member. name }} ({{ member. tenure }})    {% endunless %}    {% endfor %}            Recent posts:        {% for post in pages_list %}                      {{ post. title }}            		     {{ post. date | date: '%b %d, %Y' }}	                  {% endfor %}          All posts under Engineering      "
     }, {
     "id": 9,
-    "url": "/explore.html",
+    "url": "/explore",
     "title": "Explore",
-    "body": "Explore Speech Technologies from Skit. WIP. Coming soon. "
+    "body": "Explore Speech Technologies from Skit. More items coming soon.                 Emotional TTS:          Use emotion presets and variations to deliver the right tonality in your     dialog system.                          Work In Progress:          . . .           "
     }, {
     "id": 10,
     "url": "/",
@@ -403,9 +403,50 @@ function lunr_search(term) {
         <div class="container">
 <h3 class="font-weight-bold spanborder"><span>Explore</span></h3>
 <div class="page-content">
-<p>Explore Speech Technologies from Skit.</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
 
-<p>WIP. Coming soon.</p>
+<p>Explore Speech Technologies from Skit. <em>More items coming soon</em>.</p>
+
+<p><br /></p>
+
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <a href="/explore/emotional-tts">
+    <div class="explore-card">
+      <div class="explore-card-banner"></div>
+      <div class="explore-card-content">
+        <h4 class="explore-card-title">Emotional TTS</h4>
+        <div class="explore-card-description">
+          Use emotion presets and variations to deliver the right tonality in your
+          dialog system.
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col-md-4">
+    <div class="explore-card">
+      <div class="explore-card-banner"></div>
+      <div class="explore-card-content">
+        <h4 class="explore-card-title">Work In Progress</h4>
+        <div class="explore-card-description">
+          ...
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('.explore-card').each(function () {
+  let card = $(this)
+  let title = card.find('.explore-card-title').first().text()
+  let pattern = GeoPattern.generate(title)
+  card.find('.explore-card-banner').css('background-image', pattern.toDataUrl())
+})
+</script>
+
 
 </div>
 </div>
