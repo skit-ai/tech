@@ -1,7 +1,7 @@
 ---
 title: "Research Demo"
 layout: page
-permalink: "/explore/emotional-tts.html"
+permalink: "/explore/emotional-tts"
 fancy_audio_player: True
 ---
 
