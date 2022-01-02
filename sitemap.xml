@@ -82,6 +82,9 @@
 <loc>/contact.html</loc>
 </url>
 <url>
+<loc>/explore/emotional-tts.html</loc>
+</url>
+<url>
 <loc>/engineering.html</loc>
 </url>
 <url>
@@ -101,9 +104,6 @@
 </url>
 <url>
 <loc>/tags.html</loc>
-</url>
-<url>
-<loc>/demo/tts-demo.html</loc>
 </url>
 <url>
 <loc>/authors/anirudhdagar/</loc>
