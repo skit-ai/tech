@@ -20,9 +20,9 @@ Datasets, reading resources, and other artifacts. For technology demos go to the
     </p>
 
     <ul>
-      <li><a href="https://www.zotero.org/groups/2198932/skit/library" target="_blank"><u>Zotero public library</u></a></li>
-      <li><a href="https://skit-ai.github.io/seminars/" target="_blank"><u>Seminars</u></a></li>
-      <li>Old <a href="https://skit-ai.github.io/paper-reading/" target="_blank"><u>Paper Reading Archive</u></a></li>
+      <li><a href="https://www.zotero.org/groups/2198932/skit/library" target="_blank">Zotero public library</a></li>
+      <li><a href="https://skit-ai.github.io/seminars/" target="_blank">Seminars</a></li>
+      <li>Old <a href="https://skit-ai.github.io/paper-reading/" target="_blank">Paper Reading Archive</a></li>
     </ul>
   </div>
 
@@ -45,9 +45,9 @@ Open problem statements and idea pages.
 ---
 
 ## Projects
-Here is a selection of projects from our [<u>GitHub
-portfolio</u>](https://github.com/skit-ai/). [<u>Subscribe to our
-blog</u>](/feed.xml) to stay updated on upcoming items.
+Here is a selection of projects from our [GitHub
+portfolio](https://github.com/skit-ai/). [Subscribe to our blog](/feed.xml) to
+stay updated on upcoming items.
 
 [![skit-ai/kaldi-serve - GitHub](https://gh-card.dev/repos/skit-ai/kaldi-serve.svg)](https://github.com/skit-ai/kaldi-serve) [![skit-ai/dialogy - GitHub](https://gh-card.dev/repos/skit-ai/dialogy.svg)](https://github.com/skit-ai/dialogy)
 

@@ -81,6 +81,9 @@ article .h6 {
     $card-radius: 4px;
     border-radius: $card-radius;
     box-shadow: 2px 2px 15px #cccccc;
+    a {
+        text-decoration: none !important;
+    }
     .explore-card-banner {
         height: 150px;
         border-radius: $card-radius $card-radius 0 0;
@@ -88,4 +91,10 @@ article .h6 {
     .explore-card-content {
         padding: 20px;
     }
+}
+
+/* Fix for link visibility */
+.page-content a,
+.page-content a:hover {
+    text-decoration: underline;
 }

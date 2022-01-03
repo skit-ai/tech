@@ -11,8 +11,8 @@ Explore Speech Technologies from Skit.
 
 <div class="row justify-content-center">
   <div class="col-md-4">
-    <a href="/explore/emotional-tts">
     <div class="explore-card">
+    <a href="/explore/emotional-tts">
       <div class="explore-card-banner"></div>
       <div class="explore-card-content">
         <h4 class="explore-card-title">Emotional TTS</h4>
@@ -21,8 +21,8 @@ Explore Speech Technologies from Skit.
           dialog system.
         </div>
       </div>
-    </div>
     </a>
+    </div>
   </div>
 
   <div class="col-md-4">
