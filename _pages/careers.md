@@ -12,7 +12,7 @@ permalink: "/careers"
 
 Yea, not the first time we have said this, I have given up on it at least for
 the main website or other places. tech website we can do it ourselves whatever
-we find good (which means throwing away the recruiterbox thing also**
+we find good (which means throwing away the recruiterbox thing also)
 
 **person-1** doing ourselves only. This time will happen. I will do a PR.
 
