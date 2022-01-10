@@ -25,6 +25,21 @@ Explore Speech Technologies from Skit.
     </div>
   </div>
 
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="explore-card">
+      <a href="/explore/voice-cloning">
+        <div class="explore-card-banner"></div>
+        <div class="explore-card-content">
+          <h4 class="explore-card-title">Voice Cloning</h4>
+          <div class="explore-card-description">
+            Voice cloning enables one to generate synthesised speech in their voice using minimal data.
+          </div>
+        </div>
+      </a>
+      </div>
+    </div>
+
   <div class="col-md-4">
     <div class="explore-card">
       <div class="explore-card-banner"></div>
