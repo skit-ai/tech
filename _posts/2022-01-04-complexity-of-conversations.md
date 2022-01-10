@@ -40,14 +40,28 @@ difficulty of doing so, and third about the algorithms and their complexities.
 
 ## Success
 
-Conversations could be of many kinds along with their success definitions. A
-regular goal oriented conversation with user initiation has a really simple
-success definition. For example, a call with user asking for temperature of a
-place can be called successful if the information is provided.
+Different kinds of conversations would have different success definitions. Most
+of these depend on alignment between goals of the two parties.
 
-In other cases paths like this that appear reasonable might not be the _most
-desired_ outcomes. Consider a situation where you are selling a product on call.
-TODO ...
+A regular goal oriented conversation with user initiation has a really simple
+success definition. For example, a call with user asking for temperature of a
+place can be called successful if the information is provided. The metric here
+could be simple something like the following:
+
+$$ \text{Resolution%} = \frac{\text{Calls where user goals were met}}{\text{Total calls}} $$
+
+This simple formulation becomes tricky as the alignment between user and bot
+goals becomes inexact. For example when the _bot is calling_ the user for
+payment reminders, it might not just want to remind and collect a snooze time,
+but also want to persuade the users to pay as early as possible. In such cases,
+you might want to use another rate of favorable outcomes:
+
+$$ \text{Favorable%} = \frac{\text{Calls with favorable outcomes}}{\text{Resolved calls}} $$
+
+Another example where this works is in _argumentative_ conversations where
+holding a reasonable conversation and reaching conclusion is important
+(_resolution_), winning the argument (the favorable outcome) is the key part of
+_success_.
 
 ## Difficulty
 
