@@ -25,7 +25,6 @@ Explore Speech Technologies from Skit.
     </div>
   </div>
 
-  <div class="row">
     <div class="col-sm-4">
       <div class="explore-card">
       <a href="/explore/voice-cloning">
@@ -40,7 +39,6 @@ Explore Speech Technologies from Skit.
     </div>
   </div>
 
-  <div class="row">
     <div class="col-sm-4">
       <div class="explore-card">
       <a href="/explore/natural-tts">
@@ -54,6 +52,7 @@ Explore Speech Technologies from Skit.
       </a>
     </div>
   </div>
+</div>
 
 <script>
 $('.explore-card').each(function () {
