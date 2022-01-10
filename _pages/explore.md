@@ -10,7 +10,7 @@ Explore Speech Technologies from Skit.
 <br>
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-sm-4">
     <div class="explore-card">
     <a href="/explore/emotional-tts">
       <div class="explore-card-banner"></div>
@@ -26,7 +26,7 @@ Explore Speech Technologies from Skit.
   </div>
 
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-sm-4">
       <div class="explore-card">
       <a href="/explore/voice-cloning">
         <div class="explore-card-banner"></div>
@@ -40,6 +40,20 @@ Explore Speech Technologies from Skit.
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="explore-card">
+      <a href="/explore/natural-tts">
+        <div class="explore-card-banner"></div>
+        <div class="explore-card-content">
+          <h4 class="explore-card-title">Natural TTS</h4>
+          <div class="explore-card-description">
+            We have state of the art performance in Naturalness for a TTS system.
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
 
 <script>
 $('.explore-card').each(function () {
