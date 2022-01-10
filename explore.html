@@ -151,7 +151,7 @@ var documents = [{
     "id": 9,
     "url": "/explore",
     "title": "Explore",
-    "body": "Explore Speech Technologies from Skit.                 Emotional TTS:          Use emotion presets and variations to deliver the right tonality in your     dialog system.                                   Voice Cloning:            Voice cloning enables one to generate synthesised speech in their voice using minimal data.                               Work In Progress:          . . .           "
+    "body": "Explore Speech Technologies from Skit.                 Emotional TTS:          Use emotion presets and variations to deliver the right tonality in your     dialog system.                                   Voice Cloning:            Voice cloning enables one to generate synthesised speech in their voice using minimal data.                "
     }, {
     "id": 10,
     "url": "/",
@@ -408,8 +408,8 @@ function lunr_search(term) {
 
 <p><br /></p>
 
-<div class="row justify-content-center">
-  <div class="col-md-4">
+<div class="row">
+  <div class="col-md-3">
     <div class="explore-card">
     <a href="/explore/emotional-tts">
       <div class="explore-card-banner"></div>
@@ -424,8 +424,8 @@ function lunr_search(term) {
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-md-4">
+  <div class="row">
+    <div class="col-md-3">
       <div class="explore-card">
       <a href="/explore/voice-cloning">
         <div class="explore-card-banner"></div>
@@ -436,21 +436,9 @@ function lunr_search(term) {
           </div>
         </div>
       </a>
-      </div>
-    </div>
-
-  <div class="col-md-4">
-    <div class="explore-card">
-      <div class="explore-card-banner"></div>
-      <div class="explore-card-content">
-        <h4 class="explore-card-title">Work In Progress</h4>
-        <div class="explore-card-description">
-          ...
-        </div>
-      </div>
     </div>
   </div>
-</div>
+
 
 <script>
 $('.explore-card').each(function () {
@@ -460,7 +448,7 @@ $('.explore-card').each(function () {
   card.find('.explore-card-banner').css('background-image', pattern.toDataUrl())
 })
 </script>
-</div>
+</div></div>
 
 </div>
 </div>
