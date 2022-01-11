@@ -19,7 +19,7 @@ article blockquote {
 }
 
 article blockquote::before {
-  content: "";
+  content: "" !important;
 }
 
 hr {
