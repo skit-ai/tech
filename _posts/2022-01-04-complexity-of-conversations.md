@@ -98,7 +98,7 @@ statements like the following:
 
 This is non-surprising and is mappable to the statistical learning problem. What
 is interesting is to see how we go ahead and define these classes and frameworks
-which we do in a later post.
+which we will do in a later post.
 
 [^1]: The sibling system could be non-existent, or backend human agents who can
     take over the more co plex conversations, or complex parts of running
