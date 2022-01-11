@@ -80,7 +80,11 @@ article .h6 {
 .explore-card {
     $card-radius: 4px;
     border-radius: $card-radius;
-    box-shadow: 2px 2px 15px #cccccc;
+
+    box-shadow: 0 4px 12px 0 rgba(0,0,0,0.05);
+    -webkit-box-shadow: 0 4px 12px 0 rgba(0,0,0,0.05);
+    -moz-box-shadow: 0 4px 12px 0 rgba(0,0,0,0.05);
+
     a {
         text-decoration: none !important;
     }
