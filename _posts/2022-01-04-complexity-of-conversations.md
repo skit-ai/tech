@@ -70,11 +70,14 @@ conversation can be rated for difficulty. Here are a few factors that drive
 difficulty for a turn:
 
 1. Knowledge needed for understanding an entity. This could be general or
-   specific to a situation, involving a connection with a dynamic or static
+   specific to a situation, involving connection with a dynamic or static
    knowledge source.
 2. Speech Acts. Simpler acts like _greeting_ are easier to handle, while
    something like _pleading_ is hard.
-3. Expression complexity, either intentional or unintentional.
+3. Expression complexity, intentional or unintentional. For speech systems, this
+   is even more varied because of the richness of acoustic signals that adds to
+   the underlying text. For example sarcasm could be expressed by changing the
+   tone of speech and not just via textual constructs.
 
 But these are not sufficient since higher order behaviors across multiple turns
 also make conversations difficult. As an example, consider negotiation for the
