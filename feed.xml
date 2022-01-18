@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-11T13:51:54+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/on-using-asr-alternatives-for-a-better-slu/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/on-using-asr-alternatives-for-a-better-slu</id><content type="html" xml:base="/on-using-asr-alternatives-for-a-better-slu/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in &lt;a href=&quot;https://2021.aclweb.org/&quot;&gt;ACL-IJCNLP’21&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-18T13:05:19+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Complexity of Conversations - I</title><link href="/complexity-of-conversations/" rel="alternate" type="text/html" title="Complexity of Conversations - I" /><published>2022-01-18T00:00:00+00:00</published><updated>2022-01-18T00:00:00+00:00</updated><id>/complexity-of-conversations</id><content type="html" xml:base="/complexity-of-conversations/">&lt;p&gt;Consider a restaurant booking voice bot built using a frames and slots approach.
+While this can easily &lt;em&gt;solve the problem&lt;/em&gt; of booking with high automation
+accuracy, such slot-filling framework can’t carry on a meaningful conversation
+in a debate unless you over-engineer the frames and slots to monstrous
+complexity. Booking a restaurant is a form of conversation that’s innately
+simpler than arguing with someone in a debate competition. We can roughly say
+that these two conversations lie in different complexity classes. In this first
+post of a series, we will lay down a few factors that will help us define a map
+of conversations arranged according to their complexities.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;At Skit we build many kinds of task-oriented dialog systems for call center
+automation. A very crude categorization of such systems, for us, is based on the
+interaction with a sibling call handling system&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and the direction of
+intention, user or agent initiation.&lt;/p&gt;
+
+&lt;p&gt;While we have used multiple approaches to measure difficulty of conversations
+for our product delivery purposes, it’s interesting to see if a purer framework
+could be built around this. Similar to computational complexity, this can tell
+us which problems are tractable under an algorithm. It can also help in
+identifying the path towards the next generation of human machine conversational
+systems.&lt;/p&gt;
+
+&lt;p&gt;We will cover a few thoughts around a few core constructs of the framework next.
+First is the definition of success in a conversation, second around the
+difficulty of doing so, and third about the algorithms and their complexities.&lt;/p&gt;
+
+&lt;h2 id=&quot;success&quot;&gt;Success&lt;/h2&gt;
+
+&lt;p&gt;The definition of success of a conversation depends on alignment between goals
+of the involved parties.&lt;/p&gt;
+
+&lt;p&gt;A regular goal oriented conversation with user initiation has a simple success
+definition. For example, a call with user asking for temperature of a place can
+be called successful if the temperature is provided. The metric here could be
+something like the following:&lt;/p&gt;
+
+\[\text{Resolution%} = \frac{\text{Calls where user goals were met}}{\text{Total calls}}\]
+
+&lt;p&gt;This simple formulation becomes tricky as the alignment between user and bot
+goals becomes inexact. For example when the &lt;em&gt;bot is calling&lt;/em&gt; the user for
+payment reminders, it might not just want to remind and collect next reminder
+time, but also want to persuade the users to pay as early as possible. In such
+cases, you might want to use another rate for &lt;em&gt;favorable outcomes&lt;/em&gt;:&lt;/p&gt;
+
+\[\text{Favorable%} = \frac{\text{Calls with favorable outcomes}}{\text{Resolved calls}}\]
+
+&lt;p&gt;Another example where this works is in &lt;em&gt;argumentative&lt;/em&gt; conversations where
+holding a reasonable conversation and reaching conclusion is important
+(&lt;em&gt;resolution&lt;/em&gt;), but winning the argument (the favorable outcome) is what defines
+success.&lt;/p&gt;
+
+&lt;h2 id=&quot;difficulty&quot;&gt;Difficulty&lt;/h2&gt;
+
+&lt;p&gt;We can look at difficulty of conversations from multiple levels. For the
+smallest unit of dialog, a turn&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, parsing and generating every utterance in a
+conversation can be rated for difficulty. Here are a few factors that drive
+difficulty for a turn:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Knowledge needed for understanding an entity. This could be general or
+specific to a situation, involving connection with a dynamic or static
+knowledge source.&lt;/li&gt;
+  &lt;li&gt;Speech Acts. Simpler acts like &lt;em&gt;greeting&lt;/em&gt; are easier to handle, while
+something like &lt;em&gt;pleading&lt;/em&gt; is hard.&lt;/li&gt;
+  &lt;li&gt;Expression complexity, intentional or unintentional. For speech systems, this
+is even more varied because of the richness of acoustic signals that adds to
+the underlying text. For example sarcasm could be expressed by changing the
+tone of speech and not just via textual constructs.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;But these are not sufficient since higher order behaviors across multiple turns
+also make conversations difficult. As an example, consider negotiation for the
+price in a market. In this situation, you need to use the conversational context
+across turns to decide your next steps in a way that’s harder than situations
+where context dependency is lesser.&lt;/p&gt;
+
+&lt;h2 id=&quot;algorithms&quot;&gt;Algorithms&lt;/h2&gt;
+
+&lt;p&gt;The frameworks of developing, and running, voice bots are the last pieces that
+will help us to map out the tractability of problems. A common method in the
+industry is the frame-filling model that roughly needs learning &lt;em&gt;intents&lt;/em&gt; and
+&lt;em&gt;entities&lt;/em&gt; for each utterance.&lt;/p&gt;
+
+&lt;p&gt;These frameworks, or algorithms, can be measured on their resource consumption.
+We can start with sample complexity of conversations as the resource and create
+statements like the following:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Under framework \(f\), you need an order of \(N\) data points to supervise a
+voice bot of class \(k\) to achieve a success rate of \(R(N)\)&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This can be mapped to the statistical learning problem and abstractions can be
+translated from there.&lt;/p&gt;
+
+&lt;p&gt;Having set the groundwork here, we will tackle the more interesting problem of
+complexity class definitions in a later post.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;The sibling system could be non-existent, or backend human agents who can
+take over the more co plex conversations, or complex parts of running
+conversations. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;We can cover backchannel events also in a kind of &lt;em&gt;background&lt;/em&gt; turn. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Including the other factors around PAC learning. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><summary type="html">Consider a restaurant booking voice bot built using a frames and slots approach. While this can easily solve the problem of booking with high automation accuracy, such slot-filling framework can’t carry on a meaningful conversation in a debate unless you over-engineer the frames and slots to monstrous complexity. Booking a restaurant is a form of conversation that’s innately simpler than arguing with someone in a debate competition. We can roughly say that these two conversations lie in different complexity classes. In this first post of a series, we will lay down a few factors that will help us define a map of conversations arranged according to their complexities.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/on-using-asr-alternatives-for-a-better-slu/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/on-using-asr-alternatives-for-a-better-slu</id><content type="html" xml:base="/on-using-asr-alternatives-for-a-better-slu/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in &lt;a href=&quot;https://2021.aclweb.org/&quot;&gt;ACL-IJCNLP’21&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
@@ -1007,75 +1121,4 @@ from a Gaussian?&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1908.09257.pdf&quot;&gt;Normalizing Flows: An Introduction and Review of Current Methods&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html#vae--flows&quot;&gt;Flow-based Deep Generative Models&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=3KUvxIOJD0k&amp;amp;ab_channel=PascalPoupart&quot;&gt;Lecture on NFs by Priyank Jaini&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">Normalizing flows, popularized by (Rezende, &amp;amp; Mohamed, 2015), are techniques used in machine learning to transform simple probability distribution functions into complicated ones. One of the popular use cases is in generative modelling - an unsupervised learning method - where the goal is to model a probability distribution given samples drawn from that distribution.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/normalising_flow.jpg" /><media:content medium="image" url="/assets/images/normalising_flow.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Interspeech 2020</title><link href="/interspeech/" rel="alternate" type="text/html" title="Interspeech 2020" /><published>2020-12-01T00:00:00+00:00</published><updated>2020-12-01T00:00:00+00:00</updated><id>/interspeech</id><content type="html" xml:base="/interspeech/">&lt;p&gt;We recently attended the all remote &lt;a href=&quot;http://www.interspeech2020.org/&quot;&gt;Interspeech
-2020&lt;/a&gt;. Each of us made notes on what they did
-overall. But instead of posting those or going with a
-what-we-think-about-the-conference style post, we thought to just ask the team
-what interested them the most in a few sentences. Here are the individual
-responses:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://lepisma.xyz/&quot;&gt;Abhinav&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I really liked the &lt;a href=&quot;https://zerospeech.com/&quot;&gt;ZeroSpeech&lt;/a&gt; challenge. As usual,
-they had few really interesting unsupervised problems and solutions. I find
-their tracks really ambitious as evident by this statement on their website
-“… infants learn to speak their native language, spontaneously, from raw
-sensory input, without supervision from text or linguists. It should be
-possible to do the same in machines”.&lt;/p&gt;
-
-  &lt;p&gt;Next year, 2021, the &lt;a href=&quot;https://zerospeech.com/2021/news.html&quot;&gt;target is Spoken Language
-Modeling&lt;/a&gt;. Looking forward to that too.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://ltbringer.github.io/blog/&quot;&gt;Amresh&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The Meta Learning Tutorial on day 1 was a detailed session on the topic. The
-promise of performing well on a set of task(s) with less amount of data had my
-attention. The authors take care of introduction, utility and comparison of
-this approach and its impact on tasks like speaker verification, keyword
-spotting, Emotion Recognition and my special interest conversational AI.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/janaab11/&quot;&gt;Manas&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;A new thing here was Computational Paralinguistics, that covers the
-non-content parts of speech. Given my interest in the stylistic parts of
-speech, this was particularly interesting. Papers presented many ideas
-relevant to building a better voicebot, like - uncertainty aware methods for
-multiple labels, Autism Quotient as a perception feature, and predicting CSAT
-scores from sentiment.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/pskrunner14&quot;&gt;Prabhsimran&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Interspeech had some great sessions, from discussions on more fundamental
-concepts related to Speech Processing in the Brain, Phonetics and Phonology to
-novel ideas on Training Strategies for ASR like Semantic Word Masking,
-Efficient Vocoder implementations for faster Neural Waveform Synthesis and
-Automatic Prosody Analysis for Non-Semantic Speech Representations. It helped
-me connect alot of dots and exposed me to some great ideas we should be
-exploring in our work.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.linkedin.com/in/kaustavtamuly/&quot;&gt;Kaustav&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I really liked attending the Speech Emotion Recognition tracks. The tracks
-covered a multitude of topics including self-supervised learning methods,
-non-semantic representations, etc. It was overall, a very balanced track with
-a lot of interaction among the attendees and the presenters. The speech signal
-representation track was pretty fun too with some really interesting papers on
-voice casting, universal non-semantic representations.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><category term="featured" /><category term="conference" /><summary type="html">We recently attended the all remote Interspeech 2020. Each of us made notes on what they did overall. But instead of posting those or going with a what-we-think-about-the-conference style post, we thought to just ask the team what interested them the most in a few sentences. Here are the individual responses:</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">Normalizing flows, popularized by (Rezende, &amp;amp; Mohamed, 2015), are techniques used in machine learning to transform simple probability distribution functions into complicated ones. One of the popular use cases is in generative modelling - an unsupervised learning method - where the goal is to model a probability distribution given samples drawn from that distribution.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/normalising_flow.jpg" /><media:content medium="image" url="/assets/images/normalising_flow.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
