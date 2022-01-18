@@ -1,6 +1,6 @@
 ---
 title: Complexity of Conversations - I
-date: 2022-01-04
+date: 2022-01-18
 tags: []
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
@@ -10,14 +10,14 @@ latex: True
 ---
 
 Consider a restaurant booking voice bot built using a frames and slots approach.
-While this can easily solve the problem with high automation accuracy, such
-slot-filling framework can't carry on a meaningful conversation in a debate
-unless you over-engineer the frames and slots to monstrous complexity. Booking a
-restaurant is a form of conversation that's innately simpler than arguing with
-someone in a debate competition. We can roughly say that these two conversations
-lie in different complexity classes. In this first post of a series, we will lay
-down a few factors that will help us define a map of conversations arranged
-according to their complexities.
+While this can easily _solve the problem_ of booking with high automation
+accuracy, such slot-filling framework can't carry on a meaningful conversation
+in a debate unless you over-engineer the frames and slots to monstrous
+complexity. Booking a restaurant is a form of conversation that's innately
+simpler than arguing with someone in a debate competition. We can roughly say
+that these two conversations lie in different complexity classes. In this first
+post of a series, we will lay down a few factors that will help us define a map
+of conversations arranged according to their complexities.
 
 ---
 
@@ -92,16 +92,18 @@ will help us to map out the tractability of problems. A common method in the
 industry is the frame-filling model that roughly needs learning _intents_ and
 _entities_ for each utterance.
 
-These frameworks or algorithms can be measured on their resource consumption. We
-can start with sample complexity of conversations as the resource and create
+These frameworks, or algorithms, can be measured on their resource consumption.
+We can start with sample complexity of conversations as the resource and create
 statements like the following:
 
 > Under framework $$f$$, you need an order of $$N$$ data points to supervise a
 > voice bot of class $$k$$ to achieve a success rate of $$R(N)$$[^3].
 
-This is non-surprising and is mappable to the statistical learning problem. What
-is interesting is to see how we go ahead and define these classes and frameworks
-which we will do in a later post.
+This can be mapped to the statistical learning problem and abstractions can be
+translated from there.
+
+Having set the groundwork here, we will tackle the more interesting problem of
+complexity class definitions in a later post.
 
 [^1]: The sibling system could be non-existent, or backend human agents who can
     take over the more co plex conversations, or complex parts of running
