@@ -1,4 +1,179 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-18T13:05:19+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Complexity of Conversations - I</title><link href="/complexity-of-conversations/" rel="alternate" type="text/html" title="Complexity of Conversations - I" /><published>2022-01-18T00:00:00+00:00</published><updated>2022-01-18T00:00:00+00:00</updated><id>/complexity-of-conversations</id><content type="html" xml:base="/complexity-of-conversations/">&lt;p&gt;Consider a restaurant booking voice bot built using a frames and slots approach.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-22T03:18:13+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Evaluating an ASR in a Spoken Dialogue System</title><link href="/evaluating-an-asr-in-a-spoken-dialogue-system/" rel="alternate" type="text/html" title="Evaluating an ASR in a Spoken Dialogue System" /><published>2022-01-21T00:00:00+00:00</published><updated>2022-01-21T00:00:00+00:00</updated><id>/evaluating-an-asr-in-a-spoken-dialogue-system</id><content type="html" xml:base="/evaluating-an-asr-in-a-spoken-dialogue-system/">&lt;p&gt;An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent.&lt;/p&gt;
+
+&lt;p&gt;The ASR module takes as input a spoken utterance and outputs the most likely transcription. Most ASR’s output multiple alternatives with certain confidence scores. Some ASR’s including Kaldi’s implementations output N-Best alternatives in an order not necessarily reflective of the confidence. Some ASR systems output likelihood information of word sequences in the form of word-lattices or confusion networks [1] with probability information.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-wer-&quot;&gt;What is WER ?&lt;/h2&gt;
+
+&lt;p&gt;Word Error Rate measures the transcription errors, treating words as the smallest unit. It takes 2 inputs, the actual transcript and a hypothesis transcript.&lt;/p&gt;
+
+&lt;p&gt;There are two types of WER:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Isolated word recognition (IWR-WER)&lt;/li&gt;
+  &lt;li&gt;Connected Speech Recognition (CSR-WER)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Isolated Word Recognition WER&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This considers the words in isolation and is not based on any alignment. It simply measures the number of non-hits.&lt;/p&gt;
+
+\[IWR-WER = 1-\frac{H}{N}\]
+
+&lt;p&gt;where,&lt;br /&gt;
+H = number of hits&lt;br /&gt;
+N = total matched I/O words&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Connected Speech Recognition WER&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is calculated on the basis of alignment and uses the Levenshtein distance for words which measures the minimum edit distance. This is efficiently calculated using dynamic programming. It calculates the best alignment which minimises the number of substitutions, insertions and deletions necessary to map the actual transcript to the hypothesis transcript, giving equal weight to all the operations. WER is not input/output symmetric, as N is the total number of words in the actual transcripts.&lt;/p&gt;
+
+\[CSR-WER = (I+S+D)/(N)\]
+
+&lt;p&gt;where,
+I = insertions&lt;br /&gt;
+S = substitutions&lt;br /&gt;
+D = deletions&lt;br /&gt;
+N = total number of words in the actual transcript&lt;/p&gt;
+
+&lt;p&gt;An example calculation of the best alignment to calculate the CSR WER is shown below.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/evaluating-asr/wer.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 1: Taken from Speech and Language Processing by Jurafsky and Martin [2].&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The CSR WER for the above hypothesis is = (6+3+1)/13 = 0.77&lt;/p&gt;
+
+&lt;p&gt;The upper bound of CSR WER is not 1, but \(\frac{max(N1, N2)}{N1}\) where N1 is length of true transcripts and N2 is length of hypothesis transcript.&lt;/p&gt;
+
+&lt;h2 id=&quot;statistical-significance-of-wer-&quot;&gt;Statistical Significance of WER ?&lt;/h2&gt;
+
+&lt;p&gt;Improvements in WER’s over a test set is one of the standard ways of evaluating upgrades in an ASR. Often, what is missed out is in this evaluation is whether the gain is statistically significant or not. One of the standard statistical tests is the Matched-Pair Sentence Segment Word Error (MAPSSWE) test, introduced in Gillick and Cox (1989) [2]. For an example on how to calculate the statistic, consult the book by Jurafsky.&lt;/p&gt;
+
+&lt;h2 id=&quot;issues-with-wer&quot;&gt;Issues with WER&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It gives the same importance to words like “a”, “the” compared to verbs and nouns that carry more semantic value.&lt;/li&gt;
+  &lt;li&gt;WER is a purely 1 : 1 transcript based metric, and doesn’t take into account the rich output of ASR systems like alternatives or word lattices.&lt;/li&gt;
+  &lt;li&gt;The concept of edit-distance that WER is based on is appropriate for a dictation machine where the additional cost is that of correcting the transcripts rather than applications where communicating the meaning is of primary importance&lt;/li&gt;
+  &lt;li&gt;It doesn’t take into account the performance of an ASR in the context of the dialogue pipeline. For example if a higher WER makes no difference in the information retrieval for the downstream SLU then is the improvement worth it ?
+    &lt;ul&gt;
+      &lt;li&gt;An example of a context dependent metric is discussed in [4].&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;It is not a true % based metric, because it has no upper bound therefore it doesn’t tell you how good a system is, but only that one is better than another. Even for the later, it provides only a heuristic for ranking of performance.
+    &lt;ul&gt;
+      &lt;li&gt;Consider two ASR systems, ASR-1 that replaces 2 wrong words for every word it listens too, and another ASR system that replaces 1 wrong word for every word it listens to. Both communicate zero information, but the WER for ASR-1 is 2 and the WER for ASR-1 is 1. This 50% difference in WER is not reflective of performance, since both the systems communicate no correct information whatsoever.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;debunking-conventional-wisdom&quot;&gt;Debunking Conventional Wisdom&lt;/h2&gt;
+
+&lt;p&gt;One might assume that better ASR’s improve the performance of all downstream SLU systems. A paper in 2003 [7] found this was not always the case.  Their model had a 17% better slot accuracy despite a 46% worse WER performance. They have this gain by using a SLU model as the language model for speech recognition. Therefore it is not necessary that an oracular ASR will solve downstream inaccuracies. It is important to be aware that there might be non-linear correlations in metrics for the ASR vs the downstream task.&lt;/p&gt;
+
+&lt;h2 id=&quot;wer-variants&quot;&gt;WER Variants:&lt;/h2&gt;
+
+&lt;p&gt;A few WER variants are discussed below.&lt;/p&gt;
+
+&lt;p&gt;Metrics that look at a different granularity than that of words :
+&lt;em&gt;**&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Sentence Error Rate (SER)&lt;/strong&gt; : The percentage of sentences with at least one word error.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Character Error Rate (CER) :&lt;/strong&gt; Similar as WER with the smallest units as characters and not words&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The next two error rates are variations of WER, are are bounded between [0,1].&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Match Error Rate (MER)&lt;/strong&gt; [3] : Measures the probability of a given match being incorrect.&lt;/li&gt;
+&lt;/ul&gt;
+
+\[MER = \frac{I+S+D}{I+S+D+H} = 1 - \frac{H}{I+S+D+H}\]
+
+&lt;p&gt;where,&lt;br /&gt;
+H = number of hits
+N = total number of words in the actual transcript&lt;/p&gt;
+
+&lt;p&gt;MER is always &amp;lt;= WER.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Word Information Lost&lt;/strong&gt; &lt;strong&gt;(WIL)&lt;/strong&gt; [3] : Information theoretic measure based on entropy. For more details look at the paper.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Example values, comparing WER, MER and WIL are shown below:&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/evaluating-asr/mer.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 2: Taken from [3].&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Note : For implementations of WER, WIL, and MER, have a look at &lt;a href=&quot;https://pypi.org/project/jiwer/&quot;&gt;Jiwer&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;additional-error-analysis&quot;&gt;Additional Error Analysis&lt;/h2&gt;
+
+&lt;p&gt;Apart from looking at just single metrics for evaluating an ASR there are few additional metrics that one should use to evaluate a goal oriented ASR deployed for a given application:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Which speaker demographic is most often misrecognised ?&lt;/li&gt;
+  &lt;li&gt;What (context-dependent) phones are least well recognised ?&lt;/li&gt;
+  &lt;li&gt;Which words are most confused ? Generate a confusion matrix of confused words.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These often help prioritise improvements in terms of what might benefit the goal the most.&lt;/p&gt;
+
+&lt;h1 id=&quot;semantics-based-metrics&quot;&gt;Semantics based Metrics&lt;/h1&gt;
+
+&lt;p&gt;WER doesn’t look at the meaning of what has been transcribed despite the fact that is the semantics that are most relevant in an ASR that is a part of a spoken dialogue system.&lt;/p&gt;
+
+&lt;h2 id=&quot;concept-accuracy&quot;&gt;Concept accuracy&lt;/h2&gt;
+
+&lt;p&gt;It is a simple metric that looks at the accuracy of the concepts that are of relevance in the transcripts.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;br /&gt;
+Reference - I want to go from Boston to Baltimore on September 29
+Hypothesis - Go from Boston to Baltimore on December 29&lt;/p&gt;
+
+&lt;p&gt;The WER is \(45\%\). However if one looks at concept accuracy, it is 2/3. Out of the 3 concepts : “Boston”, “Baltimore” and “September 29” it gets 2 of them right.&lt;/p&gt;
+
+&lt;h2 id=&quot;wer-with-embeddings&quot;&gt;WER with embeddings&lt;/h2&gt;
+
+&lt;p&gt;In &lt;a href=&quot;https://hal.archives-ouvertes.fr/hal-01350102/file/metrics_correlation_asr-smt.pdf&quot;&gt;this paper&lt;/a&gt; [9] they look at augmenting the WER metric for an ASR that is used for a Spoken Language Translation (SLT) task.&lt;/p&gt;
+
+&lt;p&gt;They argue that some morphological operations, like adding a plural doesn’t impact the translation task and that such substitution errors should be penalised differently. To decide which ones to penalise they use word embeddings. They call their new metric, WER-E i.e. WER with embeddings. The only change in this metric is that the substitution cost in WER is replaced by the cosine distance between the two words, so near identical words get assigned a very low cost.&lt;/p&gt;
+
+&lt;h2 id=&quot;other-metrics&quot;&gt;Other Metrics&lt;/h2&gt;
+
+&lt;p&gt;There are lots of different papers that augment the WER metric or introduce a new metric specific to a downstream task. Mentioning a few of them below :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;In [10] a new measure called Automatic Transcription Evaluation for Named Entity (ATENE) is introduced for the NER downstream task&lt;/li&gt;
+  &lt;li&gt;3 new evaluation metrics are introduced in [12], where the downstream application is Information Retrieval&lt;/li&gt;
+  &lt;li&gt;SemDist metric is introduced in [13] for downstream SLU&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Downstream applications aside, it is quite pertinent to evaluate and benchmarks ASR across different social and demographic groups to evaluate bias and fairness. Systems don’t exist in isolation from the society in which they are deployed in and it is important that ML Engineers pay head to such metrics while deploying ASRs.&lt;/p&gt;
+
+&lt;h2 id=&quot;references-&quot;&gt;References :&lt;/h2&gt;
+
+&lt;p&gt;[1] : &lt;a href=&quot;https://arxiv.org/abs/2106.06519&quot;&gt;N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses&lt;/a&gt; (2021)
+[2] &lt;a href=&quot;https://web.stanford.edu/~jurafsky/slp3/&quot;&gt;Speech and Language Processing (3rd ed. draft)&lt;/a&gt; by &lt;a href=&quot;http://web.stanford.edu/people/jurafsky/&quot;&gt;Dan Jurafsky&lt;/a&gt; and &lt;a href=&quot;http://www.cs.colorado.edu/~martin/&quot;&gt;James H. Martin&lt;/a&gt;
+[3] : &lt;a href=&quot;https://www.researchgate.net/profile/Phil-Green-4/publication/221478089_From_WER_and_RIL_to_MER_and_WIL_improved_evaluation_measures_for_connected_speech_recognition/links/00b4951f95799284d9000000/From-WER-and-RIL-to-MER-and-WIL-improved-evaluation-measures-for-connected-speech-recognition.pdf&quot;&gt;From WER and RIL to MER and WIL: improved evaluation measures for connected speech recognition&lt;/a&gt; (2004)
+[4] : &lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.412.4023&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;Automatic Human Utility Evaluation of ASR Systems: Does WER Really Predict Performance&lt;/a&gt;? (2013)
+[5] : http://www.cs.columbia.edu/~julia/courses/CS4706/asreval.pdf
+[6] : &lt;a href=&quot;https://dl.acm.org/doi/pdf/10.1145/3447548.3467372&quot;&gt;Meaning Error Rate: ASR domain-specific metric framework&lt;/a&gt; (2021)
+[7] : &lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.89.424&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;Is word error rate a good indicator for spoken language understanding accuracy&lt;/a&gt; (2003)
+[8] : &lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S1877050918302187&quot;&gt;Automatic speech recognition errors detection and correction: A review&lt;/a&gt; (2015)
+[9] : &lt;a href=&quot;https://hal.archives-ouvertes.fr/hal-01350102/file/metrics_correlation_asr-smt.pdf&quot;&gt;Better Evaluation of ASR in Speech Translation Context Using Word Embeddings&lt;/a&gt; (2016)
+[10] : &lt;a href=&quot;https://www.isca-speech.org/archive_v0/interspeech_2015/papers/i15_1289.pdf&quot;&gt;How to Evaluate ASR Output for Named Entity Recognition ?&lt;/a&gt; (2015)
+[11] : &lt;a href=&quot;https://ieeexplore.ieee.org/abstract/document/5947637&quot;&gt;Why word error rate is not a good metric for speech recognizer training for the speech translation task?&lt;/a&gt; (2011)
+[12] : &lt;a href=&quot;https://d1wqtxts1xzle7.cloudfront.net/44281782/Evaluating_ASR_Output_for_Information_Re20160331-31804-1u2wdv8.pdf?1459484689=&amp;amp;response-content-disposition=inline%3B+filename%3DEvaluating_ASR_Output_for_Information_Re.pdf&amp;amp;Expires=1641991659&amp;amp;Signature=DMkXBKRcISYtsJw2M6l9P4Lth-0ZEF6plQyHD08TWaIhRZSaZdFCmtTagKLx7YMLGX~ZxvQtgiQe4EHJcZ-aGL5DiUh3Vfztn7feWDMZF~bEgFMluedYI6Jq39t0BBd2mVJjuUVCVtx1-S--pH89PQ9aFcfpbSH4W88uytgZHwXyZyeR9tIVzM45lblIVeFtvVNwREc6jmm1ijW4ir0lGbGlfI2DoLXwyYFM6pltQHngtoVtAfBrBF3XOMB2AwXA0hQkSDlO0v~iwletUK1o3xBdmb6MrK47A7nt8TlO9xFB33RA8hrN-KnafvJGdhI-Or8Ic2HN4cWlXvr~2uetNg__&amp;amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA#page=19&quot;&gt;Evaluating ASR Output for Information Retrieval&lt;/a&gt; (2007)
+[13] : &lt;a href=&quot;https://arxiv.org/pdf/2104.02138.pdf&quot;&gt;Semantic Distance: A New Metric for ASR Performance Analysis Towards Spoken Language Understanding&lt;/a&gt; (2021)
+[14] : &lt;a href=&quot;https://aclanthology.org/W13-4064.pdf&quot;&gt;Which ASR should I choose for my dialogue system?&lt;/a&gt; (2013)
+[15] : &lt;a href=&quot;https://arxiv.org/pdf/2010.11745.pdf&quot;&gt;Rethinking evaluation in ASR : Are out models robust enough ?&lt;/a&gt; (2021)&lt;/p&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="WER" /><summary type="html">An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/evaluating-asr.jpg" /><media:content medium="image" url="/assets/images/evaluating-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Complexity of Conversations - I</title><link href="/complexity-of-conversations/" rel="alternate" type="text/html" title="Complexity of Conversations - I" /><published>2022-01-18T00:00:00+00:00</published><updated>2022-01-18T00:00:00+00:00</updated><id>/complexity-of-conversations</id><content type="html" xml:base="/complexity-of-conversations/">&lt;p&gt;Consider a restaurant booking voice bot built using a frames and slots approach.
 While this can easily &lt;em&gt;solve the problem&lt;/em&gt; of booking with high automation
 accuracy, such slot-filling framework can’t carry on a meaningful conversation
 in a debate unless you over-engineer the frames and slots to monstrous
@@ -908,217 +1083,4 @@ improvements on silent speech. There were a lot of papers and workshops on
 interpretability of models which is essential considering the direction where
 the field is heading and the gather sessions did a good job of ensuring one
 doesn’t miss out on the social aspects of attending a conference.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Kumarmanas Nethil</name></author><category term="Machine Learning" /><category term="conference" /><summary type="html">Individual summary notes from EMNLP 2020.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Normalizing Flows - Part 1</title><link href="/normalizing-flows/" rel="alternate" type="text/html" title="Normalizing Flows - Part 1" /><published>2020-12-19T00:00:00+00:00</published><updated>2020-12-19T00:00:00+00:00</updated><id>/normalizing-flows</id><content type="html" xml:base="/normalizing-flows/">&lt;p&gt;Normalizing flows, popularized by &lt;a href=&quot;https://arxiv.org/abs/1505.05770&quot;&gt;(Rezende, &amp;amp; Mohamed,
-2015)&lt;/a&gt;, are techniques used in machine
-learning to transform simple probability distribution functions into
-complicated ones. One of the popular use cases is in generative modelling - an
-unsupervised learning method - where the goal is to model a probability
-distribution given samples drawn from that distribution.&lt;/p&gt;
-
-&lt;h2 id=&quot;why-bother-about-normalizing-flows&quot;&gt;Why bother about normalizing flows?&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;They have been used in many TTS (text-to-speech) models, memorably in the
-&lt;a href=&quot;http://proceedings.mlr.press/v80/oord18a/oord18a.pdf&quot;&gt;Parallel WaveNet
-model&lt;/a&gt; (2017) where a
-clever application of normalizing flows resulted in a 1000 times faster
-generation of audio samples in comparison to the original
-&lt;a href=&quot;https://arxiv.org/abs/1609.03499&quot;&gt;WaveNet&lt;/a&gt; model. The Parallel WaveNet model
-was also deployed on Google assistant for real-time generation of audio.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Normally a back-propagation pass requires the activation value for each
-neuron to be stored in memory. This places a restriction on training deeper,
-wider models on single GPU’s(since GPU’s have limited memory) and forces one
-to use small batch sizes during training. In flow based networks, one does
-not need to store the activations at all, as they can be &lt;a href=&quot;https://ameroyer.github.io/reading-notes/architectures/2019/05/07/the_reversible_residual_network.html&quot;&gt;reconstructed
-online&lt;/a&gt;
-during the back-propagation. This property was leveraged in the &lt;a href=&quot;https://arxiv.org/abs/1707.04585&quot;&gt;RevNets
-paper&lt;/a&gt; (2017) which uses invertible
-residual blocks. Reducing the memory cost of storing activations
-significantly improve the ability to efficiently train wider and deeper
-networks.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/2005.05957.pdf&quot;&gt;Flowtron&lt;/a&gt; (2020), an autoregressive
-flow based TTS model does a kind of representation learning using normalizing
-flows to learn an invertible mapping from a data space to a latent space
-which can be manipulated to control many aspects of speech synthesis (pitch,
-tone, speech rate, cadence, accent). Flowtron matches state-of-the-art TTS
-models in terms of speech quality and is able to transfer speech
-characteristics from a source speaker to a target speaker, making the target
-speaker sound more expressive.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;If you’ve ever thought about reversible networks, Normalizing flows do
-precisely that. Reversibility of flows also means that one can trivially
-encode images into the latent space for editing. They also have cool
-mathematical applications, for example their use in &lt;a href=&quot;https://arxiv.org/pdf/1806.07366.pdf&quot;&gt;Neural ODE
-solvers&lt;/a&gt; (2019.) which use continuous
-normalizing flows.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;brief-introduction&quot;&gt;Brief Introduction&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Definition&lt;/em&gt;&lt;/strong&gt;&lt;em&gt;:&lt;/em&gt; A Normalizing Flow is a transformation of a simple
-probability distribution into a more complex distribution by a sequence of
-invertible and differentiable mappings.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;&lt;em&gt;Note&lt;/em&gt;&lt;/strong&gt;: The above formalism is a simplification, for a more precise
-definition one can consult [5]. The formalism allows piecewise continuous
-functions to be used in the construction of the flow which the above
-definition restricts.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Normalizing&lt;/strong&gt; since the transformed distribution needs to be normalized by
-the change of variables formula (discussed below). &lt;strong&gt;Flow&lt;/strong&gt; refers to the
-series of invertible transformations which are composed with each other to
-create more complex invertible transformations.&lt;/p&gt;
-
-&lt;p&gt;When applied as density estimators, some NFs provide a general way of
-constructing &lt;strong&gt;flexible&lt;/strong&gt; probability distributions over continuous random
-variables starting from a simple probability distribution. By constraining the
-transformations to be invertible, Flow-based models provide a tractable method
-to calculate the exact likelihood for a wide variety of generative modeling
-problems.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Efficient inference and efficient synthesis:&lt;/strong&gt; Autoregressive models, such as
-the &lt;a href=&quot;https://arxiv.org/pdf/1606.05328.pdf&quot;&gt;PixelCNN&lt;/a&gt;, are also reversible,
-however synthesis from such models is difficult to parallelize, and typically
-inefficient on parallel hardware. Flow-based generative models like
-&lt;a href=&quot;https://arxiv.org/abs/1807.03039&quot;&gt;Glow&lt;/a&gt; (and RealNVP) are efficient to
-parallelize for both training and synthesis.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Exact latent-variable inference:&lt;/strong&gt; Within the class of exact likelihood
-models, normalizing flows provide two key advantages: model flexibility and
-generation speed. Flows have been explored both to increase the flexibility of
-the variational posterior in the context of variational autoencoders (VAEs),
-and directly as a generative model.  With VAEs, one is able to infer only
-approximately the value of the latent variables that correspond to a datapoint.
-GAN’s have no encoder at all to infer the latents. In flow based generative
-models, this can be done exactly without approximation. Not only does this lead
-to accurate inference, it also enables optimization of the exact log-likelihood
-of the data, instead of a lower bound of it.&lt;/p&gt;
-
-&lt;h2 id=&quot;mathematical-framework&quot;&gt;Mathematical Framework&lt;/h2&gt;
-
-&lt;p&gt;Let, \(z_0\) be a continuous random variable belonging to a simple probability distribution \(p_\theta(z_0)\) . Let it be a Gaussian with parameters \((\mu, \sigma) = (0,1)\).&lt;/p&gt;
-
-\[z_0 \sim p_\theta (z_0) = N(z_0;0,1)\]
-
-&lt;p&gt;Normalizing flows transforms the simple distribution, into a desired output probability distribution with random variable \(x\), with a sequence of invertible transformations, \(f_i's\).&lt;/p&gt;
-
-\[z_k = f_\theta (z_0) = f_k...f_2.f_1(z_0) \text{ s.t. each $f_i$ is invertible (bijective)}\]
-
-&lt;p&gt;The composition of all the individual flows is represented by \(f_\theta\). Since each \(f_i\) is bijective, so is \(f_\theta\). The new density \(p_\theta (z_k)\) is called a &lt;em&gt;push forward&lt;/em&gt; of the initial density \(p_\theta(z_0)\) by the function \(f_\theta.\)&lt;/p&gt;
-
-&lt;p&gt;An example of a transformation obtained by a normalizing flow is shown below, which transforms a base gaussian distribution into a target multi-modal distribution with the help of a bijective function.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/normalizing_flow.jpg&quot; /&gt;
-  &lt;figcaption&gt;Fig 1: The transformation of a base distribution into a target distribution using a bijective function f.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The constrains of a distribution being a probability distribution is that \(\int p_\theta (z_0) =1\). However, this doesn’t hold after applying a bijective function (for intuition consider \(f_1 : z \rightarrow z^3\)).&lt;/p&gt;
-
-&lt;h2 id=&quot;change-of-variables-formula&quot;&gt;Change of Variables Formula&lt;/h2&gt;
-
-&lt;p&gt;Consider the normalizing flow \(f_1 : Z_0 \rightarrow Z_1\).  If we want the probability distribution of the random variable \(z_1 \sim Z_1\), we need to consider the &lt;em&gt;change of variables formula&lt;/em&gt; derived below.&lt;/p&gt;
-
-&lt;p&gt;Consider the event \(z_0 \sim Z\), mapped to \(z_1 \sim Z_1\) s.t. \(f_1(z_0) = z_1\). Since, the mapping is bijective, the probabilities of the events are the same. Therefore,&lt;/p&gt;
-
-\[p_\theta(z_1)*\partial z_1 = p_\theta(z_0)*\partial z_0\]
-
-\[p_\theta(z_1) = p_\theta(z_0)* \frac{\partial z_0}{\partial z_1}\]
-
-\[p_\theta(z_1) = p_\theta(z_0)* |\frac{\partial z_0}{\partial z_1}|\]
-
-&lt;p&gt;(since probabilities are always &amp;gt; 0)&lt;/p&gt;
-
-\[p_\theta(z_1) = p_\theta(z_0)* |\frac{\partial z_0}{\partial f_1(z_0)}|\]
-
-&lt;p&gt;(\(z_1 = f_1(z_0)\))&lt;/p&gt;
-
-\[p_\theta(z_1) = p_\theta(z_0)* |\frac{\partial f_1(z_0)}{\partial z_0}|^{-1}\]
-
-&lt;p&gt;In the multivariate case (\(R^D \rightarrow R^D\)) this generalises to:&lt;/p&gt;
-
-\[p_\theta(z_1) = p_\theta(z_0)* |\det(\frac{\partial f_1(z_0)}{\partial z_0})|^{-1}\]
-
-&lt;p&gt;Considering the sequence of compositional transformations \(f_i's\), one obtains:&lt;/p&gt;
-
-\[p_\theta(z_k) = p_\theta(z_0)* \prod_{i=1..k}|\det(\frac{\partial f_i}{\partial z_{i-1}})|^{-1}\]
-
-&lt;p&gt;The term on the right i.e. determinant of the Jacobian accounts for the change
-of \(\delta\) volume induced by the transformation. It serves to normalize the
-transformed distribution locally, after each flow through a transformation,
-hence the name, Normalizing Flows.&lt;/p&gt;
-
-&lt;p&gt;Some Questions at this stage:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The sequence of flows need to be invertible and differentiable. What sort of
-constraints does it introduce in terms of the output distributions that can
-be reached? Are there families of distributions that we can’t reach starting
-from a Gaussian?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;sampling&quot;&gt;Sampling&lt;/h2&gt;
-
-&lt;p&gt;In this case, the bijective functions and the initial distribution are given. Sampling points from the output distribution requires calculating the forward pass, i.e. an efficient calculation of the functions \(f_i's\).&lt;/p&gt;
-
-&lt;h2 id=&quot;density-estimation-using-maximum-likelihood&quot;&gt;Density Estimation using Maximum Likelihood&lt;/h2&gt;
-
-&lt;p&gt;In this case a dataset \(\{a_1, a_2,....,a_n\}\) is provided and the objective is to learn the probability density function \(p_\theta(A)\) to which the points belong. An initial density \(p_\theta(z_0)\) is chosen.&lt;/p&gt;
-
-&lt;p&gt;For each \(a_i\) we have:&lt;/p&gt;
-
-\[p_\theta(a_i) = p_\theta(z_i)* |\det(\frac{\partial f(z_i)}{\partial z_i})|^{-1}\]
-
-&lt;p&gt;where, \(a_i = f(z_i)\)&lt;/p&gt;
-
-\[\prod_{i=1}^n p_\theta(a_i) =\prod_{i=1}^n [p_\theta(z_i)* |\det(\frac{\partial f(z_i)}{\partial z_i})|^{-1}]\]
-
-&lt;p&gt;We need to maximize the above over all possible flows \(f\) to find the flow \(\hat{f}\) that maximizes the probability.&lt;/p&gt;
-
-\[\hat{f} =\text{arg max}_f \text{ }\prod_{i=1}^n [p_\theta(z_i)* |\det(\frac{\partial f(z_i)}{\partial z_i})|^{-1}]\]
-
-&lt;p&gt;Using log likelihood maximization we arrive at:&lt;/p&gt;
-
-\[\hat{f} =\text{arg max}_f \text{ }\sum_{i=1}^n [log(p_\theta(z_i)) - log(|\det(\frac{\partial f(z_i)}{\partial z_i})|)]\]
-
-&lt;p&gt;The equation shown above is used during training for density estimation. However, since we only know \(a_i's\) the only way to find \(z_i's\) which are used, is to find the inverse mapping i.e. \(z_i = f^{-1}(a_i)\) .  So for density estimation and training, the calculation of both the inverse and determinant of the Jacobian are required.&lt;/p&gt;
-
-&lt;p&gt;However, calculating the inverse and the determinant of the Jacobian of a sequence of high dimensional transformations can be very time consuming (for dimensionality \(d\) matrix, both are of complexity \(O(d^3)\)). There are various tricks that are used to reduce the complexity of these two operations, one of the popular ones being the use of triangular maps.&lt;/p&gt;
-
-&lt;h2 id=&quot;triangular-maps&quot;&gt;Triangular maps:&lt;/h2&gt;
-
-&lt;p&gt;Let \(T\) be a normalizing flow, \(T: z \rightarrow x\) where \(x = (x_1, x_2 .... x_d)\) and \(z = (z_1, z_2 .... z_d)\). More generally, one can decompose \(T\) into \(T_1, T_2...T_d\) such that \(x_i = T_i(z_1,z_2.....z_d)\).&lt;/p&gt;
-
-&lt;p&gt;Now if we want to introduce an additional constraint on \(T\) i.e. for \(T\) to be a triangular map, each \(T_j\) should be a function of \((z_1,z_2.....z_j)\) i.e. the first \(j\) elements and not all the \(d\) elements.&lt;/p&gt;
-
-&lt;p&gt;For triangular maps/matrices, both the inverse and the determinant of the jacobian is easy to compute. The jacobian for a triangular map is shown below. The determinant is simply the product of the diagonals and has a complexity of \(O(d)\) instead of \(O(d^3)\). The complexity for the calculation of the inverse is \(O(d^2)\) instead of \(O(d^3)\).&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/jacobian.jpg&quot; /&gt;
-  &lt;figcaption&gt;Fig 2: The jacobian for a triangular map. This is taken from here.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note: For an increasing triangular map, \(\frac {\partial T_i}{\partial z_i} &amp;gt; 0\). This will be useful in Part - 2 where the different types/families of Normalizing flows will be considered.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1908.09257.pdf&quot;&gt;Normalizing Flows: An Introduction and Review of Current Methods&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html#vae--flows&quot;&gt;Flow-based Deep Generative Models&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=3KUvxIOJD0k&amp;amp;ab_channel=PascalPoupart&quot;&gt;Lecture on NFs by Priyank Jaini&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">Normalizing flows, popularized by (Rezende, &amp;amp; Mohamed, 2015), are techniques used in machine learning to transform simple probability distribution functions into complicated ones. One of the popular use cases is in generative modelling - an unsupervised learning method - where the goal is to model a probability distribution given samples drawn from that distribution.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/normalising_flow.jpg" /><media:content medium="image" url="/assets/images/normalising_flow.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/blockquote&gt;</content><author><name>Kumarmanas Nethil</name></author><category term="Machine Learning" /><category term="conference" /><summary type="html">Individual summary notes from EMNLP 2020.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
