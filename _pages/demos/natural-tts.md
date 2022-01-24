@@ -10,11 +10,11 @@ Our TTS has the state of the art results in Naturalness. Below, we present some 
 <br>
 
 ## Conversational Tonality
-
+<br/>
 Our TTS has a very distinct conversational tonality that differentiates it from other TTS vendors in the industry.
-
+<br/>
 ### Example Audio's
-
+<br/>
 <p><b>Text 1 :</b> <em>The whole family gathered around the computer waiting for my sister to come home.</em> </p>
 <table style="width:100%">
       <tr>
@@ -110,11 +110,11 @@ Our TTS has a very distinct conversational tonality that differentiates it from 
 <br/>
 
 ## Filled Pauses
-
+<br/>
 Filled pauses are articulations like "umm", "uh" etc which occur very commonly in human conversations. Out TTS supports filled pauses and generates very natural sounding audios.
-
+<br/>
 ### Example Audio's
-
+<br/>
 <p><b>Text 1 :</b> <em>Uh, i agree with you.</em> </p>
 <table style="width:100%">
       <tr>
@@ -187,11 +187,11 @@ Filled pauses are articulations like "umm", "uh" etc which occur very commonly i
 <br/>
 
 ## Filler Words
-
+<br/>
 Filler words are amongst the most commonly used words in any language. Example words in english are "okay", "alright", "you know" etc. These don't necessarily add any content to the utterance, but have different functional, paralinguistic importance. These often also a specific intonation that are reflective of filler words which is supported by our TTS.
-
+<br/>
 ### Example Audio's
-
+<br/>
 <p><b>Text 1 :</b> <em>Okay. I can do that for you.</em> </p>
 <table style="width:100%">
       <tr>
@@ -287,10 +287,13 @@ Filler words are amongst the most commonly used words in any language. Example w
 <br/>
 
 ## Ellipses
+<br/>
 
 Ellipses are signified by 3 dots("...") and are used often as markers of hesitation, thinking or breaks in conversational flows.
 
+<br/>
 ### Example Audio's
+<br/>
 
 <p><b>Text 1 :</b> <em>Can you just ... hold for a minute</em> </p>
 <table style="width:100%">
