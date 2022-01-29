@@ -1,5 +1,5 @@
 ---
-title: Speech First Conversational AI
+title: Speech-First Conversational AI
 date: 2022-01-21
 tags: []
 categories: [Machine Learning]
@@ -7,55 +7,91 @@ image: assets/images/demo1.jpg
 layout: post
 authors: [lepisma]
 latex: True
+fancy_audio_player: True
 ---
 
-We often get asked this question about why we are ...
-
-Notes copied from another document below.
-
-Conversational AI solves problems of conversations. Most of the systems are
-designed to act as a human equivalent. Text messaging is a relatively new and
-human constructed channel where users are habituated enough to understand the
-processing model and tolerate behaviors stemming from limitations of technology.
-For example if a typographical mistakes leads to wrong prediction, people are
-considerate enough to notice and help them out. The same can't be said for
-speech disfluencies.
+We often get asked about the differences between voice and chat bots. The most
+common perception is that the voice bot problem can be reduced to chat bot after
+plugging in a Speech to Text and Text to Speech system. We believe that's an
+overly naive assumption about spoken conversations, even in goal-oriented dialog
+systems. This post is an attempt to describe the differences involved and define
+what _Speech-First_ Conversational AI means.
 
 > Speech is the most sophisticated behavior of the most complex organism in the
 > known universe. - [source](https://youtu.be/Zy3Ny-WjyGE?t=251)
 
-Speech is much deeply ingrained in human communication and a collective set of
-minor details in how we hold conversations could lead to you violating user
-expectations every moment if your system is not designed well.
+Conversational AI systems solve problems of conversations, either using text or
+voice. Since _conversations_ are specific to humans, there are many
+anthropomorphic expectations from these systems. These expectations, while still
+strong, are less restraining in text conversations as compared to speech. Speech
+is deeply ingrained in human communication and minor misses could lead to
+violation of user expectations. Contrast this with text messaging which is a,
+relatively new, human-constructed channel[^1]. TODO
 
-Here are a few key differences why building speech-first conversation systems is
-complex and involves much more than plugging an ASR and TTS over a text chatbot:
+There are multiple academic sources on difference between speech and text, here
+we will describing a few key differences that we have noticed while building
+speech-first conversation systems:
 
-+ Responsiveness. Inter turn latency between human-human communication is
-  extremely low and there is an unmentioned pact that makes it awkward if one
-  party exceeds a certain time threshold.
-+ Real world ASRs are noisy and the transcription you get might not be
-  reflecting what the user actually said.
-+ [Disfluency](https://en.wikipedia.org/wiki/Speech_disfluency) based errors.
-  Unlike typographic errors, disfluencies are usually not considered as errors
-  and the other party is assumed to be robust to them. In fact, they have a lot
-  of impact on semantics of the utterance.
-+ Speech contains a lot of signals about the user and their utterance, most of
-  which have important contribution in the conversation and are not meaningless
-  redundancies. Scope of and value addition from user personalization is much
-  more here because of similar reasons.
+## Input Signal
+
+In addition to the textual content, speech signals contain information about the
+user's state, trait, and the environment. Speech isn't merely a redundant
+modality, but adds valuable extra information. Different style of uttering the
+same utterance can drastically change the meaning, something that's used a lot
+in human-human conversations.
+
+Additionally, environmental factors including the recording quality, background
+ambience, and audio events impact signals reception and semantics.
+
+Once you go on transcribing audios utterances using ASRs, transcription errors
+will add on to your burden. While ASRs systems are improving day-on-day, there
+still is error potential in handling acoustically similar utterances.
+
+## Conversation Behavior
+
+With all the extra added richness in the signals, the potential of
+personalization and adaptations goes up. A human talking to another human does
+many micro-adaptations including the choice-of-words (common with text
+conversations) and the acoustics of their voices based on the.
+
+### Personalization and adaptations
+
 + Spoken languages tend to form sub-languages that need different approaches of
   processing. A person talking to a voice bot, talks in a different sub-language
   than in a situation where the conversation was with another human, even if the
   query is the same.
-+ Environment has a huge impact on speech signals. This includes the ambience,
-  the device that's doing the recording.
 + Response production has much more stake here as emotional signals and
   tonalities carry important weight.
-+ Working with audios is more difficult than text because of the additional
-  storage and processing complexities.
 
-Working on speech-first dialog systems thus adds to the challenges already
-present in a regular text, turn-based, chatbots.
+Definition of responsiveness is drastically.
+
++ Responsiveness. Inter turn latency between human-human communication is
+  extremely low and there is an unmentioned pact that makes it awkward if one
+  party exceeds a certain time threshold.
+
+Because of the interaction behavior, deviations from _fluent_ speech are not
+just errors but develop their own pragmatic sense. Speech
+[disfluencies](https://en.wikipedia.org/wiki/Speech_disfluency) are commonly
+assumed behaviors of natural conversations and lack of them could even cause
+discomfort.
+
+## Development
+
+Finally, working with audios is more difficult than text because of additional
+and storage processing capabilities needed. Here is an audio utterance for the
+text "1 2 3":
+
+{% fancy_audio /assets/audios/posts/speech-first-conversational-ai/counts.wav %}
+
+```
+❯ file counts.wav  # 48.0 kB (48,044 bytes)
+counts.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 8000 Hz
+```
+
+Compare this with just 6 bytes needed for the string itself (`echo "1 2 3" | wc
+--bytes`).
+
+---
 
 
+[^1]: Epistolary communication aside.
