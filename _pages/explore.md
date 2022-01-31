@@ -58,6 +58,20 @@ Explore Speech Technologies from Skit.
   </div>
 </div>
 
+  <div class="col-sm-4">
+        <div class="explore-card">
+        <a href="/explore/speaker-entrainment">
+          <div class="explore-card-banner"></div>
+          <div class="explore-card-content">
+            <h4 class="explore-card-title">Voice Cloning</h4>
+            <div class="explore-card-description">
+              Speaker entrainment attunes the acoustic features of the bot's speech to the user's speech.
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
 <script>
 $('.explore-card').each(function () {
   let card = $(this)
