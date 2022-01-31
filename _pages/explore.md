@@ -58,13 +58,20 @@ Explore Speech Technologies from Skit.
   </div>
 </div>
 
+<br>
+
+## Behaviors and Personalities
+
+<br>
+
+
 <div class="row">
   <div class="col-sm-4">
     <div class="explore-card">
     <a href="/explore/speaker-entrainment">
       <div class="explore-card-banner"></div>
       <div class="explore-card-content">
-        <h4 class="explore-card-title">Emotional TTS</h4>
+        <h4 class="explore-card-title">Speaker Entrainment</h4>
         <div class="explore-card-description">
           Speaker entrainment attunes the bot to the features in the user's speech.
         </div>
