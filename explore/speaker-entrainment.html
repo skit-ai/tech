@@ -4,21 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home | Skit Tech</title>
+    <title>Speaker Entrainment | Skit Tech</title>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Page 2 of 2 for Home | Skit Tech</title>
+<title>Speaker Entrainment | Skit Tech</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Home" />
+<meta property="og:title" content="Speaker Entrainment" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Speech Technology from Skit" />
 <meta property="og:description" content="Speech Technology from Skit" />
 <meta property="og:site_name" content="Skit Tech" />
-<link rel="prev" href="/" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Home" />
+<meta property="twitter:title" content="Speaker Entrainment" />
 <script type="application/ld+json">
-{"headline":"Home","description":"Speech Technology from Skit","url":"/page2/","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@context":"https://schema.org"}</script>
+{"headline":"Speaker Entrainment","description":"Speech Technology from Skit","url":"/explore/speaker-entrainment","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -421,294 +420,94 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         <div class="container">
+<h3 class="font-weight-bold spanborder"><span>Speaker Entrainment</span></h3>
+<div class="page-content">
+<p>Speaker entrainment is a phenomenon observed in human-human conversations where one interlocutor attunes their speech’s acoustic, lexical and semantic features to the other interlocutor.</p>
 
- <!--endif page url is / -->
+<p>This project aims to create a bot which can entrain on the acoustic features of user’s speech. Incorporating such behavior into bots is known to increase trust, naturalness and likeability, which is likely to increase customer satisfaction and call resolution rate.</p>
 
+<p><br /></p>
 
+<h2 id="baseline-module">Baseline Module</h2>
+<p><br />
+The following audio samples are generated from the Baseline entrainment module, which entrains over pitch (fundamental frequency), intensity (loudness) and rate of articulation.
+<br />
+<br /></p>
 
-<!-- Now the rest of the posts with the usual loop but with an offset:4 on the first page so we can skeep the first 4 posts displayed above -->
+<h3 id="demo-audio-samples">Demo Audio Samples</h3>
+<p><br /></p>
+<p><b>Script-1:</b> Entraining over pitch (fundamental frequency) in this audio sample, entrained performs better. In this script, the pitch of the user is rising and the bot attunes itself to that. </p>
+<table style="width:100%">
+      <tr>
+        <th>Not Entrained</th>
+        <th>Entrained</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 350px;">
+            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&amp;prefix=demo/speaker-entrainment/script-1-non.wav" type="audio/wav" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 350px;">
+            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&amp;prefix=demo/speaker-entrainment/script-1-en.wav" type="audio/wav" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+    </table>
+<hr />
 
-<div class="row mt-3">
+<p><b>Script-2:</b> Entraining over intensity (loudness) and rate of articulation in this audio sample, entrained performs better. In this script, both the intensity and rate of articulation decrease, and the bot attunes itself to that. </p>
+<table style="width:100%">
+      <tr>
+        <th>Not Entrained</th>
+        <th>Entrained</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 350px;">
+            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&amp;prefix=demo/speaker-entrainment/script-8-non.wav" type="audio/wav" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 350px;">
+            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&amp;prefix=demo/speaker-entrainment/script-8-en.wav" type="audio/wav" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+    </table>
+<hr />
 
-    <div class="col-md-8 main-loop">
+<p><b>Script-3:</b> Entraining over intensity and pitch in this audio sample, the non-entrained performs better. In this script, the pitch rises and the intensity falls. This is an example of how stray artefacts can decrease the quality of speaker entrainment modules, since the sharp pitch increase in the last bot-turn makes this exchange fairly unnatural. </p>
+<table style="width:100%">
+      <tr>
+        <th>Not Entrained</th>
+        <th>Entrained</th>
+      </tr>
+      <tr>
+        <th>
+          <audio controls="" style="width: 350px;">
+            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&amp;prefix=demo/speaker-entrainment/script-9-non.wav" type="audio/wav" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+        <th>
+          <audio controls="" style="width: 350px;">
+            <source src="ttps://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&amp;prefix=demo/speaker-entrainment/script-9-en.wav" type="audio/wav" />
+            Your browser does not support the audio element.
+          </audio>
+        </th>
+      </tr>
+    </table>
+<hr />
 
-        <h4 class="font-weight-bold spanborder"><span>All Stories</span></h4>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/normalizing-flows/">Normalizing Flows - Part 1</a>
-	</h2>
-	<p class="excerpt">
-    Normalizing flows, popularized by (Rezende, &amp; Mohamed, 2015), are techniques used in machine learning to transform simple probabi...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Dec 19, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/normalizing-flows/">
-	<img class="w-100" src="/assets/images/normalising_flow.jpg" alt="Normalizing Flows - Part 1">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/interspeech/">Interspeech 2020</a>
-	</h2>
-	<p class="excerpt">
-    We recently attended the all remote Interspeech 2020. Each of us made notes on what they did overall. But instead of posting those or...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Dec 01, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/interspeech/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Interspeech 2020">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/reading-sessions/">Reading Sessions</a>
-	</h2>
-	<p class="excerpt">
-    Studying researches and building on top of them is an important part of what a team of ML Engineers do on a regular basis. Usually, t...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Nov 30, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/reading-sessions/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Reading Sessions">
-	</a>
-	</div>
+<p><br /></p>
 
 </div>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/bad-audio-detection/">Bad Audio Detection</a>
-	</h2>
-	<p class="excerpt">
-    This blog will be a short one, where we’ll talk about our approach on filtering out inscrutable audios from VASR.
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Jul 29, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/bad-audio-detection/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Bad Audio Detection">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/speaker-diarization/">Speaker Diarization</a>
-	</h2>
-	<p class="excerpt">
-    This blog post is based on the work done by Anirudh Dagar as an intern at Skit.ai
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Jul 21, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/speaker-diarization/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Speaker Diarization">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/fast-microservices-with-grpc/">Building Fast and Efficient Microservices with gRPC</a>
-	</h2>
-	<p class="excerpt">
-    Skit.ai processes millions of speech recognition requests every day, and to handle such a load we have focused on building a highly s...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#engineering">Engineering</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Feb 05, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/fast-microservices-with-grpc/">
-	<img class="w-100" src="/assets/images/posts/fast-microservices-with-grpc/highway.png" alt="Building Fast and Efficient Microservices with gRPC">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-            <div class="mb-5 d-flex justify-content-between main-loop-card">
-<div class="pr-3">
-	<h2 class="mb-1 h4 font-weight-bold">
-	<a class="text-dark" href="/repl-conversations/">A REPL for Conversations</a>
-	</h2>
-	<p class="excerpt">
-    A REPL, in programming, is an interactive environment where a programmer can go through the cycle of writing code, getting it Read, E...
-	</p>
-	<small class="d-block text-muted">
-		In <span class="catlist">
-		
-		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-		
-		</span>
-	</small>
-	<small class="text-muted">
-		Jan 30, 2020
-	</small>
-</div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/repl-conversations/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="A REPL for Conversations">
-	</a>
-	</div>
-
-</div>
-
-
-        
-
-        <div class="mt-5">
-         <!-- Pagination links -->
-            
-            <ul class="pagination">
-              
-                <li class="page-item"><a class="page-link" href="/">&laquo; Prev</a></li>
-              
-
-              
-                
-                <li class="page-item"><a class="page-link" href="/">1</a></li>
-                
-              
-                
-                <li class="page-item disabled"><span class="webjeda page-link">2</span></li>
-                
-              
-
-              
-                <li class="page-item disabled"><span class="next page-link">&raquo;</span></li>
-              
-            </ul>
-            
-        </div>
-
-    </div>
-
-    <div class="col-md-4">
-        <div class="sticky-top sticky-top-offset">
-    <h4 class="font-weight-bold spanborder"><span>Featured</span></h4>  
-    <ol class="list-featured">				
-                        
-            <li class="mb-4">
-            <span>
-                <h6 class="font-weight-bold">
-                    <a href="/interspeech/" class="text-dark">Interspeech 2020</a>
-                </h6>
-                <span class="d-block text-muted">
-                    In <span class="catlist">
-                    
-                    <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-                    
-                    </span>
-                </span>
-            </span>
-            </li>                
-           
-    </ol>
-</div> 
-    </div>
-
-</div>
-
-
-
 </div>
 
     </main>
@@ -721,6 +520,8 @@ function lunr_search(term) {
 
     <script src="/assets/js/theme.js"></script>
 
+    
+      <script src="https://unpkg.com/wavesurfer.js"></script>
     
 
     
