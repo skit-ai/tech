@@ -28,13 +28,13 @@ The following audio samples are generated from the Baseline entrainment module, 
       <tr>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&prefix=demo/speaker-entrainment/script-1-non.wav" type="audio/wav">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-1-non.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&prefix=demo/speaker-entrainment/script-1-en.wav" type="audio/wav">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-1-en.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
@@ -51,13 +51,13 @@ The following audio samples are generated from the Baseline entrainment module, 
       <tr>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&prefix=demo/speaker-entrainment/script-8-non.wav" type="audio/wav">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-8-non.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&prefix=demo/speaker-entrainment/script-8-en.wav" type="audio/wav">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-8-en.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
@@ -74,13 +74,13 @@ The following audio samples are generated from the Baseline entrainment module, 
       <tr>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&prefix=demo/speaker-entrainment/script-9-non.wav" type="audio/wav">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-9-non.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
         <th>
           <audio controls style="width: 350px;">
-            <source src="ttps://s3.console.aws.amazon.com/s3/object/p1-tts-experiments?region=ap-south-1&prefix=demo/speaker-entrainment/script-9-en.wav" type="audio/wav">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-9-en.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
