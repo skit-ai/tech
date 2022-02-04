@@ -28,13 +28,13 @@ The following audio samples are generated from the Baseline entrainment module, 
       <tr>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-1-non.wav" type="audio/mpeg">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/demo_cleaned/clean_stitch_non-1.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-1-en.wav" type="audio/mpeg">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/demo_cleaned/clean_stitch_en-1.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
@@ -42,7 +42,7 @@ The following audio samples are generated from the Baseline entrainment module, 
     </table>
 <hr>
 
-<p><b>Script-2:</b> Entraining over intensity (loudness) and rate of articulation in this audio sample, entrained performs better. In this script, both the intensity and rate of articulation decrease, and the bot attunes itself to that. </p>
+<p><b>Script-2:</b> Entraining over rate of articulation in this audio sample, entrained performs better. An excerpt from a user-bot interaction is provided here, where in the entrained version, our bot increases its rate of articulation according to the user. </p>
 <table style="width:100%">
       <tr>
         <th>Not Entrained</th>
@@ -51,13 +51,13 @@ The following audio samples are generated from the Baseline entrainment module, 
       <tr>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-8-non.wav" type="audio/mpeg">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/demo_cleaned/clean_stitch_non-7.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-8-en.wav" type="audio/mpeg">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/demo_cleaned/clean_stitch_en-7.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
@@ -65,7 +65,7 @@ The following audio samples are generated from the Baseline entrainment module, 
     </table>
 <hr>
 
-<p><b>Script-3:</b> Entraining over intensity and pitch in this audio sample, the non-entrained performs better. In this script, the pitch rises and the intensity falls. This is an example of how stray artefacts can decrease the quality of speaker entrainment modules, since the sharp pitch increase in the last bot-turn makes this exchange fairly unnatural. </p>
+<p><b>Script-3:</b> Entraining over intensity in this audio sample, the non-entrained performs better. In this script excerpt, the pitch rises but that is a result of the user being angry since the bot does not understand him, among other factors. The bot becoming louder in response is very detrimental to call resolution in this case, which is why the entrained bot performs worse in this case.</p>
 <table style="width:100%">
       <tr>
         <th>Not Entrained</th>
@@ -74,13 +74,13 @@ The following audio samples are generated from the Baseline entrainment module, 
       <tr>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-9-non.wav" type="audio/mpeg">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/demo_cleaned/clean_stitch_non-5.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
         <th>
           <audio controls style="width: 350px;">
-            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/script-9-en.wav" type="audio/mpeg">
+            <source src="https://p1-tts-experiments.s3.ap-south-1.amazonaws.com/demo/speaker-entrainment/demo_cleaned/clean_stitch_en-5.wav" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
         </th>
