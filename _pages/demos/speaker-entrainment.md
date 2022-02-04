@@ -65,7 +65,7 @@ The following audio samples are generated from the Baseline entrainment module, 
     </table>
 <hr>
 
-<p><b>Script-3:</b> Entraining over intensity in this audio sample, the non-entrained performs better. In this script excerpt, the pitch rises but that is a result of the user being angry since the bot does not understand him, among other factors. The bot becoming louder in response is very detrimental to call resolution in this case, which is why the entrained bot performs worse in this case.</p>
+<p><b>Script-3:</b> Entraining over intensity in this audio sample, the non-entrained performs better. In this script excerpt, the pitch rises but that is a result of the user being angry since the bot does not understand him, among other factors. The bot becoming louder in response is very detrimental to call quality, which is why the entrained bot performs worse in this case.</p>
 <table style="width:100%">
       <tr>
         <th>Not Entrained</th>
