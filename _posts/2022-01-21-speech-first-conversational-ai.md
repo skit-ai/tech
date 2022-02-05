@@ -26,13 +26,14 @@ anthropomorphic expectations from these systems. These expectations, while still
 strong, are less restraining in text conversations as compared to speech. Speech
 is deeply ingrained in human communication and minor misses could lead to
 violation of user expectations. Contrast this with text messaging which is a,
-relatively new, human-constructed channel[^1]. TODO
+relatively new, human-constructed channel[^1] where the expectations are
+different and more lenient.
 
-There are multiple academic sources on difference between speech and text, here
+There are multiple academic sources on differences between speech and text, here
 we will describing a few key differences that we have noticed while building
 speech-first conversation systems:
 
-## Input Signal
+## Signal
 
 In addition to the textual content, speech signals contain information about the
 user's state, trait, and the environment. Speech isn't merely a redundant
@@ -40,40 +41,65 @@ modality, but adds valuable extra information. Different style of uttering the
 same utterance can drastically change the meaning, something that's used a lot
 in human-human conversations.
 
-Additionally, environmental factors including the recording quality, background
-ambience, and audio events impact signals reception and semantics.
+Environmental factors including the recording quality, background ambience, and
+audio events impact signals reception and semantics. Even beyond the immediate
+environment, a lot of socio-cultural factors are embedded in speech beyond the
+level they are in text chats. Because the signals are rich, the depth of few
+common problems is higher. For example there is heavier lifting to be done for
+low-resource and endangered languages in speech as compared to text.
+
+## Noise
 
 Once you go on transcribing audios utterances using ASRs, transcription errors
 will add on to your burden. While ASRs systems are improving day-on-day, there
-still is error potential in handling acoustically similar utterances.
+still is error potential in handling acoustically similar utterances. Overall,
+an entirely new set of problems like far-field ASR, signal enhancement, etc.
+exist in spoken conversations.
 
-## Conversation Behavior
+Additionally many _noisy_ deviations from fluent speech are not mere errors but
+develop their own pragmatic sense and convey strong meaning. Speech
+[disfluencies](https://en.wikipedia.org/wiki/Speech_disfluency) are commonly
+assumed behaviors of natural conversations and lack of them could even cause
+discomfort.
 
-With all the extra added richness in the signals, the potential of
-personalization and adaptations goes up. A human talking to another human does
-many micro-adaptations including the choice-of-words (common with text
-conversations) and the acoustics of their voices based on the.
+## Interaction Behavior
 
-### Personalization and adaptations
+The way humans take turn in spoken conversations ... TODO
 
-+ Spoken languages tend to form sub-languages that need different approaches of
-  processing. A person talking to a voice bot, talks in a different sub-language
-  than in a situation where the conversation was with another human, even if the
-  query is the same.
-+ Response production has much more stake here as emotional signals and
-  tonalities carry important weight.
+Additionally, because of lack of a visual interface to keep the context, user
+recall around dialog history is different and that leads to different flow
+designs.
 
-Definition of responsiveness is drastically.
+An important point in spoken language is the richness of turn taking. The usual
+model in industry is of a synchronous turn-by-turn.
 
 + Responsiveness. Inter turn latency between human-human communication is
   extremely low and there is an unmentioned pact that makes it awkward if one
   party exceeds a certain time threshold.
 
-Because of the interaction behavior, deviations from _fluent_ speech are not
-just errors but develop their own pragmatic sense. Speech
-[disfluencies](https://en.wikipedia.org/wiki/Speech_disfluency) are commonly
-assumed behaviors of natural conversations and lack of them could even cause
-discomfort.
+## Personalization and adaptations
+
+With all the extra added richness in the signals, the potential of
+personalization and adaptations goes up. A human talking to another human does
+many micro-adaptations including the choice-of-words (common with text
+conversations) and the acoustics of their voices based on the ongoing
+conversation.
+
++ Spoken languages tend to form sub-languages that need different approaches of
+  processing. A person talking to a voice bot, talks in a different sub-language
+  than in a situation where the conversation was with another human, even if the
+  query is the same.
+
+## Response Generation
+
+Similar to the section on input _signals_, the output _signal_ from the voice
+bot is also extremely rich. This puts a lot of stake in response production for
+natural conversation. The timing and content of sounds, along with their tones
+impart strong semantic and pragmatic sense to the utterance. Clever use of these
+also drive the conversations in a more fruitful direction for both parties.
+
+Possibilities concerning this area of work is _extremely_ limited in text
+messaging.
 
 ## Development
 
@@ -92,6 +118,10 @@ Compare this with just 6 bytes needed for the string itself (`echo "1 2 3" | wc
 --bytes`).
 
 ---
+
+These differences lead to gaps that are difficult to bridge and that's what
+keeps us busy at Skit. If these problems interest you, you should reach out to
+us on [join@skit.ai](mailto:join@skit.ai).
 
 
 [^1]: Epistolary communication aside.
