@@ -1,4 +1,188 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-04T03:13:17+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Evaluating an ASR in a Spoken Dialogue System</title><link href="/evaluating-an-asr-in-a-spoken-dialogue-system/" rel="alternate" type="text/html" title="Evaluating an ASR in a Spoken Dialogue System" /><published>2022-01-21T00:00:00+00:00</published><updated>2022-01-21T00:00:00+00:00</updated><id>/evaluating-an-asr-in-a-spoken-dialogue-system</id><content type="html" xml:base="/evaluating-an-asr-in-a-spoken-dialogue-system/">&lt;p&gt;An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-06T10:31:42+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Speech-First Conversational AI</title><link href="/speech-first-conversational-ai/" rel="alternate" type="text/html" title="Speech-First Conversational AI" /><published>2022-02-06T00:00:00+00:00</published><updated>2022-02-06T00:00:00+00:00</updated><id>/speech-first-conversational-ai</id><content type="html" xml:base="/speech-first-conversational-ai/">&lt;p&gt;We often get asked about the differences between voice and chat bots. The most
+common perception is that the voice bot problem can be reduced to chat bot after
+plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)
+system. We believe that’s an overly naive assumption about spoken conversations,
+even in restricted goal-oriented dialog systems. This post is an attempt to
+describe the differences involved and define what &lt;em&gt;Speech-First&lt;/em&gt; Conversational
+AI means.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Speech is the most sophisticated behavior of the most complex organism in the
+known universe. - &lt;a href=&quot;https://youtu.be/Zy3Ny-WjyGE?t=251&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Conversational AI systems solve problems of conversations, either using text or
+voice. Since &lt;em&gt;conversations&lt;/em&gt; are specific to humans, there are many
+anthropomorphic expectations from these systems. These expectations, while still
+strong, are less restraining in text conversations as compared to speech. Speech
+is deeply ingrained in human communication and minor misses could lead to
+violation of user expectations. Contrast this with text messaging which is a,
+relatively new, human-constructed channel&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; where expectations are different
+and more lenient.&lt;/p&gt;
+
+&lt;p&gt;There are multiple academic sources on differences between speech and text, here
+we will describing a few key differences that we have noticed while building
+speech-first conversation systems in more practical settings.&lt;/p&gt;
+
+&lt;h2 id=&quot;signal&quot;&gt;Signal&lt;/h2&gt;
+
+&lt;p&gt;In addition to the textual content, speech signals contain information about the
+user’s state, trait, and the environment. Speech isn’t merely a redundant
+modality, but adds valuable extra information. Different style of uttering the
+same utterance can drastically change the meaning, something that’s used a lot
+in human-human conversations.&lt;/p&gt;
+
+&lt;p&gt;Environmental factors like recording quality, background ambience, and audio
+events impact signals’ reception and semantics. Even beyond the immediate
+environment, a lot of socio-cultural factors are embedded in speech beyond the
+level they are in text chats. Because the signals are rich, the difficulty of a
+few common problems across text and speech, like low-resource languages, is
+higher.&lt;/p&gt;
+
+&lt;h2 id=&quot;noise&quot;&gt;Noise&lt;/h2&gt;
+
+&lt;p&gt;Once you go on transcribing audios utterances using ASRs, transcription errors
+will add on to your burden. While ASR systems are improving day-on-day, there
+still is error potential in handling acoustically similar utterances. Overall,
+an entirely new set of problems like far-field ASR, signal enhancement, etc.
+exist in spoken conversations.&lt;/p&gt;
+
+&lt;p&gt;Additionally many &lt;em&gt;noisy&lt;/em&gt; deviations from fluent speech are not mere errors but
+develop their own pragmatic sense and convey strong meaning. Speech
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Speech_disfluency&quot;&gt;disfluencies&lt;/a&gt; are commonly
+assumed behaviors of natural conversations and lack of them could even cause
+discomfort.&lt;/p&gt;
+
+&lt;h2 id=&quot;interaction-behavior&quot;&gt;Interaction Behavior&lt;/h2&gt;
+
+&lt;p&gt;We don’t take turns in a half-duplex manner while talking. Even then, most
+dialog management systems are designed like sequential turn-taking state
+machines where party A says something, then hands over control to party B, then
+takes back after B is done. The way we take turns in true spoken conversations
+is more &lt;em&gt;full-duplex&lt;/em&gt; and that’s where a lot of interesting conversational
+phenomenon happen.&lt;/p&gt;
+
+&lt;p&gt;While conversing, we freely barge-in, attempt corrections, and show other
+backchannel behaviors. When the other party also start doing the same and
+utilizing these both parties can have much more effective and grounded
+conversations.&lt;/p&gt;
+
+&lt;p&gt;Additionally, because of lack of a visual interface to keep the context, user
+recall around dialog history is different and that leads to different flow
+designs.&lt;/p&gt;
+
+&lt;h2 id=&quot;personalization-and-adaptations&quot;&gt;Personalization and adaptations&lt;/h2&gt;
+
+&lt;p&gt;With all the extra added richness in the signals, the potential of
+personalization and adaptations goes up. A human talking to another human does
+many micro-adaptations including the choice-of-words (common with text
+conversations) and the acoustics of their voices based on the ongoing
+conversation.&lt;/p&gt;
+
+&lt;p&gt;Sometimes these adaptations get ossified and form &lt;em&gt;sub-languages&lt;/em&gt; that need
+different approaches of designing conversations. In our experience, people
+talking to voice bots talks in a different sub-language, a relatively
+understudied phenomenon.&lt;/p&gt;
+
+&lt;h2 id=&quot;response-generation&quot;&gt;Response Generation&lt;/h2&gt;
+
+&lt;p&gt;Similar to the section on input &lt;em&gt;signals&lt;/em&gt;, the output &lt;em&gt;signal&lt;/em&gt; from the voice
+bot is also (should also be) extremely rich. This puts a lot of stake in
+response production for natural conversation. The timing and content of sounds,
+along with their tones impart strong semantic and pragmatic sense to the
+utterance. Clever use of these also drive the conversations in a more fruitful
+direction for both parties.&lt;/p&gt;
+
+&lt;p&gt;Possibilities concerning this area of work is &lt;em&gt;extremely&lt;/em&gt; limited in text
+messaging.&lt;/p&gt;
+
+&lt;h2 id=&quot;development&quot;&gt;Development&lt;/h2&gt;
+
+&lt;p&gt;Finally, working with audios is more difficult than text because of additional
+and storage processing capabilities needed. Here is an audio utterance for the
+text “1 2 3”:&lt;/p&gt;
+
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws3 = WaveSurfer.create({
+           container: '#waveform-3',
+           backend: 'MediaElement'
+         });
+         ws3.load('/assets/audios/posts/speech-first-conversational-ai/counts.wav');
+
+         ws3.on('audioprocess', function () {
+           let progressText = ws3.getCurrentTime().toFixed(2) + ' / ' + ws3.getDuration().toFixed(2)
+           document.getElementById('player-progress-3').innerHTML = progressText
+         });
+
+         ws3.on('ready', function () {
+           let progressText = ws3.getCurrentTime().toFixed(2) + ' / ' + ws3.getDuration().toFixed(2)
+           document.getElementById('player-progress-3').innerHTML = progressText
+         });
+
+         ws3.on('finish', function () {
+           let button = $('#controls-3 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-3').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws3.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws3.skipBackward()
+                 break
+               case 'forward':
+                 ws3.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-3&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-3&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-3&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ file counts.wav  # 48.0 kB (48,044 bytes)
+counts.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 8000 Hz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Compare this with just 6 bytes needed for the string itself (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;echo &quot;1 2 3&quot; | wc
+--bytes&lt;/code&gt;).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;These differences lead to gaps that are difficult to bridge and that’s what
+keeps us busy at Skit. If these problems interest you, you should reach out to
+us on &lt;a href=&quot;mailto:join@skit.ai&quot;&gt;join@skit.ai&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Epistolary communication aside. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><summary type="html">We often get asked about the differences between voice and chat bots. The most common perception is that the voice bot problem can be reduced to chat bot after plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS) system. We believe that’s an overly naive assumption about spoken conversations, even in restricted goal-oriented dialog systems. This post is an attempt to describe the differences involved and define what Speech-First Conversational AI means.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Evaluating an ASR in a Spoken Dialogue System</title><link href="/evaluating-an-asr-in-a-spoken-dialogue-system/" rel="alternate" type="text/html" title="Evaluating an ASR in a Spoken Dialogue System" /><published>2022-01-21T00:00:00+00:00</published><updated>2022-01-21T00:00:00+00:00</updated><id>/evaluating-an-asr-in-a-spoken-dialogue-system</id><content type="html" xml:base="/evaluating-an-asr-in-a-spoken-dialogue-system/">&lt;p&gt;An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent.&lt;/p&gt;
 
 &lt;p&gt;The ASR module takes as input a spoken utterance and outputs the most likely transcription. Most ASR’s output multiple alternatives with certain confidence scores. Some ASR’s including Kaldi’s implementations output N-Best alternatives in an order not necessarily reflective of the confidence. Some ASR systems output likelihood information of word sequences in the form of word-lattices or confusion networks [1] with probability information.&lt;/p&gt;
 
@@ -1026,75 +1210,4 @@ Therefore, \(F(x+\delta) - F(x)\) is always &amp;gt;= 0 and hence monotonically 
 Tech page. From here on, this is going to be the main source of updates on
 speech technology work from &lt;a href=&quot;https://skit.ai&quot;&gt;Skit.ai&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Stay tuned to our &lt;a href=&quot;/feed.xml&quot;&gt;rss feed&lt;/a&gt; for updates.&lt;/p&gt;</content><author><name>Abhinav Tushar</name></author><category term="Engineering" /><category term="Machine Learning" /><category term="sticky" /><summary type="html">We are merging past webpages of our Engineering and ML team in this new, central, Skit Tech page. From here on, this is going to be the main source of updates on speech technology work from Skit.ai.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">EMNLP 2020</title><link href="/emnlp/" rel="alternate" type="text/html" title="EMNLP 2020" /><published>2020-12-21T00:00:00+00:00</published><updated>2020-12-21T00:00:00+00:00</updated><id>/emnlp</id><content type="html" xml:base="/emnlp/">&lt;p&gt;Individual summary notes from &lt;a href=&quot;https://2020.emnlp.org/&quot;&gt;EMNLP 2020&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://ltbringer.github.io/blog&quot;&gt;Amresh&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;I have recently been following the branch of model explainability for practical
-purposes. I was delighted to know EMNLP was experiencing a surge of similar
-research. I encountered Minumum Description Length (MDL) as a measure to
-understand a model’s ability to capture linguistic properties. The core idea
-being changing the probing task of identifying labels to transmitting data.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/karthik19967829&quot;&gt;Karthik&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The Dialogue and Interactive systems track in EMNLP was very interesting and
-introduced novel techniques and approaches to some of the ML problems that I am
-currently working on for example, MAD-X: a framework for effective transfer
-learning to new languages using adapter base architecture , TOD-BERT:
-Pre-training Transformer LMs on open-source dialogue data-sets for better
-few-short learning capability this could be helpful to mitigate cold-start
-problem of SLU module. Also the generative approach based papers for dialogue
-state tracking were an interesting approach that might have few-shot learning
-capability as compared to discriminative ones.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/lohith-anandan&quot;&gt;Lohith&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;“Productising” ML Models has become one of the primary answers for most of the
-complex problem we face in day to day life, and explaining how they work, has
-become a bigger concern. I was happy to see a lot of papers and demos in that
-direction, like the LIT tool, which helps both the developer and the user to
-understand the underlying workings of an ML model and how it looks at each input
-and how they help in the decision making process. I was glad to see a lot of
-papers working with various NLP techniques for better and efficient Health Care
-for people, which we can all say is more important than ever, given what we have
-seen this year.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/janaab11&quot;&gt;Manas&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The Insights from Negative Results in NLP, Workshop was a highlight for me. It
-revolved around ideas of what an interesting question is and how to connect
-ideas that didn’t work out. These questions feel central to our research efforts
-in-team, and the keynotes offered a rewarding and scientific route to exploring
-open problems in speech tech.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/swarajdalmia&quot;&gt;Swaraj&lt;/a&gt; says&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The papers i liked from this year’s EMNLP were : “Incremental Processing in the
-Age of Non-Incremental Encoders” by Madureira, B., &amp;amp; Schlangen, D (2020), which
-was similar to how humans incrementally process natural language and provided a
-way to probe the workings of transformer encoders; and “Digital Voicing of
-Silent Speech” by Gaddy, D., &amp;amp; Klein, D. (2020) which was presented very well
-and i felt they did a good job modelling the EMG features and got good
-improvements on silent speech. There were a lot of papers and workshops on
-interpretability of models which is essential considering the direction where
-the field is heading and the gather sessions did a good job of ensuring one
-doesn’t miss out on the social aspects of attending a conference.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Kumarmanas Nethil</name></author><category term="Machine Learning" /><category term="conference" /><summary type="html">Individual summary notes from EMNLP 2020.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Stay tuned to our &lt;a href=&quot;/feed.xml&quot;&gt;rss feed&lt;/a&gt; for updates.&lt;/p&gt;</content><author><name>Abhinav Tushar</name></author><category term="Engineering" /><category term="Machine Learning" /><category term="sticky" /><summary type="html">We are merging past webpages of our Engineering and ML team in this new, central, Skit Tech page. From here on, this is going to be the main source of updates on speech technology work from Skit.ai.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

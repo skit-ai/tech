@@ -4,25 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>On using ASR Alternatives for a Better SLU | Skit Tech</title>
+    <title>Speech-First Conversational AI | Skit Tech</title>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>On using ASR Alternatives for a Better SLU | Skit Tech</title>
+<title>Speech-First Conversational AI | Skit Tech</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="On using ASR Alternatives for a Better SLU" />
-<meta name="author" content="Swaraj Dalmia" />
+<meta property="og:title" content="Speech-First Conversational AI" />
+<meta name="author" content="Abhinav Tushar" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21." />
-<meta property="og:description" content="This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21." />
+<meta name="description" content="We often get asked about the differences between voice and chat bots. The most common perception is that the voice bot problem can be reduced to chat bot after plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS) system. We believe that’s an overly naive assumption about spoken conversations, even in restricted goal-oriented dialog systems. This post is an attempt to describe the differences involved and define what Speech-First Conversational AI means." />
+<meta property="og:description" content="We often get asked about the differences between voice and chat bots. The most common perception is that the voice bot problem can be reduced to chat bot after plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS) system. We believe that’s an overly naive assumption about spoken conversations, even in restricted goal-oriented dialog systems. This post is an attempt to describe the differences involved and define what Speech-First Conversational AI means." />
 <meta property="og:site_name" content="Skit Tech" />
-<meta property="og:image" content="/assets/images/n-best-asr.jpg" />
+<meta property="og:image" content="/assets/images/demo1.jpg" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-11-29T00:00:00+00:00" />
+<meta property="article:published_time" content="2022-02-06T00:00:00+00:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="/assets/images/n-best-asr.jpg" />
-<meta property="twitter:title" content="On using ASR Alternatives for a Better SLU" />
+<meta property="twitter:image" content="/assets/images/demo1.jpg" />
+<meta property="twitter:title" content="Speech-First Conversational AI" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Swaraj Dalmia"},"image":"/assets/images/n-best-asr.jpg","headline":"On using ASR Alternatives for a Better SLU","dateModified":"2021-11-29T00:00:00+00:00","datePublished":"2021-11-29T00:00:00+00:00","description":"This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.","url":"/on-using-asr-alternatives-for-a-better-slu/","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/on-using-asr-alternatives-for-a-better-slu/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Swaraj Dalmia"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Abhinav Tushar"},"image":"/assets/images/demo1.jpg","headline":"Speech-First Conversational AI","dateModified":"2022-02-06T00:00:00+00:00","datePublished":"2022-02-06T00:00:00+00:00","description":"We often get asked about the differences between voice and chat bots. The most common perception is that the voice bot problem can be reduced to chat bot after plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS) system. We believe that’s an overly naive assumption about spoken conversations, even in restricted goal-oriented dialog systems. This post is an attempt to describe the differences involved and define what Speech-First Conversational AI means.","url":"/speech-first-conversational-ai/","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/speech-first-conversational-ai/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Abhinav Tushar"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -276,17 +276,17 @@ var documents = [{
     "id": 33,
     "url": "/speech-first-conversational-ai/",
     "title": "Speech-First Conversational AI",
-    "body": "2022/02/06 - We often get asked about the differences between voice and chat bots. The mostcommon perception is that the voice bot problem can be reduced to chat bot afterplugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)system. We believe that’s an overly naive assumption about spoken conversations,even in restricted goal-oriented dialog systems. This post is an attempt todescribe the differences involved and define what Speech-First ConversationalAI means.  Speech is the most sophisticated behavior of the most complex organism in theknown universe. - source Conversational AI systems solve problems of conversations, either using text orvoice. Since conversations are specific to humans, there are manyanthropomorphic expectations from these systems. These expectations, while stillstrong, are less restraining in text conversations as compared to speech. Speechis deeply ingrained in human communication and minor misses could lead toviolation of user expectations. Contrast this with text messaging which is a,relatively new, human-constructed channel1 where expectations are differentand more lenient. There are multiple academic sources on differences between speech and text, herewe will describing a few key differences that we have noticed while buildingspeech-first conversation systems in more practical settings. Signal: In addition to the textual content, speech signals contain information about theuser’s state, trait, and the environment. Speech isn’t merely a redundantmodality, but adds valuable extra information. Different style of uttering thesame utterance can drastically change the meaning, something that’s used a lotin human-human conversations. Environmental factors like recording quality, background ambience, and audioevents impact signals’ reception and semantics. Even beyond the immediateenvironment, a lot of socio-cultural factors are embedded in speech beyond thelevel they are in text chats. Because the signals are rich, the difficulty of afew common problems across text and speech, like low-resource languages, ishigher. Noise: Once you go on transcribing audios utterances using ASRs, transcription errorswill add on to your burden. While ASR systems are improving day-on-day, therestill is error potential in handling acoustically similar utterances. Overall,an entirely new set of problems like far-field ASR, signal enhancement, etc. exist in spoken conversations. Additionally many noisy deviations from fluent speech are not mere errors butdevelop their own pragmatic sense and convey strong meaning. Speechdisfluencies are commonlyassumed behaviors of natural conversations and lack of them could even causediscomfort. Interaction Behavior: We don’t take turns in a half-duplex manner while talking. Even then, mostdialog management systems are designed like sequential turn-taking statemachines where party A says something, then hands over control to party B, thentakes back after B is done. The way we take turns in true spoken conversationsis more full-duplex and that’s where a lot of interesting conversationalphenomenon happen. While conversing, we freely barge-in, attempt corrections, and show otherbackchannel behaviors. When the other party also start doing the same andutilizing these both parties can have much more effective and groundedconversations. Additionally, because of lack of a visual interface to keep the context, userrecall around dialog history is different and that leads to different flowdesigns. Personalization and adaptations: With all the extra added richness in the signals, the potential ofpersonalization and adaptations goes up. A human talking to another human doesmany micro-adaptations including the choice-of-words (common with textconversations) and the acoustics of their voices based on the ongoingconversation. Sometimes these adaptations get ossified and form sub-languages that needdifferent approaches of designing conversations. In our experience, peopletalking to voice bots talks in a different sub-language, a relativelyunderstudied phenomenon. Response Generation: Similar to the section on input signals, the output signal from the voicebot is also (should also be) extremely rich. This puts a lot of stake inresponse production for natural conversation. The timing and content of sounds,along with their tones impart strong semantic and pragmatic sense to theutterance. Clever use of these also drive the conversations in a more fruitfuldirection for both parties. Possibilities concerning this area of work is extremely limited in textmessaging. Development: Finally, working with audios is more difficult than text because of additionaland storage processing capabilities needed. Here is an audio utterance for thetext “1 2 3”: {% fancy_audio /assets/audios/posts/speech-first-conversational-ai/counts. wav %} ❯ file counts. wav # 48. 0 kB (48,044 bytes)counts. wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 8000 HzCompare this with just 6 bytes needed for the string itself (echo  1 2 3  | wc--bytes). These differences lead to gaps that are difficult to bridge and that’s whatkeeps us busy at Skit. If these problems interest you, you should reach out tous on join@skit. ai.       Epistolary communication aside.  &#8617;    "
+    "body": "2022/02/06 - We often get asked about the differences between voice and chat bots. The mostcommon perception is that the voice bot problem can be reduced to chat bot afterplugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)system. We believe that’s an overly naive assumption about spoken conversations,even in restricted goal-oriented dialog systems. This post is an attempt todescribe the differences involved and define what Speech-First ConversationalAI means.  Speech is the most sophisticated behavior of the most complex organism in theknown universe. - source Conversational AI systems solve problems of conversations, either using text orvoice. Since conversations are specific to humans, there are manyanthropomorphic expectations from these systems. These expectations, while stillstrong, are less restraining in text conversations as compared to speech. Speechis deeply ingrained in human communication and minor misses could lead toviolation of user expectations. Contrast this with text messaging which is a,relatively new, human-constructed channel1 where expectations are differentand more lenient. There are multiple academic sources on differences between speech and text, herewe will describing a few key differences that we have noticed while buildingspeech-first conversation systems in more practical settings. Signal: In addition to the textual content, speech signals contain information about theuser’s state, trait, and the environment. Speech isn’t merely a redundantmodality, but adds valuable extra information. Different style of uttering thesame utterance can drastically change the meaning, something that’s used a lotin human-human conversations. Environmental factors like recording quality, background ambience, and audioevents impact signals’ reception and semantics. Even beyond the immediateenvironment, a lot of socio-cultural factors are embedded in speech beyond thelevel they are in text chats. Because the signals are rich, the difficulty of afew common problems across text and speech, like low-resource languages, ishigher. Noise: Once you go on transcribing audios utterances using ASRs, transcription errorswill add on to your burden. While ASR systems are improving day-on-day, therestill is error potential in handling acoustically similar utterances. Overall,an entirely new set of problems like far-field ASR, signal enhancement, etc. exist in spoken conversations. Additionally many noisy deviations from fluent speech are not mere errors butdevelop their own pragmatic sense and convey strong meaning. Speechdisfluencies are commonlyassumed behaviors of natural conversations and lack of them could even causediscomfort. Interaction Behavior: We don’t take turns in a half-duplex manner while talking. Even then, mostdialog management systems are designed like sequential turn-taking statemachines where party A says something, then hands over control to party B, thentakes back after B is done. The way we take turns in true spoken conversationsis more full-duplex and that’s where a lot of interesting conversationalphenomenon happen. While conversing, we freely barge-in, attempt corrections, and show otherbackchannel behaviors. When the other party also start doing the same andutilizing these both parties can have much more effective and groundedconversations. Additionally, because of lack of a visual interface to keep the context, userrecall around dialog history is different and that leads to different flowdesigns. Personalization and adaptations: With all the extra added richness in the signals, the potential ofpersonalization and adaptations goes up. A human talking to another human doesmany micro-adaptations including the choice-of-words (common with textconversations) and the acoustics of their voices based on the ongoingconversation. Sometimes these adaptations get ossified and form sub-languages that needdifferent approaches of designing conversations. In our experience, peopletalking to voice bots talks in a different sub-language, a relativelyunderstudied phenomenon. Response Generation: Similar to the section on input signals, the output signal from the voicebot is also (should also be) extremely rich. This puts a lot of stake inresponse production for natural conversation. The timing and content of sounds,along with their tones impart strong semantic and pragmatic sense to theutterance. Clever use of these also drive the conversations in a more fruitfuldirection for both parties. Possibilities concerning this area of work is extremely limited in textmessaging. Development: Finally, working with audios is more difficult than text because of additionaland storage processing capabilities needed. Here is an audio utterance for thetext “1 2 3”:     ❯ file counts. wav # 48. 0 kB (48,044 bytes)counts. wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 8000 HzCompare this with just 6 bytes needed for the string itself (echo  1 2 3  | wc--bytes). These differences lead to gaps that are difficult to bridge and that’s whatkeeps us busy at Skit. If these problems interest you, you should reach out tous on join@skit. ai.       Epistolary communication aside.  &#8617;    "
     }, {
     "id": 34,
     "url": "/evaluating-an-asr-in-a-spoken-dialogue-system/",
     "title": "Evaluating an ASR in a Spoken Dialogue System",
-    "body": "2022/01/21 - An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent. The ASR module takes as input a spoken utterance and outputs the most likely transcription. Most ASR’s output multiple alternatives with certain confidence scores. Some ASR’s including Kaldi’s implementations output N-Best alternatives in an order not necessarily reflective of the confidence. Some ASR systems output likelihood information of word sequences in the form of word-lattices or confusion networks [1] with probability information. What is WER ?: Word Error Rate measures the transcription errors, treating words as the smallest unit. It takes 2 inputs, the actual transcript and a hypothesis transcript. There are two types of WER:  Isolated word recognition (IWR-WER) Connected Speech Recognition (CSR-WER)Isolated Word Recognition WER This considers the words in isolation and is not based on any alignment. It simply measures the number of non-hits. \[IWR-WER = 1-\frac{H}{N}\]where,H = number of hitsN = total matched I/O words Connected Speech Recognition WER This is calculated on the basis of alignment and uses the Levenshtein distance for words which measures the minimum edit distance. This is efficiently calculated using dynamic programming. It calculates the best alignment which minimises the number of substitutions, insertions and deletions necessary to map the actual transcript to the hypothesis transcript, giving equal weight to all the operations. WER is not input/output symmetric, as N is the total number of words in the actual transcripts. \[CSR-WER = (I+S+D)/(N)\]where,I = insertionsS = substitutionsD = deletionsN = total number of words in the actual transcript An example calculation of the best alignment to calculate the CSR WER is shown below.   Fig 1: Taken from Speech and Language Processing by Jurafsky and Martin [2]. The CSR WER for the above hypothesis is = (6+3+1)/13 = 0. 77 The upper bound of CSR WER is not 1, but \(\frac{max(N1, N2)}{N1}\) where N1 is length of true transcripts and N2 is length of hypothesis transcript. Statistical Significance of WER ?: Improvements in WER’s over a test set is one of the standard ways of evaluating upgrades in an ASR. Often, what is missed out is in this evaluation is whether the gain is statistically significant or not. One of the standard statistical tests is the Matched-Pair Sentence Segment Word Error (MAPSSWE) test, introduced in Gillick and Cox (1989) [2]. For an example on how to calculate the statistic, consult the book by Jurafsky. Issues with WER:  It gives the same importance to words like “a”, “the” compared to verbs and nouns that carry more semantic value.  WER is a purely 1 : 1 transcript based metric, and doesn’t take into account the rich output of ASR systems like alternatives or word lattices.  The concept of edit-distance that WER is based on is appropriate for a dictation machine where the additional cost is that of correcting the transcripts rather than applications where communicating the meaning is of primary importance It doesn’t take into account the performance of an ASR in the context of the dialogue pipeline. For example if a higher WER makes no difference in the information retrieval for the downstream SLU then is the improvement worth it ?     An example of a context dependent metric is discussed in [4].     It is not a true % based metric, because it has no upper bound therefore it doesn’t tell you how good a system is, but only that one is better than another. Even for the later, it provides only a heuristic for ranking of performance.      Consider two ASR systems, ASR-1 that replaces 2 wrong words for every word it listens too, and another ASR system that replaces 1 wrong word for every word it listens to. Both communicate zero information, but the WER for ASR-1 is 2 and the WER for ASR-1 is 1. This 50% difference in WER is not reflective of performance, since both the systems communicate no correct information whatsoever.    Debunking Conventional Wisdom: One might assume that better ASR’s improve the performance of all downstream SLU systems. A paper in 2003 [7] found this was not always the case.  Their model had a 17% better slot accuracy despite a 46% worse WER performance. They have this gain by using a SLU model as the language model for speech recognition. Therefore it is not necessary that an oracular ASR will solve downstream inaccuracies. It is important to be aware that there might be non-linear correlations in metrics for the ASR vs the downstream task. WER Variants:: A few WER variants are discussed below. Metrics that look at a different granularity than that of words :**  Sentence Error Rate (SER) : The percentage of sentences with at least one word error.  Character Error Rate (CER) : Similar as WER with the smallest units as characters and not wordsThe next two error rates are variations of WER, are are bounded between [0,1].  Match Error Rate (MER) [3] : Measures the probability of a given match being incorrect. \[MER = \frac{I+S+D}{I+S+D+H} = 1 - \frac{H}{I+S+D+H}\]where,H = number of hitsN = total number of words in the actual transcript MER is always &lt;= WER.  Word Information Lost (WIL) [3] : Information theoretic measure based on entropy. For more details look at the paper. Example values, comparing WER, MER and WIL are shown below:   Fig 2: Taken from [3]. Note : For implementations of WER, WIL, and MER, have a look at Jiwer. Additional Error Analysis: Apart from looking at just single metrics for evaluating an ASR there are few additional metrics that one should use to evaluate a goal oriented ASR deployed for a given application:  Which speaker demographic is most often misrecognised ? What (context-dependent) phones are least well recognised ? Which words are most confused ? Generate a confusion matrix of confused words. These often help prioritise improvements in terms of what might benefit the goal the most. Semantics based MetricsWER doesn’t look at the meaning of what has been transcribed despite the fact that is the semantics that are most relevant in an ASR that is a part of a spoken dialogue system. Concept accuracy: It is a simple metric that looks at the accuracy of the concepts that are of relevance in the transcripts. Example:Reference - I want to go from Boston to Baltimore on September 29Hypothesis - Go from Boston to Baltimore on December 29 The WER is \(45\%\). However if one looks at concept accuracy, it is 2/3. Out of the 3 concepts : “Boston”, “Baltimore” and “September 29” it gets 2 of them right. WER with embeddings: In this paper [9] they look at augmenting the WER metric for an ASR that is used for a Spoken Language Translation (SLT) task. They argue that some morphological operations, like adding a plural doesn’t impact the translation task and that such substitution errors should be penalised differently. To decide which ones to penalise they use word embeddings. They call their new metric, WER-E i. e. WER with embeddings. The only change in this metric is that the substitution cost in WER is replaced by the cosine distance between the two words, so near identical words get assigned a very low cost. Other Metrics: There are lots of different papers that augment the WER metric or introduce a new metric specific to a downstream task. Mentioning a few of them below :  In [10] a new measure called Automatic Transcription Evaluation for Named Entity (ATENE) is introduced for the NER downstream task 3 new evaluation metrics are introduced in [12], where the downstream application is Information Retrieval SemDist metric is introduced in [13] for downstream SLUDownstream applications aside, it is quite pertinent to evaluate and benchmarks ASR across different social and demographic groups to evaluate bias and fairness. Systems don’t exist in isolation from the society in which they are deployed in and it is important that ML Engineers pay head to such metrics while deploying ASRs. References :: [1] : N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses (2021) [2] : Speech and Language Processing (3rd ed. draft) by Dan Jurafsky and James H. Martin [3] : From WER and RIL to MER and WIL: improved evaluation measures for connected speech recognition (2004) [4] : Automatic Human Utility Evaluation of ASR Systems: Does WER Really Predict Performance? (2013) [5] : http://www. cs. columbia. edu/~julia/courses/CS4706/asreval. pdf [6] : Meaning Error Rate: ASR domain-specific metric framework (2021) [7] : Is word error rate a good indicator for spoken language understanding accuracy (2003) [8] : Automatic speech recognition errors detection and correction: A review (2015) [9] : Better Evaluation of ASR in Speech Translation Context Using Word Embeddings (2016) [10] : How to Evaluate ASR Output for Named Entity Recognition ? (2015) [11] : Why word error rate is not a good metric for speech recognizer training for the speech translation task? (2011) [12] : Evaluating ASR Output for Information Retrieval (2007) [13] : Semantic Distance: A New Metric for ASR Performance Analysis Towards Spoken Language Understanding (2021) [14] : Which ASR should I choose for my dialogue system? (2013) [15] : Rethinking evaluation in ASR : Are out models robust enough ? (2021) "
+    "body": "2022/01/21 - An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent. The ASR module takes as input a spoken utterance and outputs the most likely transcription. Most ASR’s output multiple alternatives with certain confidence scores. Some ASR’s including Kaldi’s implementations output N-Best alternatives in an order not necessarily reflective of the confidence. Some ASR systems output likelihood information of word sequences in the form of word-lattices or confusion networks [1] with probability information. What is WER ?: Word Error Rate measures the transcription errors, treating words as the smallest unit. It takes 2 inputs, the actual transcript and a hypothesis transcript. There are two types of WER:  Isolated word recognition (IWR-WER) Connected Speech Recognition (CSR-WER)Isolated Word Recognition WER This considers the words in isolation and is not based on any alignment. It simply measures the number of non-hits. [IWR-WER = 1-\frac{H}{N}] where,H = number of hitsN = total matched I/O words Connected Speech Recognition WER This is calculated on the basis of alignment and uses the Levenshtein distance for words which measures the minimum edit distance. This is efficiently calculated using dynamic programming. It calculates the best alignment which minimises the number of substitutions, insertions and deletions necessary to map the actual transcript to the hypothesis transcript, giving equal weight to all the operations. WER is not input/output symmetric, as N is the total number of words in the actual transcripts. [CSR-WER = (I+S+D)/(N)] where,I = insertionsS = substitutionsD = deletionsN = total number of words in the actual transcript An example calculation of the best alignment to calculate the CSR WER is shown below.   Fig 1: Taken from Speech and Language Processing by Jurafsky and Martin [2]. The CSR WER for the above hypothesis is = (6+3+1)/13 = 0. 77 The upper bound of CSR WER is not 1, but \(\frac{max(N1, N2)}{N1}\) where N1 is length of true transcripts and N2 is length of hypothesis transcript. Statistical Significance of WER ?: Improvements in WER’s over a test set is one of the standard ways of evaluating upgrades in an ASR. Often, what is missed out is in this evaluation is whether the gain is statistically significant or not. One of the standard statistical tests is the Matched-Pair Sentence Segment Word Error (MAPSSWE) test, introduced in Gillick and Cox (1989) [2]. For an example on how to calculate the statistic, consult the book by Jurafsky. Issues with WER:  It gives the same importance to words like “a”, “the” compared to verbs and nouns that carry more semantic value.  WER is a purely 1 : 1 transcript based metric, and doesn’t take into account the rich output of ASR systems like alternatives or word lattices.  The concept of edit-distance that WER is based on is appropriate for a dictation machine where the additional cost is that of correcting the transcripts rather than applications where communicating the meaning is of primary importance It doesn’t take into account the performance of an ASR in the context of the dialogue pipeline. For example if a higher WER makes no difference in the information retrieval for the downstream SLU then is the improvement worth it ?     An example of a context dependent metric is discussed in [4].     It is not a true % based metric, because it has no upper bound therefore it doesn’t tell you how good a system is, but only that one is better than another. Even for the later, it provides only a heuristic for ranking of performance.      Consider two ASR systems, ASR-1 that replaces 2 wrong words for every word it listens too, and another ASR system that replaces 1 wrong word for every word it listens to. Both communicate zero information, but the WER for ASR-1 is 2 and the WER for ASR-1 is 1. This 50% difference in WER is not reflective of performance, since both the systems communicate no correct information whatsoever.    Debunking Conventional Wisdom: One might assume that better ASR’s improve the performance of all downstream SLU systems. A paper in 2003 [7] found this was not always the case.  Their model had a 17% better slot accuracy despite a 46% worse WER performance. They have this gain by using a SLU model as the language model for speech recognition. Therefore it is not necessary that an oracular ASR will solve downstream inaccuracies. It is important to be aware that there might be non-linear correlations in metrics for the ASR vs the downstream task. WER Variants:: A few WER variants are discussed below. Metrics that look at a different granularity than that of words :**  Sentence Error Rate (SER) : The percentage of sentences with at least one word error.  Character Error Rate (CER) : Similar as WER with the smallest units as characters and not wordsThe next two error rates are variations of WER, are are bounded between [0,1].  Match Error Rate (MER) [3] : Measures the probability of a given match being incorrect. [MER = \frac{I+S+D}{I+S+D+H} = 1 - \frac{H}{I+S+D+H}] where,H = number of hitsN = total number of words in the actual transcript MER is always &lt;= WER.  Word Information Lost (WIL) [3] : Information theoretic measure based on entropy. For more details look at the paper. Example values, comparing WER, MER and WIL are shown below:   Fig 2: Taken from [3]. Note : For implementations of WER, WIL, and MER, have a look at Jiwer. Additional Error Analysis: Apart from looking at just single metrics for evaluating an ASR there are few additional metrics that one should use to evaluate a goal oriented ASR deployed for a given application:  Which speaker demographic is most often misrecognised ? What (context-dependent) phones are least well recognised ? Which words are most confused ? Generate a confusion matrix of confused words. These often help prioritise improvements in terms of what might benefit the goal the most. Semantics based MetricsWER doesn’t look at the meaning of what has been transcribed despite the fact that is the semantics that are most relevant in an ASR that is a part of a spoken dialogue system. Concept accuracy: It is a simple metric that looks at the accuracy of the concepts that are of relevance in the transcripts. Example:Reference - I want to go from Boston to Baltimore on September 29Hypothesis - Go from Boston to Baltimore on December 29 The WER is \(45\%\). However if one looks at concept accuracy, it is 2/3. Out of the 3 concepts : “Boston”, “Baltimore” and “September 29” it gets 2 of them right. WER with embeddings: In this paper [9] they look at augmenting the WER metric for an ASR that is used for a Spoken Language Translation (SLT) task. They argue that some morphological operations, like adding a plural doesn’t impact the translation task and that such substitution errors should be penalised differently. To decide which ones to penalise they use word embeddings. They call their new metric, WER-E i. e. WER with embeddings. The only change in this metric is that the substitution cost in WER is replaced by the cosine distance between the two words, so near identical words get assigned a very low cost. Other Metrics: There are lots of different papers that augment the WER metric or introduce a new metric specific to a downstream task. Mentioning a few of them below :  In [10] a new measure called Automatic Transcription Evaluation for Named Entity (ATENE) is introduced for the NER downstream task 3 new evaluation metrics are introduced in [12], where the downstream application is Information Retrieval SemDist metric is introduced in [13] for downstream SLUDownstream applications aside, it is quite pertinent to evaluate and benchmarks ASR across different social and demographic groups to evaluate bias and fairness. Systems don’t exist in isolation from the society in which they are deployed in and it is important that ML Engineers pay head to such metrics while deploying ASRs. References :: [1] : N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses (2021) [2] : Speech and Language Processing (3rd ed. draft) by Dan Jurafsky and James H. Martin [3] : From WER and RIL to MER and WIL: improved evaluation measures for connected speech recognition (2004) [4] : Automatic Human Utility Evaluation of ASR Systems: Does WER Really Predict Performance? (2013) [5] : http://www. cs. columbia. edu/~julia/courses/CS4706/asreval. pdf [6] : Meaning Error Rate: ASR domain-specific metric framework (2021) [7] : Is word error rate a good indicator for spoken language understanding accuracy (2003) [8] : Automatic speech recognition errors detection and correction: A review (2015) [9] : Better Evaluation of ASR in Speech Translation Context Using Word Embeddings (2016) [10] : How to Evaluate ASR Output for Named Entity Recognition ? (2015) [11] : Why word error rate is not a good metric for speech recognizer training for the speech translation task? (2011) [12] : Evaluating ASR Output for Information Retrieval (2007) [13] : Semantic Distance: A New Metric for ASR Performance Analysis Towards Spoken Language Understanding (2021) [14] : Which ASR should I choose for my dialogue system? (2013) [15] : Rethinking evaluation in ASR : Are out models robust enough ? (2021) "
     }, {
     "id": 35,
     "url": "/complexity-of-conversations/",
     "title": "Complexity of Conversations - I",
-    "body": "2022/01/18 - Consider a restaurant booking voice bot built using a frames and slots approach. While this can easily solve the problem of booking with high automationaccuracy, such slot-filling framework can’t carry on a meaningful conversationin a debate unless you over-engineer the frames and slots to monstrouscomplexity. Booking a restaurant is a form of conversation that’s innatelysimpler than arguing with someone in a debate competition. We can roughly saythat these two conversations lie in different complexity classes. In this firstpost of a series, we will lay down a few factors that will help us define a mapof conversations arranged according to their complexities. At Skit we build many kinds of task-oriented dialog systems for call centerautomation. A very crude categorization of such systems, for us, is based on theinteraction with a sibling call handling system1 and the direction ofintention, user or agent initiation. While we have used multiple approaches to measure difficulty of conversationsfor our product delivery purposes, it’s interesting to see if a purer frameworkcould be built around this. Similar to computational complexity, this can tellus which problems are tractable under an algorithm. It can also help inidentifying the path towards the next generation of human machine conversationalsystems. We will cover a few thoughts around a few core constructs of the framework next. First is the definition of success in a conversation, second around thedifficulty of doing so, and third about the algorithms and their complexities. Success: The definition of success of a conversation depends on alignment between goalsof the involved parties. A regular goal oriented conversation with user initiation has a simple successdefinition. For example, a call with user asking for temperature of a place canbe called successful if the temperature is provided. The metric here could besomething like the following: \[\text{Resolution%} = \frac{\text{Calls where user goals were met}}{\text{Total calls}}\]This simple formulation becomes tricky as the alignment between user and botgoals becomes inexact. For example when the bot is calling the user forpayment reminders, it might not just want to remind and collect next remindertime, but also want to persuade the users to pay as early as possible. In suchcases, you might want to use another rate for favorable outcomes: \[\text{Favorable%} = \frac{\text{Calls with favorable outcomes}}{\text{Resolved calls}}\]Another example where this works is in argumentative conversations whereholding a reasonable conversation and reaching conclusion is important(resolution), but winning the argument (the favorable outcome) is what definessuccess. Difficulty: We can look at difficulty of conversations from multiple levels. For thesmallest unit of dialog, a turn2, parsing and generating every utterance in aconversation can be rated for difficulty. Here are a few factors that drivedifficulty for a turn:  Knowledge needed for understanding an entity. This could be general orspecific to a situation, involving connection with a dynamic or staticknowledge source.  Speech Acts. Simpler acts like greeting are easier to handle, whilesomething like pleading is hard.  Expression complexity, intentional or unintentional. For speech systems, thisis even more varied because of the richness of acoustic signals that adds tothe underlying text. For example sarcasm could be expressed by changing thetone of speech and not just via textual constructs. But these are not sufficient since higher order behaviors across multiple turnsalso make conversations difficult. As an example, consider negotiation for theprice in a market. In this situation, you need to use the conversational contextacross turns to decide your next steps in a way that’s harder than situationswhere context dependency is lesser. Algorithms: The frameworks of developing, and running, voice bots are the last pieces thatwill help us to map out the tractability of problems. A common method in theindustry is the frame-filling model that roughly needs learning intents andentities for each utterance. These frameworks, or algorithms, can be measured on their resource consumption. We can start with sample complexity of conversations as the resource and createstatements like the following:  Under framework \(f\), you need an order of \(N\) data points to supervise avoice bot of class \(k\) to achieve a success rate of \(R(N)\)3. This can be mapped to the statistical learning problem and abstractions can betranslated from there. Having set the groundwork here, we will tackle the more interesting problem ofcomplexity class definitions in a later post.       The sibling system could be non-existent, or backend human agents who cantake over the more co plex conversations, or complex parts of runningconversations.  &#8617;        We can cover backchannel events also in a kind of background turn.  &#8617;        Including the other factors around PAC learning.  &#8617;    "
+    "body": "2022/01/18 - Consider a restaurant booking voice bot built using a frames and slots approach. While this can easily solve the problem of booking with high automationaccuracy, such slot-filling framework can’t carry on a meaningful conversationin a debate unless you over-engineer the frames and slots to monstrouscomplexity. Booking a restaurant is a form of conversation that’s innatelysimpler than arguing with someone in a debate competition. We can roughly saythat these two conversations lie in different complexity classes. In this firstpost of a series, we will lay down a few factors that will help us define a mapof conversations arranged according to their complexities. At Skit we build many kinds of task-oriented dialog systems for call centerautomation. A very crude categorization of such systems, for us, is based on theinteraction with a sibling call handling system1 and the direction ofintention, user or agent initiation. While we have used multiple approaches to measure difficulty of conversationsfor our product delivery purposes, it’s interesting to see if a purer frameworkcould be built around this. Similar to computational complexity, this can tellus which problems are tractable under an algorithm. It can also help inidentifying the path towards the next generation of human machine conversationalsystems. We will cover a few thoughts around a few core constructs of the framework next. First is the definition of success in a conversation, second around thedifficulty of doing so, and third about the algorithms and their complexities. Success: The definition of success of a conversation depends on alignment between goalsof the involved parties. A regular goal oriented conversation with user initiation has a simple successdefinition. For example, a call with user asking for temperature of a place canbe called successful if the temperature is provided. The metric here could besomething like the following: [\text{Resolution%} = \frac{\text{Calls where user goals were met}}{\text{Total calls}}] This simple formulation becomes tricky as the alignment between user and botgoals becomes inexact. For example when the bot is calling the user forpayment reminders, it might not just want to remind and collect next remindertime, but also want to persuade the users to pay as early as possible. In suchcases, you might want to use another rate for favorable outcomes: [\text{Favorable%} = \frac{\text{Calls with favorable outcomes}}{\text{Resolved calls}}] Another example where this works is in argumentative conversations whereholding a reasonable conversation and reaching conclusion is important(resolution), but winning the argument (the favorable outcome) is what definessuccess. Difficulty: We can look at difficulty of conversations from multiple levels. For thesmallest unit of dialog, a turn2, parsing and generating every utterance in aconversation can be rated for difficulty. Here are a few factors that drivedifficulty for a turn:  Knowledge needed for understanding an entity. This could be general orspecific to a situation, involving connection with a dynamic or staticknowledge source.  Speech Acts. Simpler acts like greeting are easier to handle, whilesomething like pleading is hard.  Expression complexity, intentional or unintentional. For speech systems, thisis even more varied because of the richness of acoustic signals that adds tothe underlying text. For example sarcasm could be expressed by changing thetone of speech and not just via textual constructs. But these are not sufficient since higher order behaviors across multiple turnsalso make conversations difficult. As an example, consider negotiation for theprice in a market. In this situation, you need to use the conversational contextacross turns to decide your next steps in a way that’s harder than situationswhere context dependency is lesser. Algorithms: The frameworks of developing, and running, voice bots are the last pieces thatwill help us to map out the tractability of problems. A common method in theindustry is the frame-filling model that roughly needs learning intents andentities for each utterance. These frameworks, or algorithms, can be measured on their resource consumption. We can start with sample complexity of conversations as the resource and createstatements like the following:  Under framework \(f\), you need an order of \(N\) data points to supervise avoice bot of class \(k\) to achieve a success rate of \(R(N)\)3. This can be mapped to the statistical learning problem and abstractions can betranslated from there. Having set the groundwork here, we will tackle the more interesting problem ofcomplexity class definitions in a later post.       The sibling system could be non-existent, or backend human agents who cantake over the more co plex conversations, or complex parts of runningconversations.  &#8617;        We can cover backchannel events also in a kind of background turn.  &#8617;        Including the other factors around PAC learning.  &#8617;    "
     }, {
     "id": 36,
     "url": "/on-using-asr-alternatives-for-a-better-slu/",
@@ -441,18 +441,16 @@ function lunr_search(term) {
                         
                         </span>
 					</p>
-					<h1 class="display-4 mb-4 article-headline">On using ASR Alternatives for a Better SLU</h1>
+					<h1 class="display-4 mb-4 article-headline">Speech-First Conversational AI</h1>
 					<div class="d-flex align-items-center">
 						<small>
               
-              <a target="_blank" href="/authors/swarajdalmia" class="">Swaraj Dalmia</a>,
+              <a target="_blank" href="/authors/lepisma" class="">Abhinav Tushar</a>
               
-              <a target="_blank" href="/authors/greed2411" class="">Jaivarsan B</a>
-              
-              <span class="text-muted d-block mt-1">Nov 29, 2021 · <span class="reading-time">
+              <span class="text-muted d-block mt-1">Feb 06, 2022 · <span class="reading-time">
   
   
-    6 mins read
+    5 mins read
   
 </span>
     </span>
@@ -462,10 +460,6 @@ function lunr_search(term) {
 			    <!-- Tags -->
 			    <div class="mb-4 mt-4">
 				    <span class="taglist">
-				      
-				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#asr">asr</a>
-				      
-				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#slu">slu</a>
 				      
 				    </span>
 			    </div>
@@ -483,120 +477,191 @@ function lunr_search(term) {
 		<div class="col-lg-10 col-md-12">
       <!-- Article -->
 			<article class="article-post">
-			<p>This blog discusses some concepts from the recently published <a href="https://arxiv.org/pdf/2106.06519.pdf">paper</a> by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in <a href="https://2021.aclweb.org/">ACL-IJCNLP’21</a>.</p>
+			<p>We often get asked about the differences between voice and chat bots. The most
+common perception is that the voice bot problem can be reduced to chat bot after
+plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)
+system. We believe that’s an overly naive assumption about spoken conversations,
+even in restricted goal-oriented dialog systems. This post is an attempt to
+describe the differences involved and define what <em>Speech-First</em> Conversational
+AI means.</p>
 
-<h1 id="introduction">Introduction</h1>
+<blockquote>
+  <p>Speech is the most sophisticated behavior of the most complex organism in the
+known universe. - <a href="https://youtu.be/Zy3Ny-WjyGE?t=251">source</a></p>
+</blockquote>
 
-<p>Voice bots in the industry heavily rely on the use of Automatic Speech Recognition (ASR) transcripts to understand the user and capture intents &amp; entities which are then used to resolve the customer’s problem. ASR’s however are far from perfect, especially on noisy real world data and on instances with acoustic confusion. The downstream Spoken Language Understanding (SLU) components would benefit greatly if they take the ASR’s confusion into account.</p>
+<p>Conversational AI systems solve problems of conversations, either using text or
+voice. Since <em>conversations</em> are specific to humans, there are many
+anthropomorphic expectations from these systems. These expectations, while still
+strong, are less restraining in text conversations as compared to speech. Speech
+is deeply ingrained in human communication and minor misses could lead to
+violation of user expectations. Contrast this with text messaging which is a,
+relatively new, human-constructed channel<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> where expectations are different
+and more lenient.</p>
 
-<p>Example use-case with confounding ASR transcripts (over voice):</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bot: When would you like to make the reservation ?
-User (actually said): right now
+<p>There are multiple academic sources on differences between speech and text, here
+we will describing a few key differences that we have noticed while building
+speech-first conversation systems in more practical settings.</p>
+
+<h2 id="signal">Signal</h2>
+
+<p>In addition to the textual content, speech signals contain information about the
+user’s state, trait, and the environment. Speech isn’t merely a redundant
+modality, but adds valuable extra information. Different style of uttering the
+same utterance can drastically change the meaning, something that’s used a lot
+in human-human conversations.</p>
+
+<p>Environmental factors like recording quality, background ambience, and audio
+events impact signals’ reception and semantics. Even beyond the immediate
+environment, a lot of socio-cultural factors are embedded in speech beyond the
+level they are in text chats. Because the signals are rich, the difficulty of a
+few common problems across text and speech, like low-resource languages, is
+higher.</p>
+
+<h2 id="noise">Noise</h2>
+
+<p>Once you go on transcribing audios utterances using ASRs, transcription errors
+will add on to your burden. While ASR systems are improving day-on-day, there
+still is error potential in handling acoustically similar utterances. Overall,
+an entirely new set of problems like far-field ASR, signal enhancement, etc.
+exist in spoken conversations.</p>
+
+<p>Additionally many <em>noisy</em> deviations from fluent speech are not mere errors but
+develop their own pragmatic sense and convey strong meaning. Speech
+<a href="https://en.wikipedia.org/wiki/Speech_disfluency">disfluencies</a> are commonly
+assumed behaviors of natural conversations and lack of them could even cause
+discomfort.</p>
+
+<h2 id="interaction-behavior">Interaction Behavior</h2>
+
+<p>We don’t take turns in a half-duplex manner while talking. Even then, most
+dialog management systems are designed like sequential turn-taking state
+machines where party A says something, then hands over control to party B, then
+takes back after B is done. The way we take turns in true spoken conversations
+is more <em>full-duplex</em> and that’s where a lot of interesting conversational
+phenomenon happen.</p>
+
+<p>While conversing, we freely barge-in, attempt corrections, and show other
+backchannel behaviors. When the other party also start doing the same and
+utilizing these both parties can have much more effective and grounded
+conversations.</p>
+
+<p>Additionally, because of lack of a visual interface to keep the context, user
+recall around dialog history is different and that leads to different flow
+designs.</p>
+
+<h2 id="personalization-and-adaptations">Personalization and adaptations</h2>
+
+<p>With all the extra added richness in the signals, the potential of
+personalization and adaptations goes up. A human talking to another human does
+many micro-adaptations including the choice-of-words (common with text
+conversations) and the acoustics of their voices based on the ongoing
+conversation.</p>
+
+<p>Sometimes these adaptations get ossified and form <em>sub-languages</em> that need
+different approaches of designing conversations. In our experience, people
+talking to voice bots talks in a different sub-language, a relatively
+understudied phenomenon.</p>
+
+<h2 id="response-generation">Response Generation</h2>
+
+<p>Similar to the section on input <em>signals</em>, the output <em>signal</em> from the voice
+bot is also (should also be) extremely rich. This puts a lot of stake in
+response production for natural conversation. The timing and content of sounds,
+along with their tones impart strong semantic and pragmatic sense to the
+utterance. Clever use of these also drive the conversations in a more fruitful
+direction for both parties.</p>
+
+<p>Possibilities concerning this area of work is <em>extremely</em> limited in text
+messaging.</p>
+
+<h2 id="development">Development</h2>
+
+<p>Finally, working with audios is more difficult than text because of additional
+and storage processing capabilities needed. Here is an audio utterance for the
+text “1 2 3”:</p>
+
+<script>
+       $(document).ready(function () {
+         var ws3 = WaveSurfer.create({
+           container: '#waveform-3',
+           backend: 'MediaElement'
+         });
+         ws3.load('/assets/audios/posts/speech-first-conversational-ai/counts.wav');
+
+         ws3.on('audioprocess', function () {
+           let progressText = ws3.getCurrentTime().toFixed(2) + ' / ' + ws3.getDuration().toFixed(2)
+           document.getElementById('player-progress-3').innerHTML = progressText
+         });
+
+         ws3.on('ready', function () {
+           let progressText = ws3.getCurrentTime().toFixed(2) + ' / ' + ws3.getDuration().toFixed(2)
+           document.getElementById('player-progress-3').innerHTML = progressText
+         });
+
+         ws3.on('finish', function () {
+           let button = $('#controls-3 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-3').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws3.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws3.skipBackward()
+                 break
+               case 'forward':
+                 ws3.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+
+<div id="waveform-3"></div>
+<div class="player-controls" id="controls-3">
+  <button class="btn btn-sml" data-action="backward"><i class="fa fa-backward"></i></button>
+  <button class="btn btn-sml" data-action="play-pause"><i class="fa fa-play"></i></button>
+  <button class="btn btn-sml" data-action="forward"><i class="fa fa-forward"></i></button>
+  <code class="btn btn-sml disabled" id="player-progress-3"></code>
+</div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ file counts.wav  # 48.0 kB (48,044 bytes)
+counts.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 8000 Hz
 </code></pre></div></div>
 
-<p>ASR alternatives for given user’s speech:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- like, now
-- right now
-- write no
-</code></pre></div></div>
+<p>Compare this with just 6 bytes needed for the string itself (<code class="language-plaintext highlighter-rouge">echo "1 2 3" | wc
+--bytes</code>).</p>
 
-<p>Often the downstream SLU services which act on ASR transcripts use only the most probable alternative (also called 1-best alternative), thereby leaving out a lot of other information that exists in the form of alternative probabilities. This paper presents a simple way of using the information that exists in the alternatives to get SOTA performance on a standard benchmark for a SLU system.</p>
+<hr />
 
-<h1 id="types-of-asr-outputs">Types of ASR Outputs</h1>
+<p>These differences lead to gaps that are difficult to bridge and that’s what
+keeps us busy at Skit. If these problems interest you, you should reach out to
+us on <a href="mailto:join@skit.ai">join@skit.ai</a>.</p>
 
-<p>Before we get into how to best use ASR’s confusion to increase the performance of the SLU, we discuss the different ways an ASR outputs the probable word sequence probabilities.</p>
-
-<ul>
-  <li>N-best alternatives : this is a list of the top N alternative sentences for the given spoken utterance. These are usually ranked based on probability of occurrence.</li>
-  <li>Word lattices : As shown in the below figure, they have no a-priori structure per se. Every path from the start node to the end node represents a possible hypothesis transcript. Every transition adds a word to the hypothesis.</li>
-  <li>Word confusion networks : They are a more compact and normalised topology for word lattices. They enforce certain constaints such that competing words should be in the same group and there by also ensure aligment of words that occur at the same time interval. Though these graphs capture lesser number of possibilities, this topology can be used to get as high recognition accuracy as using word lattices.</li>
-</ul>
-
-<p>The transitions probabilities of both, word lattices and word confusion networks are weighted by the acoustic and language model probabilities.</p>
-
-<figure>
-<center>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/word-lattices.jpg" />
-  <figcaption>Fig 1: The structure of a word lattice as contrasted with a word confusion network.</figcaption>
-</center>
-</figure>
-
-<h1 id="dataset">Dataset</h1>
-
-<p>The task that is used to compare the modelling approaches is the <a href="https://aclanthology.org/W14-4337.pdf">DSTC - 2 challenge</a> where one is required to predict intent act-slot-value triplets. Pairs of sentences i.e. a sentence whose intent is required to be predicted along with its context is given. For each sentence the top 10 best ASR alternatives are also provided.</p>
-
-<h1 id="modelling-approach">Modelling Approach</h1>
-
-<p>The central idea of the paper is to leverage pre-trained transformer models BERT and XLMRoBERTa and fine-tune them with a simple input representation shown below. The input consists of the ASR alternatives seperated by a seperator token concatenated with the context. A segment id (not shown below) is also used, which is used to contrast the context (in green) with the alternatives (in purple).</p>
-
-<figure>
-<center>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/example-input.jpg" />
-  <figcaption>Fig 2: Input representation used to fine-tune transformer models.</figcaption>
-</center>
-</figure>
-
-<p>On top of the transformer model a semantic tuple classifier (STC) is applied to predict the act-slot-value triplets. Using this approach, we achieve a performance equivalent to the prior state-of-the-art model on DSTC-2 dataset. We get comparable F1 and SOTA accuracy. The previous SOTA model, WCN-BERT uses word confusion networks.</p>
-
-<figure>
-<center>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/model-architecture.png" />
-  <figcaption>Fig 3: Model Architecture, The input representation is encoded by a transformer model which forms an
-input for a Semantic Tuple Classifier (STC). STC uses binary classifiers to predict the presence of act-slot pairs,
-followed by a multi-class classifier that predicts the value for each act-slot pair.</figcaption>
-</center>
-</figure>
-
-<p>Here, using a simple ASR output such an N-best alternatives we get a comparable performance to the SOTA model that uses a much more informative probability graph such as a word confusion network.</p>
-
-<h1 id="ablation-experiments">Ablation Experiments</h1>
-
-<p>Two ablation experiments are performed. One on low data regimes and another to check the impact of the context on performance.</p>
-
-<h2 id="low-data-regime">Low Data Regime</h2>
-
-<p>Here, the baseline models are compared with our approach using 5%, 10%, 20% and 50% of the training data respectively. In all these situations our approach beats SOTA by a considerable margin, proving that our training approach effectively transfer learns. We hypothesise, that this is due to the structural similarity between the input representations of the initial training of these open sourced models and the fine-turning that is done on DSTC-2 dataset. It also demonstrates that n-best alternatives are a more natural representation to fine-tune transformer models compared to word lattices or word confusion networks.</p>
-
-<h2 id="context-dependency">Context Dependency</h2>
-
-<p>In this experiment we wanted to test the impact of adding context (last turn) to performance and to check if it is relevant at all. An improvement of around ~1.5% F1 score is obtained using context. An example situation where context is relevance is shown below. Dialog context can help in resolving ambiguities in parses and reducing the impact of ASR noise.</p>
-
-<figure>
-<center>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/n-best-asr/context-dependence.jpg" />
-  <figcaption>Fig 4: Example to demonstrate context dependence.</figcaption>
-</center>
-</figure>
-
-<p>Lastly, this methodology can be used by users of third-party ASR APIs which do not provide word-lattice information and thereby is more accessible.</p>
-
-<h1 id="implementation-and-citation">Implementation and Citation</h1>
-
-<p>The code for the project can be found <a href="https://github.com/skit-ai/N-Best-ASR-Transformer">here</a>.</p>
-
-<p>If you use our work, please cite using the following BibTex Citation:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@inproceedings{ganesan-etal-2021-n,
-    title = "N-Best {ASR} Transformer: Enhancing {SLU} Performance using Multiple {ASR} Hypotheses",
-    author = "Ganesan, Karthik  and
-      Bamdev, Pakhi  and
-      B, Jaivarsan  and
-      Venugopal, Amresh  and
-      Tushar, Abhinav",
-    booktitle = "Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 2: Short Papers)",
-    month = aug,
-    year = "2021",
-    address = "Online",
-    publisher = "Association for Computational Linguistics",
-    url = "https://aclanthology.org/2021.acl-short.14",
-    doi = "10.18653/v1/2021.acl-short.14",
-    pages = "93--98",
-}
-</code></pre></div></div>
-
-<h1 id="references-">References :</h1>
-<ul>
-  <li>Tür, G., Deoras, A., &amp; Hakkani-Tür, D. (2013, September). Semantic parsing using word confusion networks with conditional random fields. In <em>INTERSPEECH</em> (pp. 2579-2583).</li>
-</ul>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Epistolary communication aside. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
 			</article>
 
@@ -616,6 +681,8 @@ followed by a multi-class classifier that predicts the value for each act-slot p
 
     <script src="/assets/js/theme.js"></script>
 
+    
+      <script src="https://unpkg.com/wavesurfer.js"></script>
     
 
     
