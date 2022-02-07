@@ -8,6 +8,8 @@ layout: post
 authors: [ojus1]
 ---
 
+<script src='https://cdn.plot.ly/plotly-2.8.3.min.js'></script>
+
 The most fancy tool in the Modern Machine Learning toolbox are Neural Networks (NNs), 
 especially `Deep` ones. NNs usually have much more number of parameters than the 
 number of datapoints, and hence are `overparameterized` models. Are all of the parameters 
@@ -60,18 +62,9 @@ In the heart of the hypothesis lies the assumption that `the network needs to be
 initialized in such a way that it trains to a high-performing model. A recent work [3] argues that this
 assumption is incorrect and the size of the network is not the only reason for the emergence of LTH.
 
-The authors of [3] experiment with Ticket Search on a wide range of CNNs with various number of parameters, depth,
-and structures. They are summarized below:
+The authors of [3] experiment with Ticket Search on a wide range of CNNs with various number of parameters, depth, and structures. They are listed below:
 
-|     Name    | # Params |
-|:-----------:|:--------:|
-|   LeNet-5   |    61K   |
-|  PNASNet-A  |   0.13M  |
-|  PNASNet-B  |   0.45M  |
-|  ResNet32   |   0.46M  |
-| MobileNetV1 |   3.22M  |
-| EfficientNet|   3.59M  |
-|   ResNet18  |  11.17M  |
+<div align="center">
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -79,55 +72,49 @@ and structures. They are summarized below:
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-amwm{font-weight:bold;text-align:center;vertical-align:top}
 </style>
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-7btt">asd</th>
-    <th class="tg-7btt">asdas</th>
-    <th class="tg-c3ow"></th>
-    <th class="tg-c3ow"></th>
-    <th class="tg-c3ow"></th>
-    <th class="tg-c3ow"></th>
+    <th class="tg-amwm">Name</th>
+    <th class="tg-amwm"># Params</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-c3ow">zxczx</td>
-    <td class="tg-c3ow">asdas</td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-baqh">LeNet-5</td>
+    <td class="tg-baqh">61K</td>
   </tr>
   <tr>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-baqh">PNASNet-A</td>
+    <td class="tg-baqh">0.13M</td>
   </tr>
   <tr>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-baqh">PNASNet-B</td>
+    <td class="tg-baqh">0.45M</td>
   </tr>
   <tr>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
-    <td class="tg-c3ow"></td>
+    <td class="tg-baqh">ResNet32</td>
+    <td class="tg-baqh">0.46M</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">MobileNetV1</td>
+    <td class="tg-baqh">3.22M</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">EfficientNet</td>
+    <td class="tg-baqh">3.59M</td>
+  </tr>
+  <tr>
+    <td class="tg-baqh">ResNet18</td>
+    <td class="tg-baqh">11.17M</td>
   </tr>
 </tbody>
 </table>
+
+</div>
 
 The authors perform ticket search 50 times for each architecture on the CIFAR-10 dataset and compute 
 trajectory lengths, percentage of surviving weights, test accuracy etc. after each stage of pruning. 
