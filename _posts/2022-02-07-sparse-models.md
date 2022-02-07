@@ -6,8 +6,6 @@ categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
 authors: [ojus1]
-latex: True
-fancy_audio_player: True
 ---
 
 The most fancy tool in the Modern Machine Learning toolbox are Neural Networks (NNs), 
@@ -75,6 +73,62 @@ and structures. They are summarized below:
 | EfficientNet|   3.59M  |
 |   ResNet18  |  11.17M  |
 
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-7btt">asd</th>
+    <th class="tg-7btt">asdas</th>
+    <th class="tg-c3ow"></th>
+    <th class="tg-c3ow"></th>
+    <th class="tg-c3ow"></th>
+    <th class="tg-c3ow"></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow">zxczx</td>
+    <td class="tg-c3ow">asdas</td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+    <td class="tg-c3ow"></td>
+  </tr>
+</tbody>
+</table>
+
 The authors perform ticket search 50 times for each architecture on the CIFAR-10 dataset and compute 
 trajectory lengths, percentage of surviving weights, test accuracy etc. after each stage of pruning. 
 
@@ -84,7 +138,7 @@ The success rate of finding winning tickets out of 50 trials is denoted as the `
 In the figures below, the architectures are ordered in increasing order of the number of parameters.
 
 <div align="center">
-{% include 2021-12-01-not-all-lotteries-are-made-equal/plot1.html %}
+{% include 2022-02-07-sparse-models/difficulty.html %}
 </div>
 
 For the architectures they tested, they conclude that, in general, it is `easier` to find winning tickets for smaller 
@@ -98,7 +152,7 @@ sub-networks to exist in larger architectures.
 
 
 <div align="center">
-{% include 2021-12-01-not-all-lotteries-are-made-equal/plot2.html %}
+{% include 2022-02-07-sparse-models/quality.html %}
 </div>
 
 Again, it is observed that ResNet18, which is the larget architecture has the lowest accuracy gain when
