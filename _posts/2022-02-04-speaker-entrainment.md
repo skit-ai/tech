@@ -35,7 +35,7 @@ There have been a few implementations of speaker entrainment modules in research
 <figure>
 <center>
   <img alt="Can't See? Something went wrong!" src="/assets/images/posts/speaker-entrainment/entrainer.png"/>
-  <figcaption>Basic structure of a Speaker Entrainment dialog system.</figcaption>
+  <figcaption>Basic structure of a Speaker Entrainment dialog system (reproduced from [14]).</figcaption>
 </center>
 </figure>
 
@@ -76,7 +76,13 @@ Secondly, in the cases of entrained bot performing worse, it is again difficult 
 
 Levitan (2020) [13] is an inspiration of future directions in speaker entrainment research. So far, there is a significant lacunae in speaker entrainment research as far as incorporation of deep learning is concerned, be it in the perception module (i.e. rich representation spaces for audio) or control module (TTS with a natural control over features and emotions).
 
-Classifying users should also be incorporated to understand the degree of entrainment that is necessary, rather than just entraining for every user. Discriminating based on the style of conversation such as High Involvement and High Consideration (described in Hoegen *et al.* [10]). This layer of classification to decide the quality/degree of entrainment can help detect angry/dissatisfied users as well to plan appropriate course of action.
+Classifying user speech should also be incorporated to understand the degree of entrainment that is necessary, rather than just entraining for every user. Discriminating based on the style of conversation such as High Involvement and High Consideration (described in Hoegen *et al.* [10]). This layer of classification serves to decide the quality/degree of entrainment, which has the potential to improve customer experience. Furthermore, this layer can help detect angry/dissatisfied users as well to plan appropriate course of action by detecting high intensity speech, hyper-articulation, etc.
+
+One can stand to improve the quality of experimentation as well. Apart from having more granular options for providing opinions (like a 7-point scale), we can have more speakers as users and more voice profiles for the bot to disentangle the experiment's results from inherent voice qualities. Moreover, any improvement in the entrainment module will improve the quality of results as well.
+
+# Conclusion
+
+Many psycho-sociologists deem speaker entrainment to be crucial to naturalness and trust building in human-human conversations. Recent advancements discussed in Levitan (2020) [13] imply that speaker entrainment is more nuanced than previously thought, but this means if implemented and modelled well, speaker entrainment has the potential of significantly changing the way voicebots interact with users.
 
 # References :
 [1] J. S. Pardo, “On phonetic convergence during conversational interaction,” J. Acoust. Soc. Am., vol. 119, no. 4, pp. 2382–2393, 2006.
@@ -104,3 +110,5 @@ Classifying users should also be incorporated to understand the degree of entrai
 [12] A. Shamekhi, M. Czerwinski, G. Mark, M. Novotny, and G. Bennett, “An Exploratory Study Toward the Preferred Conversational Style for Compatible Virtual Agents,” Oct. 2017, Accessed: May 28, 2021. [Online Available](https://www.microsoft.com/en-us/research/publication/exploratory-study-toward-preferred-conversational-style-compatible-virtual-agents-2/).
 
 [13] R. Levitan, “Developing an Integrated Model of Speech Entrainment,” in Proceedings of the Twenty-Ninth International Joint Conference on Artificial Intelligence, Yokohama, Japan, Jul. 2020, pp. 5159–5163. doi: 10.24963/ijcai.2020/727.
+
+[14] Levitan, Rivka, et al. "Implementing Acoustic-Prosodic Entrainment in a Conversational Avatar." Interspeech. Vol. 16. 2016.
