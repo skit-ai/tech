@@ -5,10 +5,12 @@ tags: []
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
-authors: [shangeth]
+authors: [Shangeth]
 latex: True
-fancy_audio_player: True
 ---
+
+The main advantage of deep learning is the ability to learn from the data in an end-to-end manner. The core of deep learning is representation, the deep learning models transform the representation of the data at each layer into a condensed representation with reduced dimension. Deep Learning models are often also termed as black-box models as these representations are difficult to interpret, understanding these representations can give us an insight about which feature of the data is more important and will allow us to control the learning process. Recently there has been a lot of interest in representation learning and controlling the learned representations which give an edge over multiple tasks like controlled synthesis, better representations for specific downstream tasks. 
+
 # Data Representation and Latent Code
 An image $$(x)$$ from the MNIST dataset has 28x28 = 784 dimensions which is a sparse representation of the image that can be visualized. But all these dimensions are not required to represent the image. The content of the images can be represented in a condensed form using lesser dimensions called latent code. Although the actual image has 784 dimensions $$x \in R^{784}$$, one way of representing MNIST image can be with just an integer ie: $$z \in \{0, 1, 2, …, 9\}$$. This representation $$z$$ reduces the dimension of representing the image $$x$$ to 1 which captures the content of which number is present in the image and the variability in the dataset. This is one example of discrete latent code for the MNIST dataset, a continuous latent code will contain more information about the image such as the style of the image, position of the number, size of the number in the image, etc. 
 
@@ -21,7 +23,7 @@ An image $$(x)$$ from the MNIST dataset has 28x28 = 784 dimensions which is a sp
 
 ## AutoEncoder
 
-Autoencoder[2] models are very popular to learn such latent code in an unsupervised manner by compressing the image to a fized dimension code $$z$$ and generating the image back using this latent code with an encoder-decoder model.
+Autoencoder[2] models are popularly used to learn such latent code in an unsupervised manner by compressing the image to a fixed dimension code $$z$$ and generating the image back using this latent code with an encoder-decoder model.
 
 
 <figure>
@@ -80,7 +82,7 @@ Beta-VAE is a variant of VAE which allows disentanglement of the learned latent 
 </center>
 </figure>
 
-The first part of the loss function takes care of the reconstruction of the image, it is the second term that learns the latent code of VAE. The advantage of using  Gaussians with covariant matrices is that different dimensions that span across are independent. So increasing the weight of this(second part) loss, makes the latent code to be disentangled and independent. But this also brings a tradeoff between disentanglement and the reconstruction capability of the VAE.
+The first part of the loss function takes care of the reconstruction of the image, it is the second term that learns the latent code of VAE. Different dimensions that span across Gaussians are independent, so by making the prior distribution gaussian, we force the dimensions of the latent code to be independent of each other. So increasing the weight of the second part of the loss, makes the latent code to be disentangled and independent. But this also brings a tradeoff between disentanglement and the reconstruction capability of the VAE. Although Beta-VAE models are good in disentangling the features, the reconstruction ability of this model is not the best.
 
 <figure>
 <center>
@@ -93,7 +95,7 @@ The first part of the loss function takes care of the reconstruction of the imag
 
 
 ## Beta-TCVAE
-beta-TCVAE decomposes the KL divergence[10] term of the loss function of VAE into reconstruction loss, Index-code mutual information[8] between data and latent variable, Total Correlation[9] of z, and Dimension wise KL divergence[10] of $$z$$(respectively in the following formula). This helps to break the overall KL Divergence of $$z$$ into dimension-wise quantities, which will focus on each dimension of the latent code $$z$$. In this formulation, the beta hyperparameter is only on the Total Correlation term which is more important for disentanglement without affecting the reconstruction.
+beta-TCVAE decomposes the KL divergence[10] term of the loss function of VAE into reconstruction loss, Index-code mutual information[8] between data and latent variable, Total Correlation[9] of z, and Dimension wise KL divergence[10] of $$z$$(respectively in the following formula). This helps to break the overall KL Divergence of $$z$$ into dimension-wise quantities, which will focus on each dimension of the latent code $$z$$. In this formulation, the beta hyperparameter is only on the Total Correlation term which is more important for disentanglement without affecting the reconstruction. So, Beta-TCVAE has better reconstruction ability than Beta-VAE with similar disentanglement property.
 
 $$
 \mathcal{L}_{\beta-\mathrm{TC}}:=\mathbb{E}_{q(z \mid n) p(n)}[\log p(n \mid z)]-\alpha I_{q}(z ; n)-\beta \operatorname{KL}\left(q(z) \| \prod_{j} q\left(z_{j}\right)\right)-\gamma \sum_{j} \operatorname{KL}\left(q\left(z_{j}\right) \| p\left(z_{j}\right)\right)
