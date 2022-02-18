@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-18T05:44:44+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-18T08:51:13+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
 
 &lt;p&gt;This page contains ideas which we’d like to get help from GSoC Contributors. But before all that, if you haven’t heard about Skit.&lt;/p&gt;
 
@@ -18,9 +18,7 @@
 
 &lt;h2 id=&quot;gsoc-2022-ideas&quot;&gt;GSoC 2022 Ideas&lt;/h2&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;Enhancements to dialogy via core code or plugins.&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h1 id=&quot;idea-1-enhancements-to-dialogy-via-core-code-or-plugins&quot;&gt;Idea 1: Enhancements to dialogy via core code or plugins.&lt;/h1&gt;
 
 &lt;h3 id=&quot;project-description&quot;&gt;Project Description&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&quot;https://skit-ai.github.io/dialogy/&quot;&gt;Dialogy&lt;/a&gt; is a framework to build machine-learning solutions for speech applications speech dialogue systems.&lt;/p&gt;
@@ -71,6 +69,45 @@ And of course Python.&lt;/p&gt;
 &lt;p&gt;175 hours&lt;/p&gt;
 
 &lt;h3 id=&quot;difficulty&quot;&gt;Difficulty&lt;/h3&gt;
+&lt;p&gt;Medium&lt;/p&gt;
+
+&lt;h1 id=&quot;idea-2-speaker-anonymization&quot;&gt;Idea 2: Speaker Anonymization&lt;/h1&gt;
+
+&lt;h3 id=&quot;project-description-1&quot;&gt;Project Description&lt;/h3&gt;
+&lt;p&gt;The goal of this project is to explore and implement methods to anonymize speech to remove the speaker information from the signal by distorting the speaker prosodic features or with techniques like voice conversion. The speaker information in the signal can be used to attack the speaker verification systems which leads to privacy and security concerns. The idea is to explore simple signal/speech processing techniques which are faster in both implementation and deployment, as well as neural methods which use deep learning models and architectures to resynthesis the speech signal with the original speaker’s information removed. Removing the speaker’s information can help us to use speech datasets without worrying about privacy attacks on the speakers in the dataset. This project involves the implementation of various research papers in the field and improving upon them and creating a python package for speaker anonymization.&lt;/p&gt;
+
+&lt;h3 id=&quot;github&quot;&gt;GitHub&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/skit-ai/aunom&quot;&gt;aunom&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;expected-outcomes-1&quot;&gt;Expected Outcomes&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Literature Review of research papers in the field&lt;/li&gt;
+  &lt;li&gt;Implementation of various research papers which are interesting to the project in python.&lt;/li&gt;
+  &lt;li&gt;Github repository for experiments and final python package for speaker anonymization with proper documentation.&lt;/li&gt;
+  &lt;li&gt;Demonstration of the methods implemented and final package.&lt;/li&gt;
+  &lt;li&gt;Talk/presentation on the work done during the GSoC period.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;skills-required-1&quot;&gt;Skills Required&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Experience in Signal/Speech processing (Preferred)&lt;/li&gt;
+  &lt;li&gt;Experience in Deep learning for speech tasks like Automatic Speech Recognition, Speech synthesis, speaker-related tasks  etc.&lt;/li&gt;
+  &lt;li&gt;Python and deep learning frameworks like PyTorch/TensorFlow.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;possible-mentors-1&quot;&gt;Possible Mentors&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Shangeth Rajaa - &lt;a href=&quot;https://www.linkedin.com/in/shangeth/&quot;&gt;linkedin&lt;/a&gt;, &lt;a href=&quot;https://github.com/shangeth&quot;&gt;github&lt;/a&gt;, email - shangeth.rajaa@skit.ai&lt;/li&gt;
+  &lt;li&gt;Swaraj - &lt;a href=&quot;https://www.linkedin.com/in/swaraj-dalmia/&quot;&gt;linkedin&lt;/a&gt;, &lt;a href=&quot;https://github.com/swarajdalmia&quot;&gt;github&lt;/a&gt;, email - swaraj@skit.ai&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;expected-size-1&quot;&gt;Expected Size&lt;/h3&gt;
+&lt;p&gt;175 Hours&lt;/p&gt;
+
+&lt;h3 id=&quot;difficulty-1&quot;&gt;Difficulty&lt;/h3&gt;
 &lt;p&gt;Medium&lt;/p&gt;</content><author><name>Jaivarsan B</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Google Summer of Code - 2022</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speech-First Conversational AI</title><link href="/speech-first-conversational-ai/" rel="alternate" type="text/html" title="Speech-First Conversational AI" /><published>2022-02-06T00:00:00+00:00</published><updated>2022-02-06T00:00:00+00:00</updated><id>/speech-first-conversational-ai</id><content type="html" xml:base="/speech-first-conversational-ai/">&lt;p&gt;We often get asked about the differences between voice and chat bots. The most
 common perception is that the voice bot problem can be reduced to chat bot after
 plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)
