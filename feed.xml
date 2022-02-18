@@ -1,4 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-18T04:23:26+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Speech-First Conversational AI</title><link href="/speech-first-conversational-ai/" rel="alternate" type="text/html" title="Speech-First Conversational AI" /><published>2022-02-06T00:00:00+00:00</published><updated>2022-02-06T00:00:00+00:00</updated><id>/speech-first-conversational-ai</id><content type="html" xml:base="/speech-first-conversational-ai/">&lt;p&gt;We often get asked about the differences between voice and chat bots. The most
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-18T05:44:44+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
+
+&lt;p&gt;This page contains ideas which we’d like to get help from GSoC Contributors. But before all that, if you haven’t heard about Skit.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-skit&quot;&gt;What is Skit?&lt;/h2&gt;
+
+&lt;p&gt;We are a series B funded, AI-first SaaS voice automation company specializing in delivering multilingual voice bots for contact center automation. We have our Speech Bots deployed in major banks and large enterprises in several verticals. We have a foothold in India and are expanding in the US and South-East Asia.&lt;/p&gt;
+
+&lt;p&gt;We have been listed in &lt;a href=&quot;https://www.forbes.com/sites/johnkang/2021/04/19/the-forbes-30-under-30-asia-startups-unshackling-businesses-using-ai/?sh=9268fa85f9aa&quot;&gt;Forbes 30 Under 30 Asia 2021&lt;/a&gt; and have been named by Gartner as a &lt;a href=&quot;https://www.businesswire.com/news/home/20211221005315/en/Skit-Named-as-a-Cool-Vendor-in-Gartner-Cool-Vendors-in-Conversational-and-NLT-Widen-Use-Cases-Domain-Knowledge-and-Dialect-Support?utm_medium=email&amp;amp;_hsmi=202791220&amp;amp;_hsenc=p2ANqtz--yQEAO9Q810nr71J9I8MPppXkOWpWg51LqIrOdv_Wc2X_Hj-ydmia5ruRLbQEEat7EPQ6fn_GHMMVWu4tUV8beoU2BQA&amp;amp;utm_content=202791220&amp;amp;utm_source=hs_email&quot;&gt;Cool vendor in Conversational and NLT Widen Use Cases&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our goal is to build the most natural and robust multi lingual voice bot with state of the art human-machine interaction capabilities.&lt;/p&gt;
+
+&lt;p&gt;We build voicebots, so that agents don’t have to sit and answer user queries 24/7 for 365 days.&lt;/p&gt;
+
+&lt;p&gt;You can get to know more about us over &lt;a href=&quot;https://skit.ai/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Our tech blog is present &lt;a href=&quot;https://tech.skit.ai/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;gsoc-2022-ideas&quot;&gt;GSoC 2022 Ideas&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Enhancements to dialogy via core code or plugins.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;project-description&quot;&gt;Project Description&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://skit-ai.github.io/dialogy/&quot;&gt;Dialogy&lt;/a&gt; is a framework to build machine-learning solutions for speech applications speech dialogue systems.&lt;/p&gt;
+
+&lt;p&gt;The main principles which form the backbone of dialogy are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Plugin-based: Makes it easy to import/export components to projects.&lt;/li&gt;
+  &lt;li&gt;Stack-agnostic: No assumptions made on ML stack; your choice of machine learning library will not be affected by using Dialogy.&lt;/li&gt;
+  &lt;li&gt;Progressive: Minimal boilerplate writing to let you focus on your machine learning problems.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At current shape, dialogy allows one to train models, test performance on metrics and deploy applications. We want to add more features which are desirable in an complete SLU framework. These features could include&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Hyperparameter Tuning- There are multiple hyperparameters involved in using a transformers. A hyperparameter tuning integration would allow developer with a seamless way to experiment with hyperparams and train optimal models.&lt;/li&gt;
+  &lt;li&gt;Model interpretability via Captum, LIT integration- Interpretability is necessary from both business and development perspectives. Such tools would allow developers to explain why a certain prediction was made, as well as discover biases and faults in the model.&lt;/li&gt;
+  &lt;li&gt;Integration with experiment tracking platforms- It gets difficult to keep track of models being trained by developers- some are meant for production releases, some are meant for experimentation. An experiment tracking integration would enable developers to manage their models and results easily.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;github-links&quot;&gt;GitHub Link(s):&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/skit-ai/dialogy&quot;&gt;dialogy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/skit-ai/dialogy-template-simple-transformers&quot;&gt;dialogy-template-simple-transformers&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;expected-outcomes&quot;&gt;Expected Outcomes&lt;/h3&gt;
+
+&lt;p&gt;Dialogy as a platform would have following features after the project&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Integrated with experiment tracking for better project management&lt;/li&gt;
+  &lt;li&gt;Integrated with model explainability and interpretability frameworks allowing users to use these tools&lt;/li&gt;
+  &lt;li&gt;Integrated with an hyperparameter tuning service/library&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;skills-required&quot;&gt;Skills Required&lt;/h3&gt;
+&lt;p&gt;Understanding of Machine Learning frameworks like PyTorch, Huggingface, etc.
+And of course Python.&lt;/p&gt;
+
+&lt;h3 id=&quot;possible-mentors&quot;&gt;Possible Mentors&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Himansu - &lt;a href=&quot;https://www.linkedin.com/in/himansu-didwania/&quot;&gt;linkedin&lt;/a&gt;, &lt;a href=&quot;https://github.com/hdidwania&quot;&gt;github&lt;/a&gt;, email - himansu@skit.ai&lt;/li&gt;
+  &lt;li&gt;Jaivarsan - &lt;a href=&quot;https://www.linkedin.com/in/jaivarsan-b-50264b148/&quot;&gt;linkedin&lt;/a&gt;, &lt;a href=&quot;https://github.com/greed2411&quot;&gt;github&lt;/a&gt;, email - jaivarsan@skit.ai&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;expected-size&quot;&gt;Expected Size&lt;/h3&gt;
+&lt;p&gt;175 hours&lt;/p&gt;
+
+&lt;h3 id=&quot;difficulty&quot;&gt;Difficulty&lt;/h3&gt;
+&lt;p&gt;Medium&lt;/p&gt;</content><author><name>Jaivarsan B</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Google Summer of Code - 2022</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speech-First Conversational AI</title><link href="/speech-first-conversational-ai/" rel="alternate" type="text/html" title="Speech-First Conversational AI" /><published>2022-02-06T00:00:00+00:00</published><updated>2022-02-06T00:00:00+00:00</updated><id>/speech-first-conversational-ai</id><content type="html" xml:base="/speech-first-conversational-ai/">&lt;p&gt;We often get asked about the differences between voice and chat bots. The most
 common perception is that the voice bot problem can be reduced to chat bot after
 plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)
 system. We believe that’s an overly naive assumption about spoken conversations,
@@ -1259,51 +1332,4 @@ Therefore, \(F(x+\delta) - F(x)\) is always &amp;gt;= 0 and hence monotonically 
   &lt;li&gt;&lt;a href=&quot;http://akosiorek.github.io/ml/2018/04/03/norm_flows.html&quot;&gt;Adam Kosiorek’s Blog&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html&quot;&gt;Lilian Weng’s Blog&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf&quot;&gt;Stanford Lecture&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/normalising_flow.jpg" /><media:content medium="image" url="/assets/images/normalising_flow.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What’s New in Kaldi-Serve 1.0</title><link href="/whats-new-kaldi-serve-10/" rel="alternate" type="text/html" title="What’s New in Kaldi-Serve 1.0" /><published>2021-03-25T00:00:00+00:00</published><updated>2021-03-25T00:00:00+00:00</updated><id>/whats-new-kaldi-serve-10</id><content type="html" xml:base="/whats-new-kaldi-serve-10/">&lt;p&gt;&lt;a href=&quot;https://github.com/skit-ai/kaldi-serve&quot;&gt;Kaldi-Serve&lt;/a&gt; is our open source high performance Speech Recognition server framework capable of serving &lt;a href=&quot;https://github.com/kaldi-asr/kaldi&quot;&gt;Kaldi ASR&lt;/a&gt; models in production environments for real-time inference, and it’s got an upgrade!&lt;/p&gt;
-
-&lt;h2 id=&quot;whats-changed&quot;&gt;What’s Changed?&lt;/h2&gt;
-
-&lt;p&gt;Originally designed as a standalone application, kaldi-serve had some issues mostly pertaining to it’s usability or extensibility for custom use cases thus greatly reducing the core’s potential to just a handful of rigid situations and dependencies.&lt;/p&gt;
-
-&lt;p&gt;After one too many requests for changes in the architecture to better fit the various production needs of our customers, we realised it’s time for a rewrite of the framework that allows us to better utilise the core’s scope and extend it’s capabilities in the form of general API consumable in most use cases.&lt;/p&gt;
-
-&lt;h3 id=&quot;library&quot;&gt;Library&lt;/h3&gt;
-
-&lt;p&gt;Kaldi-Serve is now a general extensible library with all the functionality necessary to serve Kaldi ASR models in production with any server framework of your choice, for ex. gRPC, Open CGI, HTTP, etc. or even import it in your own custom offline application.&lt;/p&gt;
-
-&lt;p&gt;The earlier standalone gRPC server is now and application that extends the core kaldi-serve library and only contains the frontend gRPC methods that call the general API. We’ll talk about how you can extend the library in your own applications below.&lt;/p&gt;
-
-&lt;h3 id=&quot;python-port&quot;&gt;Python Port&lt;/h3&gt;
-
-&lt;p&gt;We also made it easier to use kaldi-serve by porting the core library to python which can be easily installed as a package via pip. The transcription interface is much simpler and faster to get up and running.&lt;/p&gt;
-
-&lt;p&gt;Below is sample code snippet for transcribing a wav file with your Kaldi Chain model using the kaldiserve python package:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;io&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BytesIO&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;kaldiserve&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ChainModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parse_model_specs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_decoding&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# chain model contains all const components to be shared across multiple threads
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ChainModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse_model_specs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;model-spec.toml&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# initialize a decoder that references the chain model
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# read audio file as bytes
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sample.wav&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;rb&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;audio_bytes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;BytesIO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_decoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# decode the audio
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode_wav_audio&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audio_bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;# get the n-best alternatives
-&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;alts&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_decoded_results&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;More Features Coming Soon&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Ontology&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;GPU Inference&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;MACE Integration&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Prabhsimran Singh</name></author><category term="Machine Learning" /><category term="speech recognition" /><category term="framework" /><category term="new release" /><summary type="html">Kaldi-Serve is our open source high performance Speech Recognition server framework capable of serving Kaldi ASR models in production environments for real-time inference, and it’s got an upgrade!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ol&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/normalising_flow.jpg" /><media:content medium="image" url="/assets/images/normalising_flow.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
