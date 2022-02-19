@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-19T06:01:48+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code, 2022</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code, 2022" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-19T06:06:05+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code, 2022</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code, 2022" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
 
 &lt;p&gt;This page contains ideas which we’d like to get help from GSoC Contributors. But before all that, if you haven’t heard about Skit.&lt;/p&gt;
 
@@ -15,6 +15,10 @@
 &lt;p&gt;You can get to know more about us over &lt;a href=&quot;https://skit.ai/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Our tech blog is present &lt;a href=&quot;https://tech.skit.ai/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;communication&quot;&gt;Communication&lt;/h2&gt;
+
+&lt;p&gt;You can reach out to us at our skit-gsoc community discord, link to join here : &lt;a href=&quot;https://discord.gg/Y9sJwz5Sw8&quot;&gt;https://discord.gg/Y9sJwz5Sw8&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;gsoc-2022-ideas&quot;&gt;GSoC 2022 Ideas&lt;/h2&gt;
 
