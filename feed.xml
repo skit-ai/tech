@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-18T08:51:13+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-19T06:01:48+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code, 2022</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code, 2022" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
 
 &lt;p&gt;This page contains ideas which we’d like to get help from GSoC Contributors. But before all that, if you haven’t heard about Skit.&lt;/p&gt;
 
@@ -108,6 +108,45 @@ And of course Python.&lt;/p&gt;
 &lt;p&gt;175 Hours&lt;/p&gt;
 
 &lt;h3 id=&quot;difficulty-1&quot;&gt;Difficulty&lt;/h3&gt;
+&lt;p&gt;Medium&lt;/p&gt;
+
+&lt;h1 id=&quot;idea-3-improving-kaldi-serve-performance&quot;&gt;Idea 3: Improving kaldi-serve performance&lt;/h1&gt;
+
+&lt;h3 id=&quot;project-description-2&quot;&gt;Project Description&lt;/h3&gt;
+&lt;p&gt;​​Kaldi Serve is a plug-and-play abstraction over the &lt;a href=&quot;https://kaldi-asr.org/&quot;&gt;Kaldi ASR&lt;/a&gt; toolkit, designed for ease of deployment and optimal runtime performance. It currently has the following key features:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Real-time streaming (uni &amp;amp; bi-directional) audio recognition.&lt;/li&gt;
+  &lt;li&gt;Thread-safe concurrent Decoder queue for server environments.&lt;/li&gt;
+  &lt;li&gt;RNNLM lattice rescoring.&lt;/li&gt;
+  &lt;li&gt;N-best alternatives with AM/LM costs, word-level timings, and confidence scores.&lt;/li&gt;
+  &lt;li&gt;Easy extensibility for custom applications.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We are mainly looking at improving the runtime performance of the ASR pipeline by offloading Decoder computation to the GPU to be performed in mini-batches, and implementing a request queueing mechanism within the gRPC server to be able to utilize the parallel computing capability in order to boost latencies under high concurrent loads.&lt;/p&gt;
+
+&lt;h3 id=&quot;github-1&quot;&gt;GitHub&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/skit-ai/kaldi-serve&quot;&gt;kaldi-serve&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;expected-outcomes-2&quot;&gt;Expected Outcomes&lt;/h3&gt;
+&lt;p&gt;Integration with Kaldi Batched Threaded NNet3 CUDA pipeline for enabling batched computation in kaldi-serve gRPC application.&lt;/p&gt;
+
+&lt;h3 id=&quot;skills-required-2&quot;&gt;Skills Required&lt;/h3&gt;
+&lt;p&gt;Having some combination of these:
+Languages: C++, CUDA, Python
+Frameworks: Kaldi ASR, Pytorch, gRPC, Pybind11
+Basics: Speech Recognition, Language Modeling, Deep Learning&lt;/p&gt;
+
+&lt;h3 id=&quot;possible-mentors-2&quot;&gt;Possible Mentors&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Prabhsimran - &lt;a href=&quot;https://www.linkedin.com/in/pskrunner14/&quot;&gt;linkedin&lt;/a&gt;, &lt;a href=&quot;https://github.com/pskrunner14&quot;&gt;github&lt;/a&gt;, email - prabhsimran@skit.ai&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;expected-size-2&quot;&gt;Expected Size&lt;/h3&gt;
+&lt;p&gt;175 hours&lt;/p&gt;
+
+&lt;h3 id=&quot;difficulty-2&quot;&gt;Difficulty&lt;/h3&gt;
 &lt;p&gt;Medium&lt;/p&gt;</content><author><name>Jaivarsan B</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Google Summer of Code - 2022</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speech-First Conversational AI</title><link href="/speech-first-conversational-ai/" rel="alternate" type="text/html" title="Speech-First Conversational AI" /><published>2022-02-06T00:00:00+00:00</published><updated>2022-02-06T00:00:00+00:00</updated><id>/speech-first-conversational-ai</id><content type="html" xml:base="/speech-first-conversational-ai/">&lt;p&gt;We often get asked about the differences between voice and chat bots. The most
 common perception is that the voice bot problem can be reduced to chat bot after
 plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)
