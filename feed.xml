@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-19T06:06:05+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code, 2022</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code, 2022" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-22T07:09:08+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Google Summer of Code, 2022</title><link href="/gsoc-2022/" rel="alternate" type="text/html" title="Google Summer of Code, 2022" /><published>2022-02-16T00:00:00+00:00</published><updated>2022-02-16T00:00:00+00:00</updated><id>/gsoc-2022</id><content type="html" xml:base="/gsoc-2022/">&lt;h1 id=&quot;google-summer-of-code---2022&quot;&gt;Google Summer of Code - 2022&lt;/h1&gt;
 
 &lt;p&gt;This page contains ideas which we’d like to get help from GSoC Contributors. But before all that, if you haven’t heard about Skit.&lt;/p&gt;
 
@@ -151,7 +151,122 @@ Basics: Speech Recognition, Language Modeling, Deep Learning&lt;/p&gt;
 &lt;p&gt;175 hours&lt;/p&gt;
 
 &lt;h3 id=&quot;difficulty-2&quot;&gt;Difficulty&lt;/h3&gt;
-&lt;p&gt;Medium&lt;/p&gt;</content><author><name>Jaivarsan B</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Google Summer of Code - 2022</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speech-First Conversational AI</title><link href="/speech-first-conversational-ai/" rel="alternate" type="text/html" title="Speech-First Conversational AI" /><published>2022-02-06T00:00:00+00:00</published><updated>2022-02-06T00:00:00+00:00</updated><id>/speech-first-conversational-ai</id><content type="html" xml:base="/speech-first-conversational-ai/">&lt;p&gt;We often get asked about the differences between voice and chat bots. The most
+&lt;p&gt;Medium&lt;/p&gt;</content><author><name>Jaivarsan B</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Google Summer of Code - 2022</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Feature Disentanglement - I</title><link href="/feature-disentanglement1/" rel="alternate" type="text/html" title="Feature Disentanglement - I" /><published>2022-02-07T00:00:00+00:00</published><updated>2022-02-07T00:00:00+00:00</updated><id>/feature-disentanglement1</id><content type="html" xml:base="/feature-disentanglement1/">&lt;p&gt;The main advantage of deep learning is the ability to learn from the data in an end-to-end manner. The core of deep learning is representation, the deep learning models transform the representation of the data at each layer into a condensed representation with reduced dimension. Deep Learning models are often also termed as black-box models as these representations are difficult to interpret, understanding these representations can give us an insight about which feature of the data is more important and will allow us to control the learning process. Recently there has been a lot of interest in representation learning and controlling the learned representations which give an edge over multiple tasks like controlled synthesis, better representations for specific downstream tasks.&lt;/p&gt;
+
+&lt;h1 id=&quot;data-representation-and-latent-code&quot;&gt;Data Representation and Latent Code&lt;/h1&gt;
+&lt;p&gt;An image \((x)\) from the MNIST dataset has 28x28 = 784 dimensions which is a sparse representation of the image that can be visualized. But all these dimensions are not required to represent the image. The content of the images can be represented in a condensed form using lesser dimensions called latent code. Although the actual image has 784 dimensions \(x \in R^{784}\), one way of representing MNIST image can be with just an integer ie: \(z \in \{0, 1, 2, …, 9\}\). This representation \(z\) reduces the dimension of representing the image \(x\) to 1 which captures the content of which number is present in the image and the variability in the dataset. This is one example of discrete latent code for the MNIST dataset, a continuous latent code will contain more information about the image such as the style of the image, position of the number, size of the number in the image, etc.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img width=&quot;600&quot; height=&quot;300&quot; alt=&quot;Can't See? Something went wrong!&quot; src=&quot;https://www.mdpi.com/applsci/applsci-09-03169/article_deploy/html/images/applsci-09-03169-g001.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 2:  Sample Images of MNIST from [1]&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;autoencoder&quot;&gt;AutoEncoder&lt;/h2&gt;
+
+&lt;p&gt;Autoencoder[2] models are popularly used to learn such latent code in an unsupervised manner by compressing the image to a fixed dimension code \(z\) and generating the image back using this latent code with an encoder-decoder model.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;https://d3i71xaburhd42.cloudfront.net/08b0b21725c236fb1860285677a00248f77c7587/2-Figure1-1.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 2: Autoencoder architecture from Autoencoders[2]&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The encoder \(q_{\phi}(z \mid x)\) of the autoencoder compresses the image to a fixed dimension\((d)\) latent code\((z)\), and the decoder \(p_{\theta}(x \mid z)\) is a conditional image generator. The dimension of z has to be such that, the image can be completely reconstructed by the decoder with the latent code. Choosing the dimension of the latent code is a problem on its own[3].&lt;/p&gt;
+
+&lt;p&gt;The autoencoder models trained will successfully encode the images into a latent code \(z\), but there is no guarantee that the latent code can be easily inferred, ie: we do not know where in the d-dimensional space the model encoded the image into, and thus difficult to choose a latent code to generate image during inference. So the conclusion is we have no idea how and where the encoder encodes the images, so we do not have control over synthesis during inference. The following figure shows the latent code learned by the AutoEncoder model with different training, as we can observe the latent space keep changing the range and quadrant and thus difficult to infer.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/feature-disentanglement/fig1.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 3: Latent code of MNIST images learned by an Auto Encoder [4]&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;variational-autoencodervae&quot;&gt;Variational AutoEncoder(VAE)&lt;/h2&gt;
+
+&lt;p&gt;Variational autoencoders(VAE) [6] solve this problem by forcing the latent code (z) to be close to a known prior distribution(Gaussian), this gives us control over the latent space. During inference, the latent space can be sampled from this known distribution for image generation. The following figure shows the latent code learned by VAE with different training, and the latent space across training is centered to the mean 0 across dimensions.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/feature-disentanglement/fig2.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 4: Latent code of MNIST images learned by a VAE [4]&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;VAE allows us to have control over the latent space and sample from the known prior distribution. But this again does not give us control over the generation of the image. Say if you want to generate an image of the number ‘3’ or ‘7’, you cannot do that(at least not directly). This is where the term “disentanglement” comes into play.&lt;/p&gt;
+
+&lt;h1 id=&quot;disentanglement&quot;&gt;Disentanglement&lt;/h1&gt;
+&lt;p&gt;Feature disentanglement is isolating the source of variation in observation data. There is a lot more factors/feature of an MNIST image other than the number itself, such as the location of the number in the image, size of the image, angle of the number, etc. These factors are independent of each other.&lt;/p&gt;
+
+&lt;p&gt;Feature disentanglement involves separating underlying concepts of “Big one in the left”: ie: size(big), number(one), location(left).
+Our interest here is to see if we can isolate these factors in the latent code so that we can have control over the generation of the images. So we want the encoder to disentangle the representation into different factors and then we generate the image with desired factors say “small seven in the top rotated 30 degrees”.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img width=&quot;800&quot; height=&quot;400&quot; alt=&quot;Can't See? Something went wrong!&quot; src=&quot;https://d3i71xaburhd42.cloudfront.net/35da0a2001eea88486a5de677ab97868c93d0824/6-Figure2-1.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 5: Generated MNIST images by InfoGAN [5] varied digit, thickness and roatation.&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;beta-vae&quot;&gt;Beta-VAE&lt;/h2&gt;
+&lt;p&gt;Beta-VAE is a variant of VAE which allows disentanglement of the learned latent code. Beta-VAE adds hyperparameter to the loss function which modulates the learning constraint of VAE.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img width=&quot;800&quot; alt=&quot;Can't See? Something went wrong!&quot; src=&quot;https://miro.medium.com/max/1400/1*Z6tj5bVoArekVgv65gfkfg.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 6: Loss function of beta-VAE [7].&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The first part of the loss function takes care of the reconstruction of the image, it is the second term that learns the latent code of VAE. Different dimensions that span across Gaussians are independent, so by making the prior distribution gaussian, we force the dimensions of the latent code to be independent of each other. So increasing the weight of the second part of the loss, makes the latent code to be disentangled and independent. But this also brings a tradeoff between disentanglement and the reconstruction capability of the VAE. Although Beta-VAE models are good in disentangling the features, the reconstruction ability of this model is not the best.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img width=&quot;800&quot; alt=&quot;Can't See? Something went wrong!&quot; src=&quot;https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-28_at_4.00.13_PM.png&quot; /&gt;
+  &lt;figcaption&gt;Fig 7: Samples generated by beta-VAE [7].&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;beta-tcvae&quot;&gt;Beta-TCVAE&lt;/h2&gt;
+&lt;p&gt;beta-TCVAE decomposes the KL divergence[10] term of the loss function of VAE into reconstruction loss, Index-code mutual information[8] between data and latent variable, Total Correlation[9] of z, and Dimension wise KL divergence[10] of \(z\)(respectively in the following formula). This helps to break the overall KL Divergence of \(z\) into dimension-wise quantities, which will focus on each dimension of the latent code \(z\). In this formulation, the beta hyperparameter is only on the Total Correlation term which is more important for disentanglement without affecting the reconstruction. So, Beta-TCVAE has better reconstruction ability than Beta-VAE with similar disentanglement property.&lt;/p&gt;
+
+\[\mathcal{L}_{\beta-\mathrm{TC}}:=\mathbb{E}_{q(z \mid n) p(n)}[\log p(n \mid z)]-\alpha I_{q}(z ; n)-\beta \operatorname{KL}\left(q(z) \| \prod_{j} q\left(z_{j}\right)\right)-\gamma \sum_{j} \operatorname{KL}\left(q\left(z_{j}\right) \| p\left(z_{j}\right)\right)\]
+
+&lt;p&gt;where \(\alpha = \gamma = 1\) and only \(\beta\) is varies as the hyperparameter.&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img width=&quot;800&quot; alt=&quot;Can't See? Something went wrong!&quot; src=&quot;https://vitalab.github.io/article/images/IsolatingSourcesOfDisentanglementInVAEs/figure1.jpg&quot; /&gt;
+  &lt;figcaption&gt;Fig 8: Samples generated by beta-TCVAE [8].&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In future posts, we will examine many new methods for feature disentanglement and how these methods can be applied to speech signals.&lt;/p&gt;
+
+&lt;h2 id=&quot;references-&quot;&gt;References :&lt;/h2&gt;
+
+&lt;p&gt;[1] : &lt;a href=&quot;https://www.mdpi.com/2076-3417/9/15/3169/htm&quot;&gt;A Survey of Handwritten Character Recognition with MNIST and EMNIST&lt;/a&gt; (2019)&lt;/p&gt;
+
+&lt;p&gt;[2] : &lt;a href=&quot;https://arxiv.org/abs/2003.05991&quot;&gt;Autoencoders&lt;/a&gt; (2021)&lt;/p&gt;
+
+&lt;p&gt;[3] : &lt;a href=&quot;https://www.sciencedirect.com/science/article/abs/pii/S0925231215015994&quot;&gt;Squeezing bottlenecks: Exploring the limits of autoencoder semantic representation capabilities&lt;/a&gt; (2016)&lt;/p&gt;
+
+&lt;p&gt;[4] : &lt;a href=&quot;https://www.youtube.com/watch?v=itOlzH9FHkI&quot;&gt;Disentangled Representations - How to do Interpretable Compression with Neural Models&lt;/a&gt; (2020)&lt;/p&gt;
+
+&lt;p&gt;[5] : &lt;a href=&quot;https://arxiv.org/abs/1606.03657&quot;&gt;InfoGAN: Interpretable Representation Learning by Information Maximizing Generative Adversarial Nets&lt;/a&gt; (2016)&lt;/p&gt;
+
+&lt;p&gt;[6] : &lt;a href=&quot;https://arxiv.org/abs/1312.6114&quot;&gt;Auto-Encoding Variational Bayes&lt;/a&gt; (2013)&lt;/p&gt;
+
+&lt;p&gt;[7] : &lt;a href=&quot;https://openreview.net/forum?id=Sy2fzU9gl&quot;&gt;beta-VAE: Learning Basic Visual Concepts with a Constrained Variational Framework &lt;/a&gt; (2017)&lt;/p&gt;
+
+&lt;p&gt;[8] : &lt;a href=&quot;https://arxiv.org/abs/1802.04942&quot;&gt;Isolating Sources of Disentanglement in Variational Autoencoders&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[9] : &lt;a href=&quot;https://en.wikipedia.org/wiki/Total_correlation&quot;&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[10] : &lt;a href=&quot;https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence&quot;&gt;Wikipedia&lt;/a&gt;&lt;/p&gt;</content><author><name>Shangeth Rajaa</name></author><category term="Machine Learning" /><summary type="html">The main advantage of deep learning is the ability to learn from the data in an end-to-end manner. The core of deep learning is representation, the deep learning models transform the representation of the data at each layer into a condensed representation with reduced dimension. Deep Learning models are often also termed as black-box models as these representations are difficult to interpret, understanding these representations can give us an insight about which feature of the data is more important and will allow us to control the learning process. Recently there has been a lot of interest in representation learning and controlling the learned representations which give an edge over multiple tasks like controlled synthesis, better representations for specific downstream tasks.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speech-First Conversational AI</title><link href="/speech-first-conversational-ai/" rel="alternate" type="text/html" title="Speech-First Conversational AI" /><published>2022-02-06T00:00:00+00:00</published><updated>2022-02-06T00:00:00+00:00</updated><id>/speech-first-conversational-ai</id><content type="html" xml:base="/speech-first-conversational-ai/">&lt;p&gt;We often get asked about the differences between voice and chat bots. The most
 common perception is that the voice bot problem can be reduced to chat bot after
 plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)
 system. We believe that’s an overly naive assumption about spoken conversations,
@@ -1153,263 +1268,4 @@ REF : room service आपको कै सी लग&lt;/p&gt;
 &lt;a href=&quot;http://amitavadas.com/Social_India/SOCIAL_INDIA_2014_PROCEEDING.pdf#page=6&quot;&gt;&lt;/a&gt;- &lt;a href=&quot;https://www.isca-speech.org/archive/Interspeech_2017/pdfs/1429.PDF&quot;&gt;Metrics for modeling code-switching across corpora&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.aclweb.org/anthology/W16-58.pdf#page=24&quot;&gt;Simple tools for exploring variation in code-switching for linguists&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/physics/0610233.pdf&quot;&gt;Burstiness and memory in complex systems&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="code-mixing" /><category term="tts" /><category term="asr" /><summary type="html">We at skit, recently concluded a seminar series on code-mixing, where we covered research papers that looked at approaches to deal with code-mixed data across ASR, TTS and SLU related services. Code-mixing is a common phenomena in the Indian subcontinent. Code-mixing refers to the situation when two or more languages are present in an utterance or a corpus. It is important to formulate, discuss and deliberate on metrics because, it is improvement on metrics across benchmark datasets that spur continuous research in a field.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/ornament.jpg" /><media:content medium="image" url="/assets/images/ornament.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Normalizing Flows - Part 2</title><link href="/normalizing-flows-part-2/" rel="alternate" type="text/html" title="Normalizing Flows - Part 2" /><published>2021-05-08T00:00:00+00:00</published><updated>2021-05-08T00:00:00+00:00</updated><id>/normalizing-flows-part-2</id><content type="html" xml:base="/normalizing-flows-part-2/">&lt;p&gt;In &lt;a href=&quot;https://tech.skit.ai/normalizing-flows/&quot;&gt;Part-1&lt;/a&gt;, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.&lt;/p&gt;
-
-&lt;h1 id=&quot;topics-covered&quot;&gt;Topics Covered:&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Element-wise Flows&lt;/li&gt;
-  &lt;li&gt;Linear Flows&lt;/li&gt;
-  &lt;li&gt;Planar and Radial Flows&lt;/li&gt;
-  &lt;li&gt;Coupling Flows&lt;/li&gt;
-  &lt;li&gt;Autoregressive Flows
-    &lt;ul&gt;
-      &lt;li&gt;Masked Autoregressive Flows&lt;/li&gt;
-      &lt;li&gt;Inverse Autoregressive Flows&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Residual Flows&lt;/li&gt;
-  &lt;li&gt;Convolutions and NFs&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;element-wise-flows&quot;&gt;Element-wise Flows&lt;/h1&gt;
-
-&lt;p&gt;This is the simplest normalizing flow. In this case, the bijective function \(T\) can be broken into individual components i.e.  \(T(x_1, x_2...x_d) = (h_1(x_1), h_2(x_2)...h_d(x_d))\) s.t. every \(h_i\) is a transform from \(R \rightarrow R\). Each dimension has its own bijective function. However, these simple flows don’t capture any dependency between dimensions. Some activation functions like Parametric Leaky RELU (bijective) can be considered element-wise NFs.&lt;/p&gt;
-
-&lt;h1 id=&quot;linear-flows&quot;&gt;Linear Flows&lt;/h1&gt;
-
-&lt;p&gt;Linear flows are able to capture correlations between dimensions and are of the form : \(T(x) = Ax+b\) , where \(A \in R^{D*D}\) and \(b \in R^D\) where \(D\) is the dimensionality of the input. For the transform T to be invertible, only the matrix A needs to be invertible. When matrix A is a non-diagonal matrix, it captures correlation between different dimensions.&lt;/p&gt;
-
-&lt;p&gt;Linear flows are limited in their expressive power. Starting out with a Gaussian \(z \sim N(\mu, \sigma)\), we simply arrive at another Gaussian \(z' = N(A*\mu+b, A^T*\sigma*A)\), similarly for other distributions.&lt;/p&gt;
-
-&lt;p&gt;However, they serve as important building blocks for NFs. In terms of computational complexity, computing the determinant and inverse are both of order \(O(D^3)\) where \(D\) is the dimensionality of matrix A. To make the calculation more efficient, there need to be some restrictions on A.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Possible restrictions on A:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A is a diagonal matrix: this reduces computation time for the calculation of the det. and inverse to \(O(D)\). However, this is equivalent to element-wise bijections.&lt;/li&gt;
-  &lt;li&gt;A is a triangular matrix: It is more expressive than a diagonal matrix. The computation time for calculation of the determinant is \(O(D)\) and for the inverse is \(O(D^2)\).&lt;/li&gt;
-  &lt;li&gt;A is an orthogonal matrix: Inverse of an orthogonal matrix is simply its transpose and the determinant is either \(\pm 1\).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;There are some other methods that use &lt;a href=&quot;https://papers.nips.cc/paper/2018/hash/d139db6a236200b21cc7f752979132d0-Abstract.html&quot;&gt;LU factorisations&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/abs/1901.11137&quot;&gt;QR decomposition&lt;/a&gt; which essentially exploit matrix properties to make the computation of inverse and determinant efficient and at the same time allow A to be more expressive.&lt;/p&gt;
-
-&lt;h1 id=&quot;planar-and-radial-flows&quot;&gt;Planar and Radial Flows&lt;/h1&gt;
-
-&lt;p&gt;They were first introduced in &lt;a href=&quot;https://arxiv.org/abs/1505.05770&quot;&gt;Rezende and Mohamed [2015]&lt;/a&gt;, but aren’t widely used in practice and therefore not covered in details here. Planar flows expand/contract the distribution around a certain direction (specified by a plane) and radial flows modify the distribution around specific points. The effect of the flows can be seen below. The left half shows the effect of planar NFs on an initial distribution of a Gaussian and uniform distribution, and the right half shows the effect of a radial flow.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/planar_radial_flows.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 1 : Examples of planar and radial flows on initial distributions like Gaussian and uniform distributions.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;h1 id=&quot;coupling-flows&quot;&gt;Coupling Flows&lt;/h1&gt;
-
-&lt;p&gt;Coupling flows are highly expressive and widely used flow architectures. They can either have linear or non-linear invertible transformations.&lt;/p&gt;
-
-&lt;p&gt;Coupling flows are defined by two sets of mappings, an identity map and a coupling function \(h\). Consider a disjoint partition of the input \(x \in \mathbb{R}\) into two subspaces: \((x^A, x^B)\) \(\in\) \(\mathbb{R}^d \times \mathbb{R}^{D-d}\).  A bijective differentiable coupling function is defined as, \(h(\cdot ;\theta)\) : \(\mathbb{R}^d \rightarrow \mathbb{R}^{D}\) that is parameterized by \(\theta\).  The equations for both the mappings are shown below.&lt;/p&gt;
-
-&lt;p&gt;\(y^A\) =  \(h(x^A, \theta(x^B))\)   &lt;br /&gt;
-\(y^{B}\) = \(x^B\)&lt;/p&gt;
-
-&lt;p&gt;The bijection \(h\) is called a &lt;strong&gt;coupling function&lt;/strong&gt;, and the resulting function \(g\) that consists of both the mappings is called a &lt;strong&gt;coupling flow&lt;/strong&gt;. Coupling flow is invertible if and only if \(h\) is invertible and has an inverse.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Let’s consider an example :&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Let us consider an input with 4 dimensions \((x1,x2,x3,x4)\). Let \(x^A = (x1,x2)\) and \(x^B = (x3,x4)\). Let \(\theta(x^B) = x3+x4\) and let the coupling function \(h(x^A, \theta(x^B)) = \theta(x^B) * x^A\).&lt;/p&gt;
-
-&lt;p&gt;Given this example, the coupling function \(h\) is invertible but only if \(\theta\) isn’t zero. Therefore, the invertibility requirement of \(h\) introduces a limitation on \(\theta\) as well. In this case, it can’t be defined as a simple additive function. The restriction for non-zero values needs to be taken into account.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/coupling_flows.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 2 : Example coupling flow architectures.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The figure above shows two examples of coupling flow architectures. In figure (a), \(x^{A}\) and \(x^{B}\) are the two input subspaces. The coupling function \(h\) is applied to \(x^{A}\) directly while it is parameterized on \(x^{B}\). In figure (b), there are two subsequent flows, where the size of input subspace on which the coupling function \(h\) is applied, gradually increases with each flow.&lt;/p&gt;
-
-&lt;p&gt;There are various types of coupling functions. We discuss some of these briefly,&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Additive coupling
-    &lt;ul&gt;
-      &lt;li&gt;This is one of the simplest form of coupling functions defined by,
-  \(h(x;\theta) =\)  \(x + \theta\),     where \(\theta\) is a constant \(\in \mathbb{R}\)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Affine coupling
-    &lt;ul&gt;
-      &lt;li&gt;\(h(x;\theta) =\)  \(\theta_1x + \theta_2\),     \(\theta_1 \neq 0\),  \(\theta_2 \in \mathbb{R}\)
-  Both additive and affine coupling were introduced in &lt;a href=&quot;https://arxiv.org/pdf/1410.8516.pdf&quot;&gt;NICE&lt;/a&gt;.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Neural auto-regressive flows
-    &lt;ul&gt;
-      &lt;li&gt;This was first introduced by &lt;a href=&quot;https://arxiv.org/pdf/1804.00779.pdf&quot;&gt;Huang et al [2018]&lt;/a&gt;. The coupling function \(h(\cdot;\theta)\) is modelled as a neural network. Every neural network can be considered as a parameterized function, the parameters being the weights. In this case, the weights of the neural network are defined by \(\theta\). To ascertain that the neural network follows bijectivity, the following proposition is applied :
-        &lt;ul&gt;
-          &lt;li&gt;If \(NN(\cdot)\) :  \(\mathbb{R} \rightarrow \mathbb{R}\) is a multilayer perceptron, such that all weights are positive and all activation functions are strictly monotone, then \(NN({\cdot})\) is a strictly monotone function.
-  So, since the neural network is monotone, it is also invertible and hence a normalizing flow.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;More types of coupling flows can be found in this &lt;a href=&quot;https://arxiv.org/pdf/1908.09257.pdf&quot;&gt;paper&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&quot;autoregressive-flows&quot;&gt;Autoregressive Flows&lt;/h1&gt;
-
-&lt;p&gt;An autoregressive flow is a type of normalizing flow where the transformations use autoregressive functions. The term &lt;strong&gt;autoregressive&lt;/strong&gt; originates from time-series models where the predictions at the current time-step are dependent on the observations from the previous time-steps.&lt;/p&gt;
-
-&lt;p&gt;The probability distribution of an autoregressive model is given by, the equation below where the output at time-step \(i\) is conditioned on all the previous outputs.&lt;/p&gt;
-
-\[p(x) = \prod_{i=1..D} p(x_i | x_{1:i-1})\]
-
-&lt;p&gt;An autoregressive function can be represented as a coupling flow:&lt;/p&gt;
-
-&lt;p&gt;Let the coupling function \(h(\cdot ;\theta)\) : \(\mathbb{R} \rightarrow \mathbb{R}\) be a bijection parameterized by \(\theta\), and let \(x_{1:t}\) be the set of inputs Then, an autoregressive model is a function \(g : \mathbb{R}^D \rightarrow \mathbb{R}^D\), in which every entry of the output \(y = g(x)\) is conditioned on the previous entries of the input:&lt;/p&gt;
-
-\[y_t = h(x_t ; \theta_t(x_{1:t-1})\]
-
-&lt;p&gt;The functions \(\theta_t(\cdot)\) are called &lt;strong&gt;conditioners&lt;/strong&gt;. \(\theta_1\) is a constant whereas \(\theta_2\), \(\theta_3\) … , \(\theta_t\) are arbitrary functions mapping \(\mathbb{R}_{t-1}\) to the set of all parameters. The conditioners need to be arbitrarily complex for effective transformations and hence, are usually modelled as neural networks.&lt;/p&gt;
-
-&lt;p&gt;Since each output depends only on the previous inputs, the Jacobian matrix of an autoregressive transformation \(g\) is triangular (refer to &lt;a href=&quot;https://paper.dropbox.com/doc/Part-1-Introducing-Normalizing-Flows--BHah7N6t5K91Tds2Cz_e8oeWAQ-SMbUFvz9GWqRqcTsYW0Vm&quot;&gt;P&lt;/a&gt;&lt;a href=&quot;https://paper.dropbox.com/doc/Part-1-Introducing-Normalizing-Flows--BHah7N6t5K91Tds2Cz_e8oeWAQ-SMbUFvz9GWqRqcTsYW0Vm&quot;&gt;art 1&lt;/a&gt; for explanation). The determinant of a triangular matrix is simply a product of its diagonal entries.&lt;/p&gt;
-
-\[\det{(Dg)} = \prod_{t=1..k} |\frac{\partial y_t}{\partial x_t}|\]
-
-&lt;h2 id=&quot;masked-autoregressive-flows-mafs&quot;&gt;Masked Autoregressive Flows (MAFs)&lt;/h2&gt;
-
-&lt;p&gt;The time taken to train autoregressive flow models is very high because of the need to sequentially generate outputs. Using MAFs one can parallelize the training process.&lt;/p&gt;
-
-&lt;p&gt;MAFs were inspired by the observation that on stacking several autoregressive models, where each model had unimodal conditionals, the normalizing flow can learn multi-modal conditionals (&lt;a href=&quot;https://arxiv.org/pdf/1705.07057.pdf&quot;&gt;MAF [2018]&lt;/a&gt;). The architecture consists of &lt;strong&gt;stacked MADEs&lt;/strong&gt; &lt;strong&gt;with Gaussian conditionals&lt;/strong&gt; which are explained below.&lt;/p&gt;
-
-&lt;p&gt;What are &lt;strong&gt;MADEs&lt;/strong&gt;?&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;MADE&lt;/strong&gt; stands for Masked Auto-Encoder for Distribution Estimation (&lt;a href=&quot;https://arxiv.org/pdf/1502.03509.pdf&quot;&gt;MADE [2015]&lt;/a&gt;) are essentially auto-encoders with some modifications like masks. In a MADE, the autoregressive property is enforced by multiplying the weight matrices of the hidden layers of the auto-encoder with a binary mask. These masks ensure that the training of the sequential auto-regressive model can be done in parallel.&lt;/p&gt;
-
-&lt;p&gt;The masking is done such that forward passes with mask are equivalent to conditioning the output only on the earlier sequences of input. This is shown in the below image. On the left, a typical auto-encoder with 2 hidden layers is shown. If one wants to represent the output as an autoregressive sequence specified by the equation below, then masks are multiplied to the weights of the auto-encoder.&lt;/p&gt;
-
-\[p(x) = p(x_2) * p(x_3 | x_2) * p(x_1 | x_2, x_3)\]
-
-&lt;p&gt;The order of the inputs are \(x_2, x_3, x_1\) The image on the right shows the network weights after masking. For example \(p(x_2)\) doesn’t depend on any of the other inputs since it is the first in the sequence. \(p(x_3)\) is dependent on only the nodes that depend on \(x_2\) and similarly for \(p(x_1)\) The general form for masking is discussed in the MADE paper. The MADE architecture parallelizes the sequential autoregressive computation.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/MADEs.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 3 : This image is taken from the MADE paper an explains the idea of masking, so as to parallelizes the sequential autoregressive computation.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;h2 id=&quot;density-estimation-and-sampling&quot;&gt;Density Estimation and Sampling&lt;/h2&gt;
-
-&lt;p&gt;There are two important concepts when studying flow architectures : density estimation and sampling. Both these passes have different computation complexity and for auto-regressive models, the computation time of one is inversely related to the other.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/MAFs.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 4 : Forward pass of MAFs (left) vs. Inverse pass of MAFs (right).&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The diagrams above demonstrate a forward pass and an inverse pass in a MAF.
-The output \(x_i's\) depends upon the input \(z_{i}\) and the scalars \(\alpha_{i}\), \(\mu_{i}\) which are computed using \(x_{1:t-1}\).  It is these scalars that define the density parameters of the distribution. This is also called a scale and shift transform. The reason why it is designed this way is that inverting \(f(x)\) does not require us to invert the scalar functions \(\alpha_{i}\) and \(\mu_{i}\).&lt;/p&gt;
-
-&lt;p&gt;\(f^{-1}(x_{i}) = z_{i} = \frac{x_{i} - \mu_{i}}{exp(\alpha_{i})}\).&lt;/p&gt;
-
-&lt;p&gt;MAFs can compute the density \(p(x)\) very efficiently. During the training process, all the \(x_i's\) are known. One can therefore parallelize this step using masks. Sampling on the other hand (predicting \(x_{D}\)) is slower as it requires it requires performing \(D\) sequential passes (where \(D\) is the dimensionality of \(x\)) to calculate the previous samples (\(x_{1}, x_{2} ... x_{D-1}\)) before computing \(x_{D}\).&lt;/p&gt;
-
-&lt;h2 id=&quot;inverse-autoregressive-flows-iafs&quot;&gt;Inverse Autoregressive Flows (IAFs)&lt;/h2&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/IAFs.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 5 : Inverse pass of MAF (left) vs. Forward pass of IAF (right).&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Since MAFs are better at training by exploiting parallel computation but slower during sampling, we modify the functions to get another flow architecture that is faster at sampling. This gives us Inverse Autoregressive flows (IAFs).&lt;/p&gt;
-
-&lt;p&gt;The figures above show a comparison between the inverse pass of a MAF and the forward pass in an IAF.  The only difference between both the architectures is that for IAF’s the autoregression is based on the latent variables and not the predicted distribution. The scale(\(\alpha_{i}\)) and shift(\(\mu_{i}\)) quantities are computed using previous data points from the base distribution instead of the transformed distribution.&lt;/p&gt;
-
-&lt;p&gt;IAF can generate samples efficiently with one pass through the model since all the \(z_i's\)  are known. However, the training process  is slow, since estimating the \(z_i\) requires i sequential passes to calculate all the required input variables \(z_{1}\), \(z_{2}\), .. \(z_{i-1}\).&lt;/p&gt;
-
-&lt;p&gt;Aside : According to our understanding, during training, both the weights of the network parameters(\(\alpha, \mu\)) and \(z_i's\) are estimated i.e. the ith latent variable is itself treated as a parameter that is to be learned.&lt;/p&gt;
-
-&lt;p&gt;One should use IAFs if fast sampling is needed, and MAFs if fast density estimation is desirable.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1711.10433&quot;&gt;Parallel WaveNet&lt;/a&gt; [2017] which was once the state-of-art model for speech synthesis made use of a MAF and an IAF. A fully trained “teacher” network that used MAF architecture was used to train a smaller and parallel “student” network that used IAF architecture. Since the teacher used MAF architecture it could be trained fast. Once the student network, an IAF model, was trained, it could then generate all the audio samples in parallel without depending on the previously generated audio samples and with no loss in audio quality.&lt;/p&gt;
-
-&lt;h1 id=&quot;residual-flows&quot;&gt;Residual Flows&lt;/h1&gt;
-
-&lt;p&gt;During training, deep networks find it difficult to reach a convergence point due to the vanishing/exploding gradient. In such cases, adding more layers to the network only results in a higher training error. Residual Networks or &lt;a href=&quot;https://arxiv.org/pdf/1512.03385.pdf&quot;&gt;ResNets&lt;/a&gt; were introduced to solve this problem. ResNets consist of skip-connection blocks.&lt;/p&gt;
-
-&lt;p&gt;A residual block is shown below. The output of the residual block is represented by the equation below, where \(F(x)\) represented the pass through the neural layers.&lt;/p&gt;
-
-\[M(x) = F(x) + x\]
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/residual_flows.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 6 : A residual block.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;How does this help?
-Skip connections in a deep neural network allow the back-propagation signal to reach the initial layers of the neural network thereby solving the vanishing gradient problem.
-Instead of treating the number of layers as an important hyper-parameter to tune, by adding skip connections to our network, we are allowing the network to skip training for the layers that are not useful and do not add value to overall accuracy. In a way, skip connections make our neural networks dynamic, so that they may optimally tune the number of layers during training.&lt;/p&gt;
-
-&lt;p&gt;Residual flows in their general form aren’t invertible and can only be used in flow architectures after applying some constraints(first introduced in &lt;a href=&quot;https://arxiv.org/pdf/1906.02735.pdf&quot;&gt;Chen et al. [2019]&lt;/a&gt;). This is discussed next.&lt;/p&gt;
-
-&lt;p&gt;A Lipschitz condition is necessary to enforce invertibility in residual flows.&lt;/p&gt;
-
-&lt;p&gt;Lipchitz condition :
-A real valued function : \(f : \mathbb{R} \rightarrow \mathbb{R}\), is Lipchitz continuous if there exists a positive real constant \(K\) such that, for all real \(x_1\) and \(x_2\), \(|f(x_1) - f(x_2)| \leq  K| x_1 - x_2 |\)&lt;/p&gt;
-
-&lt;p&gt;If \(K = 1\) the function is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Short_map&quot;&gt;&lt;strong&gt;short map&lt;/strong&gt;&lt;/a&gt;, and if \(0 \leq K &amp;lt; 1\) the function is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Contraction_mapping&quot;&gt;&lt;strong&gt;contraction&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Invertible Residual Flows:&lt;/strong&gt;
-Given a residual flow of the form, \(F(x)=x+g(x)\), if the mapping \(g(x)\) has a lipschitz constant \(K\), \(0 \leq K &amp;lt; 1\) then the residual flow is invertible. We discuss a short proof of this next.&lt;/p&gt;
-
-&lt;p&gt;For the residual flow to be invertible, proving that \(F(x)\) is monotonically increasing is sufficient i.e. we need to prove \(F(x+\delta) - F(x) &amp;gt;= 0\)&lt;/p&gt;
-
-\[F(x+\delta) - F(x) = x+\delta + g(x+\delta) - (x - g(x)) = \delta + g(x+\delta) - g(x)\]
-
-&lt;p&gt;From the Lipschitz condition for \(g\), we have \(|g(x+\delta) - g(x)| \le |\delta|\), since \(0 \leq K &amp;lt; 1\).
-Therefore, \(F(x+\delta) - F(x)\) is always &amp;gt;= 0 and hence monotonically increasing.&lt;/p&gt;
-
-&lt;p&gt;The addition of invertible residual blocks greatly enhances the class of neural network flow models and also ensures we can train deeper models without the fear of vanishing gradient.&lt;/p&gt;
-
-&lt;h1 id=&quot;convolutions-and-nfs&quot;&gt;Convolutions and NFs&lt;/h1&gt;
-
-&lt;p&gt;Convolutions are one of the most common operations used in the design of DNNs, however, the computation of their inverse and determinant is non-obvious. Since they aren’t invertible they can’t be used in the family of NF flows. However, recently [Hoogeboom et al. &lt;a href=&quot;https://arxiv.org/abs/1901.11137&quot;&gt;2019&lt;/a&gt;] defined invertible \(d*d\) convolutions and designed an architecture using stacked masked autoregressive convolutions. This is explained next.&lt;/p&gt;
-
-&lt;p&gt;In the figure below, on the right, the input x is shown along with the kernel matrix w. The convolution operation between these two can be represented as a matrix multiplication of the form \(A*x\)  shown on the right.  The matrix A is non-invertible here, however, if we consider \(f = g = h = i = 0\), then, we get a triangular matrix that can represent a normalizing flow.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/convolutions_nfs_1.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 7 : A convolution represented as a matrix multiplication.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;One of the issues of using a filter where \(f = g = h = i = 0\) is that the receptive field is narrow. However, one can rotate the filter and combine two filters to get different receptive fields as shown on the left in the image below. These can then which can be stacked to capture more expressive combinations as shown on the right. These are called “expressive convolutions” in the paper. The grey and orange filters are rotations of the same filter that result in a triangular matrix. They can be stacked to get different receptive fields shown in blue. These blue receptive fields can be stacked further to arrive at more expressive transforms that have the desired receptive field.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/normalizing-flows/bigger_kernels.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 8 : The part in grey is an example of an individual kernel that would result in a triangular matrix. The grey and orange matrices are all rotations of the standard matrix and the blue matrix shows the receptive field when the grey and orange filters are combined..&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;This concludes our discussion of normalizing flow architectures. Incase of any doubts/questions please reach out to us at &lt;em&gt;kriti@skit.ai&lt;/em&gt; or &lt;em&gt;swaraj@skit.ai&lt;/em&gt;.&lt;/p&gt;
-
-&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1908.09257.pdf&quot;&gt;Normalizing Flows IEEE&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1705.07057.pdf&quot;&gt;MAFs&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://akosiorek.github.io/ml/2018/04/03/norm_flows.html&quot;&gt;Adam Kosiorek’s Blog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://lilianweng.github.io/lil-log/2018/10/13/flow-based-deep-generative-models.html&quot;&gt;Lilian Weng’s Blog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://cs236.stanford.edu/assets/slides/cs236_lecture8.pdf&quot;&gt;Stanford Lecture&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="normalizing-flows" /><category term="tts" /><summary type="html">In Part-1, we introduced the concept of normalizing flows. Here, we discuss the different types of normalizing flows. In most blogs that discuss Normalizing Flows, several concepts related to autoregressive flows and residual flows aren’t discussed very clearly. We hope to simplify the explanations of a relatively theoretical topic and make them accessible.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/normalising_flow.jpg" /><media:content medium="image" url="/assets/images/normalising_flow.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="code-mixing" /><category term="tts" /><category term="asr" /><summary type="html">We at skit, recently concluded a seminar series on code-mixing, where we covered research papers that looked at approaches to deal with code-mixed data across ASR, TTS and SLU related services. Code-mixing is a common phenomena in the Indian subcontinent. Code-mixing refers to the situation when two or more languages are present in an utterance or a corpus. It is important to formulate, discuss and deliberate on metrics because, it is improvement on metrics across benchmark datasets that spur continuous research in a field.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/ornament.jpg" /><media:content medium="image" url="/assets/images/ornament.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
