@@ -1,6 +1,8 @@
 # Introduction
 
-This blog will introduce the label noise problem in our datasets and cover various cleaning methods that can reduce the time taken to fix noisy labels in a dataset
+This blog will introduce the label noise problem in our datasets and cover various cleaning methods that can reduce the time taken to fix noisy labels in a dataset.
+
+When we create a dataset for a supervised task (transcription, entity, intent, etc), we do so by tagging samples from a set of labels. But some samples are mis-labelled and they add *noise* to the (supposedly) clean dataset. This is what we call Label Noise. Since this is a relatively unexplored problem for us, we start by questioning its existence and relevance in our datasets. In the first section, we quantify this noise in a dataset, and measure its impact on the models we build. The following section, looks at ways to (partially) reduce this noise - what we call cleaning methods - and investigates the relationship between two measurable metrics - efficiency of cleaning and resulting model performance. This allows us to reach interesting conclusions like - *clean y% of the dataset using a method M, and you will get some x% bump in model performance*. We conclude with a short detour to look at the causes of label noise, and how we can minimise these underlying factors. 
 
 ## Classifying causes of intent label noise
 
