@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Home" />
 <script type="application/ld+json">
-{"url":"/","description":"Speech Technology from Skit","@type":"WebSite","headline":"Home","name":"Skit Tech","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@context":"https://schema.org"}</script>
+{"headline":"Home","url":"/","description":"Speech Technology from Skit","@type":"WebSite","name":"Skit Tech","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -157,7 +157,7 @@ var documents = [{
     "id": 10,
     "url": "/",
     "title": "Home",
-    "body": "{% if page. url ==  /  %}    {% assign latest_post = site. posts[0] %}        &lt;div class= topfirstimage  style= background-image: url({% if latest_post. image contains  ://  %}{{ latest_post. image }}{% else %} {{site. baseurl}}/{{ latest_post. image}}{% endif %}); height: 200px;  background-size: cover;  background-repeat: no-repeat; &gt;&lt;/div&gt;        {{ latest_post. title }}  :      {{ latest_post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}               In         {% for category in latest_post. categories %}        {{ category }},         {% endfor %}                      {{ latest_post. date | date: '%b %d, %Y' }}                      {%- assign second_post = site. posts[1] -%}            {% if second_post. image %}                         &lt;img class= w-100  src= {% if second_post. image contains  ://  %}{{ second_post. image }}{% else %}{{ second_post. image | absolute_url }}{% endif %}  alt= {{ second_post. title }} &gt;                        {% endif %}                            {{ second_post. title }}          :                       In             {% for category in second_post. categories %}            {{ category }},             {% endfor %}                                            {{ second_post. date | date: '%b %d, %Y' }}                                {%- assign third_post = site. posts[2] -%}            {% if third_post. image %}                         &lt;img class= w-100  src= {% if third_post. image contains  ://  %}{{ third_post. image }}{% else %}{{site. baseurl}}/{{ third_post. image }}{% endif %}  alt= {{ third_post. title }} &gt;                        {% endif %}                            {{ third_post. title }}          :                       In             {% for category in third_post. categories %}            {{ category }},             {% endfor %}                                            {{ third_post. date | date: '%b %d, %Y' }}                                {%- assign fourth_post = site. posts[3] -%}            {% if fourth_post. image %}                        &lt;img class= w-100  src= {% if fourth_post. image contains  ://  %}{{ fourth_post. image }}{% else %}{{site. baseurl}}/{{ fourth_post. image }}{% endif %}  alt= {{ fourth_post. title }} &gt;                        {% endif %}                            {{ fourth_post. title }}          :                       In             {% for category in fourth_post. categories %}            {{ category }},             {% endfor %}                                            {{ fourth_post. date | date: '%b %d, %Y' }}                          {% for post in site. posts %}{% if post. tags contains  sticky  %}                    {{post. title}}                 {{ post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}                 Read More                        {% endif %}{% endfor %}{% endif %}       All Stories:     {% for post in paginator. posts %}      {% include main-loop-card. html %}    {% endfor %}               {% if paginator. total_pages &gt; 1 %}             {% if paginator. previous_page %}        &laquo; Prev       {% else %}        &laquo;       {% endif %}       {% for page in (1. . paginator. total_pages) %}        {% if page == paginator. page %}        {{ page }}        {% elsif page == 1 %}        {{ page }}        {% else %}        {{ page }}        {% endif %}       {% endfor %}       {% if paginator. next_page %}        Next &raquo;       {% else %}        &raquo;       {% endif %}            {% endif %}            {% include sidebar-featured. html %}  "
+    "body": "{% if page. url ==  /  %}    {% assign latest_post = site. posts[0] %}           {% if latest_post. image %}     &lt;div class= topfirstimage  style= background-image: url({% if latest_post. image contains  ://  %}{{ latest_post. image }}{% else %} {{site. baseurl}}/{{ latest_post. image}}{% endif %}); &gt;     &lt;/div&gt;    {% else %}                    {% endif %}        {{ latest_post. title }}  :      {{ latest_post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}               In         {% for category in latest_post. categories %}        {{ category }},         {% endfor %}                      {{ latest_post. date | date: '%b %d, %Y' }}                      {%- assign second_post = site. posts[1] -%}                      {% if second_post. image %}       &lt;img class= w-100 post-image  src= {% if second_post. image contains  ://  %}{{ second_post. image }}{% else %}{{site. baseurl}}/{{ second_post. image }}{% endif %}  alt= {{ second_post. title }} &gt;       {% else %}              {% endif %}                                       {{ second_post. title }}          :                       In             {% for category in second_post. categories %}            {{ category }},             {% endfor %}                                            {{ second_post. date | date: '%b %d, %Y' }}                                {%- assign third_post = site. posts[2] -%}                              {% if third_post. image %}          &lt;img class= w-100 post-image  src= {% if third_post. image contains  ://  %}{{ third_post. image }}{% else %}{{site. baseurl}}/{{ third_post. image }}{% endif %}  alt= {{ third_post. title }} &gt;         {% else %}                   {% endif %}                                       {{ third_post. title }}        :                  In          {% for category in third_post. categories %}         {{ category }},          {% endfor %}                                  {{ third_post. date | date: '%b %d, %Y' }}                             {%- assign fourth_post = site. posts[3] -%}                      {% if fourth_post. image %}        &lt;img class= w-100 post-image  src= {% if fourth_post. image contains  ://  %}{{ fourth_post. image }}{% else %}{{site. baseurl}}/{{ fourth_post. image }}{% endif %}  alt= {{ fourth_post. title }} &gt;       {% else %}               {% endif %}                             {{ fourth_post. title }}      :              In        {% for category in fourth_post. categories %}       {{ category }},        {% endfor %}                          {{ fourth_post. date | date: '%b %d, %Y' }}                 {% for post in site. posts %}{% if post. tags contains  sticky  %}                    {{post. title}}                 {{ post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}                 Read More            {% if post. image %}                  {% else %}                  {% endif %}      {% endif %}{% endfor %}{% endif %}       All Stories:     {% for post in paginator. posts %}      {% include main-loop-card. html %}    {% endfor %}               {% if paginator. total_pages &gt; 1 %}             {% if paginator. previous_page %}        &laquo; Prev       {% else %}        &laquo;       {% endif %}       {% for page in (1. . paginator. total_pages) %}        {% if page == paginator. page %}        {{ page }}        {% elsif page == 1 %}        {{ page }}        {% else %}        {{ page }}        {% endif %}       {% endfor %}       {% if paginator. next_page %}        Next &raquo;       {% else %}        &raquo;       {% endif %}            {% endif %}            {% include sidebar-featured. html %}  "
     }, {
     "id": 11,
     "url": "/ml.html",
@@ -277,12 +277,12 @@ var documents = [{
     "id": 34,
     "url": "/page2/",
     "title": "Home",
-    "body": "{% if page. url ==  /  %}    {% assign latest_post = site. posts[0] %}        &lt;div class= topfirstimage  style= background-image: url({% if latest_post. image contains  ://  %}{{ latest_post. image }}{% else %} {{site. baseurl}}/{{ latest_post. image}}{% endif %}); height: 200px;  background-size: cover;  background-repeat: no-repeat; &gt;&lt;/div&gt;        {{ latest_post. title }}  :      {{ latest_post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}               In         {% for category in latest_post. categories %}        {{ category }},         {% endfor %}                      {{ latest_post. date | date: '%b %d, %Y' }}                      {%- assign second_post = site. posts[1] -%}            {% if second_post. image %}                         &lt;img class= w-100  src= {% if second_post. image contains  ://  %}{{ second_post. image }}{% else %}{{ second_post. image | absolute_url }}{% endif %}  alt= {{ second_post. title }} &gt;                        {% endif %}                            {{ second_post. title }}          :                       In             {% for category in second_post. categories %}            {{ category }},             {% endfor %}                                            {{ second_post. date | date: '%b %d, %Y' }}                                {%- assign third_post = site. posts[2] -%}            {% if third_post. image %}                         &lt;img class= w-100  src= {% if third_post. image contains  ://  %}{{ third_post. image }}{% else %}{{site. baseurl}}/{{ third_post. image }}{% endif %}  alt= {{ third_post. title }} &gt;                        {% endif %}                            {{ third_post. title }}          :                       In             {% for category in third_post. categories %}            {{ category }},             {% endfor %}                                            {{ third_post. date | date: '%b %d, %Y' }}                                {%- assign fourth_post = site. posts[3] -%}            {% if fourth_post. image %}                        &lt;img class= w-100  src= {% if fourth_post. image contains  ://  %}{{ fourth_post. image }}{% else %}{{site. baseurl}}/{{ fourth_post. image }}{% endif %}  alt= {{ fourth_post. title }} &gt;                        {% endif %}                            {{ fourth_post. title }}          :                       In             {% for category in fourth_post. categories %}            {{ category }},             {% endfor %}                                            {{ fourth_post. date | date: '%b %d, %Y' }}                          {% for post in site. posts %}{% if post. tags contains  sticky  %}                    {{post. title}}                 {{ post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}                 Read More                        {% endif %}{% endfor %}{% endif %}       All Stories:     {% for post in paginator. posts %}      {% include main-loop-card. html %}    {% endfor %}               {% if paginator. total_pages &gt; 1 %}             {% if paginator. previous_page %}        &laquo; Prev       {% else %}        &laquo;       {% endif %}       {% for page in (1. . paginator. total_pages) %}        {% if page == paginator. page %}        {{ page }}        {% elsif page == 1 %}        {{ page }}        {% else %}        {{ page }}        {% endif %}       {% endfor %}       {% if paginator. next_page %}        Next &raquo;       {% else %}        &raquo;       {% endif %}            {% endif %}            {% include sidebar-featured. html %}  "
+    "body": "{% if page. url ==  /  %}    {% assign latest_post = site. posts[0] %}           {% if latest_post. image %}     &lt;div class= topfirstimage  style= background-image: url({% if latest_post. image contains  ://  %}{{ latest_post. image }}{% else %} {{site. baseurl}}/{{ latest_post. image}}{% endif %}); &gt;     &lt;/div&gt;    {% else %}                    {% endif %}        {{ latest_post. title }}  :      {{ latest_post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}               In         {% for category in latest_post. categories %}        {{ category }},         {% endfor %}                      {{ latest_post. date | date: '%b %d, %Y' }}                      {%- assign second_post = site. posts[1] -%}                      {% if second_post. image %}       &lt;img class= w-100 post-image  src= {% if second_post. image contains  ://  %}{{ second_post. image }}{% else %}{{site. baseurl}}/{{ second_post. image }}{% endif %}  alt= {{ second_post. title }} &gt;       {% else %}              {% endif %}                                       {{ second_post. title }}          :                       In             {% for category in second_post. categories %}            {{ category }},             {% endfor %}                                            {{ second_post. date | date: '%b %d, %Y' }}                                {%- assign third_post = site. posts[2] -%}                              {% if third_post. image %}          &lt;img class= w-100 post-image  src= {% if third_post. image contains  ://  %}{{ third_post. image }}{% else %}{{site. baseurl}}/{{ third_post. image }}{% endif %}  alt= {{ third_post. title }} &gt;         {% else %}                   {% endif %}                                       {{ third_post. title }}        :                  In          {% for category in third_post. categories %}         {{ category }},          {% endfor %}                                  {{ third_post. date | date: '%b %d, %Y' }}                             {%- assign fourth_post = site. posts[3] -%}                      {% if fourth_post. image %}        &lt;img class= w-100 post-image  src= {% if fourth_post. image contains  ://  %}{{ fourth_post. image }}{% else %}{{site. baseurl}}/{{ fourth_post. image }}{% endif %}  alt= {{ fourth_post. title }} &gt;       {% else %}               {% endif %}                             {{ fourth_post. title }}      :              In        {% for category in fourth_post. categories %}       {{ category }},        {% endfor %}                          {{ fourth_post. date | date: '%b %d, %Y' }}                 {% for post in site. posts %}{% if post. tags contains  sticky  %}                    {{post. title}}                 {{ post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}                 Read More            {% if post. image %}                  {% else %}                  {% endif %}      {% endif %}{% endfor %}{% endif %}       All Stories:     {% for post in paginator. posts %}      {% include main-loop-card. html %}    {% endfor %}               {% if paginator. total_pages &gt; 1 %}             {% if paginator. previous_page %}        &laquo; Prev       {% else %}        &laquo;       {% endif %}       {% for page in (1. . paginator. total_pages) %}        {% if page == paginator. page %}        {{ page }}        {% elsif page == 1 %}        {{ page }}        {% else %}        {{ page }}        {% endif %}       {% endfor %}       {% if paginator. next_page %}        Next &raquo;       {% else %}        &raquo;       {% endif %}            {% endif %}            {% include sidebar-featured. html %}  "
     }, {
     "id": 35,
     "url": "/page3/",
     "title": "Home",
-    "body": "{% if page. url ==  /  %}    {% assign latest_post = site. posts[0] %}        &lt;div class= topfirstimage  style= background-image: url({% if latest_post. image contains  ://  %}{{ latest_post. image }}{% else %} {{site. baseurl}}/{{ latest_post. image}}{% endif %}); height: 200px;  background-size: cover;  background-repeat: no-repeat; &gt;&lt;/div&gt;        {{ latest_post. title }}  :      {{ latest_post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}               In         {% for category in latest_post. categories %}        {{ category }},         {% endfor %}                      {{ latest_post. date | date: '%b %d, %Y' }}                      {%- assign second_post = site. posts[1] -%}            {% if second_post. image %}                         &lt;img class= w-100  src= {% if second_post. image contains  ://  %}{{ second_post. image }}{% else %}{{ second_post. image | absolute_url }}{% endif %}  alt= {{ second_post. title }} &gt;                        {% endif %}                            {{ second_post. title }}          :                       In             {% for category in second_post. categories %}            {{ category }},             {% endfor %}                                            {{ second_post. date | date: '%b %d, %Y' }}                                {%- assign third_post = site. posts[2] -%}            {% if third_post. image %}                         &lt;img class= w-100  src= {% if third_post. image contains  ://  %}{{ third_post. image }}{% else %}{{site. baseurl}}/{{ third_post. image }}{% endif %}  alt= {{ third_post. title }} &gt;                        {% endif %}                            {{ third_post. title }}          :                       In             {% for category in third_post. categories %}            {{ category }},             {% endfor %}                                            {{ third_post. date | date: '%b %d, %Y' }}                                {%- assign fourth_post = site. posts[3] -%}            {% if fourth_post. image %}                        &lt;img class= w-100  src= {% if fourth_post. image contains  ://  %}{{ fourth_post. image }}{% else %}{{site. baseurl}}/{{ fourth_post. image }}{% endif %}  alt= {{ fourth_post. title }} &gt;                        {% endif %}                            {{ fourth_post. title }}          :                       In             {% for category in fourth_post. categories %}            {{ category }},             {% endfor %}                                            {{ fourth_post. date | date: '%b %d, %Y' }}                          {% for post in site. posts %}{% if post. tags contains  sticky  %}                    {{post. title}}                 {{ post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}                 Read More                        {% endif %}{% endfor %}{% endif %}       All Stories:     {% for post in paginator. posts %}      {% include main-loop-card. html %}    {% endfor %}               {% if paginator. total_pages &gt; 1 %}             {% if paginator. previous_page %}        &laquo; Prev       {% else %}        &laquo;       {% endif %}       {% for page in (1. . paginator. total_pages) %}        {% if page == paginator. page %}        {{ page }}        {% elsif page == 1 %}        {{ page }}        {% else %}        {{ page }}        {% endif %}       {% endfor %}       {% if paginator. next_page %}        Next &raquo;       {% else %}        &raquo;       {% endif %}            {% endif %}            {% include sidebar-featured. html %}  "
+    "body": "{% if page. url ==  /  %}    {% assign latest_post = site. posts[0] %}           {% if latest_post. image %}     &lt;div class= topfirstimage  style= background-image: url({% if latest_post. image contains  ://  %}{{ latest_post. image }}{% else %} {{site. baseurl}}/{{ latest_post. image}}{% endif %}); &gt;     &lt;/div&gt;    {% else %}                    {% endif %}        {{ latest_post. title }}  :      {{ latest_post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}               In         {% for category in latest_post. categories %}        {{ category }},         {% endfor %}                      {{ latest_post. date | date: '%b %d, %Y' }}                      {%- assign second_post = site. posts[1] -%}                      {% if second_post. image %}       &lt;img class= w-100 post-image  src= {% if second_post. image contains  ://  %}{{ second_post. image }}{% else %}{{site. baseurl}}/{{ second_post. image }}{% endif %}  alt= {{ second_post. title }} &gt;       {% else %}              {% endif %}                                       {{ second_post. title }}          :                       In             {% for category in second_post. categories %}            {{ category }},             {% endfor %}                                            {{ second_post. date | date: '%b %d, %Y' }}                                {%- assign third_post = site. posts[2] -%}                              {% if third_post. image %}          &lt;img class= w-100 post-image  src= {% if third_post. image contains  ://  %}{{ third_post. image }}{% else %}{{site. baseurl}}/{{ third_post. image }}{% endif %}  alt= {{ third_post. title }} &gt;         {% else %}                   {% endif %}                                       {{ third_post. title }}        :                  In          {% for category in third_post. categories %}         {{ category }},          {% endfor %}                                  {{ third_post. date | date: '%b %d, %Y' }}                             {%- assign fourth_post = site. posts[3] -%}                      {% if fourth_post. image %}        &lt;img class= w-100 post-image  src= {% if fourth_post. image contains  ://  %}{{ fourth_post. image }}{% else %}{{site. baseurl}}/{{ fourth_post. image }}{% endif %}  alt= {{ fourth_post. title }} &gt;       {% else %}               {% endif %}                             {{ fourth_post. title }}      :              In        {% for category in fourth_post. categories %}       {{ category }},        {% endfor %}                          {{ fourth_post. date | date: '%b %d, %Y' }}                 {% for post in site. posts %}{% if post. tags contains  sticky  %}                    {{post. title}}                 {{ post. excerpt | newline_to_br | strip_newlines | replace: '', ' ' | strip_html | strip | truncate: 136 }}                 Read More            {% if post. image %}                  {% else %}                  {% endif %}      {% endif %}{% endfor %}{% endif %}       All Stories:     {% for post in paginator. posts %}      {% include main-loop-card. html %}    {% endfor %}               {% if paginator. total_pages &gt; 1 %}             {% if paginator. previous_page %}        &laquo; Prev       {% else %}        &laquo;       {% endif %}       {% for page in (1. . paginator. total_pages) %}        {% if page == paginator. page %}        {{ page }}        {% elsif page == 1 %}        {{ page }}        {% else %}        {{ page }}        {% endif %}       {% endfor %}       {% if paginator. next_page %}        Next &raquo;       {% else %}        &raquo;       {% endif %}            {% endif %}            {% include sidebar-featured. html %}  "
     }, {
     "id": 36,
     "url": "/sparse-models/",
@@ -460,20 +460,48 @@ function lunr_search(term) {
 
     <!-- Content -->
     <main role="main" class="site-content">
-        <div class="container">
+        <script>
+ $(document).ready(function () {
+   function urlStub(url) {
+     let a = document.createElement('a')
+     a.href = url
+     return a.pathname
+   }
+
+   $('.post-image-pattern').each(function() {
+     let text = urlStub($(this).parent().attr('href'))
+     $(this).geopattern(text)
+   })
+
+   $('.post-image-pattern-top').each(function() {
+     let text = urlStub($(this).parent().parent().attr('href'))
+     $(this).geopattern(text)
+   })
+
+   $('.post-image-pattern-sticky').each(function() {
+     let text = urlStub($(this).data('url'))
+     $(this).geopattern(text)
+   })
+ })
+</script>
+
+<div class="container">
 
 
 
 
 <!-- Begin post excerpts, let's highlight the first 4 posts on top -->
 <div class="row">
-
     <!-- latest post -->
     
     <div class="col-md-6">
     <div class="card border-0 mb-4 box-shadow">
-    <a href="/sparse-models/">
-    <div class="topfirstimage" style="background-image: url( /assets/images/demo1.jpg); height: 200px;    background-size: cover;    background-repeat: no-repeat;"></div>
+      <a href="/sparse-models/">
+        
+          <div class="topfirstimage">
+            <img class="w-100 post-image-pattern-top">
+          </div>
+        
     </a>
     <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
     <h2 class="h4 font-weight-bold">
@@ -501,13 +529,13 @@ function lunr_search(term) {
     <div class="col-md-6">
 
         <!-- second latest post --><div class="mb-3 d-flex align-items-center">
-                
-                <div class="col-md-4">
-                <a href="/feature-disentanglement1/">
-                 <img class="w-100" src="/assets/images/demo1.jpg" alt="Feature Disentanglement - I">
-                </a>
-                </div>
-                
+          <div class="col-md-4">
+            <a href="/feature-disentanglement1/">
+              
+              <img class="w-100 post-image-pattern">
+              
+            </a>
+          </div>
                 <div>
                     <h2 class="mb-2 h6 font-weight-bold">
                     <a class="text-dark" href="/feature-disentanglement1/">Feature Disentanglement - I</a>
@@ -526,57 +554,55 @@ function lunr_search(term) {
             </div>
 
         <!-- third latest post --><div class="mb-3 d-flex align-items-center">
-                
-                <div class="col-md-4">
+              <div class="col-md-4">
                 <a href="/gsoc-2022/">
-                 <img class="w-100" src="/assets/images/demo1.jpg" alt="Google Summer of Code, 2022">
+                  
+                    <img class="w-100 post-image-pattern">
+                  
                 </a>
-                </div>
-                
-                <div>
-                    <h2 class="mb-2 h6 font-weight-bold">
-                    <a class="text-dark" href="/gsoc-2022/">Google Summer of Code, 2022</a>
-                    </h2>
-                    <small class="d-block text-muted">
-                        In <span class="catlist">
-                        
-                        <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-                        
-                        </span>
-                    </small>
-                    <small class="text-muted">
-                        Feb 18, 2022
-                    </small>
-                </div>
+              </div>
+              <div>
+                <h2 class="mb-2 h6 font-weight-bold">
+                  <a class="text-dark" href="/gsoc-2022/">Google Summer of Code, 2022</a>
+                </h2>
+                <small class="d-block text-muted">
+                  In <span class="catlist">
+                  
+                  <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
+                  
+                  </span>
+                </small>
+                <small class="text-muted">
+                  Feb 18, 2022
+                </small>
+              </div>
             </div>
 
         <!-- fourth latest post --><div class="mb-3 d-flex align-items-center">
-                
-                <div class="col-md-4">
-                <a href="/speech-first-conversational-ai/">
-                <img class="w-100" src="/assets/images/demo1.jpg" alt="Speech-First Conversational AI">
-                </a>
-                </div>
-                
-                <div>
-                    <h2 class="mb-2 h6 font-weight-bold">
-                    <a class="text-dark" href="/speech-first-conversational-ai/">Speech-First Conversational AI</a>
-                    </h2>
-                    <small class="d-block text-muted">
-                        In <span class="catlist">
-                        
-                        <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
-                        
-                        </span>
-                    </small>
-                    <small class="text-muted">
-                        Feb 06, 2022
-                    </small>
-                </div>
-            </div>
-
+          <div class="col-md-4">
+            <a href="/speech-first-conversational-ai/">
+              
+                <img class="w-100 post-image-pattern">
+              
+            </a>
+          </div>
+          <div>
+            <h2 class="mb-2 h6 font-weight-bold">
+              <a class="text-dark" href="/speech-first-conversational-ai/">Speech-First Conversational AI</a>
+            </h2>
+            <small class="d-block text-muted">
+              In <span class="catlist">
+              
+              <a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
+              
+              </span>
+            </small>
+            <small class="text-muted">
+              Feb 06, 2022
+            </small>
+          </div>
+        </div>
     </div>
-
 </div>
 
 
@@ -593,37 +619,39 @@ function lunr_search(term) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="jumbotron jumbotron-fluid jumbotron-home pt-0 pb-0 mt-3 mb-2rem bg-white border border-dark position-relative">
     <div class="pl-4 pr-0 h-100 tofront">
         <div class="row justify-content-between">
             <div class="col-md-6 pt-6 pb-6 pr-lg-4 align-self-center">
-                <h1 class="mb-3">Our new Tech blog</h1>
+                <h1 class="mb-3">Evaluating an ASR in a Spoken Dialogue System</h1>
                 <p class="mb-3 lead">
-                  We are merging past webpages of our Engineering and ML team in this new, central, Skit Tech page. From here on, this is going to be t...
+                  An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the...
                 </p>
-                <a href="/new-blog/" class="btn btn-dark">Read More</a>
+                <a href="/evaluating-an-asr-in-a-spoken-dialogue-system/" class="btn btn-dark">Read More</a>
             </div>
-            <div class="col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url(/assets/images/demo1.jpg);">
+            
+            <div class="col-md-6 d-none d-md-block pr-0" style="background-size:cover;background-image:url(/assets/images/evaluating-asr.jpg);">
             </div>
+            
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -681,13 +709,6 @@ function lunr_search(term) {
 		Feb 23, 2022
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/sparse-models/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Speeding up Inference with the Lottery Ticket Hypothesis">
-	</a>
-	</div>
-
 </div>
 
 
@@ -712,13 +733,6 @@ function lunr_search(term) {
 		Feb 22, 2022
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/feature-disentanglement1/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Feature Disentanglement - I">
-	</a>
-	</div>
-
 </div>
 
 
@@ -743,13 +757,6 @@ function lunr_search(term) {
 		Feb 18, 2022
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/gsoc-2022/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Google Summer of Code, 2022">
-	</a>
-	</div>
-
 </div>
 
 
@@ -774,13 +781,6 @@ function lunr_search(term) {
 		Feb 06, 2022
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/speech-first-conversational-ai/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Speech-First Conversational AI">
-	</a>
-	</div>
-
 </div>
 
 
@@ -805,13 +805,6 @@ function lunr_search(term) {
 		Feb 04, 2022
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/speaker-entrainment/">
-	<img class="w-100" src="/assets/images/entrain.png" alt="Speaker Entrainment">
-	</a>
-	</div>
-
 </div>
 
 
@@ -836,13 +829,6 @@ function lunr_search(term) {
 		Jan 21, 2022
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/evaluating-an-asr-in-a-spoken-dialogue-system/">
-	<img class="w-100" src="/assets/images/evaluating-asr.jpg" alt="Evaluating an ASR in a Spoken Dialogue System">
-	</a>
-	</div>
-
 </div>
 
 
@@ -867,13 +853,6 @@ function lunr_search(term) {
 		Jan 18, 2022
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/complexity-of-conversations/">
-	<img class="w-100" src="/assets/images/demo1.jpg" alt="Complexity of Conversations - I">
-	</a>
-	</div>
-
 </div>
 
 
@@ -898,13 +877,6 @@ function lunr_search(term) {
 		Nov 29, 2021
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/on-using-asr-alternatives-for-a-better-slu/">
-	<img class="w-100" src="/assets/images/n-best-asr.jpg" alt="On using ASR Alternatives for a Better SLU">
-	</a>
-	</div>
-
 </div>
 
 
@@ -929,13 +901,6 @@ function lunr_search(term) {
 		Oct 31, 2021
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/authentication-in-grpc/">
-	<img class="w-100" src="/assets/images/thumbnail-authentication-in-grpc.svg" alt="Authentication in gRPC">
-	</a>
-	</div>
-
 </div>
 
 
@@ -960,13 +925,6 @@ function lunr_search(term) {
 		Aug 24, 2021
 	</small>
 </div>
-
-	<div class="col-md-3 pr-0 text-right">
-	<a href="/Code-Mixing-Seminar/">
-	<img class="w-100" src="/assets/images/tile-work.png" alt="Seminar - Code Mixing in NLP and Speech">
-	</a>
-	</div>
-
 </div>
 
 
@@ -1040,6 +998,8 @@ function lunr_search(term) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
 
     <script src="/assets/js/theme.js"></script>
 
