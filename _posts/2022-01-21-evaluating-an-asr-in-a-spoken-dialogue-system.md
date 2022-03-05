@@ -1,7 +1,7 @@
 ---
 title: Evaluating an ASR in a Spoken Dialogue System
 date: 2022-01-21
-tags: [ASR, WER]
+tags: [ASR, WER, sticky]
 categories: [Machine Learning]
 image: assets/images/evaluating-asr.jpg
 layout: post

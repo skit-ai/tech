@@ -1,7 +1,6 @@
 ---
 title: Speech-First Conversational AI
 date: 2022-02-06
-tags: []
 categories: [Machine Learning]
 layout: post
 authors: [lepisma]
