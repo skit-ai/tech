@@ -44,11 +44,11 @@ description: "Speech Technology from Skit"
     <div class="card border-0 mb-4 box-shadow">
       <a href="{{site.baseurl}}{{latest_post.url}}">
         {% if latest_post.image %}
-          <div class="topfirstimage" style="background-image: url({% if latest_post.image contains "://" %}{{ latest_post.image }}{% else %} {{site.baseurl}}/{{ latest_post.image}}{% endif %}); height: 200px;    background-size: cover;    background-repeat: no-repeat;">
+          <div class="topfirstimage" style="background-image: url({% if latest_post.image contains "://" %}{{ latest_post.image }}{% else %} {{site.baseurl}}/{{ latest_post.image}}{% endif %});">
           </div>
         {% else %}
           <div class="topfirstimage">
-            <img class="w-100 post-image-pattern-top" style="height: 200px;">
+            <img class="w-100 post-image-pattern-top">
           </div>
         {% endif %}
     </a>
@@ -83,9 +83,9 @@ description: "Speech Technology from Skit"
           <div class="col-md-4">
             <a href="{{site.baseurl}}{{second_post.url}}">
               {% if second_post.image %}
-              <img class="w-100" src="{% if second_post.image contains "://" %}{{ second_post.image }}{% else %}{{site.baseurl}}/{{ second_post.image }}{% endif %}" alt="{{ second_post.title }}">
+              <img class="w-100 post-image" src="{% if second_post.image contains "://" %}{{ second_post.image }}{% else %}{{site.baseurl}}/{{ second_post.image }}{% endif %}" alt="{{ second_post.title }}">
               {% else %}
-              <img class="w-100 post-image-pattern" style="height: 100px;">
+              <img class="w-100 post-image-pattern">
               {% endif %}
             </a>
           </div>
@@ -112,9 +112,9 @@ description: "Speech Technology from Skit"
               <div class="col-md-4">
                 <a href="{{site.baseurl}}{{third_post.url}}">
                   {% if third_post.image %}
-                    <img class="w-100" src="{% if third_post.image contains "://" %}{{ third_post.image }}{% else %}{{site.baseurl}}/{{ third_post.image }}{% endif %}" alt="{{ third_post.title }}">
+                    <img class="w-100 post-image" src="{% if third_post.image contains "://" %}{{ third_post.image }}{% else %}{{site.baseurl}}/{{ third_post.image }}{% endif %}" alt="{{ third_post.title }}">
                   {% else %}
-                    <img class="w-100 post-image-pattern" style="height: 100px;">
+                    <img class="w-100 post-image-pattern">
                   {% endif %}
                 </a>
               </div>
@@ -141,9 +141,9 @@ description: "Speech Technology from Skit"
           <div class="col-md-4">
             <a href="{{site.baseurl}}{{fourth_post.url}}">
               {% if fourth_post.image %}
-                <img class="w-100" src="{% if fourth_post.image contains "://" %}{{ fourth_post.image }}{% else %}{{site.baseurl}}/{{ fourth_post.image }}{% endif %}" alt="{{ fourth_post.title }}">
+                <img class="w-100 post-image" src="{% if fourth_post.image contains "://" %}{{ fourth_post.image }}{% else %}{{site.baseurl}}/{{ fourth_post.image }}{% endif %}" alt="{{ fourth_post.title }}">
               {% else %}
-                <img class="w-100 post-image-pattern" style="height: 100px;">
+                <img class="w-100 post-image-pattern">
               {% endif %}
             </a>
           </div>
