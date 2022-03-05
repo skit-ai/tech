@@ -3,7 +3,6 @@ title: Speeding up Inference with the Lottery Ticket Hypothesis
 date: 2022-02-23
 tags: []
 categories: [Machine Learning]
-image: assets/images/demo1.jpg
 layout: post
 authors: [ojus1]
 ---
