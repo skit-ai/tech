@@ -3,7 +3,6 @@ title: Feature Disentanglement - I
 date: 2022-02-22
 tags: []
 categories: [Machine Learning]
-image: assets/images/demo1.jpg
 layout: post
 authors: [Shangeth]
 latex: True

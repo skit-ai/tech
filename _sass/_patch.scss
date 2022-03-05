@@ -97,6 +97,27 @@ article .h6 {
     }
 }
 
+// Top card styles
+.topfirstimage {
+  border-radius: 4px;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  img {
+    border-radius: 4px;
+    height: 200px;
+  }
+}
+
+.post-image, .post-image-pattern {
+  border-radius: 4px;
+}
+
+.post-image-pattern {
+  height: 100px;
+}
+
 /* Fix for link visibility */
 .page-content a,
 .page-content a:hover {
