@@ -51,10 +51,10 @@ You can provide a cover image for the post using the following yaml frontmatter:
 image: assets/images/image.jpg
 ```
 
-Note that this image doesn't show up in the main post, it's just visible in
-listings. If you skip adding an image, a default
-[geopattern](https://github.com/jasonlong/geo_pattern) is generated and used
-instead.
+Note that this image doesn't show up in the main post, it's just visible in main
+page listing for the top 4 and the sticky posts. If you skip adding an image, a
+default [geopattern](https://github.com/jasonlong/geo_pattern) is generated and
+used instead.
 
 [tech_blog]: https://tech.skit.ai/
 [mundana]: https://github.com/wowthemesnet/mundana-theme-jekyll
