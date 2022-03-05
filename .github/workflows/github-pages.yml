@@ -18,8 +18,8 @@ jobs:
         run: |
           gem install bundler
           bundle
-      - name: Test site
-        run: bundle exec rake test
+      # - name: Test site
+      #   run: bundle exec rake test
       - name: Build site
         run: bundle exec rake build
       - name: Deploy
