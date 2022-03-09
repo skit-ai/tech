@@ -4,20 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Careers | Skit Tech</title>
+    <title>TTS Enhancement | Skit Tech</title>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Careers | Skit Tech</title>
+<title>TTS Enhancement | Skit Tech</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Careers" />
+<meta property="og:title" content="TTS Enhancement" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Speech Technology from Skit" />
-<meta property="og:description" content="Speech Technology from Skit" />
+<meta name="description" content="TTS Enhancement: Winter of Code 21’" />
+<meta property="og:description" content="TTS Enhancement: Winter of Code 21’" />
 <meta property="og:site_name" content="Skit Tech" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-03-09T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Careers" />
+<meta property="twitter:title" content="TTS Enhancement" />
 <script type="application/ld+json">
-{"headline":"Careers","url":"/careers","description":"Speech Technology from Skit","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@context":"https://schema.org"}</script>
+{"headline":"TTS Enhancement","url":"/woc/","dateModified":"2022-03-09T00:00:00+00:00","datePublished":"2022-03-09T00:00:00+00:00","description":"TTS Enhancement: Winter of Code 21’","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/woc/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -470,26 +472,623 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         <div class="container">
-<h3 class="font-weight-bold spanborder"><span>Careers</span></h3>
-<div class="page-content">
-<p><strong>person-1</strong> need to rethink the careers page</p>
+<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
+		<div class="h-100 tofront">
+			<div class="row justify-content-center">
+				<div class="col-md-12 pr-0 pr-md-4 pt-4 align-self-center">
+					<p class="text-uppercase font-weight-bold">
+                        <span class="catlist">
+						
+                          <a class="sscroll text-danger" href="/categories.html#speech enhancement">speech enhancement</a><span class="sep">, </span>
+                        
+                        </span>
+					</p>
+					<h1 class="display-4 mb-4 article-headline">TTS Enhancement</h1>
+					<div class="d-flex align-items-center">
+						<small>
+              
+              <span class="text-muted d-block mt-1">Mar 09, 2022 · <span class="reading-time">
+  
+  
+    14 mins read
+  
+</span>
+    </span>
+						</small>
+					</div>
 
-<p><strong>person-2</strong></p>
+			    <!-- Tags -->
+			    <div class="mb-4 mt-4">
+				    <span class="taglist">
+				      
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#tts">tts</a>
+				      
+				      <a class="sscroll btn btn-light btn-sm font-weight-bold" href="/tags.html#speech-enhancement">speech-enhancement</a>
+				      
+				    </span>
+			    </div>
 
-<p>&gt; need to rethink the careers page</p>
-
-<p>Yea, not the first time we have said this, I have given up on it at least for
-the main website or other places. tech website we can do it ourselves whatever
-we find good (which means throwing away the recruiterbox thing also)</p>
-
-<p><strong>person-1</strong> doing ourselves only. This time will happen. I will do a PR.</p>
-
-<hr />
-
-<p>Please click <a href="https://github.com/skit-ai/job-descriptions/">here</a> for job
-openings in our ML and Engineering teams.</p>
-
+				</div>
+				<div class="col-md-6 pr-0 align-self-center">
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+
+<div class="container pt-4 pb-4">
+	<div class="row">
+		<div class="col-lg-10 col-md-12">
+      <!-- Article -->
+			<article class="article-post">
+			<h1 id="tts-enhancement-winter-of-code-21">TTS Enhancement: Winter of Code 21’</h1>
+
+<p>Github Repository Link: https://github.com/skit-ai/woc-tts-enhancement</p>
+
+<h1 id="problem-statement">Problem Statement</h1>
+
+<p>Text-To-Speech (TTS) systems of Skit, as well as TTS systems in general, have a tendency to mix some ambient noise along with the speech it outputs. This aim of this research project was to remove that noise and quantify how well the noise has been removed using standard metrics.</p>
+
+<p>Listen to the clean speech sample here for reference-</p>
+
+<script>
+       $(document).ready(function () {
+         var ws4 = WaveSurfer.create({
+           container: '#waveform-4',
+           backend: 'MediaElement'
+         });
+         ws4.load('/assets/audios/posts/woc/sp01.wav');
+
+         ws4.on('audioprocess', function () {
+           let progressText = ws4.getCurrentTime().toFixed(2) + ' / ' + ws4.getDuration().toFixed(2)
+           document.getElementById('player-progress-4').innerHTML = progressText
+         });
+
+         ws4.on('ready', function () {
+           let progressText = ws4.getCurrentTime().toFixed(2) + ' / ' + ws4.getDuration().toFixed(2)
+           document.getElementById('player-progress-4').innerHTML = progressText
+         });
+
+         ws4.on('finish', function () {
+           let button = $('#controls-4 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-4').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws4.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws4.skipBackward()
+                 break
+               case 'forward':
+                 ws4.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+
+<div id="waveform-4"></div>
+<div class="player-controls" id="controls-4">
+  <button class="btn btn-sml" data-action="backward"><i class="fa fa-backward"></i></button>
+  <button class="btn btn-sml" data-action="play-pause"><i class="fa fa-play"></i></button>
+  <button class="btn btn-sml" data-action="forward"><i class="fa fa-forward"></i></button>
+  <code class="btn btn-sml disabled" id="player-progress-4"></code>
+</div>
+
+<p>and the distorted sample-</p>
+
+<script>
+       $(document).ready(function () {
+         var ws5 = WaveSurfer.create({
+           container: '#waveform-5',
+           backend: 'MediaElement'
+         });
+         ws5.load('/assets/audios/posts/woc/sp01_car_sn0.wav');
+
+         ws5.on('audioprocess', function () {
+           let progressText = ws5.getCurrentTime().toFixed(2) + ' / ' + ws5.getDuration().toFixed(2)
+           document.getElementById('player-progress-5').innerHTML = progressText
+         });
+
+         ws5.on('ready', function () {
+           let progressText = ws5.getCurrentTime().toFixed(2) + ' / ' + ws5.getDuration().toFixed(2)
+           document.getElementById('player-progress-5').innerHTML = progressText
+         });
+
+         ws5.on('finish', function () {
+           let button = $('#controls-5 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-5').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws5.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws5.skipBackward()
+                 break
+               case 'forward':
+                 ws5.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+
+<div id="waveform-5"></div>
+<div class="player-controls" id="controls-5">
+  <button class="btn btn-sml" data-action="backward"><i class="fa fa-backward"></i></button>
+  <button class="btn btn-sml" data-action="play-pause"><i class="fa fa-play"></i></button>
+  <button class="btn btn-sml" data-action="forward"><i class="fa fa-forward"></i></button>
+  <code class="btn btn-sml disabled" id="player-progress-5"></code>
+</div>
+
+<h1 id="introduction">Introduction</h1>
+
+<p>Speech enhancement can be done using the traditional signal processing techniques or using deep learning techniques. In this project, we mainly focused on the signal processing aspects of noise reduction. Signal processing techniques can be further divided into 3 more categories-</p>
+
+<h2 id="spectral-subtractive-algorithms">Spectral Subtractive algorithms</h2>
+
+<p>The main principle is as follows- assuming additive noise, one can obtain an estimate of the clean signal spectrum by subtracting an estimate of the noise spectrum from the noisy speech spectrum. The noise spectrum can be estimated and updated, during periods when the signal is absent. The assumption made is that noise is stationary or a slowly varying process and that the noise spectrum does not change significantly between the updating periods. The enhanced signal is obtained by computing the IDFT of the estimated signal spectrum using the phase of the noisy signal.</p>
+
+<h2 id="statistical-model-based-algorithms">Statistical Model based algorithms</h2>
+
+<p>Given a set of measurements that depend on an unknown parameter, we wish to find a nonlinear estimator of the parameter of interest. These measurements correspond to the set of DFT coefficients of the noisy signal and the parameters of interest are the set of DFT coefficients of the clean signal. Various techniques from estimation theory which include maximum-likelihood (ML) estimators and the Bayesian estimators like MMSE and MAP estimators are used for this purpose.</p>
+
+<h2 id="subspace-algorithms">Subspace algorithms</h2>
+
+<p>These algorithms are based on the principle that the clean signal might be confined to a subspace of the noisy Euclidean space. Given a method for decomposing the vector space of the noisy signal into a direct sum of the subspace that is occupied by the clean signal and a subspace occupied by the noise signal, for example SVD, we could estimate the clean signal simply by nulling the component of the noisy vector residing in the noisy subspace.</p>
+
+<h1 id="contributions">Contributions</h1>
+<h2 id="filters">Filters</h2>
+
+<p>Speech enhancement can be done using the traditional signal processing techniques or using deep learning techniques. We hypothesised that signal processing techniques would be suitable for task and tested them out. We implemented some of the popular speech enhancement methods which were suitably modified to tackle the problem at hand.</p>
+
+<p><strong>Wiener Filter</strong></p>
+
+<figure>
+<center>
+  <img alt="Block Diagram of Wiener Filter" src="/assets/images/posts/woc/wiener.png" />
+  <figcaption>Block Diagram of Wiener Filter</figcaption>
+</center>
+</figure>
+
+<p>The input signal w[n] goes through a linear and time-invariant system to produce an output signal x[n]. We are to design the system in such a way that the output signal, x[n], is as close to the desired signal, s[n], as possible. This can be done by computing the estimation error, e[n], and making it as small as possible. The optimal filter that minimizes the estimation error is called the <em>Wiener filter.</em></p>
+
+<script>
+       $(document).ready(function () {
+         var ws6 = WaveSurfer.create({
+           container: '#waveform-6',
+           backend: 'MediaElement'
+         });
+         ws6.load('/assets/audios/posts/woc/wiener_filtered_sp01_car_sn0.wav');
+
+         ws6.on('audioprocess', function () {
+           let progressText = ws6.getCurrentTime().toFixed(2) + ' / ' + ws6.getDuration().toFixed(2)
+           document.getElementById('player-progress-6').innerHTML = progressText
+         });
+
+         ws6.on('ready', function () {
+           let progressText = ws6.getCurrentTime().toFixed(2) + ' / ' + ws6.getDuration().toFixed(2)
+           document.getElementById('player-progress-6').innerHTML = progressText
+         });
+
+         ws6.on('finish', function () {
+           let button = $('#controls-6 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-6').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws6.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws6.skipBackward()
+                 break
+               case 'forward':
+                 ws6.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+
+<div id="waveform-6"></div>
+<div class="player-controls" id="controls-6">
+  <button class="btn btn-sml" data-action="backward"><i class="fa fa-backward"></i></button>
+  <button class="btn btn-sml" data-action="play-pause"><i class="fa fa-play"></i></button>
+  <button class="btn btn-sml" data-action="forward"><i class="fa fa-forward"></i></button>
+  <code class="btn btn-sml disabled" id="player-progress-6"></code>
+</div>
+
+<p><strong>MMSE and MMSE Log Filter</strong></p>
+
+<p>These fall under the umbrella of Bayesian estimation techniques. We saw above that the Wiener estimator can be derived by minimizing the error between a linear model of the clean spectrum and the true spectrum. The Wiener estimator is considered to be the optimal (in the mean-square-error sense) complex spectral estimator, but is not the optimal spectral magnitude estimator. Acknowledging the importance of the short-time spectral amplitude (STSA) on speech intelligibility and quality, several authors have proposed optimal methods for obtaining the spectral amplitudes from noisy observations. In particular, we are looking for sought that minimized the mean-square error between the estimated and true magnitudes:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                            $$e = E{ (\hat{X_k} - X_k)^2 }$$
+</code></pre></div></div>
+
+<p>where \(\hat{X_k}\) is the estimate spectral magnitude at frequency \(\omega_k\) and \(X_k\) is the true magnitude of the clean signal.</p>
+
+<p>The MMSE Log is an improvement upon the MMSE estimator. Although a metric
+based on the squared error of the magnitude spectra is mathematically tractable, it may not be subjectively meaningful. It has been suggested that a metric based on the squared error of the log-magnitude spectra may be more suitable for speech processing. So we minimize :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                            $$e = E \{ (log \hat X_k - log X_k)^2 \}$$
+</code></pre></div></div>
+
+<p>and we notice a significant improvement in the results compared to the original MMSE estimator.</p>
+
+<script>
+       $(document).ready(function () {
+         var ws7 = WaveSurfer.create({
+           container: '#waveform-7',
+           backend: 'MediaElement'
+         });
+         ws7.load('/assets/audios/posts/woc/mmse_filtered_sp01_car_sn0.wav');
+
+         ws7.on('audioprocess', function () {
+           let progressText = ws7.getCurrentTime().toFixed(2) + ' / ' + ws7.getDuration().toFixed(2)
+           document.getElementById('player-progress-7').innerHTML = progressText
+         });
+
+         ws7.on('ready', function () {
+           let progressText = ws7.getCurrentTime().toFixed(2) + ' / ' + ws7.getDuration().toFixed(2)
+           document.getElementById('player-progress-7').innerHTML = progressText
+         });
+
+         ws7.on('finish', function () {
+           let button = $('#controls-7 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-7').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws7.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws7.skipBackward()
+                 break
+               case 'forward':
+                 ws7.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+
+<div id="waveform-7"></div>
+<div class="player-controls" id="controls-7">
+  <button class="btn btn-sml" data-action="backward"><i class="fa fa-backward"></i></button>
+  <button class="btn btn-sml" data-action="play-pause"><i class="fa fa-play"></i></button>
+  <button class="btn btn-sml" data-action="forward"><i class="fa fa-forward"></i></button>
+  <code class="btn btn-sml disabled" id="player-progress-7"></code>
+</div>
+
+<script>
+       $(document).ready(function () {
+         var ws8 = WaveSurfer.create({
+           container: '#waveform-8',
+           backend: 'MediaElement'
+         });
+         ws8.load('/assets/audios/posts/woc/mmse_log_filtered_sp01_car_sn0.wav');
+
+         ws8.on('audioprocess', function () {
+           let progressText = ws8.getCurrentTime().toFixed(2) + ' / ' + ws8.getDuration().toFixed(2)
+           document.getElementById('player-progress-8').innerHTML = progressText
+         });
+
+         ws8.on('ready', function () {
+           let progressText = ws8.getCurrentTime().toFixed(2) + ' / ' + ws8.getDuration().toFixed(2)
+           document.getElementById('player-progress-8').innerHTML = progressText
+         });
+
+         ws8.on('finish', function () {
+           let button = $('#controls-8 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-8').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws8.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws8.skipBackward()
+                 break
+               case 'forward':
+                 ws8.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+
+<div id="waveform-8"></div>
+<div class="player-controls" id="controls-8">
+  <button class="btn btn-sml" data-action="backward"><i class="fa fa-backward"></i></button>
+  <button class="btn btn-sml" data-action="play-pause"><i class="fa fa-play"></i></button>
+  <button class="btn btn-sml" data-action="forward"><i class="fa fa-forward"></i></button>
+  <code class="btn btn-sml disabled" id="player-progress-8"></code>
+</div>
+
+<p><strong>Berouti’s Oversubstraction</strong></p>
+
+<p>This method consists of subtracting an overestimate of the noise power spectrum, while preventing the resultant spectral components from going below a preset minimum value (spectral floor).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                $$\hat X(\omega)=\begin{cases} |Y(\omega)|^2 - \alpha |\hat D(\omega)|^2&amp; \text{if } |Y(\omega)|^2 \geq (\alpha + \beta) |D(\omega)|^2 \\ \beta |\hat D(\omega)|^2 &amp; \text{else} \end{cases}$$
+</code></pre></div></div>
+
+<p>where \(\alpha (\geq 1)\) is the oversubtraction factor and \(0 \leq \beta \leq 1\) is the spectral floor parameter.</p>
+
+<p>When we subtract the estimate of the noise spectrum from the noisy speech
+spectrum, there remain peaks in the spectrum. Some of those peaks are broadband (encompassing a wide range of frequencies) whereas others are narrow band, appearing as spikes in the spectrum. By oversubtracting the noise spectrum, that is, by using \(\alpha\), we can reduce the amplitude of the broadband peaks and, in some cases, eliminate them altogether. This by itself, however, is not sufficient because the deep valleys surrounding the peaks still remain in the spectrum. For that reason, spectral flooring is used to “fill in” the spectral valleys and possibly mask the remaining peaks by the neighbouring spectral components of comparable value. The valleys between peaks are no longer deep when \(\beta &gt; 0\) compared to when \(\beta = 0\).</p>
+
+<p>The parameter \(\beta\) controls the amount of remaining residual noise
+and the amount of perceived musical noise. If the spectral floor parameter \(\beta\) is too
+large, then the residual noise will be audible but the musical noise will not be perceptible. Conversely, if \(\beta\) is too small, the musical noise will become annoying but the residual noise will be markedly reduced.</p>
+
+<p>The parameter \(\alpha\) affects the amount of speech spectral distortion caused by
+the subtraction. If \(\alpha\) is too large, then the resulting signal will be severely distorted to the point that intelligibility may suffer.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                $$\alpha = \alpha_0 - \frac{3}{20}  \textit{SNR} : \text{ for} -5 \leq \textit{SNR} \leq -20$$
+</code></pre></div></div>
+
+<p>where \(\alpha_0\) is the desired value of  \(\alpha\) at 0 dB SNR and the \(\textit{SNR}\) is the short term SNR estimated at each frame.</p>
+
+<script>
+       $(document).ready(function () {
+         var ws9 = WaveSurfer.create({
+           container: '#waveform-9',
+           backend: 'MediaElement'
+         });
+         ws9.load('/assets/audios/posts/woc/ss_filtered_sp01_car_sn0.wav');
+
+         ws9.on('audioprocess', function () {
+           let progressText = ws9.getCurrentTime().toFixed(2) + ' / ' + ws9.getDuration().toFixed(2)
+           document.getElementById('player-progress-9').innerHTML = progressText
+         });
+
+         ws9.on('ready', function () {
+           let progressText = ws9.getCurrentTime().toFixed(2) + ' / ' + ws9.getDuration().toFixed(2)
+           document.getElementById('player-progress-9').innerHTML = progressText
+         });
+
+         ws9.on('finish', function () {
+           let button = $('#controls-9 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-9').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws9.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws9.skipBackward()
+                 break
+               case 'forward':
+                 ws9.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+
+<div id="waveform-9"></div>
+<div class="player-controls" id="controls-9">
+  <button class="btn btn-sml" data-action="backward"><i class="fa fa-backward"></i></button>
+  <button class="btn btn-sml" data-action="play-pause"><i class="fa fa-play"></i></button>
+  <button class="btn btn-sml" data-action="forward"><i class="fa fa-forward"></i></button>
+  <code class="btn btn-sml disabled" id="player-progress-9"></code>
+</div>
+
+<p>The Kalman filter is a general recursive state estimation technique which is modified to work on the speech denoising problem.</p>
+
+<script>
+       $(document).ready(function () {
+         var ws10 = WaveSurfer.create({
+           container: '#waveform-10',
+           backend: 'MediaElement'
+         });
+         ws10.load('/assets/audios/posts/woc/kalman_filtered_sp01_car_sn0.wav');
+
+         ws10.on('audioprocess', function () {
+           let progressText = ws10.getCurrentTime().toFixed(2) + ' / ' + ws10.getDuration().toFixed(2)
+           document.getElementById('player-progress-10').innerHTML = progressText
+         });
+
+         ws10.on('ready', function () {
+           let progressText = ws10.getCurrentTime().toFixed(2) + ' / ' + ws10.getDuration().toFixed(2)
+           document.getElementById('player-progress-10').innerHTML = progressText
+         });
+
+         ws10.on('finish', function () {
+           let button = $('#controls-10 > [data-action="play-pause"]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-10').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws10.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws10.skipBackward()
+                 break
+               case 'forward':
+                 ws10.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     </script>
+
+<style>
+  .player-controls {
+    margin: 20px 0;
+  }
+</style>
+
+<div id="waveform-10"></div>
+<div class="player-controls" id="controls-10">
+  <button class="btn btn-sml" data-action="backward"><i class="fa fa-backward"></i></button>
+  <button class="btn btn-sml" data-action="play-pause"><i class="fa fa-play"></i></button>
+  <button class="btn btn-sml" data-action="forward"><i class="fa fa-forward"></i></button>
+  <code class="btn btn-sml disabled" id="player-progress-10"></code>
+</div>
+
+<h2 id="intelligibility-metrics">Intelligibility Metrics</h2>
+
+<p>Along with techniques for speech enhancement, it is important to quantify the degree of enhancement which our methods provide. For this, we tested several metrics as discussed below-</p>
+
+<p><strong>Perceptual Evaluation of Speech Quality (PESQ)</strong> is a full-reference algorithm and analyzes the speech signal sample-by-sample after a temporal alignment of corresponding excerpts of reference and test signal. PESQ results essentially model mean opinion score (MOS) that cover a scale from 1 (bad) to 5 (excellent).</p>
+
+<p><strong>Short-Time Objective Intelligibility (STOI)</strong> is an objective metric showing high correlation (\(\rho=0.95\)) with the intelligibility of both noisy, and TF-weighted noisy speech<strong>.</strong></p>
+
+<p><strong>Gross Pitch Error (GPE)</strong> is the proportion of frames, considered voiced by both pitch tracker and ground truth, for which the relative pitch error is higher than a certain threshold, which is usually set to 20%.</p>
+
+<p><strong>Voicing Error Decision (VED)</strong> is the proportion of frames for which an incorrect voiced/unvoiced decision is made.</p>
+
+<p><strong>F0 Frame Error (FFE)</strong> is the proportion of frames for which an error (either according to the GPE or the VDE criterion) is made. FFE can be seen as a single measure for assessing the overall performance of a pitch tracker.</p>
+
+<p><strong>Mel Cepstral Distortion (MCD)</strong> is a measure of how different two sequences of mel cepstra are. It is used in assessing the quality of parametric speech synthesis systems, including statistical parametric speech synthesis systems, the idea being that the smaller the MCD between synthesized and natural mel cepstral sequences, the closer the synthetic speech is to reproducing natural speech.</p>
+
+<h1 id="results">Results</h1>
+
+<p>We apply our methods on 2 different datasets: First on the public <a href="https://ecs.utdallas.edu/loizou/speech/noizeus/">NOIZEUS</a> dataset and next on a dataset created by the in-house TTS systems of Skit. The results are quite satisfactory when we apply our methods on the NOIZEUS dataset and we found that the Wiener Filter and the Kalman Filters perform the best outperforming one another for different signal-to-noise ratios (SNR).</p>
+
+<figure>
+<center>
+  <img alt="MCD metric" src="/assets/images/posts/woc/res1.png" />
+  <figcaption>Effect of filters wrt MCD metric</figcaption>
+</center>
+</figure>
+
+<figure>
+<center>
+  <img alt="PESQ metric" src="/assets/images/posts/woc/res2.png" />
+  <figcaption>Effect of filters wrt PESQ metric</figcaption>
+</center>
+</figure>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>However they do not perform as well as we want on the TTS dataset. In fact, we observe that our models adversely affecting the input speech. There can be various reasons attributed to this, the primary one being that speech denoising of real life data and TTS Systems are quite different, since both have different noise types. Real life noise is either additive and can be subtracted by noise estimation or can be decomposed as a direct sum of a clean subspace and a pure noise subspace. But the noise in TTS systems are much more subtle and the noise cannot be modelled to be simply additive. Here the noise is generated along with the speech. Hence most of the traditional filters which although work well for real life noise separation, do not work well for this use case. This is where we planned to resort to deep learning models like the Facebook denoiser and SeGAN.</p>
+
+<h1 id="references">References</h1>
+<ol>
+  <li><a href="https://www.researchgate.net/publication/224738211_Enhancement_of_speech_corrupted_by_acoustic_noise">Berouti’s Spectral Subtraction</a></li>
+  <li><a href="https://ccrma.stanford.edu/~orchi/Documents/thesis_KF.pdf">Kalman Filter for Speech Enhancement</a></li>
+  <li><a href="https://www.perlego.com/book/2193587/speech-enhancement-theory-and-practice-second-edition-pdf">Speech Enhancement by Philipos C. Loizou</a></li>
+  <li><a href="https://hal.archives-ouvertes.fr/hal-00923967/document">A comparative study of pitch extraction algorithms on a large variety of singing sounds</a>, <a href="https://ieeexplore.ieee.org/document/941023">PESQ</a></li>
+</ol>
+
+<p>Author: Ananyapam De, a final year student at IISER Kolkata, majoring in Statistics, while minoring in the Computational Sciences.</p>
+
+			</article>
+
+            <!-- Mailchimp Subscribe Form -->
+            
+		</div>
+	</div>
 </div>
 
     </main>
@@ -505,7 +1104,12 @@ openings in our ML and Engineering teams.</p>
     <script src="/assets/js/theme.js"></script>
 
     
+      <script src="https://unpkg.com/wavesurfer.js"></script>
+    
 
+    
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
 
     <!-- Footer -->

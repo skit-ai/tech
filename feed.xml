@@ -1,4 +1,564 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-03-09T16:16:31+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Turn Taking Dynamics in Voice Bots</title><link href="/Turn_Taking_Dynamics_in_Voice_Bots/" rel="alternate" type="text/html" title="Turn Taking Dynamics in Voice Bots" /><published>2022-03-07T00:00:00+00:00</published><updated>2022-03-07T00:00:00+00:00</updated><id>/Turn_Taking_Dynamics_in_Voice_Bots</id><content type="html" xml:base="/Turn_Taking_Dynamics_in_Voice_Bots/">&lt;p&gt;One of the challenges in building an interactive voice bots is accounting for turn taking behaviour. Turn-taking is a difficult problem to get right, even for humans. In all our circles, we’d know of at least one person who likes to interrupt a lot and doesn’t have good turn taking etiquette.  Having a conversation with such a person can be quite irritating as one feels one is not getting heard or even getting a chance to finish one’s sentence.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-03-09T16:47:29+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">TTS Enhancement</title><link href="/woc/" rel="alternate" type="text/html" title="TTS Enhancement" /><published>2022-03-09T00:00:00+00:00</published><updated>2022-03-09T00:00:00+00:00</updated><id>/woc</id><content type="html" xml:base="/woc/">&lt;h1 id=&quot;tts-enhancement-winter-of-code-21&quot;&gt;TTS Enhancement: Winter of Code 21’&lt;/h1&gt;
+
+&lt;p&gt;Github Repository Link: https://github.com/skit-ai/woc-tts-enhancement&lt;/p&gt;
+
+&lt;h1 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h1&gt;
+
+&lt;p&gt;Text-To-Speech (TTS) systems of Skit, as well as TTS systems in general, have a tendency to mix some ambient noise along with the speech it outputs. This aim of this research project was to remove that noise and quantify how well the noise has been removed using standard metrics.&lt;/p&gt;
+
+&lt;p&gt;Listen to the clean speech sample here for reference-&lt;/p&gt;
+
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws4 = WaveSurfer.create({
+           container: '#waveform-4',
+           backend: 'MediaElement'
+         });
+         ws4.load('/assets/audios/posts/woc/sp01.wav');
+
+         ws4.on('audioprocess', function () {
+           let progressText = ws4.getCurrentTime().toFixed(2) + ' / ' + ws4.getDuration().toFixed(2)
+           document.getElementById('player-progress-4').innerHTML = progressText
+         });
+
+         ws4.on('ready', function () {
+           let progressText = ws4.getCurrentTime().toFixed(2) + ' / ' + ws4.getDuration().toFixed(2)
+           document.getElementById('player-progress-4').innerHTML = progressText
+         });
+
+         ws4.on('finish', function () {
+           let button = $('#controls-4 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-4').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws4.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws4.skipBackward()
+                 break
+               case 'forward':
+                 ws4.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-4&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-4&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-4&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
+
+&lt;p&gt;and the distorted sample-&lt;/p&gt;
+
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws5 = WaveSurfer.create({
+           container: '#waveform-5',
+           backend: 'MediaElement'
+         });
+         ws5.load('/assets/audios/posts/woc/sp01_car_sn0.wav');
+
+         ws5.on('audioprocess', function () {
+           let progressText = ws5.getCurrentTime().toFixed(2) + ' / ' + ws5.getDuration().toFixed(2)
+           document.getElementById('player-progress-5').innerHTML = progressText
+         });
+
+         ws5.on('ready', function () {
+           let progressText = ws5.getCurrentTime().toFixed(2) + ' / ' + ws5.getDuration().toFixed(2)
+           document.getElementById('player-progress-5').innerHTML = progressText
+         });
+
+         ws5.on('finish', function () {
+           let button = $('#controls-5 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-5').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws5.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws5.skipBackward()
+                 break
+               case 'forward':
+                 ws5.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-5&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-5&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-5&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Speech enhancement can be done using the traditional signal processing techniques or using deep learning techniques. In this project, we mainly focused on the signal processing aspects of noise reduction. Signal processing techniques can be further divided into 3 more categories-&lt;/p&gt;
+
+&lt;h2 id=&quot;spectral-subtractive-algorithms&quot;&gt;Spectral Subtractive algorithms&lt;/h2&gt;
+
+&lt;p&gt;The main principle is as follows- assuming additive noise, one can obtain an estimate of the clean signal spectrum by subtracting an estimate of the noise spectrum from the noisy speech spectrum. The noise spectrum can be estimated and updated, during periods when the signal is absent. The assumption made is that noise is stationary or a slowly varying process and that the noise spectrum does not change significantly between the updating periods. The enhanced signal is obtained by computing the IDFT of the estimated signal spectrum using the phase of the noisy signal.&lt;/p&gt;
+
+&lt;h2 id=&quot;statistical-model-based-algorithms&quot;&gt;Statistical Model based algorithms&lt;/h2&gt;
+
+&lt;p&gt;Given a set of measurements that depend on an unknown parameter, we wish to find a nonlinear estimator of the parameter of interest. These measurements correspond to the set of DFT coefficients of the noisy signal and the parameters of interest are the set of DFT coefficients of the clean signal. Various techniques from estimation theory which include maximum-likelihood (ML) estimators and the Bayesian estimators like MMSE and MAP estimators are used for this purpose.&lt;/p&gt;
+
+&lt;h2 id=&quot;subspace-algorithms&quot;&gt;Subspace algorithms&lt;/h2&gt;
+
+&lt;p&gt;These algorithms are based on the principle that the clean signal might be confined to a subspace of the noisy Euclidean space. Given a method for decomposing the vector space of the noisy signal into a direct sum of the subspace that is occupied by the clean signal and a subspace occupied by the noise signal, for example SVD, we could estimate the clean signal simply by nulling the component of the noisy vector residing in the noisy subspace.&lt;/p&gt;
+
+&lt;h1 id=&quot;contributions&quot;&gt;Contributions&lt;/h1&gt;
+&lt;h2 id=&quot;filters&quot;&gt;Filters&lt;/h2&gt;
+
+&lt;p&gt;Speech enhancement can be done using the traditional signal processing techniques or using deep learning techniques. We hypothesised that signal processing techniques would be suitable for task and tested them out. We implemented some of the popular speech enhancement methods which were suitably modified to tackle the problem at hand.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Wiener Filter&lt;/strong&gt;&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;Block Diagram of Wiener Filter&quot; src=&quot;/assets/images/posts/woc/wiener.png&quot; /&gt;
+  &lt;figcaption&gt;Block Diagram of Wiener Filter&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The input signal w[n] goes through a linear and time-invariant system to produce an output signal x[n]. We are to design the system in such a way that the output signal, x[n], is as close to the desired signal, s[n], as possible. This can be done by computing the estimation error, e[n], and making it as small as possible. The optimal filter that minimizes the estimation error is called the &lt;em&gt;Wiener filter.&lt;/em&gt;&lt;/p&gt;
+
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws6 = WaveSurfer.create({
+           container: '#waveform-6',
+           backend: 'MediaElement'
+         });
+         ws6.load('/assets/audios/posts/woc/wiener_filtered_sp01_car_sn0.wav');
+
+         ws6.on('audioprocess', function () {
+           let progressText = ws6.getCurrentTime().toFixed(2) + ' / ' + ws6.getDuration().toFixed(2)
+           document.getElementById('player-progress-6').innerHTML = progressText
+         });
+
+         ws6.on('ready', function () {
+           let progressText = ws6.getCurrentTime().toFixed(2) + ' / ' + ws6.getDuration().toFixed(2)
+           document.getElementById('player-progress-6').innerHTML = progressText
+         });
+
+         ws6.on('finish', function () {
+           let button = $('#controls-6 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-6').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws6.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws6.skipBackward()
+                 break
+               case 'forward':
+                 ws6.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-6&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-6&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-6&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;MMSE and MMSE Log Filter&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;These fall under the umbrella of Bayesian estimation techniques. We saw above that the Wiener estimator can be derived by minimizing the error between a linear model of the clean spectrum and the true spectrum. The Wiener estimator is considered to be the optimal (in the mean-square-error sense) complex spectral estimator, but is not the optimal spectral magnitude estimator. Acknowledging the importance of the short-time spectral amplitude (STSA) on speech intelligibility and quality, several authors have proposed optimal methods for obtaining the spectral amplitudes from noisy observations. In particular, we are looking for sought that minimized the mean-square error between the estimated and true magnitudes:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                            $$e = E{ (\hat{X_k} - X_k)^2 }$$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;where \(\hat{X_k}\) is the estimate spectral magnitude at frequency \(\omega_k\) and \(X_k\) is the true magnitude of the clean signal.&lt;/p&gt;
+
+&lt;p&gt;The MMSE Log is an improvement upon the MMSE estimator. Although a metric
+based on the squared error of the magnitude spectra is mathematically tractable, it may not be subjectively meaningful. It has been suggested that a metric based on the squared error of the log-magnitude spectra may be more suitable for speech processing. So we minimize :&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                            $$e = E \{ (log \hat X_k - log X_k)^2 \}$$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;and we notice a significant improvement in the results compared to the original MMSE estimator.&lt;/p&gt;
+
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws7 = WaveSurfer.create({
+           container: '#waveform-7',
+           backend: 'MediaElement'
+         });
+         ws7.load('/assets/audios/posts/woc/mmse_filtered_sp01_car_sn0.wav');
+
+         ws7.on('audioprocess', function () {
+           let progressText = ws7.getCurrentTime().toFixed(2) + ' / ' + ws7.getDuration().toFixed(2)
+           document.getElementById('player-progress-7').innerHTML = progressText
+         });
+
+         ws7.on('ready', function () {
+           let progressText = ws7.getCurrentTime().toFixed(2) + ' / ' + ws7.getDuration().toFixed(2)
+           document.getElementById('player-progress-7').innerHTML = progressText
+         });
+
+         ws7.on('finish', function () {
+           let button = $('#controls-7 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-7').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws7.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws7.skipBackward()
+                 break
+               case 'forward':
+                 ws7.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-7&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-7&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-7&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws8 = WaveSurfer.create({
+           container: '#waveform-8',
+           backend: 'MediaElement'
+         });
+         ws8.load('/assets/audios/posts/woc/mmse_log_filtered_sp01_car_sn0.wav');
+
+         ws8.on('audioprocess', function () {
+           let progressText = ws8.getCurrentTime().toFixed(2) + ' / ' + ws8.getDuration().toFixed(2)
+           document.getElementById('player-progress-8').innerHTML = progressText
+         });
+
+         ws8.on('ready', function () {
+           let progressText = ws8.getCurrentTime().toFixed(2) + ' / ' + ws8.getDuration().toFixed(2)
+           document.getElementById('player-progress-8').innerHTML = progressText
+         });
+
+         ws8.on('finish', function () {
+           let button = $('#controls-8 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-8').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws8.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws8.skipBackward()
+                 break
+               case 'forward':
+                 ws8.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-8&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-8&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-8&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Berouti’s Oversubstraction&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This method consists of subtracting an overestimate of the noise power spectrum, while preventing the resultant spectral components from going below a preset minimum value (spectral floor).&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                $$\hat X(\omega)=\begin{cases} |Y(\omega)|^2 - \alpha |\hat D(\omega)|^2&amp;amp; \text{if } |Y(\omega)|^2 \geq (\alpha + \beta) |D(\omega)|^2 \\ \beta |\hat D(\omega)|^2 &amp;amp; \text{else} \end{cases}$$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;where \(\alpha (\geq 1)\) is the oversubtraction factor and \(0 \leq \beta \leq 1\) is the spectral floor parameter.&lt;/p&gt;
+
+&lt;p&gt;When we subtract the estimate of the noise spectrum from the noisy speech
+spectrum, there remain peaks in the spectrum. Some of those peaks are broadband (encompassing a wide range of frequencies) whereas others are narrow band, appearing as spikes in the spectrum. By oversubtracting the noise spectrum, that is, by using \(\alpha\), we can reduce the amplitude of the broadband peaks and, in some cases, eliminate them altogether. This by itself, however, is not sufficient because the deep valleys surrounding the peaks still remain in the spectrum. For that reason, spectral flooring is used to “fill in” the spectral valleys and possibly mask the remaining peaks by the neighbouring spectral components of comparable value. The valleys between peaks are no longer deep when \(\beta &amp;gt; 0\) compared to when \(\beta = 0\).&lt;/p&gt;
+
+&lt;p&gt;The parameter \(\beta\) controls the amount of remaining residual noise
+and the amount of perceived musical noise. If the spectral floor parameter \(\beta\) is too
+large, then the residual noise will be audible but the musical noise will not be perceptible. Conversely, if \(\beta\) is too small, the musical noise will become annoying but the residual noise will be markedly reduced.&lt;/p&gt;
+
+&lt;p&gt;The parameter \(\alpha\) affects the amount of speech spectral distortion caused by
+the subtraction. If \(\alpha\) is too large, then the resulting signal will be severely distorted to the point that intelligibility may suffer.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                $$\alpha = \alpha_0 - \frac{3}{20}  \textit{SNR} : \text{ for} -5 \leq \textit{SNR} \leq -20$$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;where \(\alpha_0\) is the desired value of  \(\alpha\) at 0 dB SNR and the \(\textit{SNR}\) is the short term SNR estimated at each frame.&lt;/p&gt;
+
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws9 = WaveSurfer.create({
+           container: '#waveform-9',
+           backend: 'MediaElement'
+         });
+         ws9.load('/assets/audios/posts/woc/ss_filtered_sp01_car_sn0.wav');
+
+         ws9.on('audioprocess', function () {
+           let progressText = ws9.getCurrentTime().toFixed(2) + ' / ' + ws9.getDuration().toFixed(2)
+           document.getElementById('player-progress-9').innerHTML = progressText
+         });
+
+         ws9.on('ready', function () {
+           let progressText = ws9.getCurrentTime().toFixed(2) + ' / ' + ws9.getDuration().toFixed(2)
+           document.getElementById('player-progress-9').innerHTML = progressText
+         });
+
+         ws9.on('finish', function () {
+           let button = $('#controls-9 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-9').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws9.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws9.skipBackward()
+                 break
+               case 'forward':
+                 ws9.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-9&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-9&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-9&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The Kalman filter is a general recursive state estimation technique which is modified to work on the speech denoising problem.&lt;/p&gt;
+
+&lt;script&gt;
+       $(document).ready(function () {
+         var ws10 = WaveSurfer.create({
+           container: '#waveform-10',
+           backend: 'MediaElement'
+         });
+         ws10.load('/assets/audios/posts/woc/kalman_filtered_sp01_car_sn0.wav');
+
+         ws10.on('audioprocess', function () {
+           let progressText = ws10.getCurrentTime().toFixed(2) + ' / ' + ws10.getDuration().toFixed(2)
+           document.getElementById('player-progress-10').innerHTML = progressText
+         });
+
+         ws10.on('ready', function () {
+           let progressText = ws10.getCurrentTime().toFixed(2) + ' / ' + ws10.getDuration().toFixed(2)
+           document.getElementById('player-progress-10').innerHTML = progressText
+         });
+
+         ws10.on('finish', function () {
+           let button = $('#controls-10 &gt; [data-action=&quot;play-pause&quot;]')
+           button.find('i:first').toggleClass('fa-play')
+           button.find('i:first').toggleClass('fa-pause')
+           button.toggleClass('btn-dark')
+         });
+
+         for (let button of document.getElementById('controls-10').children) {
+           button.onclick = function (e) {
+             let action = button.getAttribute('data-action')
+             switch (action) {
+               case 'play-pause':
+                 ws10.playPause()
+                 $(button).find('i:first').toggleClass('fa-play')
+                 $(button).find('i:first').toggleClass('fa-pause')
+                 $(button).toggleClass('btn-dark')
+                 break
+               case 'backward':
+                 ws10.skipBackward()
+                 break
+               case 'forward':
+                 ws10.skipForward()
+                 break
+             }
+           }
+         }
+       });
+     &lt;/script&gt;
+
+&lt;style&gt;
+  .player-controls {
+    margin: 20px 0;
+  }
+&lt;/style&gt;
+
+&lt;div id=&quot;waveform-10&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;player-controls&quot; id=&quot;controls-10&quot;&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-10&quot;&gt;&lt;/code&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;intelligibility-metrics&quot;&gt;Intelligibility Metrics&lt;/h2&gt;
+
+&lt;p&gt;Along with techniques for speech enhancement, it is important to quantify the degree of enhancement which our methods provide. For this, we tested several metrics as discussed below-&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Perceptual Evaluation of Speech Quality (PESQ)&lt;/strong&gt; is a full-reference algorithm and analyzes the speech signal sample-by-sample after a temporal alignment of corresponding excerpts of reference and test signal. PESQ results essentially model mean opinion score (MOS) that cover a scale from 1 (bad) to 5 (excellent).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Short-Time Objective Intelligibility (STOI)&lt;/strong&gt; is an objective metric showing high correlation (\(\rho=0.95\)) with the intelligibility of both noisy, and TF-weighted noisy speech&lt;strong&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Gross Pitch Error (GPE)&lt;/strong&gt; is the proportion of frames, considered voiced by both pitch tracker and ground truth, for which the relative pitch error is higher than a certain threshold, which is usually set to 20%.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Voicing Error Decision (VED)&lt;/strong&gt; is the proportion of frames for which an incorrect voiced/unvoiced decision is made.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;F0 Frame Error (FFE)&lt;/strong&gt; is the proportion of frames for which an error (either according to the GPE or the VDE criterion) is made. FFE can be seen as a single measure for assessing the overall performance of a pitch tracker.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mel Cepstral Distortion (MCD)&lt;/strong&gt; is a measure of how different two sequences of mel cepstra are. It is used in assessing the quality of parametric speech synthesis systems, including statistical parametric speech synthesis systems, the idea being that the smaller the MCD between synthesized and natural mel cepstral sequences, the closer the synthetic speech is to reproducing natural speech.&lt;/p&gt;
+
+&lt;h1 id=&quot;results&quot;&gt;Results&lt;/h1&gt;
+
+&lt;p&gt;We apply our methods on 2 different datasets: First on the public &lt;a href=&quot;https://ecs.utdallas.edu/loizou/speech/noizeus/&quot;&gt;NOIZEUS&lt;/a&gt; dataset and next on a dataset created by the in-house TTS systems of Skit. The results are quite satisfactory when we apply our methods on the NOIZEUS dataset and we found that the Wiener Filter and the Kalman Filters perform the best outperforming one another for different signal-to-noise ratios (SNR).&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;MCD metric&quot; src=&quot;/assets/images/posts/woc/res1.png&quot; /&gt;
+  &lt;figcaption&gt;Effect of filters wrt MCD metric&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+&lt;center&gt;
+  &lt;img alt=&quot;PESQ metric&quot; src=&quot;/assets/images/posts/woc/res2.png&quot; /&gt;
+  &lt;figcaption&gt;Effect of filters wrt PESQ metric&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;However they do not perform as well as we want on the TTS dataset. In fact, we observe that our models adversely affecting the input speech. There can be various reasons attributed to this, the primary one being that speech denoising of real life data and TTS Systems are quite different, since both have different noise types. Real life noise is either additive and can be subtracted by noise estimation or can be decomposed as a direct sum of a clean subspace and a pure noise subspace. But the noise in TTS systems are much more subtle and the noise cannot be modelled to be simply additive. Here the noise is generated along with the speech. Hence most of the traditional filters which although work well for real life noise separation, do not work well for this use case. This is where we planned to resort to deep learning models like the Facebook denoiser and SeGAN.&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.researchgate.net/publication/224738211_Enhancement_of_speech_corrupted_by_acoustic_noise&quot;&gt;Berouti’s Spectral Subtraction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ccrma.stanford.edu/~orchi/Documents/thesis_KF.pdf&quot;&gt;Kalman Filter for Speech Enhancement&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.perlego.com/book/2193587/speech-enhancement-theory-and-practice-second-edition-pdf&quot;&gt;Speech Enhancement by Philipos C. Loizou&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://hal.archives-ouvertes.fr/hal-00923967/document&quot;&gt;A comparative study of pitch extraction algorithms on a large variety of singing sounds&lt;/a&gt;, &lt;a href=&quot;https://ieeexplore.ieee.org/document/941023&quot;&gt;PESQ&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Author: Ananyapam De, a final year student at IISER Kolkata, majoring in Statistics, while minoring in the Computational Sciences.&lt;/p&gt;</content><author><name></name></author><category term="Speech Enhancement" /><category term="TTS" /><category term="speech-enhancement" /><summary type="html">TTS Enhancement: Winter of Code 21’</summary></entry><entry><title type="html">Turn Taking Dynamics in Voice Bots</title><link href="/Turn_Taking_Dynamics_in_Voice_Bots/" rel="alternate" type="text/html" title="Turn Taking Dynamics in Voice Bots" /><published>2022-03-07T00:00:00+00:00</published><updated>2022-03-07T00:00:00+00:00</updated><id>/Turn_Taking_Dynamics_in_Voice_Bots</id><content type="html" xml:base="/Turn_Taking_Dynamics_in_Voice_Bots/">&lt;p&gt;One of the challenges in building an interactive voice bots is accounting for turn taking behaviour. Turn-taking is a difficult problem to get right, even for humans. In all our circles, we’d know of at least one person who likes to interrupt a lot and doesn’t have good turn taking etiquette.  Having a conversation with such a person can be quite irritating as one feels one is not getting heard or even getting a chance to finish one’s sentence.&lt;/p&gt;
 
 &lt;p&gt;Turn-taking is even more difficult in a multi-party setting. You might remember the last group call you had and just when you were about to take the turn, someone else jumped right in (because you waited for a tad bit too long) and you never got to speak. Turn-taking behaviour also differs culturally. In some cultures, interruptions and barge-ins are a lot more natural. There is also a difference in the inter-turn pause duration. These factors often lead to an unnatural conversation flow when speaking to a person from a different culture.&lt;/p&gt;
 
@@ -1220,118 +1780,4 @@ followed by a multi-class classifier that predicts the value for each act-slot p
 &lt;h1 id=&quot;references-&quot;&gt;References :&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Tür, G., Deoras, A., &amp;amp; Hakkani-Tür, D. (2013, September). Semantic parsing using word confusion networks with conditional random fields. In &lt;em&gt;INTERSPEECH&lt;/em&gt; (pp. 2579-2583).&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="SLU" /><summary type="html">This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/n-best-asr.jpg" /><media:content medium="image" url="/assets/images/n-best-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Authentication in gRPC</title><link href="/authentication-in-grpc/" rel="alternate" type="text/html" title="Authentication in gRPC" /><published>2021-10-31T00:00:00+00:00</published><updated>2021-10-31T00:00:00+00:00</updated><id>/authentication-in-grpc</id><content type="html" xml:base="/authentication-in-grpc/">&lt;p&gt;In gRPC, there are a number of ways you can add authentication between client
-and server. It is handled via Credentials Objects.&lt;/p&gt;
-
-&lt;p&gt;There are two types of credential objects:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Channel Credentials&lt;/strong&gt;: These are handled on the channel level, i.e when
-the connection is established and a channel is created.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Call Credentials&lt;/strong&gt;: These are handled on per request level, i.e for every
-RPC call that is made. These Credential objects can also be combined to
-create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CompositeChannelCredentials&lt;/code&gt; with one Channel Credential and one
-Call Credential object.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Now let us see how we can use these credential objects.&lt;/p&gt;
-
-&lt;h2 id=&quot;client-side-tlsssl-authentication&quot;&gt;Client-Side TLS/SSL Authentication&lt;/h2&gt;
-&lt;p&gt;gRPC provides a way to establish a connection without any secure connection i.e just like HTTP.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithInsecure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// server.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tcp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For secure communication, we will create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TransportCredentials&lt;/code&gt; which is a type
-of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ChannelCredential&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewClientTLSFromFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;certFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithTransportCredentials&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// server.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tcp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;localhost:50051&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServerTLSFromFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;certFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keyFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can read more about generating own ssl certificates &lt;a href=&quot;https://www.linuxjournal.com/content/understanding-public-key-infrastructure-and-x509-certificates&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In the case where you don’t own the client, it means you are creating a gRPC
-API for public use, you cannot give your certificate to everyone using your
-client. In that case, we rely on well known &lt;a href=&quot;https://en.wikipedia.org/wiki/Certificate_authority&quot;&gt;Certificate
-Authority&lt;/a&gt; like LetsEncrypt, Amazon, etc. to generate a
-certificate. So let us change our client code a little.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tls&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;InsecureSkipVerify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithTransportCredentials&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewTLS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;// server code remains the same&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In this case what happens is that grpc loads the certificates of well-known
-Certificate Authorities from the OS and sends it to the server, hence no need
-to manually provide a certificate.&lt;/p&gt;
-
-&lt;h2 id=&quot;token-based-authentication--oauth2&quot;&gt;Token-Based Authentication / OAuth2&lt;/h2&gt;
-
-&lt;p&gt;Many a time we want to differentiate a client by issuing them different tokens.
-TLS Authentication is a good way to secure your connection but it does not tell
-us from which client the request is coming from. We will send the token in
-request metadata just like HTTP Headers.&lt;/p&gt;
-
-&lt;p&gt;gRPC has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google.golang.org/grpc/metadata&lt;/code&gt; package to send and receive metadata
-with a RPC request.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// add metadata to request context&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;md&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Bearer xxx-xxx-xxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// use this context to call rpc&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CallRPC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We will use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnaryInterceptor&lt;/code&gt; on the server which acts as middleware and
-checks for the token for all the requests.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// create a middleware&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AuthInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryServerInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FromContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;missing context metadata&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  
-    &lt;span class=&quot;c&quot;&gt;// Take care: grpc internally reduce key values to lowercase&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;invalid token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;xxx-xxx-xxx&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;invalid token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// pass this when creating server&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-   &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AuthInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;But above code only works for non-streaming RPCs. For Streaming RPCs you can
-implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StreamInterceptor&lt;/code&gt;. Instead of implementing it again you can use
-this package. I hope this article helps you with authentication in gRPC.&lt;/p&gt;
-
-&lt;p&gt;If you are interested in working with cutting-edge technologies, come work with
-&lt;a href=&quot;https://skit.ai&quot;&gt;Skit&lt;/a&gt;. Apply &lt;a href=&quot;https://skit.recruiterbox.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Deepankar Agrawal</name></author><category term="Engineering" /><category term="authentication" /><category term="gRPC" /><summary type="html">In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/thumbnail-authentication-in-grpc.svg" /><media:content medium="image" url="/assets/images/thumbnail-authentication-in-grpc.svg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="SLU" /><summary type="html">This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/n-best-asr.jpg" /><media:content medium="image" url="/assets/images/n-best-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
