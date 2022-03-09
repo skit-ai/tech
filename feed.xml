@@ -1,4 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-03-05T17:37:30+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Speeding up Inference with the Lottery Ticket Hypothesis</title><link href="/sparse-models/" rel="alternate" type="text/html" title="Speeding up Inference with the Lottery Ticket Hypothesis" /><published>2022-02-23T00:00:00+00:00</published><updated>2022-02-23T00:00:00+00:00</updated><id>/sparse-models</id><content type="html" xml:base="/sparse-models/">&lt;script src=&quot;https://cdn.plot.ly/plotly-2.8.3.min.js&quot;&gt;&lt;/script&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-03-09T16:16:31+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Turn Taking Dynamics in Voice Bots</title><link href="/Turn_Taking_Dynamics_in_Voice_Bots/" rel="alternate" type="text/html" title="Turn Taking Dynamics in Voice Bots" /><published>2022-03-07T00:00:00+00:00</published><updated>2022-03-07T00:00:00+00:00</updated><id>/Turn_Taking_Dynamics_in_Voice_Bots</id><content type="html" xml:base="/Turn_Taking_Dynamics_in_Voice_Bots/">&lt;p&gt;One of the challenges in building an interactive voice bots is accounting for turn taking behaviour. Turn-taking is a difficult problem to get right, even for humans. In all our circles, we’d know of at least one person who likes to interrupt a lot and doesn’t have good turn taking etiquette.  Having a conversation with such a person can be quite irritating as one feels one is not getting heard or even getting a chance to finish one’s sentence.&lt;/p&gt;
+
+&lt;p&gt;Turn-taking is even more difficult in a multi-party setting. You might remember the last group call you had and just when you were about to take the turn, someone else jumped right in (because you waited for a tad bit too long) and you never got to speak. Turn-taking behaviour also differs culturally. In some cultures, interruptions and barge-ins are a lot more natural. There is also a difference in the inter-turn pause duration. These factors often lead to an unnatural conversation flow when speaking to a person from a different culture.&lt;/p&gt;
+
+&lt;p&gt;Note : Bots with explicit turn-taking signalling like wake-words are out of scope for this blog.&lt;/p&gt;
+
+&lt;h2 id=&quot;natural-turn-taking-dynamics&quot;&gt;Natural Turn Taking Dynamics&lt;/h2&gt;
+
+&lt;p&gt;Irrespective of nuances, there are aspects of turn taking behaviour which are globally present in natural human-human conversation and one’s that we would want to imbibe in a human-bot interaction as well.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Barge-ins: These are situations when one agent interrupts the other. They occur very commonly. Examples of situations are : when one feels the other person is making a mistake or when ones feels the need to add some essential information, one naturally barges in.&lt;/li&gt;
+  &lt;li&gt;Full Duplex Conversations : A half duplex conversation is one where turns are alternatively taken, like playing a tennis match, however in natural conversations, there are often instances when both people are saying something at the same time.
+    &lt;ul&gt;
+      &lt;li&gt;backchannels : words and fillers like “okay”, “alright” or “hmm” provide a lot of context about the state of the other person(for example attentiveness), especially when one is talking over the phone and visual cues are absent.&lt;/li&gt;
+      &lt;li&gt;corrections : at times, when a person is saying something, one might want to make a small correction. For example, if there is an announcement being made “for the next meeting, you are supposed to finish submissions by 12th December, at so and so time….”. When the person is saying 12th December someone might correct by saying 13th December. This information is assimilated by the person and they often correct themselves. So, humans have the ability to hear and understand even while speaking and are active listeners.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/turn-taking-dynamics/duplex-conversations.png&quot; /&gt;
+    &lt;figcaption&gt;Fig 1: Full duplex vs half duplex conversations.&lt;/figcaption&gt;
+  &lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Minimal inter-turn pauses : if you’ve ever spoken with a voice assistant, one of the first observations is that it takes too long to start speaking after you are done and the other way around. Human conversations have a much lower turn taking latency. If this latency is near optimal, it also lends to a feeling that the other person is understanding you and the left over impression is that of a conversation gone well. Human’s have an average pause duration of 200ms as shown below, while bots have a much higher latency.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure&gt;
+  &lt;center&gt;
+    &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/turn-taking-dynamics/pause-duration.png&quot; /&gt;
+    &lt;figcaption&gt;Fig 2: Turn Taking Pause duration as measured from the Switchboard corpus. Image is taken from [1].&lt;/figcaption&gt;
+  &lt;/center&gt;
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Turn taking cues : often in natural conversations, people produce small vocal cues like filler words “umm” or “uhhh” to convey that they want to say something and take the turn.&lt;/li&gt;
+  &lt;li&gt;Turn yielding cues : there are markers is conversations when one knows that the person is done speaking. This is how we are able to separate pauses, which happen when a person is thinking in between his utterance vs one when he is done speaking.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;turn-taking-dynamics-in-voice-bots&quot;&gt;Turn-Taking Dynamics in Voice Bots&lt;/h2&gt;
+
+&lt;p&gt;Below, we discuss different versions of turn-taking dynamics implemented in voice-bots each with more features and increasing levels of difficulty.&lt;/p&gt;
+
+&lt;h3 id=&quot;version---10&quot;&gt;Version - 1.0&lt;/h3&gt;
+
+&lt;p&gt;These are some characteristics of a bare bone turn-taking behaviour that one would need in a voice bot deployment.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Initial patience : the time that the bot waits for the person to starts speaking&lt;/li&gt;
+  &lt;li&gt;Silence detection : if the bot detects silence for a certain duration after the person has started speaking, it assumes the person’s turn is over.&lt;/li&gt;
+  &lt;li&gt;Max turn duration : it doesn’t make sense to just be listening (because of error compounding, loss of context, maybe one is hearing just noise), so usually voice bots have a maximum duration to which they listen to the user.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;version---20&quot;&gt;Version - 2.0&lt;/h3&gt;
+
+&lt;p&gt;This version add robustness for real life situations, make the bot more human-like and tries to reduce the latency between turns.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;VAD instead of silence detection : Often existence of background noise, speech and other signals causes the bot to keep listening. Instead one could train a Voice-Activity Detection system rather than use silence detection, to have robustness to background events and to listen to the user only when they are speaking.&lt;/li&gt;
+  &lt;li&gt;Variable thresholds for silence detection and max duration : In some states for example, when the bot is expecting a yes/no answer, it makes sense to use smaller thresholds. In general dynamic thresholding should be used.&lt;/li&gt;
+  &lt;li&gt;For turn-switching, instead of a simple VAD, use an IPU based model discussed &lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S088523082030111X&quot;&gt;here&lt;/a&gt;. This uses a smaller VAD threshold + cues to predict the turn is over. One could start with some verbal cues for example phrase completion.&lt;/li&gt;
+  &lt;li&gt;Adding backchannels as bot responses : So far we’ve only discussed aspects of perception, but backchannels are a very useful response feature. It makes the user feel that the bot is more attentive and is actively listening.
+    &lt;ul&gt;
+      &lt;li&gt;One could also add filler words in the main channel, when the bot is taking too long to produce a response in cases of high latency. This would prevent the user from asking a question to verify if the bot is there or not. Without this, the user’s speech would lead to further increase in latency as it would be perceived as a case when the user wants to take the turn and say something useful.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;version---30&quot;&gt;Version - 3.0&lt;/h3&gt;
+
+&lt;p&gt;There are no good baselines for these and working on improvements would constitute state of the art performance.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Multi-party situations : These are a lot more complex and require modelling multiple parties. An application could be when the bot is overseeing a human-machine interaction say, between a call centre agent and a human. Another common use is when during a typical 2 party interaction, someone interrupts the user. This requires the bot being aware that the user is speaking to someone else and then waiting.&lt;/li&gt;
+  &lt;li&gt;Full - Duplex Conversations : Unlike human-human conversations a bots can attentively listen at the same time, while saying something. This offers a possibility of redesigning interactions which can leverage this feature.&lt;/li&gt;
+  &lt;li&gt;Personalisation of Turn taking behaviour : This involves changing the parameters based on user characteristics. One could entrain one’s system to be more in line with the user’s behaviour. At times when the user is angry it might involve changing the durations to feel that they are being heard.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;references-&quot;&gt;References :&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S088523082030111X&quot;&gt;Turn-taking in Conversational Systems and Human-Robot Interaction: A Review&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="Turn-taking" /><category term="barge-in" /><category term="duplex conversations" /><summary type="html">One of the challenges in building an interactive voice bots is accounting for turn taking behaviour. Turn-taking is a difficult problem to get right, even for humans. In all our circles, we’d know of at least one person who likes to interrupt a lot and doesn’t have good turn taking etiquette. Having a conversation with such a person can be quite irritating as one feels one is not getting heard or even getting a chance to finish one’s sentence.</summary></entry><entry><title type="html">Speeding up Inference with the Lottery Ticket Hypothesis</title><link href="/sparse-models/" rel="alternate" type="text/html" title="Speeding up Inference with the Lottery Ticket Hypothesis" /><published>2022-02-23T00:00:00+00:00</published><updated>2022-02-23T00:00:00+00:00</updated><id>/sparse-models</id><content type="html" xml:base="/sparse-models/">&lt;script src=&quot;https://cdn.plot.ly/plotly-2.8.3.min.js&quot;&gt;&lt;/script&gt;
 
 &lt;p&gt;The most fancy tool in the Modern Machine Learning toolbox are Neural Networks (NNs),
 especially &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Deep&lt;/code&gt; ones. NNs usually have much more number of parameters than the
@@ -1248,58 +1334,4 @@ implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Str
 this package. I hope this article helps you with authentication in gRPC.&lt;/p&gt;
 
 &lt;p&gt;If you are interested in working with cutting-edge technologies, come work with
-&lt;a href=&quot;https://skit.ai&quot;&gt;Skit&lt;/a&gt;. Apply &lt;a href=&quot;https://skit.recruiterbox.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Deepankar Agrawal</name></author><category term="Engineering" /><category term="authentication" /><category term="gRPC" /><summary type="html">In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/thumbnail-authentication-in-grpc.svg" /><media:content medium="image" url="/assets/images/thumbnail-authentication-in-grpc.svg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Seminar - Code Mixing in NLP and Speech</title><link href="/Code-Mixing-Seminar/" rel="alternate" type="text/html" title="Seminar - Code Mixing in NLP and Speech" /><published>2021-08-24T00:00:00+00:00</published><updated>2021-08-24T00:00:00+00:00</updated><id>/Code-Mixing-Seminar</id><content type="html" xml:base="/Code-Mixing-Seminar/">&lt;p&gt;Below are some pointers and insights from the papers that we covered in the recently concluded &lt;a href=&quot;https://skit-ai.github.io/seminars/topics/&quot;&gt;seminar on Code-mixing in NLP and Speech&lt;/a&gt;. During the seminar we covered 6 papers, two each from NLP, Speech Synthesis and Speech Recognition.&lt;/p&gt;
-
-&lt;h1 id=&quot;session-1-nlp&quot;&gt;Session-1 (NLP)&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: &lt;a href=&quot;https://arxiv.org/pdf/2004.12376.pdf&quot;&gt;GLUECoS : An Evaluation Benchmark for Code-Switched NLP&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Presenter&lt;/strong&gt;: Shashank Shailabh&lt;/p&gt;
-
-&lt;p&gt;The main idea of GLUECoS is to introduce a benchmark evaluation task set for code-switched NLP. It is inspired from GLUE (Generalized Language Evaluation Benchmark) and covers tasks such as Language Identification (LID),  Part-Of-Speech (POS) Tagging, Named Entity Recognition (NER), Question &amp;amp; Answering (QA), Natural Language Inference (NLI) and sentiment analysis (SENT).  and also introduces benchmark code-mixed datasets. The language pairs that this benchmark covers in English-Spanish and English-Hindi code-mixed datasets. The paper also introduces several Metrics, most of which are covered in the previous blog on Metrics for Code-switching.&lt;/p&gt;
-
-&lt;p&gt;To arrive at a baseline performance, several cross-lingual word embeddings models such as MUSE (supervised and unsupervised embeddings), BiCVM, Biskip and GCM embeddings are used. For supervised cross-lingual embeddings one requires a parallel mono-lingual corpus of the two languages such that each sentence in one language maps as close as possible to the parallel sentence in the other language. In the unsupervised setting an adversarial loss is used to train cross-lingual embeddings. The other model that is used for the baseline is multilingual models (mBERT). This model is simply trained on monolingual data from each language, and has no explicit loss to map the embedding of the same words from both languages to the same point. Another fine-tuned version of mBert is used which is fine-tuned on synthetically generated code-switched data. Interestingly the mBert model performs better as compared the cross-lingual embeddings and fine-tuning on synthetic data further improves performance.&lt;/p&gt;
-
-&lt;h1 id=&quot;session-2-speech-synthesis&quot;&gt;Session-2 (Speech Synthesis)&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: &lt;a href=&quot;https://arxiv.org/pdf/2008.00768v1.pdf&quot;&gt;Building Multilingual End-to-End Speech Synthesisers for Indian Languages&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Presenter&lt;/strong&gt;: Swaraj&lt;/p&gt;
-
-&lt;p&gt;The goal of the paper is to build a Multilingual TTS for Indic languages in a low data resource setting. The paper discusses ways of assimilating inputs from different indian scripts both at the level of characters and phonemes, into a common input set. This leverages the similarities in phonemes and the structure of Indian languages which fall in the Abjad class of languages where vowels are diacritics.&lt;/p&gt;
-
-&lt;p&gt;For phonemes, it looks at 2 approaches : a transliteration approach using the unified parser and the common label set; and another approach that considers a 1:1 phoneme map between the different languages. At character level they present the MLCM character set that is 68 characters in total and combines 8 indic scripts. Since vowels are a major component in indic languages, they consider approaches where the vowel and vowel modifier are mapped to the same and different input token. For modelling they use tacotron-2 and compare the impact of various input tokens on performance for monolingual and multilingual settings. The primary take away from the discussion were the different ways of combining and varying the input representations for training an Indic language TTS.&lt;/p&gt;
-
-&lt;h1 id=&quot;session---3-nlp&quot;&gt;Session - 3 (NLP)&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: &lt;a href=&quot;https://aclanthology.org/2021.adaptnlp-1.12.pdf&quot;&gt;BERTologiCoMix, How does Code-Mixing interact with Multilingual BERT?&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Presenter&lt;/strong&gt;: Jaivarsan B&lt;/p&gt;
-
-&lt;p&gt;This paper addresses the impact (on code-mixed tasks) of fine-tuning with different types of code-mixed data and outlines the changes to mBERT’s attention heads during such fine-tuning. Code-mixing can be treated as a domain adaptation problem, but in this particular context it is to adapt at the grammatical level, not purely at the vocabulary level or style level. For sake of empirical study they evaluate two different language pairs, English-Spanish (enes), English-Hindi (enhi) with the extra three different varieties on them. Those three varieties are namely: randomly-ordered CM (l-CM), grammatically appropriate CM (g-cm) and real-world CM (r-CM), so in total we have 2 lang pairs \(\times\) 3 varieties = 6 possible fine-tuning datasets on mBERT against the plain mBERT.&lt;/p&gt;
-
-&lt;p&gt;They evaluate these 6 combinations of CM datasets on GLUECoS benchmark. They empirically find out that naturally occurring code-mixed data (r-CM) brings in the best performance improvement after fine-tuning, against synthetic fine-tunings (l-CM, g-CM) and even plain mBERT. Other task specific observations include: fine-tuning with r-CM data helps with SENT, NER, LID and QA CM tasks. General trend observed was easier tasks like LID, POS are solved in earlier layers and as complexity of tasks increases, the effective layer moves deeper. This paper’s other significant contribution is to visualize the differences to these mBERT attention heads post-CM-fine-tuning. They use three methods (including one of their own contribution), which try to answer questions related to: Has anything changed within the models due to pre-training with CM datasets? Attention patterns of which heads have changed? How do attention heads respond to code-mixed probes?. There are changes to these models, which show these attention heads are receptive to CM specific data at different layers of mBERT for different tasks and different language pairs.&lt;/p&gt;
-
-&lt;p&gt;The most important finding from these probing experiments is that there are discernible changes introduced in the models due to exposure to CM data, of which a particularly interesting observation is that this exposure increases the overall responsivity of the attention heads to CM.&lt;/p&gt;
-
-&lt;h1 id=&quot;session---4-speech-recognition&quot;&gt;Session - 4 (Speech Recognition)&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: &lt;a href=&quot;https://www.researchgate.net/profile/Karan-Taneja/publication/335829565_Exploiting_Monolingual_Speech_Corpora_for_Code-Mixed_Speech_Recognition/links/602571e3299bf1cc26bcbce9/Exploiting-Monolingual-Speech-Corpora-for-Code-Mixed-Speech-Recognition.pdf&quot;&gt;Exploiting Monolingual Speech Corpora for Code-mixed Speech Recognition&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Presenter&lt;/strong&gt;: Kriti Anandan&lt;/p&gt;
-
-&lt;p&gt;This paper aims to mitigate the problem of scarcity in code-mixed datasets for training ASR models robust to code-mixed data. It introduces two algorithms to synthetically generate code mixed data by using annotated monolingual data sets that are available in large quantities and a small amount of annotated real code-mixed data. Both these algorithms make use of probability distributions derived from real code-mixed data to imitate their characteristics. The code-mixed sentences are framed from sentence fragments extracted from the monolingual corpus. In the paper, first algorithm is a naïve approach that uses the code-mixed language span distributions to weave fragments of two different languages in an alternate fashion where fragment lengths are picked by sampling the distribution. The second algorithm uses two distributions that try to model phone transitions across fragments and within fragments.&lt;/p&gt;
-
-&lt;p&gt;The authors also demonstrate the usefulness of these synthetically generated datasets by adding them to the existing monolingual dataset for training the acoustic model of an ASR. Results from the best acoustic model show a ~ 6.85 point drop in WER score. They also conduct some language modelling experiments by using code-mixed transcripts to train the language model of the ASR. The best system uses the best acoustic model trained from the previous experiment and the language model trained on the synthetic text generated by all the algorithms presented, as well as the real code-mixed text. The results via this method show a ~ 8.17 point drop in the WER score.&lt;/p&gt;
-
-&lt;h1 id=&quot;session---5-speech-recognition&quot;&gt;Session - 5 (Speech Recognition)&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: &lt;a href=&quot;https://arxiv.org/pdf/2006.00782.pdf&quot;&gt;Learning to recognize code switched speech without forgetting monolingual speech recognition&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Presenter&lt;/strong&gt;: Shahid Nagra&lt;/p&gt;
-
-&lt;p&gt;The goal of the paper is to fine tune ASR models on code switched speech without affecting the performance on the same models on monolingual speech. They propose the use of a learning without forgetting algorithm. This approach can also be used when one doesn’t have access to the monolingual data that the model was trained on, which is often the case for open-source ASR models.&lt;/p&gt;
-
-&lt;p&gt;They conducted 5 experiments where training and fine-tuning is varied across the 3 datasets, monolingual and code-mixed and pooled. The best model performance is got when fine-turning a model on pooled data (code-mixed + monolingual) where only 25% of code-mixed data is used. An extra KL Diverge loss between the fine-tuned and the pre-trained model is added to prevent the increase in WER on the monolingual data. A metric poWER is also introduced which measures the Levenstein distance between the phonemic representation of utterances which takes care of measuring WER in the code-mixed setting.&lt;/p&gt;
-
-&lt;h1 id=&quot;session---6-speech-synthesis&quot;&gt;Session - 6 (Speech Synthesis)&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: &lt;a href=&quot;https://www1.se.cuhk.edu.hk/~hccl/publications/pub/Icassp20_cstts_camera_ready.pdf&quot;&gt;Code-Switched Speech Synthesis Using Bilingual Phonetic Posteriorgram with Only Monolingual Corpora&lt;/a&gt;&lt;br /&gt;
-&lt;strong&gt;Presenter&lt;/strong&gt;: Shangeth Rajaa&lt;/p&gt;
-
-&lt;p&gt;This paper aims to synthesize fluent code-switched speech using only monolingual speech corpora and explores the usage of Bilingual Phonetic Posteriorgram (PPG) as the speech representation. PPGs are the posterior probabilities of each phonetic class for a specific frame of one utterance, stacking up the PPG for two languages forms the bilingual PPG. As obtaining a bilingual/code-switched speech corpus for TTS training can be expensive, this paper solves the problem, by training a tacotron2 based code-switched TTS system with only the monolingual corpus of both the languages (English and Chinese) where each language is spoken by a different speaker. The trained model is then evaluated by generating speech for a code-switched text corpus with Mean Opinion Score (MOS) score.&lt;/p&gt;
-
-&lt;p&gt;The paper introduces the use of Bilingual PPG as a representation of speech as PPGs are speaker-independent and can capture the context of the speech better, PPG features are computed with a pretrained ASR model for each language. They replaced the traditional acoustic model which predicts the acoustic features(Mel Spectrogram) directly from text, to predict the PPG from the text, followed by predicting the Mel Spectrogram from the predicted PPG, speaker embedding and language embedding. The proposed method also includes a residual encoder to encode the speech into a latent space in a Variational AudioEncoder (VAE) setting which helps to model the prosodic features of the audio. The proposed method was compared with a tacotron2 based text to acoustic feature (Mel spectrogram) model baseline. As the proposed method uses a PPG feature, the model was able to disentangle the context information of the speech signal across different speakers and synthesize better code-mixed speech by combining the PPG feature, speaker embedding, language embedding, and prosody features.&lt;/p&gt;
-
-&lt;p&gt;From the experimental results, we can observe that the proposed method can synthesize high intelligible code-switched speech with a cross-lingual speaker (eg: Chinese speaker for English/code-switched text) with only training on a monolingual corpus. But the proposed method failed to beat the baseline in speech fidelity MOS score. The authors stated that the Bilingual PPG extracted was not accurate enough and needs to be further studied in future work.&lt;/p&gt;
-
-&lt;p&gt;Do check out the blog on &lt;a href=&quot;https://tech.skit.ai/Code-Mixing-Metrics/&quot;&gt;Code-Mixing metrics&lt;/a&gt; if you haven’t already. Please write to us @ machine-learning@skit.ai in case you want to join any of our future seminars.&lt;/p&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="asr" /><category term="tts" /><category term="code-mixing" /><summary type="html">Below are some pointers and insights from the papers that we covered in the recently concluded seminar on Code-mixing in NLP and Speech. During the seminar we covered 6 papers, two each from NLP, Speech Synthesis and Speech Recognition.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/tile-work.png" /><media:content medium="image" url="/assets/images/tile-work.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;a href=&quot;https://skit.ai&quot;&gt;Skit&lt;/a&gt;. Apply &lt;a href=&quot;https://skit.recruiterbox.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Deepankar Agrawal</name></author><category term="Engineering" /><category term="authentication" /><category term="gRPC" /><summary type="html">In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/thumbnail-authentication-in-grpc.svg" /><media:content medium="image" url="/assets/images/thumbnail-authentication-in-grpc.svg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
