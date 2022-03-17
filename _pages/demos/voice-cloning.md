@@ -1,7 +1,7 @@
 ---
 title: "Voice Cloning"
 layout: page
-permalink: "/explore/voice-cloning"
+permalink: "/explore/voice-cloning/"
 fancy_audio_player: True
 ---
 

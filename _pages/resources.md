@@ -1,7 +1,7 @@
 ---
 title: "Resources"
 layout: page
-permalink: "/resources.html"
+permalink: "/resources/"
 ---
 
 Datasets, reading resources, and other artifacts. For technology demos go to the
