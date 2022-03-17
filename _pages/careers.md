@@ -1,7 +1,7 @@
 ---
 title: "Careers"
 layout: page
-permalink: "/careers"
+permalink: "/careers/"
 ---
 
 **person-1** need to rethink the careers page
