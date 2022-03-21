@@ -1,12 +1,27 @@
-# Introduction
+# Investigating Label Noise in our datasets and fixing it
 
-This blog will introduce the label noise problem in our datasets and cover various cleaning methods that can reduce the time taken to fix noisy labels in a dataset.
+## Introduction
 
-When we create a dataset for a supervised task (transcription, entity, intent, etc), we do so by tagging samples from a set of labels. But some samples are mis-labelled and they add *noise* to the (supposedly) clean dataset. This is what we call Label Noise. Since this is a relatively unexplored problem for us, we start by questioning its existence and relevance in our datasets. In the first section, we quantify this noise in a dataset, and measure its impact on the models we build. The following section, looks at ways to (partially) reduce this noise - what we call cleaning methods - and investigates the relationship between two measurable metrics - efficiency of cleaning and resulting model performance. This allows us to reach interesting conclusions like - *clean y% of the dataset using a method M, and you will get some x% bump in model performance*. We conclude with a short detour to look at the causes of label noise, and how we can minimise these underlying factors. 
+Label noise has been a consistent problem even in the [most widely used open source datasets](https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/f2217062e9a397a1dca429e7d70bc6ca-Paper-round1.pdf). Several papers have come up various [deep learning techniques](https://arxiv.org/pdf/2007.08199.pdf) to make models more robust to label noise present in their train sets. Even so, identifying label noise in your dataset and investigating it's cause is an important process to further understand model behaviour and prevent label noise in future datasets. 
+
+In this blog, we discuss why we decided to fix label noise in our datasets, some cleaning methods we tried and some tips for preventing label noise in dataset creation in the future.
+
+
+## Why fix label noise?
+
+Test sets should be clean to serve as a benchmark for future decisions. To measure the impact of noisy train sets, we plot a graph of model performance versus % label noise. To conduct this experiment, we retagged an old dataset in one of our clients and thoroughly reviewed it to identify and fix mislabelled examples. The total number of mislabelled examples was 13% of the whole dataset (7591 instances). We flipped the gold labels into their noisy counterparts, trained a model on the newly formed dataset and plotted the results.
+
+### Impact of train set label noise on our model performance 
+
+
+![image info](../assets/images/label-noise-blog/training_noise.png)
+
+In the above graph. we pbserve that at 0% label noise, the model performance is around 73.8% F1 and at ~13% label noise, the model performance drops to 70.8% F1.
+
 
 ## Classifying causes of intent label noise
 
-It was hard for us to identify why exactly our intent datasets had label noise. So we decided to classify the causes of label noise. After correcting a dataset, we classify the mislabeled instances into a bunch of categories. This allowed us to understand if our intent definitions are bad, or if there were too many cases of multiple intents (our classifier supports only single intents), or if more information is required to understand the right intent (bot speech, previous state values) etc. Here, gold tag refers to the true tag.
+To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag.
 
 | Type                             | Definition                                                                                                                                                                                    |
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -21,40 +36,16 @@ It was hard for us to identify why exactly our intent datasets had label noise. 
 | wrong_retag                      | The new label after re-tagging is wrong. This is not a cause but it allows to capture confusing intents after rechecks.                                                                                                                                                      |
 
 
-# Why fix label noise?
+## Different cleaning methods to fix the label noise
 
-Test sets should be clean as they serve as a benchmark to take further decision and we depend on those numbers. To measure impact of label noise in train sets, we plot a graph of model perfomance vs increase in % label noise. For this experiment, we retagged an old dataset in one of our clients with thorough reviews to fix most mislabeled examples. The total label noise % came up to 13% of the entire dataset of (7591 instances). To plot this graph, we took the gold dataset and increasingly flipped the  labels to their noisy counterpart and trained a model on the new dataset and plot their performance.
+We evaluate the methods by measuring how much of reduction in cleaning effort it provides. We plotted label noise recall vs % of samples retagged (or annotator effort) - Relating these metrics with previous impact graph allows us to reach interesting conclusions like - *clean y% of the dataset using a method M, and you will get some x% bump in model performance*. 
 
-## Impact of train set label noise on model performance 
-
-
-![image info](../assets/images/label-noise-blog/training_noise.png)
-
-In the above graph. we pbserve that at 0% label noise, the model performance is around 73.8% F1 and at ~13% label noise, the model performance drops to 70.8% F1. 
-
-
-
-# Minimizing tagging errors at source
-
-Here are some recommendations we found useful to prevent future tagging noise.
-
-* Proper onboarding session + 1-2 review sessions *with the annotators*
-
-* Tagging Guidelines
-    [add info on mutual exclusivity and supporting tags, tradeoff between complexity and number of tags]
-
-* Examples for exceptional cases - Tracking these would be helpful for designing/modifying intent definitions in the future. [add examples]
-
-* Inter-annotator agreement type tagging is helpful for long-term test sets. Test sets serve as metrics for future plans and hence should have no label noise. Set up separate tog jobs for every annotator (2-3). Each instance would eventually get X tags (X is the number of annotators). [add reference]
-
-# Different cleaning methods to fix label noise in train sets
-
-## Random Sampling
-Here we can sample some fixed number of instances and get them retagged. The label noise we capture will be around 13% of each partial sample, and hence the recall will be the fraction of the partial sample (in the whole). On average, the plot will look similar to y=x, like this one for our dataset:
+### Random Sampling
+Here we can sample some fixed number of instances and get them retagged. This serves as our baseline for other methods. The label noise we capture will be around 13% of each partial sample, and hence the recall will be the fraction of the partial sample (in the whole). On average, the plot will look similar to y=x, like this one for our dataset:
 
 ![image info](../assets/images/label-noise-blog/random-sampling-plot.png)
 
-## Biased Sampling
+### Biased Sampling
 This requires intermittent involvement from ops (tagging after every sampling iteration)
 
 In this method, we first randomly retag x % of samples. Then we identify the major tag confusions (as shown in the Dataset section) and pick the top 5 noisy tags and increase the weights associated to these tags in the sampling function. Then we sample again - pick top 5 tags - repeat.
@@ -63,9 +54,9 @@ In this method, we first randomly retag x % of samples. Then we identify the maj
 
 We see an improvement over the baseline. We can capture around 60% of the total label noise by just tagging around 32% of the total dataset by this heuristic.
 
-## Datamaps
+### Datamaps
 
-[This](https://arxiv.org/pdf/2009.10795.pdf) paper introduces datamaps - a tool to diagnose training sets during the training process itself. They introduce two metrics - confidence and variability to understand training dynamics. They further plot each instance on a confience vs variability graph and create hard-to-learn, ambigous and easy regions. These regions correspond to how easy it is for the model to learn the particular instance. They also observe that the hard-to-learn regions also corresponded instances that had label noise. \
+[This](https://arxiv.org/pdf/2009.10795.pdf) paper introduces datamaps - a tool to diagnose training sets during the training process itself. They introduce two metrics - confidence and variability to understand training dynamics. They further plot each instance on a confience vs variability graph and create hard-to-learn, ambigous and easy regions. These regions correspond to how easy it is for the model to learn the particular instance. They also observe that the hard-to-learn regions also corresponded instances that had label noise. 
 
 Confidence - This is defined as the mean model probability of the true label (y∗i) across epochs
 Variability - This measures the spread of pθ(e) (y∗i| xi) across epochs, using the standard deviation
@@ -89,8 +80,7 @@ We leverage the training artefacts from the paper to define a label score for ea
   Again, we see an improvement in the partial recleaning process. Lets read the above plots. Say we fix N at ~38, which means we would be retagging around 35% of our dataset. This corresponds to a corresponds to a label noise recall of 60%, which means we would capture and clean 76% of the label noise. Giving us a resulting dataset with 3.1% label noise (= (1-0.76)*0.13).
 
 
-
-## Cleanlab
+### Cleanlab
 
 This is a label noise prediction tool. We have evaluated the accuracy of this tool instead. But we won’t be able to capture all the noisy labels via this tool. This tool takes in predicted probabilities
 
@@ -122,8 +112,19 @@ Results are slightly better when the model is trained on clean data
 | wrong_tag_oos                                                                                                              | 0.58      | 0.72   | 0.64     | 136     |
 | wrong_tags_aoos                                                                                                            | 0.30      | 0.69   | 0.42     | 99      |
 
-We expect cleanlab to perform even better once our model test accuracies improve.
+We expect cleanlab to perform even better once our model test accuracies improve. Cleanlab wont be very useful if the model is already performing poorly.
 
+## Minimizing tagging errors at source
 
-# References
+Here are some recommendations we found useful to prevent future tagging noise.
+
+* Proper onboarding session + 1-2 review sessions *with the annotators*
+
+* Tagging Guidelines - To define proper intent classes
+    [add info on mutual exclusivity and supporting tags, tradeoff between complexity and number of tags]
+
+* Examples for exceptional cases - Tracking these would be helpful for designing/modifying intent definitions in the future. [add examples]
+
+* Inter-annotator agreement type tagging is helpful for long-term test sets. Test sets serve as metrics for future plans and hence should have no label noise. Set up separate tog jobs for every annotator (2-3). Each instance would eventually get X tags (X is the number of annotators). [add reference]
+
 
