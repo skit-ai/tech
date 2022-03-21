@@ -64,7 +64,15 @@ In this method, we first randomly retag x % of samples. Then we identify the maj
 We see an improvement over the baseline. We can capture around 60% of the total label noise by just tagging around 32% of the total dataset by this heuristic.
 
 ## Datamaps
-We leverage the training artefacts from data maps to define a label score for each sample - as the Euclidean distance between (0,0) and (confidence, variability). Following the hypothesis of hard-to-learn regions, we expect noisy samples to have a lower label score.
+
+[This](https://arxiv.org/pdf/2009.10795.pdf) paper introduces datamaps - a tool to diagnose training sets during the training process itself. They introduce two metrics - confidence and variability to understand training dynamics. They further plot each instance on a confience vs variability graph and create hard-to-learn, ambigous and easy regions. These regions correspond to how easy it is for the model to learn the particular instance. They also observe that the hard-to-learn regions also corresponded instances that had label noise. \
+
+Confidence - This is defined as the mean model probability of the true label (y∗i) across epochs
+Variability - This measures the spread of pθ(e) (y∗i| xi) across epochs, using the standard deviation
+
+The intuition goes that instances that consistently lower confidence scores throughout the training process are hard for the model to learn. This could either be because the model is not capable enough or the target label is wrong.
+
+We leverage the training artefacts from the paper to define a label score for each sample - as the Euclidean distance between (0,0) and (confidence, variability). Following the hypothesis of hard-to-learn regions, we expect noisy samples to have a lower label score.
 * **Threshold on label-score** \
   Fixing a threshold on the label score means that all samples that score below it are considered label noise, and those that score above are considered clean. Assuming we do Human Retagging of all samples predicted as label noisy, fixing a threshold essentially fixes both the % of samples retagged and (given the clean tags-) label noise recall. Varying the threshold, we get a plot for our dataset:
 
@@ -74,7 +82,7 @@ We leverage the training artefacts from data maps to define a label score for ea
 
 * **n-consecutive correct instances** \
   Here, we will use the ordering of the label scores. Note that this is an extension of the original HTL hypothesis on Data Maps - which creates partitions based on only thresholds (on the training artefacts - confidence, variability). Our added assumption here, is that the ordering within the regions are also useful.
-  Based on this, we sort our samples by label score, and in ascending order. This means the noisy samples should be nearer to the top, and we base our heuristic on this. We start Human Retagging from the top of the sorted list of samples, and stop once we see N-consecutive clean samples. Note how different this is from anything we have done before - because we are combining the Human Retagging process into the label noise id one.\
+  Based on this, we sort our samples by label score, and in ascending order. This means the noisy samples should be nearer to the top, and we base our heuristic on this. We start Human Retagging from the top of the sorted list of samples, and stop once we see N-consecutive clean samples.\
   Varying N, we get a plot for our dataset:
 
   ![image info](../assets/images/label-noise-blog/deja-vu-n-consecutive.png)
