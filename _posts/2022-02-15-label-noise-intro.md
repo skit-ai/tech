@@ -1,4 +1,4 @@
-# Investigating Label Noise in our datasets and fixing it
+# Investigating Label Noise in intent classification datasets and fixing it
 
 ## Introduction
 
@@ -23,22 +23,25 @@ In the above graph. we pbserve that at 0% label noise, the model performance is 
 
 To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag.
 
+
 | Type                             | Definition                                                                                                                                                                                    |
 |----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | human_error                      | Mistake while tagging. The gold tag is very obvious. This error can also be caused due to poor onboarding/misunderstanding among annotators. Further analysis on these errors maybe required. |
 | audio_unclear (perception error) | Unable to understand the intent due to audio noise, low user speech volume, or unable to understand if it's a background speaker or the user speaking, etc.                                   |
 | tool_problem                     | Audio could not be played, the problem with tagging interface, audio-clipping issue.                                                                                                          |
 | onboarding_error                 | Intent Definition is confusing or bad or incomplete.                                                                                                                                          |
-| multiple_intent                  | Audio contains multiple intents - in this case both the noisy and gold intents are correct.                                                                                                   |
+| multiple_intent*                  | Audio contains multiple intents - in this case both the noisy and gold intents are correct.                                                                                                   |
 | overlapping_intent               | Intent definitions are not mutually exclusive.                                                                                                                                                |
 | renamed_intent                   | Intent renamed after guideline changes. This is not exactly a tagging error, but it’s helpful to capture changes.                                                                             |
 | missing_context                  | Impossible to understand the intent unless more information is provided (bot prompt or previous state etc.)                                                                                   |
 | wrong_retag                      | The new label after re-tagging is wrong. This is not a cause but it allows to capture confusing intents after rechecks.                                                                                                                                                      |
+* since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.\
+We observed that the label noise patterns for each client were quite different. [hard to build a generalizable model where there not enough correct instances of the instance in the first place]
 
 
 ## Different cleaning methods to fix the label noise
 
-We evaluate the methods by measuring how much of reduction in cleaning effort it provides. We plotted label noise recall vs % of samples retagged (or annotator effort) - Relating these metrics with previous impact graph allows us to reach interesting conclusions like - *clean y% of the dataset using a method M, and you will get some x% bump in model performance*. 
+By measuring the reduction in cleaning effort from the baseline, we can assess the efficacy of the cleaning method. We plotted label noise recall vs % of samples retagged (or annotator effort) - Relating these metrics with previous impact graph allows us to reach interesting conclusions like - *clean y% of the dataset using a method M, and you will get some x% bump in model performance*. 
 
 ### Random Sampling
 Here we can sample some fixed number of instances and get them retagged. This serves as our baseline for other methods. The label noise we capture will be around 13% of each partial sample, and hence the recall will be the fraction of the partial sample (in the whole). On average, the plot will look similar to y=x, like this one for our dataset:
@@ -58,10 +61,10 @@ We see an improvement over the baseline. We can capture around 60% of the total 
 
 [This](https://arxiv.org/pdf/2009.10795.pdf) paper introduces datamaps - a tool to diagnose training sets during the training process itself. They introduce two metrics - confidence and variability to understand training dynamics. They further plot each instance on a confience vs variability graph and create hard-to-learn, ambigous and easy regions. These regions correspond to how easy it is for the model to learn the particular instance. They also observe that the hard-to-learn regions also corresponded instances that had label noise. 
 
-Confidence - This is defined as the mean model probability of the true label (y∗i) across epochs
-Variability - This measures the spread of pθ(e) (y∗i| xi) across epochs, using the standard deviation
+*Confidence* - This is defined as the mean model probability of the true label across epochs.\
+*Variability* - This measures the spread of model probability across epochs, using the standard deviation.
 
-The intuition goes that instances that consistently lower confidence scores throughout the training process are hard for the model to learn. This could either be because the model is not capable enough or the target label is wrong.
+The intuition is that instances with consistently lower confidence scores throughout the training process are hard for a model to learn. This could be because the model is not capable of learning the target label or that the target label was incorrect.
 
 We leverage the training artefacts from the paper to define a label score for each sample - as the Euclidean distance between (0,0) and (confidence, variability). Following the hypothesis of hard-to-learn regions, we expect noisy samples to have a lower label score.
 * **Threshold on label-score** \
@@ -72,11 +75,10 @@ We leverage the training artefacts from the paper to define a label score for ea
   Lets read the above plots. Say we fix the threshold at 0.43 which means we would be retagging around 28% of our dataset. This corresponds to a label noise recall of 60%, giving us a resulting dataset with 5.2% label noise from 13%. (= 0.40*13).
 
 * **n-consecutive correct instances** \
-  Here, we will use the ordering of the label scores. Note that this is an extension of the original HTL hypothesis on Data Maps - which creates partitions based on only thresholds (on the training artefacts - confidence, variability). Our added assumption here, is that the ordering within the regions are also useful.
-  Based on this, we sort our samples by label score, and in ascending order. This means the noisy samples should be nearer to the top, and we base our heuristic on this. We start Human Retagging from the top of the sorted list of samples, and stop once we see N-consecutive clean samples.\
+  Here, we will use the ordering of the label scores. Our added assumption here, is that the ordering within the regions are also useful. Based on this, we sort our samples by label score, and in ascending order. This means the noisy samples should be nearer to the top, and we base our heuristic on this. We start Human Retagging from the top of the sorted list of samples, and stop once we see N-consecutive clean samples.
   Varying N, we get a plot for our dataset:
 
-  ![image info](../assets/images/label-noise-blog/deja-vu-n-consecutive.png)
+  ![image info](../assets/images/label-noise-blog/deja-vu-n-consecutive.png)\
   Again, we see an improvement in the partial recleaning process. Lets read the above plots. Say we fix N at ~38, which means we would be retagging around 35% of our dataset. This corresponds to a corresponds to a label noise recall of 60%, which means we would capture and clean 76% of the label noise. Giving us a resulting dataset with 3.1% label noise (= (1-0.76)*0.13).
 
 
@@ -96,7 +98,7 @@ Metrics using a model trained on noisy labels
 Results are generated using the `get_noise_indices()` method
 
 
-Tested on a test set
+Tested on a separate test set
 
 |                                                                                                                            | precision | recall | f1-score | support |
 |----------------------------------------------------------------------------------------------------------------------------|-----------|--------|----------|---------|
@@ -112,19 +114,18 @@ Results are slightly better when the model is trained on clean data
 | wrong_tag_oos                                                                                                              | 0.58      | 0.72   | 0.64     | 136     |
 | wrong_tags_aoos                                                                                                            | 0.30      | 0.69   | 0.42     | 99      |
 
-We expect cleanlab to perform even better once our model test accuracies improve. Cleanlab wont be very useful if the model is already performing poorly.
+We expect cleanlab to perform even better once our model test accuracies improve. Cleanlab wont be very useful if the model is performing poorly even on a clean dataset.
 
 ## Minimizing tagging errors at source
 
 Here are some recommendations we found useful to prevent future tagging noise.
 
-* Proper onboarding session + 1-2 review sessions *with the annotators*
+* Proper onboarding session + 1-2 review sessions with the annotators to clear doubts.
 
-* Tagging Guidelines - To define proper intent classes
-    [add info on mutual exclusivity and supporting tags, tradeoff between complexity and number of tags]
+* Tagging Guidelines - For single label classifiers, the labels must be mutually exclusive. Extra tags can be added for model analysis purposes, but these should be separated out from the intent classes. For eg. background speech, noise, silent speech etc.
 
-* Examples for exceptional cases - Tracking these would be helpful for designing/modifying intent definitions in the future. [add examples]
+* Examples for exceptional cases - Tracking these would be helpful for designing/modifying intent definitions in the future. 
 
-* Inter-annotator agreement type tagging is helpful for long-term test sets. Test sets serve as metrics for future plans and hence should have no label noise. Set up separate tog jobs for every annotator (2-3). Each instance would eventually get X tags (X is the number of annotators). [add reference]
+* [Inter-annotator agreement](https://corpuslinguisticmethods.wordpress.com/2014/01/15/what-is-inter-annotator-agreement/#:~:text=Inter%2Dannotator%20agreement%20is%20a,decision%20for%20a%20certain%20category.) type tagging is recommended for long-term test sets. Test sets serve as metrics for future plans and hence should have no label noise. Set up separate tog jobs for every annotator (2-3). Each instance would eventually get X tags (X is the number of annotators). 
 
 
