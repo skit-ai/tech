@@ -1,7 +1,7 @@
 ---
 title: "Speaker Entrainment"
 layout: page
-permalink: "/explore/speaker-entrainment"
+permalink: "/explore/speaker-entrainment/"
 fancy_audio_player: True
 ---
 

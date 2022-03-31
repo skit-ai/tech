@@ -1,7 +1,7 @@
 ---
 title: "Emotional TTS"
 layout: page
-permalink: "/explore/emotional-tts"
+permalink: "/explore/emotional-tts/"
 fancy_audio_player: True
 ---
 

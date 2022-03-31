@@ -1,9 +1,8 @@
 ---
 title: Speeding up Inference with the Lottery Ticket Hypothesis
-date: 2022-02-07
+date: 2022-02-23
 tags: []
 categories: [Machine Learning]
-image: assets/images/demo1.jpg
 layout: post
 authors: [ojus1]
 latex: True
@@ -14,13 +13,13 @@ especially `Deep` ones. NNs usually have much more number of parameters than the
 number of datapoints, and hence are `overparameterized` models. Are all of the parameters 
 needed and perform a useful function in the model? 
 
-The `Lottery Ticket Hypothesis` (LTH) [1] states that for a `reasonably-sized` NN, there 
+The `Lottery Ticket Hypothesis` (LTH) [1] states that for a `reasonably-sized` NN, there
 exists at least one sub-network (i.e., an NN with some of the parameters/weights
 removed) when trained from scratch that is at least as performant as the full network.
 
 The Lottery Ticket Hypothesis is named as such because of the reasoning that
 there can exist millions of sub-networks in even a relatively small NN; finding
-these well-performing sub-networks (or `winning tickets`) amongst all the possible 
+these well-performing sub-networks (or `winning tickets`) amongst all the possible
 networks (lottery tickets) is akin to a winning a lottery.
 
 
@@ -35,13 +34,13 @@ networks (lottery tickets) is akin to a winning a lottery.
 
 Having sparse models have direct consequences for deployment purposes:
 
-1. If most of the weights are zeros, we can store the weights in CSR/CSC format, and 
+1. If most of the weights are zeros, we can store the weights in CSR/CSC format, and
 only store the non-zero indices; leading to a very small disk footprint.
 
 2. Matrix Multiplications and other operations for zero-ed elements can be ignored,
 leading to a sharp decline in the number of Floating Point Operations during inference.
 
-3. Performance in terms of robustness to noise and accuracy can acutally `increase` when 
+3. Performance in terms of robustness to noise and accuracy can acutally `increase` when
 performing sparsification, as shown by [4] for Automatic Speech Recognition.
 
 ## The Search of Winning Tickets
@@ -49,7 +48,7 @@ performing sparsification, as shown by [4] for Automatic Speech Recognition.
 Finding winning tickets reliably is called the `Ticket Search` problem. This is
 usually done by using some sort of weight pruning (zero-ing weights) which are
 less `important`. Each pruning method has its own way of measuring `importance`.
-This pruning is done in an iterative fashion, the procedure of Iterative Magnitude 
+This pruning is done in an iterative fashion, the procedure of Iterative Magnitude
 Pruning (IMP) is as follows:
 1. Initialize a network `M` and store its initial weights.
 2. Train the network `M` on the dataset.
@@ -57,9 +56,9 @@ Pruning (IMP) is as follows:
 4. Restore `M` to its initial weight values, except for the pruned weights.
 5. Repeat steps 2-4 `k` times.
 
-With sufficiently small `p` and large `k`, we can reliably find winning tickets. 
-LTH and successive works have shown that IMP and variants (such as Layer-adaptive 
-Magnitude Pruning, LAMP [2]) can remove upto 90% of weights without degrading 
+With sufficiently small `p` and large `k`, we can reliably find winning tickets.
+LTH and successive works have shown that IMP and variants (such as Layer-adaptive
+Magnitude Pruning, LAMP [2]) can remove upto 90% of weights without degrading
 performance for Vision and NLP tasks; however the same can be applied to almost any task.
 
 ## Can we find Winning Tickets from Pre-trained models?

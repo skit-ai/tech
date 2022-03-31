@@ -1,9 +1,8 @@
 ---
 title: Feature Disentanglement - I
-date: 2022-02-07
+date: 2022-02-22
 tags: []
 categories: [Machine Learning]
-image: assets/images/demo1.jpg
 layout: post
 authors: [Shangeth]
 latex: True
@@ -12,7 +11,7 @@ latex: True
 The main advantage of deep learning is the ability to learn from the data in an end-to-end manner. The core of deep learning is representation, the deep learning models transform the representation of the data at each layer into a condensed representation with reduced dimension. Deep Learning models are often also termed as black-box models as these representations are difficult to interpret, understanding these representations can give us an insight about which feature of the data is more important and will allow us to control the learning process. Recently there has been a lot of interest in representation learning and controlling the learned representations which give an edge over multiple tasks like controlled synthesis, better representations for specific downstream tasks. 
 
 # Data Representation and Latent Code
-An image $$(x)$$ from the MNIST dataset has 28x28 = 784 dimensions which is a sparse representation of the image that can be visualized. But all these dimensions are not required to represent the image. The content of the images can be represented in a condensed form using lesser dimensions called latent code. Although the actual image has 784 dimensions $$x \in R^{784}$$, one way of representing MNIST image can be with just an integer ie: $$z \in \{0, 1, 2, …, 9\}$$. This representation $$z$$ reduces the dimension of representing the image $$x$$ to 1 which captures the content of which number is present in the image and the variability in the dataset. This is one example of discrete latent code for the MNIST dataset, a continuous latent code will contain more information about the image such as the style of the image, position of the number, size of the number in the image, etc. 
+An image $$(x)$$ from the MNIST dataset has 28x28 = 784 dimensions which is a sparse representation of the image that can be visualized. But all these dimensions are not required to represent the image. The content of the images can be represented in a condensed form using lesser dimensions called latent code. Although the actual image has 784 dimensions $$x \in R^{784}$$, one way of representing MNIST image can be with just an integer ie: $$z \in \{0, 1, 2, …, 9\}$$. This representation $$z$$ reduces the dimension of representing the image $$x$$ to 1 which captures the content of which number is present in the image and the variability in the dataset. This is one example of discrete latent code for the MNIST dataset, a continuous latent code will contain more information about the image such as the style of the image, position of the number, size of the number in the image, etc.
 
 <figure>
 <center>
@@ -33,7 +32,7 @@ Autoencoder[2] models are popularly used to learn such latent code in an unsuper
 </center>
 </figure>
 
-The encoder $$ q_{\phi}(z \mid x) $$ of the autoencoder compresses the image to a fixed dimension$$(d)$$ latent code$$(z)$$, and the decoder $$p_{\theta}(x \mid z)$$ is a conditional image generator. The dimension of z has to be such that, the image can be completely reconstructed by the decoder with the latent code. Choosing the dimension of the latent code is a problem on its own[3]. 
+The encoder $$ q_{\phi}(z \mid x) $$ of the autoencoder compresses the image to a fixed dimension$$(d)$$ latent code$$(z)$$, and the decoder $$p_{\theta}(x \mid z)$$ is a conditional image generator. The dimension of z has to be such that, the image can be completely reconstructed by the decoder with the latent code. Choosing the dimension of the latent code is a problem on its own[3].
 
 The autoencoder models trained will successfully encode the images into a latent code $$z$$, but there is no guarantee that the latent code can be easily inferred, ie: we do not know where in the d-dimensional space the model encoded the image into, and thus difficult to choose a latent code to generate image during inference. So the conclusion is we have no idea how and where the encoder encodes the images, so we do not have control over synthesis during inference. The following figure shows the latent code learned by the AutoEncoder model with different training, as we can observe the latent space keep changing the range and quadrant and thus difficult to infer.
 

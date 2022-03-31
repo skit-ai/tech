@@ -1,7 +1,7 @@
 ---
 title: "Explore"
 layout: page
-permalink: "/explore"
+permalink: "/explore/"
 ---
 <script src="https://cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
 
