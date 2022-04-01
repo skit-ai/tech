@@ -41,7 +41,7 @@ only store the non-zero indices; leading to a very small disk footprint.
 leading to a sharp decline in the number of Floating Point Operations during inference.
 
 3. Performance in terms of robustness to noise and accuracy can acutally *increase* when
-performing sparsification, as shown by [4] for Automatic Speech Recognition.
+performing sparsification, as shown by [3] for Automatic Speech Recognition.
 
 ## The Search of Winning Tickets
 
