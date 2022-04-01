@@ -9,17 +9,17 @@ latex: True
 ---
 
 The most fancy tool in the Modern Machine Learning toolbox are Neural Networks (NNs), 
-especially `Deep` ones. NNs usually have much more number of parameters than the 
-number of datapoints, and hence are `overparameterized` models. Are all of the parameters 
+especially _Deep_ ones. NNs usually have much more number of parameters than the 
+number of datapoints, and hence are _overparameterized_ models. Are all of the parameters 
 needed and perform a useful function in the model? 
 
-The `Lottery Ticket Hypothesis` (LTH) [1] states that for a `reasonably-sized` NN, there
+The Lottery Ticket Hypothesis (LTH) [1] states that for a reasonably-sized NN, there
 exists at least one sub-network (i.e., an NN with some of the parameters/weights
 removed) when trained from scratch that is at least as performant as the full network.
 
 The Lottery Ticket Hypothesis is named as such because of the reasoning that
 there can exist millions of sub-networks in even a relatively small NN; finding
-these well-performing sub-networks (or `winning tickets`) amongst all the possible
+these well-performing sub-networks (or _winning tickets_) amongst all the possible
 networks (lottery tickets) is akin to a winning a lottery.
 
 
@@ -40,14 +40,14 @@ only store the non-zero indices; leading to a very small disk footprint.
 2. Matrix Multiplications and other operations for zero-ed elements can be ignored,
 leading to a sharp decline in the number of Floating Point Operations during inference.
 
-3. Performance in terms of robustness to noise and accuracy can acutally `increase` when
+3. Performance in terms of robustness to noise and accuracy can acutally *increase* when
 performing sparsification, as shown by [4] for Automatic Speech Recognition.
 
 ## The Search of Winning Tickets
 
-Finding winning tickets reliably is called the `Ticket Search` problem. This is
+Finding winning tickets reliably is called the _Ticket Search_ problem. This is
 usually done by using some sort of weight pruning (zero-ing weights) which are
-less `important`. Each pruning method has its own way of measuring `importance`.
+less important. Each pruning method has its own way of measuring importance.
 This pruning is done in an iterative fashion, the procedure of Iterative Magnitude
 Pruning (IMP) is as follows:
 1. Initialize a network `M` and store its initial weights.
