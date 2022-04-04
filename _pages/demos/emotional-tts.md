@@ -146,7 +146,7 @@ These are audio files from the training data.
 <br/>
 ## Synthesized Audios
 
-These are audios synthesized from Skit's Emotional TTS system.
+These are audios synthesized from Skit.ai's Emotional TTS system.
 
 <br/>
 <p><b>Audio 1 :</b> <em>The swan dive was far short of perfect.</em> </p>

@@ -126,7 +126,7 @@ implement `StreamInterceptor`. Instead of implementing it again you can use
 this package. I hope this article helps you with authentication in gRPC.
 
 If you are interested in working with cutting-edge technologies, come work with
-[Skit][skit]. Apply [here][skit-openings].
+[Skit.ai][skit]. Apply [here][skit-openings].
 
 
 [ssl-certificates]: https://www.linuxjournal.com/content/understanding-public-key-infrastructure-and-x509-certificates

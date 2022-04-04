@@ -1,8 +1,8 @@
-# tech @ Skit
+# tech @ Skit.ai
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skit-ai/tech/github%20pages?style=flat-square)
 
-This is source for the [tech team webpage][tech_blog] at Skit. Template is [Mundana by WowThemes.net][mundana]
+This is source for the [tech team webpage][tech_blog] at Skit.ai. Template is [Mundana by WowThemes.net][mundana]
 
 ## Developing
 

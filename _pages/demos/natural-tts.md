@@ -18,7 +18,7 @@ Our TTS has a very distinct conversational tonality that differentiates it from 
 <p><b>Text 1 :</b> <em>The whole family gathered around the computer waiting for my sister to come home.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -41,7 +41,7 @@ Our TTS has a very distinct conversational tonality that differentiates it from 
 <p><b>Text 2 :</b> <em>Hi, what can i do for you today ?</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -64,7 +64,7 @@ Our TTS has a very distinct conversational tonality that differentiates it from 
 <p><b>Text 3 :</b> <em>You will be surprised to know what he did yesterday !</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -87,7 +87,7 @@ Our TTS has a very distinct conversational tonality that differentiates it from 
 <p><b>Text 4 :</b> <em>Can you please pass me the spoon ?.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -118,7 +118,7 @@ Filled pauses are articulations like "umm", "uh" etc which occur very commonly i
 <p><b>Text 1 :</b> <em>Uh, i agree with you.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -141,7 +141,7 @@ Filled pauses are articulations like "umm", "uh" etc which occur very commonly i
 <p><b>Text 2 :</b> <em>Um, can you just give me a second.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -164,7 +164,7 @@ Filled pauses are articulations like "umm", "uh" etc which occur very commonly i
 <p><b>Text 3 :</b> <em>I can, uh, yes, i think i can finish this.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -195,7 +195,7 @@ Filler words are amongst the most commonly used words in any language. Example w
 <p><b>Text 1 :</b> <em>Okay. I can do that for you.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -218,7 +218,7 @@ Filler words are amongst the most commonly used words in any language. Example w
 <p><b>Text 2 :</b> <em>Alright. that sounds good. Please give me a second.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -241,7 +241,7 @@ Filler words are amongst the most commonly used words in any language. Example w
 <p><b>Text 3 :</b> <em>Okay, so, like have you heard of the new company that he started.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -264,7 +264,7 @@ Filler words are amongst the most commonly used words in any language. Example w
 <p><b>Text 4 :</b> <em>You know, I never thought this would happen.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -298,7 +298,7 @@ Ellipses are signified by 3 dots("...") and are used often as markers of hesitat
 <p><b>Text 1 :</b> <em>Can you just ... hold for a minute</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -321,7 +321,7 @@ Ellipses are signified by 3 dots("...") and are used often as markers of hesitat
 <p><b>Text 2 :</b> <em>I am unsure what to choose ... i think i will go for this one. </em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>
@@ -344,7 +344,7 @@ Ellipses are signified by 3 dots("...") and are used often as markers of hesitat
 <p><b>Text 3 :</b> <em>I am going to ... play tennis today.</em> </p>
 <table style="width:100%">
       <tr>
-        <th>Skit</th>
+        <th>Skit.ai</th>
         <th>Google</th>
       </tr>
       <tr>

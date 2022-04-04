@@ -123,7 +123,7 @@ Compare this with just 6 bytes needed for the string itself (`echo "1 2 3" | wc
 ---
 
 These differences lead to gaps that are difficult to bridge and that's what
-keeps us busy at Skit. If these problems interest you, you should reach out to
+keeps us busy at Skit.ai. If these problems interest you, you should reach out to
 us on [join@skit.ai](mailto:join@skit.ai).
 
 
