@@ -70,11 +70,7 @@ Confident Learning high level idea - When the predicted probability of an exampl
 
 Confident Learning estimates a joint distribution between noisy observed labels and the true latent labels. It assumes that the predicted probabilities are out-of-sample holdout probabilities (eg. K-fold cross validation). If this isn't the case then overfitting may occur. Their algorithm also assumes that class-conditional label noise transitions are data independent.
 
-Metrics using a model trained on noisy labels
-
-
-Results are generated using the `get_noise_indices()` method
-
+Metrics using a model trained on noisy labels.
 
 Tested on a separate test set
 
