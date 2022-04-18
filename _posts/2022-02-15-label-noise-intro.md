@@ -97,7 +97,7 @@ We expect cleanlab to perform even better once our model test accuracies improve
 
 ## Minimizing tagging errors at source
 
-To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag. For our test sets we used [inter-annotator agreement](https://corpuslinguisticmethods.wordpress.com/2014/01/15/what-is-inter-annotator-agreement/#:~:text=Inter%2Dannotator%20agreement%20is%20a,decision%20for%20a%20certain%20category) method for tagging. This is recommended for long-term test sets. We set up separate tog jobs for every annotator (2-3). Each instance was tagged X times (X is the number of annotators) and the highest tag was chosen as the correct tag.
+To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag. Each instance was tagged X times (X is the number of annotators) and the highest tag was chosen as the correct tag.
 
 
 | Type                             | Definition                                                                                                                                                                                    |
@@ -112,10 +112,11 @@ To understand why our datasets had noisy labels, we conducted several review ses
 | missing_context                  | Impossible to understand the intent unless more information is provided (bot prompt or previous state etc.)                                                                                   |
 | wrong_retag                      | The new label after re-tagging is wrong. This is not a cause but it allows to capture confusing intents after rechecks.                                                                                                                                                      |
 * since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.\
-We observed that the label noise patterns for each client were quite different. 
+We observed that the label noise patterns for each of our clients were quite different, which made the problem of generalizing label noise prediction even more difficult.
 
 ## Conclusion
 
+To conclude, we quantified how using datamaps helps in reducing effort taken to clean our existing train sets. We also correlated this reduced cleaning effort with the expected improvement in model performance with the help of some plots.
 
 
 
