@@ -62,7 +62,7 @@ We leverage the training artefacts from the paper to define a label score for ea
 
 ### Cleanlab
 
-This is a label noise prediction tool. We have evaluated the accuracy of this tool instead. But we won’t be able to capture all the noisy labels via this tool. This tool takes in predicted probabilities
+This is a label noise prediction tool. We have evaluated the accuracy of this tool instead. But we won’t be able to capture all the noisy labels via this tool. This tool takes in predicted probabilities. Since cleanlab depends on output model probabilities it can't be used to correct train sets.
 
 ### Confident Learning
 
