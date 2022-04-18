@@ -4,7 +4,7 @@
 
 Label noise has been a consistent problem even in the [most widely used open source datasets](https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/f2217062e9a397a1dca429e7d70bc6ca-Paper-round1.pdf). Several papers have come up various [deep learning techniques](https://arxiv.org/pdf/2007.08199.pdf) to make models more robust to label noise present in their train sets. Even so, identifying label noise in your dataset and investigating it's cause is an important process to further understand model behaviour and prevent label noise in future datasets. 
 
-In this blog, we discuss why we decided to fix label noise in our datasets, some cleaning methods we tried and some tips for preventing label noise in dataset creation in the future.
+In this blog, we discuss why we decided to fix label noise in our datasets followed by some statistic cleaning methods we tested to narrow down regions within the dataset where label noise could be present.
 
 
 ## Why fix label noise?
@@ -17,27 +17,6 @@ Test sets should be clean to serve as a benchmark for future decisions. To measu
 ![image info](../assets/images/label-noise-blog/training_noise.png)
 
 In the above graph. we pbserve that at 0% label noise, the model performance is around 73.8% F1 and at ~13% label noise, the model performance drops to 70.8% F1.
-
-
-## Classifying causes of intent label noise
-
-To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag.
-
-
-| Type                             | Definition                                                                                                                                                                                    |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| human_error                      | Mistake while tagging. The gold tag is very obvious. This error can also be caused due to poor onboarding/misunderstanding among annotators. Further analysis on these errors maybe required. |
-| audio_unclear (perception error) | Unable to understand the intent due to audio noise, low user speech volume, or unable to understand if it's a background speaker or the user speaking, etc.                                   |
-| tool_problem                     | Audio could not be played, the problem with tagging interface, audio-clipping issue.                                                                                                          |
-| onboarding_error                 | Intent Definition is confusing or bad or incomplete.                                                                                                                                          |
-| multiple_intent*                  | Audio contains multiple intents - in this case both the noisy and gold intents are correct.                                                                                                   |
-| overlapping_intent               | Intent definitions are not mutually exclusive.                                                                                                                                                |
-| renamed_intent                   | Intent renamed after guideline changes. This is not exactly a tagging error, but it’s helpful to capture changes.                                                                             |
-| missing_context                  | Impossible to understand the intent unless more information is provided (bot prompt or previous state etc.)                                                                                   |
-| wrong_retag                      | The new label after re-tagging is wrong. This is not a cause but it allows to capture confusing intents after rechecks.                                                                                                                                                      |
-* since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.\
-We observed that the label noise patterns for each client were quite different. [hard to build a generalizable model where there not enough correct instances of the instance in the first place]
-
 
 ## Different cleaning methods to fix the label noise
 
@@ -118,14 +97,27 @@ We expect cleanlab to perform even better once our model test accuracies improve
 
 ## Minimizing tagging errors at source
 
-Here are some recommendations we found useful to prevent future tagging noise.
+To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag. For our test sets we used [inter-annotator agreement](https://corpuslinguisticmethods.wordpress.com/2014/01/15/what-is-inter-annotator-agreement/#:~:text=Inter%2Dannotator%20agreement%20is%20a,decision%20for%20a%20certain%20category) method for tagging. This is recommended for long-term test sets. We set up separate tog jobs for every annotator (2-3). Each instance was tagged X times (X is the number of annotators) and the highest tag was chosen as the correct tag.
 
-* Proper onboarding session + 1-2 review sessions with the annotators to clear doubts.
 
-* Tagging Guidelines - For single label classifiers, the labels must be mutually exclusive. Extra tags can be added for model analysis purposes, but these should be separated out from the intent classes. For eg. background speech, noise, silent speech etc.
+| Type                             | Definition                                                                                                                                                                                    |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| human_error                      | Mistake while tagging. The gold tag is very obvious. This error can also be caused due to poor onboarding/misunderstanding among annotators. Further analysis on these errors maybe required. |
+| audio_unclear (perception error) | Unable to understand the intent due to audio noise, low user speech volume, or unable to understand if it's a background speaker or the user speaking, etc.                                   |
+| tool_problem                     | Audio could not be played, the problem with tagging interface, audio-clipping issue.                                                                                                          |
+| onboarding_error                 | Intent Definition is confusing or bad or incomplete.                                                                                                                                          |
+| multiple_intent*                  | Audio contains multiple intents - in this case both the noisy and gold intents are correct.                                                                                                   |
+| overlapping_intent               | Intent definitions are not mutually exclusive.                                                                                                                                                |
+| renamed_intent                   | Intent renamed after guideline changes. This is not exactly a tagging error, but it’s helpful to capture changes.                                                                             |
+| missing_context                  | Impossible to understand the intent unless more information is provided (bot prompt or previous state etc.)                                                                                   |
+| wrong_retag                      | The new label after re-tagging is wrong. This is not a cause but it allows to capture confusing intents after rechecks.                                                                                                                                                      |
+* since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.\
+We observed that the label noise patterns for each client were quite different. 
 
-* Examples for exceptional cases - Tracking these would be helpful for designing/modifying intent definitions in the future. 
+## Conclusion
 
-* [Inter-annotator agreement](https://corpuslinguisticmethods.wordpress.com/2014/01/15/what-is-inter-annotator-agreement/#:~:text=Inter%2Dannotator%20agreement%20is%20a,decision%20for%20a%20certain%20category.) type tagging is recommended for long-term test sets. Test sets serve as metrics for future plans and hence should have no label noise. Set up separate tog jobs for every annotator (2-3). Each instance would eventually get X tags (X is the number of annotators). 
+
+
+
 
 
