@@ -13,7 +13,6 @@ Test sets should be clean to serve as a benchmark for future decisions. To measu
 
 ### Impact of train set label noise on our model performance 
 
-
 ![image info](../assets/images/label-noise-blog/training_noise.png)
 
 In the above graph. we pbserve that at 0% label noise, the model performance is around 73.8% F1 and at ~13% label noise, the model performance drops to 70.8% F1.
@@ -111,7 +110,8 @@ To understand why our datasets had noisy labels, we conducted several review ses
 | renamed_intent                   | Intent renamed after guideline changes. This is not exactly a tagging error, but it’s helpful to capture changes.                                                                             |
 | missing_context                  | Impossible to understand the intent unless more information is provided (bot prompt or previous state etc.)                                                                                   |
 | wrong_retag                      | The new label after re-tagging is wrong. This is not a cause but it allows to capture confusing intents after rechecks.                                                                                                                                                      |
-* since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.\
+* since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.
+
 We observed that the label noise patterns for each of our clients were quite different, which made the problem of generalizing label noise prediction even more difficult.
 
 ## Conclusion
