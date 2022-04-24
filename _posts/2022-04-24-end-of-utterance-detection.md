@@ -26,12 +26,7 @@ the acoustic manifestation of the conversation, without regards to any linguisti
 > The speaker who utters the first unilateral sound both initiates the conversation and gains possession of the floor. Having gained possession, a speaker
 maintains it until the first unilateral sounds by another speaker, at which time the latter gains possession of the floor.
 
-Despite going through many advances, the performance of speech dialogue systems remains unsatisfactory. For example, turn-taking is a fundamental aspect of
-natural human conversation that helps to decide which participant has the floor in a conversation and who can speak next. Humans use many multimodal cues
-like prosodic features, gaze, etc to determine who has the floor in a particular conversation. The interaction is very smooth with very less gaps and 
-overalps between participants' speech, making the modelling difficult. Currently, dialogue systems use silence threshold to determine whether it should 
-start speaking. This approach is too simplistic and can lead to issues. The system can interrupt the user mid-utterance, which is known as *cut-in*. Or 
-the system waits for a long time and leads to sluggish responses and possible misrecognitions, which is known as *latency*. 
+Despite going through many advances, the performance of speech dialogue systems remains unsatisfactory. For example, turn-taking is a fundamental aspect of natural human conversation that helps to decide which participant has the floor in a conversation and who can speak next. Humans use many multimodal cues like prosodic features, gaze, etc to determine who has the floor in a particular conversation. The interaction is very smooth with very less gaps and overalps between participants' speech, making the modelling difficult. Currently, dialogue systems use silence threshold to determine whether it should start speaking. This approach is too simplistic and can lead to issues. The system can interrupt the user mid-utterance, which is known as *cut-in*. Or the system waits for a long time and leads to sluggish responses and possible misrecognitions, which is known as *latency*. 
 
 Before delving into end-of-utterance detection, it is imperative to get an understanding of turn-taking against which the end-of-utterance detection 
 problem is based.
@@ -42,11 +37,23 @@ problem is based.
 
 A spoken dialogue system divides the complex task of conversing with the user into more specific subtasks handled by specialized components: voice 
 activity detection, speech recognition, natural language understanding, dialog management, natural language generation, and speech synthesis. As systems
-become more advanced, it is important that fundamental aspects like turn-taking are modelled in a more intuitive fashion.
+become more advanced, it is important that fundamental aspects like turn-taking are modelled in a more intuitive manner.
 
+A dialogue system designer should also consider the trade-offs between cut-ins and latency. 
 
+One of the earliest models to study conversations was designed by Harvey Sacks in which he divided a conversation into two units of speech: **Turn-constructional units (TCU)** and **Transition-relevant place (TRP)** respectively. 
 
+![image](https://user-images.githubusercontent.com/16001446/164993172-cc7293f1-5267-434a-9f77-a241b44a0421.png)
 
+Turn-constructional units are utterances from one speaker during which other participants assume the role as listeners. And each TCU is followed by a 
+TRP, where a turn-shift can occur by the following rules:
+
+>1. The current speaker may select a next speaker (other-select), using for example gaze or an address term. In the case of
+dyadic conversation, this may default to the other speaker.
+
+>2. If the current speaker does not select a next speaker, then any participant can self-select. The first to start gains the turn.
+
+>3. If no other party self-selects, the current speaker may continue.
 
 
 ## References
@@ -54,3 +61,4 @@ become more advanced, it is important that fundamental aspects like turn-taking 
 + [Flexible Turn-Taking for Spoken Dialog Systems](https://www.lti.cs.cmu.edu/sites/default/files/research/thesis/2008/antoine_raux_flexible_turn-taking_for_spoken_dialog_systems.pdf)
 + [Turn-taking in Conversational Systems and Human-Robot Interaction: A Review](https://www.sciencedirect.com/science/article/pii/S088523082030111X)
 + [Rhythms of Dialogue.](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.384.968&rep=rep1&type=pdf)
++ [ simplest systematics for the organization of turn-taking for conversation.](https://pure.mpg.de/rest/items/item_2376846/component/file_2376845/content)
