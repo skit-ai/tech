@@ -55,6 +55,21 @@ dyadic conversation, this may default to the other speaker.
 
 >3. If no other party self-selects, the current speaker may continue.
 
+To identify TCUs and TRPs, syntactic completion, prosody and non-verbal cues like eye-contact are useful. End of utterance task can be also defined as the detection of TRPs, i.e. when the user's turn is yielded and the system can start to speak. There are a multitude of works done in this regard, that 
+can be divided into three types:
+
+* Silence-based models. The end of the user’s utterance is detected using a VAD. A silence duration threshold is used to determine when to take the turn. 
+As discussed above, this is too simplistic and can lead to misrecognitions.
+* IPU-based models. Potential turn-taking points (IPUs) are detecting using a VAD. Turn-taking cues in the user’s speech are processed to determine whether the turn is yielded or not (potentially also considering the length of the pause).
+* Continuous models. The user’s speech is processed continuously to find suitable places to take the turn, but also for identifying backchannel relevant places (BRP), or for making projections.
+
+![image](https://user-images.githubusercontent.com/16001446/165028917-d3639f4c-8fa9-44d9-88ec-5dd0928f325a.png)
+
+## IPU-based models
+
+The system uses turn-taking cues at the end of pauses to determine whether a turn has ended. The approaches here run the gamut from hand-crafted rule-based semantic parsers to machine-learning and reinforcement learning techniques. 
+
+Features based on semantics, syntax, dialogue state and prosody are used to classify whether a turn needs to be taken. Unlike fixed thresholds, the data-driven IPU models condition on the pause length to determine the probability of taking a turn.  
 
 ## References
 
