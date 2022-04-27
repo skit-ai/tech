@@ -39,7 +39,7 @@ A spoken dialogue system divides the complex task of conversing with the user in
 activity detection, speech recognition, natural language understanding, dialog management, natural language generation, and speech synthesis. As systems
 become more advanced, it is important that fundamental aspects like turn-taking are modelled in a more intuitive manner.
 
-A dialogue system designer should also consider the trade-offs between cut-ins and latency. 
+A dialogue system designer should also consider the trade-offs between cut-ins and latency. For Skit, an effective turn-taking system will improve customer service and decrease call-drop rate.
 
 One of the earliest models to study conversations was designed by Harvey Sacks in which he divided a conversation into two units of speech: **Turn-constructional units (TCU)** and **Transition-relevant place (TRP)** respectively. 
 
