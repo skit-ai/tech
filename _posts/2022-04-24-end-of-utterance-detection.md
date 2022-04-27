@@ -69,7 +69,17 @@ As discussed above, this is too simplistic and can lead to misrecognitions.
 
 The system uses turn-taking cues at the end of pauses to determine whether a turn has ended. The approaches here run the gamut from hand-crafted rule-based semantic parsers to machine-learning and reinforcement learning techniques. 
 
-Features based on semantics, syntax, dialogue state and prosody are used to classify whether a turn needs to be taken. Unlike fixed thresholds, the data-driven IPU models condition on the pause length to determine the probability of taking a turn.  
+Features based on semantics, syntax, dialogue state and prosody are used to classify whether a turn needs to be taken. Unlike fixed thresholds, the data-driven IPU models condition on the pause length to determine the probability of taking a turn. To improve performance of the turn-taking models on human-computer dialogue data, some approaches use bootstrapping. First, the data is manually annotated and suitable TRPs are recorded and trained via a suitable ML model. Many RL-based models have also been proposed where the turn-taking is modelled as a negotiative process and minimizes the dialogue duration. But these experiments are performed in simulated environments making it difficult to transfer to interactions with real-users. In addition, these approaches are too dependent on ASR's outputs.
+
+## Continuous models
+
+These approaches process the utterances in an incremental manner. The modules process the input frame-by-frame and pass their results to subsequent modules. This enables the system to make continuous TRP predictions, project turn completions and backchannels. The processing time is improved and the output becomes more *natural*. There is no need to explicitly train the model for end-of-turn detection. 
+
+![image](https://user-images.githubusercontent.com/16001446/165454581-fceb250f-342f-4ca8-981d-bd635b922478.png)
+Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks
+(https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf) by Skantze process the audio from both the speakers in a frame-by-frame basis(20 frames per second) and use an LSTM to predict the speech activity for the two speakers for each frame in a future 3s window. 
+
+
 
 ## References
 
