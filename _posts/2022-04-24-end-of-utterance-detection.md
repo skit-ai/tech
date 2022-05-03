@@ -66,21 +66,28 @@ We will go through each of the approaches in the following sections:
 
 As mentioned above, existing architectures use a fixed silence duration detection threshold to determine if the speech has ended. VAD utilizes energy and spectral features to distinguish between noise and speech in the audio. Two types of parameters are taken into consideration while designing these kinds of models.
 
- After the system has yielded the turn, it awaits a user response, allowing for a certain silence (a gap). If this silence exceeds the
+* After the system has yielded the turn, it awaits a user response, allowing for a certain silence (a gap). If this silence exceeds the
 no-input-timeout threshold (such as 5 s), the system should continue speaking, for example by repeating the last question.
 
- Once the user has started to speak, the end-silence-timeout (such as 700ms) marks the end of the turn. As the figure shows,
+* Once the user has started to speak, the end-silence-timeout (such as 700ms) marks the end of the turn. As the figure shows,
 this allows for brief pauses (shorter than the end-silence-timeout) within the user’s speech.
 
 ![image](https://user-images.githubusercontent.com/16001446/166442067-1e01892b-de3a-483a-998b-d9aa8b838345.png)
 
+These simplistic models break down if the user takes too long to respond. Or when the system might interrupt the user's speech.
+
+![image](https://user-images.githubusercontent.com/16001446/166442480-fced182c-1d42-4af0-be17-842254c4236a.png)
+
+Tuning the threshold for different domains is extremely difficult and user satisfaction will be affected.
 
 ## IPU-based models
 
-The system uses turn-taking cues at the end of pauses to determine whether a turn has ended. The approaches here run the gamut from hand-crafted rule-based semantic parsers to machine-learning and reinforcement learning techniques. 
+These systems are built on an assumption that the system should not start to speak while the user is speaking. Turn-taking cues at the end of pauses are used to determine whether a turn has ended. These approaches run the gamut from hand-crafted rule-based semantic parsers to machine-learning and reinforcement learning models. 
 
-Features based on semantics, syntax, dialogue state and prosody are used to classify whether a turn needs to be taken. Unlike fixed thresholds, the data-driven IPU models condition on the pause length to determine the probability of taking a turn. To improve performance of the turn-taking models on human-computer dialogue data, some approaches use bootstrapping. First, the data is manually annotated and suitable TRPs are recorded and trained via a suitable ML model. Many RL-based models have also been proposed where the turn-taking is modelled as a negotiative process and minimizes the dialogue duration. But these experiments are performed in simulated environments making it difficult to transfer to interactions with real-users. In addition, these approaches are too dependent on ASR's outputs.
+[Sato et al's](http://www.cs.cmu.edu/afs/cs/Web/People/dod/papers/sato-icslp02.pdf) work inputs over 100 different kinds of features like syntactic, semantic, final word and prosody to decision trees to model when to take a turn. Albeit simplistic, their model achieved an accuracy of 83.9%, compared to the baseline of 76.2%.
 
+<!-- Features based on semantics, syntax, dialogue state and prosody are used to classify whether a turn needs to be taken. Unlike fixed thresholds, the data-driven IPU models condition on the pause length to determine the probability of taking a turn. To improve performance of the turn-taking models on human-computer dialogue data, some approaches use bootstrapping. First, the data is manually annotated and suitable TRPs are recorded and trained via a suitable ML model. Many RL-based models have also been proposed where the turn-taking is modelled as a negotiative process and minimizes the dialogue duration. But these experiments are performed in simulated environments making it difficult to transfer to interactions with real-users. In addition, these approaches are too dependent on ASR's outputs.
+ -->
 ## Continuous models
 
 These approaches process the utterances in an incremental manner. The modules process the input frame-by-frame and pass their results to subsequent modules. This enables the system to make continuous TRP predictions, project turn completions and backchannels. The processing time is improved and the output becomes more *natural*. There is no need to explicitly train the model for end-of-turn detection. 
@@ -89,11 +96,11 @@ These approaches process the utterances in an incremental manner. The modules pr
 [Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf) by Skantze process the audio from both the speakers in a frame-by-frame basis(20 frames per second) and use an LSTM to predict the speech activity for the two speakers for each frame in a future 3s window. 
 
 
-
 ## References
 
 + [Flexible Turn-Taking for Spoken Dialog Systems](https://www.lti.cs.cmu.edu/sites/default/files/research/thesis/2008/antoine_raux_flexible_turn-taking_for_spoken_dialog_systems.pdf)
 + [Turn-taking in Conversational Systems and Human-Robot Interaction: A Review](https://www.sciencedirect.com/science/article/pii/S088523082030111X)
++ [Learning decision trees to determine turn-taking by spoken dialogue systems](http://www.cs.cmu.edu/afs/cs/Web/People/dod/papers/sato-icslp02.pdf)
 + [Rhythms of Dialogue.](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.384.968&rep=rep1&type=pdf)
 + [ simplest systematics for the organization of turn-taking for conversation.](https://pure.mpg.de/rest/items/item_2376846/component/file_2376845/content)
 + [Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf)
