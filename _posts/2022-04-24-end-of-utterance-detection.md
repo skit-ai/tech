@@ -15,33 +15,26 @@ fancy_audio_player: True
 
 # End Of Utterance Detection - When does a speaker stop speaking?
 
-End-of-utterance detection is the task of detecting when the user releases a floor after speaking an utterance.
+End-of-utterance detection is the problem of detecting when a user has stopped speaking in a conversation. 
 
 ![image](https://user-images.githubusercontent.com/16001446/164991645-fadf9a68-3e75-4077-8050-5aabdc30b2d1.png)
 
 In the above image, there are four turns in total. The system initiates the conversation by speaking first ("How may I help you?"), then the user 
-("I want to go to Miami."), then the system again ("Miami?") and finally the system ("Yes."). Empirically, the possession of a floor entirely depends on
-the acoustic manifestation of the conversation, without regards to any linguistic or higher level aspect. 
+("I want to go to Miami."), then the system again ("Miami?") and finally the system ("Yes."). 
 
-> The speaker who utters the first unilateral sound both initiates the conversation and gains possession of the floor. Having gained possession, a speaker
-maintains it until the first unilateral sounds by another speaker, at which time the latter gains possession of the floor.
-
-Despite going through many advances, the performance of speech dialogue systems remains unsatisfactory. For example, turn-taking is a fundamental aspect of natural human conversation that helps to decide which participant has the floor in a conversation and who can speak next. Humans use many multimodal cues like prosodic features, gaze, etc to determine who has the floor in a particular conversation. The interaction is very smooth with very less gaps and overalps between participants' speech, making the modelling difficult. Currently, dialogue systems use silence threshold to determine whether it should start speaking. This approach is too simplistic and can lead to issues. The system can interrupt the user mid-utterance, which is known as *cut-in*. Or the system waits for a long time and leads to sluggish responses and possible misrecognitions, which is known as *latency*. 
-
-Before delving into end-of-utterance detection, it is imperative to get an understanding of turn-taking against which the end-of-utterance detection 
-problem is based.
+> The speaker who utters the first unilateral sound both initiates the conversation and gains possession of the floor. Having gained possession, a speaker maintains it until the first unilateral sounds by another speaker, at which time the latter gains possession of the floor.
 
 # Motivation
 
-![image](https://user-images.githubusercontent.com/16001446/164992521-4e4242b7-9994-4625-b566-4a0a72317519.png)
+Despite going through many advances, the performance of spoken dialogue systems remains unsatisfactory. For example, turn-taking is a fundamental aspect of natural human conversation that helps to decide which participant has the floor in a conversation and who can speak next. Humans use many multimodal cues like prosodic features, gaze, etc to determine who has the floor in a particular conversation. The interaction is very smooth with very less gaps and overlaps between participants' speech, making its modeling difficult. Currently, dialogue systems use a silence threshold to determine whether it should start speaking. This approach is too simplistic and can lead to many issues. The system can interrupt the user mid-utterance, known as *cut-in*. Or it can wait too long and leads to sluggish responses and possible misrecognition, causing an increase in *latency*. 
 
-A spoken dialogue system divides the complex task of conversing with the user into more specific subtasks handled by specialized components: voice 
-activity detection, speech recognition, natural language understanding, dialog management, natural language generation, and speech synthesis. As systems
-become more advanced, it is important that fundamental aspects like turn-taking are modelled in a more intuitive manner.
+As speech-dialogue systems become more ubiquitous, it is essential to design dialogue systems that can predict end of utterance and predict turns.
 
-A dialogue system designer should also consider the trade-offs between cut-ins and latency. For Skit, an effective turn-taking system will improve customer service and decrease call-drop rate.
+A dialogue system designer should also consider the trade-offs between cut-ins and latency. For Skit, an effective turn-taking system will improve customer service and decrease call-drop rate. Imbibing turn-taking capabilities into our product Viva will make them more natural and improve the conversations with customers.
 
-One of the earliest models to study conversations was designed by Harvey Sacks in which he divided a conversation into two units of speech: **Turn-constructional units (TCU)** and **Transition-relevant place (TRP)** respectively. 
+# Previous approaches to solve the problem
+
+One of the earliest models to study conversations was designed by [Harvey Sacks et al](https://www.sciencedirect.com/science/article/pii/S088523082030111X) in which he divided a conversation into two units of speech: **Turn-constructional units (TCU)** and **Transition-relevant place (TRP)** respectively. 
 
 ![image](https://user-images.githubusercontent.com/16001446/164993172-cc7293f1-5267-434a-9f77-a241b44a0421.png)
 
@@ -55,8 +48,10 @@ dyadic conversation, this may default to the other speaker.
 
 >3. If no other party self-selects, the current speaker may continue.
 
-To identify TCUs and TRPs, syntactic completion, prosody and non-verbal cues like eye-contact are useful. End of utterance task can be also defined as the detection of TRPs, i.e. when the user's turn is yielded and the system can start to speak. There are a multitude of works done in this regard, that 
-can be divided into three types:
+To identify these TCUs and TRPs, researchers segment the speech into **Inter-Pausal Units (IPUs)**, which are stretches of audio from one speaker without any silence exceeding a stipulated amount(say, 200 ms). A voice activity detection(VAD) can detect these IPUs. Hence, a turn can be considered as a sequence of IPUs from a speaker, that are not interrupted by IPUs from another speaker. 
+
+
+To identify TRPs(turn-yielding cues) and non-TRPs(turn-hlding)cues, many cues such as syntactic completion, prosody and non-verbal cues like eye-contact have been investigated. However, it is very complicated to directly detect such cues from the data. This problem is compounded by the absence of facial cues in our data. End of utterance task can be also defined as the detection of TRPs, i.e. when the user's turn is yielded and the system can start to speak. There are a multitude of works done in this regard, that can be divided into three types:
 
 * Silence-based models. The end of the user’s utterance is detected using a VAD. A silence duration threshold is used to determine when to take the turn. 
 As discussed above, this is too simplistic and can lead to misrecognitions.
@@ -64,6 +59,21 @@ As discussed above, this is too simplistic and can lead to misrecognitions.
 * Continuous models. The user’s speech is processed continuously to find suitable places to take the turn, but also for identifying backchannel relevant places (BRP), or for making projections.
 
 ![image](https://user-images.githubusercontent.com/16001446/165028917-d3639f4c-8fa9-44d9-88ec-5dd0928f325a.png)
+
+We will go through each of the approaches in the following sections:
+
+## Silence-based models
+
+As mentioned above, existing architectures use a fixed silence duration detection threshold to determine if the speech has ended. VAD utilizes energy and spectral features to distinguish between noise and speech in the audio. Two types of parameters are taken into consideration while designing these kinds of models.
+
+ After the system has yielded the turn, it awaits a user response, allowing for a certain silence (a gap). If this silence exceeds the
+no-input-timeout threshold (such as 5 s), the system should continue speaking, for example by repeating the last question.
+
+ Once the user has started to speak, the end-silence-timeout (such as 700ms) marks the end of the turn. As the figure shows,
+this allows for brief pauses (shorter than the end-silence-timeout) within the user’s speech.
+
+![image](https://user-images.githubusercontent.com/16001446/166442067-1e01892b-de3a-483a-998b-d9aa8b838345.png)
+
 
 ## IPU-based models
 
