@@ -85,6 +85,11 @@ These systems are built on an assumption that the system should not start to spe
 
 [Sato et al's](http://www.cs.cmu.edu/afs/cs/Web/People/dod/papers/sato-icslp02.pdf) work inputs over 100 different kinds of features like syntactic, semantic, final word, and prosody to decision trees to model when to take a turn. Albeit simplistic, their model achieved an accuracy of 83.9%, compared to the baseline of 76.2%. However, this approach can misclassify the IPU as a pause and uses a fixed threshold of 750 ms for pauses. To overcome this limitation, [Ferrer et al](https://www.sri.com/wp-content/uploads/2021/12/is_the_speaker_done_yet.pdf) condition a decision-tree classifier on the length of the pause after IPU continuously and classify on the prosodic features and n-grams of the words. [Raux and Eskenazi](https://aclanthology.org/W08-0101.pdf) cluster silences based on dialogue features and set a single threshold for each cluster, minimizing the overall latency by over 50% on the Let's Go dataset. 
 
+Another shortcoming with the above approaches is that they are trained on human-computer dialogue corpus. But we want to learn a model for human-human dialogues. Transferring models from human-human to human-computer based systems is not feasible. So, some authors like ([Raux, Eskenazi](https://aclanthology.org/W08-0101.pdf) & [Meena et al.](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.704.2085&rep=rep1&type=pdf)] use **bootstrapping**. First, a more simplistic model of turn-taking is implemented in a system and interactions are recorded. Then, the data is then manually annotated with suitable TRPs, and trained using a machine learning model like LSTM. Another approach is a **Wizard-of-Oz** setup, where a hidden operator controls the system and makes the turn-taking decisions as used in [Maier et al.](https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/55075/Maier%20et%20al.%202017.%20Towards%20Deep%20End-of-Turn%20Prediction.pdf?sequence=1)
+
+Some previous approaches utilize reinforcement learning as well. For example, [Jonsdottir et al](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.149.6018&rep=rep1&type=pdf) train two agents to talk to each other, picking up prosodic cues and develop turn-taking skills. [Khouzaimi et al. (2015)](https://aclanthology.org/W15-4643.pdf) train a dialogue management model intending to minimize the dialogue duration and maximize the completion task ratio. But these approaches are trained in simulated environments and it is unclear if they transfer to real users.
+
+
 
 
 
@@ -96,7 +101,7 @@ These approaches process the utterances in an incremental manner. The modules pr
 ![image](https://user-images.githubusercontent.com/16001446/165454581-fceb250f-342f-4ca8-981d-bd635b922478.png)
 [Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf) by Skantze process the audio from both the speakers in a frame-by-frame basis(20 frames per second) and use an LSTM to predict the speech activity for the two speakers for each frame in a future 3s window. 
 
-Another shortcoming with the above approaches is that they are trained on human-computer dialogue corpus. But we want to learn a model for human-human dialogues. Transferring models from human-human to human-computer based systems is not feasible. So, some authors like ([Raux, Eskenazi](https://aclanthology.org/W08-0101.pdf) & [Meena et al.](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.704.2085&rep=rep1&type=pdf)] use **bootstrapping**. First, a more simplistic model of turn-taking is implemented in a system and interactions are recorded. Then, the data is then manually annotated with suitable TRPs, and trained using a machine learning model like LSTM.
+
 
 
 
@@ -111,3 +116,5 @@ Another shortcoming with the above approaches is that they are trained on human-
 + [IS THE SPEAKER DONE YET? FASTER AND MORE ACCURATE END-OF-UTTERANCE DETECTION USING PROSODY](https://www.sri.com/wp-content/uploads/2021/12/is_the_speaker_done_yet.pdf)
 + [Optimizing Endpointing Thresholds using Dialogue 2Features in a Spoken Dialogue System](https://aclanthology.org/W08-0101.pdf)
 + [Towards Deep End-of-Turn Prediction for Situated Spoken Dialogue Systems](https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/55075/Maier%20et%20al.%202017.%20Towards%20Deep%20End-of-Turn%20Prediction.pdf?sequence=1)
++ [Learning smooth, human-like turntaking in realtime dialogue](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.149.6018&rep=rep1&type=pdf)
++ [Optimising Turn-Taking Strategies With Reinforcement Learning](https://aclanthology.org/W15-4643.pdf)
