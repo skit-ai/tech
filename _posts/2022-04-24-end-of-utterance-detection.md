@@ -90,13 +90,9 @@ Another shortcoming with the above approaches is that they are trained on human-
 Some previous approaches utilize reinforcement learning as well. For example, [Jonsdottir et al](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.149.6018&rep=rep1&type=pdf) train two agents to talk to each other, picking up prosodic cues and develop turn-taking skills. [Khouzaimi et al. (2015)](https://aclanthology.org/W15-4643.pdf) train a dialogue management model intending to minimize the dialogue duration and maximize the completion task ratio. But these approaches are trained in simulated environments and it is unclear if they transfer to real users.
 
 
-
-
-
-
 ## Continuous models
 
-These approaches process the utterances in an incremental manner. The modules process the input frame-by-frame and pass their results to subsequent modules. This enables the system to make continuous TRP predictions, project turn completions and backchannels. The processing time is improved and the output becomes more *natural*. There is no need to explicitly train the model for end-of-turn detection. 
+Continuous models process the utterances in an incremental manner. These modules process the input frame-by-frame and pass their results to subsequent modules. This enables the system to make continuous TRP predictions, project turn completions and backchannels. Unlike previous approaches,  The processing time is improved and the output becomes more *natural*. There is no need to explicitly train the model for end-of-turn detection. 
 
 ![image](https://user-images.githubusercontent.com/16001446/165454581-fceb250f-342f-4ca8-981d-bd635b922478.png)
 [Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf) by Skantze process the audio from both the speakers in a frame-by-frame basis(20 frames per second) and use an LSTM to predict the speech activity for the two speakers for each frame in a future 3s window. 
