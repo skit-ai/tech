@@ -19,8 +19,7 @@ End-of-utterance detection is the problem of detecting when a user has stopped s
 
 ![image](https://user-images.githubusercontent.com/16001446/164991645-fadf9a68-3e75-4077-8050-5aabdc30b2d1.png)
 
-In the above image, there are four turns in total. The system initiates the conversation by speaking first ("How may I help you?"), then the user 
-("I want to go to Miami."), then the system again ("Miami?") and finally the system ("Yes."). 
+In the above image, there are four turns in total that are time-aligned.. The system initiates the conversation by speaking first ("How may I help you?"), then the user ("I want to go to Miami."), then the system again ("Miami?") and finally the system ("Yes."). 
 
 > The speaker who utters the first unilateral sound both initiates the conversation and gains possession of the floor. Having gained possession, a speaker maintains it until the first unilateral sounds by another speaker, at which time the latter gains possession of the floor.
 
@@ -84,16 +83,21 @@ Tuning the threshold for different domains is extremely difficult and user satis
 
 These systems are built on an assumption that the system should not start to speak while the user is speaking. Turn-taking cues at the end of pauses are used to determine whether a turn has ended. These approaches run the gamut from hand-crafted rule-based semantic parsers to machine-learning and reinforcement learning models. 
 
-[Sato et al's](http://www.cs.cmu.edu/afs/cs/Web/People/dod/papers/sato-icslp02.pdf) work inputs over 100 different kinds of features like syntactic, semantic, final word and prosody to decision trees to model when to take a turn. Albeit simplistic, their model achieved an accuracy of 83.9%, compared to the baseline of 76.2%.
+[Sato et al's](http://www.cs.cmu.edu/afs/cs/Web/People/dod/papers/sato-icslp02.pdf) work inputs over 100 different kinds of features like syntactic, semantic, final word, and prosody to decision trees to model when to take a turn. Albeit simplistic, their model achieved an accuracy of 83.9%, compared to the baseline of 76.2%. However, this approach can misclassify the IPU as a pause and uses a fixed threshold of 750 ms for pauses. To overcome this limitation, [Ferrer et al](https://www.sri.com/wp-content/uploads/2021/12/is_the_speaker_done_yet.pdf) condition a decision-tree classifier on the length of the pause after IPU continuously and classify on the prosodic features and n-grams of the words. [Raux and Eskenazi](https://aclanthology.org/W08-0101.pdf) cluster silences based on dialogue features and set a single threshold for each cluster, minimizing the overall latency by over 50% on the Let's Go dataset. 
 
-<!-- Features based on semantics, syntax, dialogue state and prosody are used to classify whether a turn needs to be taken. Unlike fixed thresholds, the data-driven IPU models condition on the pause length to determine the probability of taking a turn. To improve performance of the turn-taking models on human-computer dialogue data, some approaches use bootstrapping. First, the data is manually annotated and suitable TRPs are recorded and trained via a suitable ML model. Many RL-based models have also been proposed where the turn-taking is modelled as a negotiative process and minimizes the dialogue duration. But these experiments are performed in simulated environments making it difficult to transfer to interactions with real-users. In addition, these approaches are too dependent on ASR's outputs.
- -->
+
+
+
+
 ## Continuous models
 
 These approaches process the utterances in an incremental manner. The modules process the input frame-by-frame and pass their results to subsequent modules. This enables the system to make continuous TRP predictions, project turn completions and backchannels. The processing time is improved and the output becomes more *natural*. There is no need to explicitly train the model for end-of-turn detection. 
 
 ![image](https://user-images.githubusercontent.com/16001446/165454581-fceb250f-342f-4ca8-981d-bd635b922478.png)
 [Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf) by Skantze process the audio from both the speakers in a frame-by-frame basis(20 frames per second) and use an LSTM to predict the speech activity for the two speakers for each frame in a future 3s window. 
+
+Another shortcoming with the above approaches is that they are trained on human-computer dialogue corpus. But we want to learn a model for human-human dialogues. Transferring models from human-human to human-computer based systems is not feasible. So, some authors like ([Raux, Eskenazi](https://aclanthology.org/W08-0101.pdf) & [Meena et al.](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.704.2085&rep=rep1&type=pdf)] use **bootstrapping**. First, a more simplistic model of turn-taking is implemented in a system and interactions are recorded. Then, the data is then manually annotated with suitable TRPs, and trained using a machine learning model like LSTM.
+
 
 
 ## References
@@ -104,3 +108,6 @@ These approaches process the utterances in an incremental manner. The modules pr
 + [Rhythms of Dialogue.](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.384.968&rep=rep1&type=pdf)
 + [ simplest systematics for the organization of turn-taking for conversation.](https://pure.mpg.de/rest/items/item_2376846/component/file_2376845/content)
 + [Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf)
++ [IS THE SPEAKER DONE YET? FASTER AND MORE ACCURATE END-OF-UTTERANCE DETECTION USING PROSODY](https://www.sri.com/wp-content/uploads/2021/12/is_the_speaker_done_yet.pdf)
++ [Optimizing Endpointing Thresholds using Dialogue 2Features in a Spoken Dialogue System](https://aclanthology.org/W08-0101.pdf)
++ [Towards Deep End-of-Turn Prediction for Situated Spoken Dialogue Systems](https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/55075/Maier%20et%20al.%202017.%20Towards%20Deep%20End-of-Turn%20Prediction.pdf?sequence=1)
