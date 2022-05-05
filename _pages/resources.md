@@ -38,9 +38,16 @@ Open problem statements and idea pages.
 
 ---
 
-## `WIP` Publications
+## Publications
 
-...
+- [N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses](https://arxiv.org/abs/2106.06519)
+
+
+---
+
+## Datasets
+
+- [Emotional TTS dataset release](https://github.com/skit-ai/emotion-tts-dataset) 
 
 ---
 
@@ -63,6 +70,3 @@ stay updated on upcoming items.
 
 ---
 
-## `WIP` Datasets
-
-...
