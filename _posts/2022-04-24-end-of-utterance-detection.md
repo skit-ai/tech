@@ -100,6 +100,15 @@ One of the first works in incremental processing was [Skantze and Schlangen](htt
 
 Another work by [Skantze](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf) doesn't train the model for end-of-turn detection. The audio from the speakers is processed frame-by-frame (20 frames per second) and fed to an LSTM. The LSTM predicts the speech activity for the two speakers for each frame in a future 3s window. The model outperforms human judges in this task. In an extension to this work, [Roddy et al.](https://arxiv.org/pdf/1808.10785.pdf) propose a new LSTM architcture where the acoustic and linguistic features get processed in separate LSTM systems with different timescales.
 
+## Datasets
+
+Most of the aforementioned works evaluate their performance on dialogue based datasets like: 
+  
+   * [HCRC MapTask Corpus](https://groups.inf.ed.ac.uk/cgi/maptask/estimate.cgi)
+   * [Mahnob Corpus](https://mahnob-db.eu/mimicry/)
+  
+ that have a limited purpose and may not generalize well to our problem.
+
 ## References
 
 + [Flexible Turn-Taking for Spoken Dialog Systems](https://www.lti.cs.cmu.edu/sites/default/files/research/thesis/2008/antoine_raux_flexible_turn-taking_for_spoken_dialog_systems.pdf)
