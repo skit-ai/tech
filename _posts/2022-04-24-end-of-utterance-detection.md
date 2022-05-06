@@ -114,3 +114,6 @@ Continuous models process the utterances in an incremental manner. These modules
 + [Towards Deep End-of-Turn Prediction for Situated Spoken Dialogue Systems](https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/55075/Maier%20et%20al.%202017.%20Towards%20Deep%20End-of-Turn%20Prediction.pdf?sequence=1)
 + [Learning smooth, human-like turntaking in realtime dialogue](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.149.6018&rep=rep1&type=pdf)
 + [Optimising Turn-Taking Strategies With Reinforcement Learning](https://aclanthology.org/W15-4643.pdf)
++ [Incremental Dialogue Processing in a Micro-Domain ](https://aclanthology.org/E09-1085.pdf)
++ [Towards incremental speech generation in conversational systems](https://www.researchgate.net/profile/Gabriel-Skantze/publication/257267620_Towards_incremental_speech_generation_in_conversational_systems/links/5c473188299bf12be3db10e6/Towards-incremental-speech-generation-in-conversational-systems.pdf)
++ [Towards a General, Continuous Model of Turn-taking in Spoken Dialogue using LSTM Recurrent Neural Networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf)
