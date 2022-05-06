@@ -92,14 +92,13 @@ Some previous approaches utilize reinforcement learning as well. For example, [J
 
 ## Continuous models
 
-Continuous models process the utterances in an incremental manner. These modules process the input frame-by-frame and pass their results to subsequent modules. This enables the system to make continuous TRP predictions, project turn completions and backchannels. Unlike previous approaches,  The processing time is improved and the output becomes more *natural*. There is no need to explicitly train the model for end-of-turn detection. 
+Continuous models process the utterances in an incremental manner. These modules process the input frame-by-frame and pass their results to subsequent modules. It enables the system to make continuous TRP predictions, project turn completions and backchannels. Unlike previous approaches, the processing starts before the input is complete. The processing time is improved, and the output becomes more *natural*. There is no need to train the model for end-of-turn detection. It enables a deeper understanding of utterances and project backchannels and even interrupt the user. 
 
 ![image](https://user-images.githubusercontent.com/16001446/165454581-fceb250f-342f-4ca8-981d-bd635b922478.png)
-[Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf) by Skantze process the audio from both the speakers in a frame-by-frame basis(20 frames per second) and use an LSTM to predict the speech activity for the two speakers for each frame in a future 3s window. 
 
+One of the first works in incremental processing was [Skantze and Schlangen](https://aclanthology.org/E09-1085.pdf) on the task of number dictation. A benefit of incremental models is revision, as shown by  [Skantze and Hjalmarsson](https://www.researchgate.net/profile/Gabriel-Skantze/publication/257267620_Towards_incremental_speech_generation_in_conversational_systems/links/5c473188299bf12be3db10e6/Towards-incremental-speech-generation-in-conversational-systems.pdf). For example, the word "four" might be amended with more speech, resulting in a revision to the word "forty".
 
-
-
+Another work by [Skantze](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf) doesn't train the model for end-of-turn detection. The audio from the speakers is processed frame-by-frame (20 frames per second) and fed to an LSTM. The LSTM predicts the speech activity for the two speakers for each frame in a future 3s window. The model outperforms human judges in this task. In an extension to this work, [Roddy et al.](https://arxiv.org/pdf/1808.10785.pdf) propose a new LSTM architcture where the acoustic and linguistic features get processed in separate LSTM systems with different timescales.
 
 ## References
 
@@ -117,3 +116,4 @@ Continuous models process the utterances in an incremental manner. These modules
 + [Incremental Dialogue Processing in a Micro-Domain ](https://aclanthology.org/E09-1085.pdf)
 + [Towards incremental speech generation in conversational systems](https://www.researchgate.net/profile/Gabriel-Skantze/publication/257267620_Towards_incremental_speech_generation_in_conversational_systems/links/5c473188299bf12be3db10e6/Towards-incremental-speech-generation-in-conversational-systems.pdf)
 + [Towards a General, Continuous Model of Turn-taking in Spoken Dialogue using LSTM Recurrent Neural Networks](https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf)
++ [Multimodal Continuous Turn-Taking Prediction Using Multiscale RNNs](https://arxiv.org/pdf/1808.10785.pdf)
