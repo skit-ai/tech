@@ -88,7 +88,7 @@ Having ToM allows for certain mechanisms that would not be possible otherwise. S
 
 One of the important goals of AI is to blend in the lives of Humans and solve problems _with humans-in-the-loop_, achieving this requires modeling humans and other machines around the agent, similar to how we humans do.
 
-Some studies [3, 4] have shown that specially designed Multi-Agent Reinforcement Learning algorithms pass the Sally-Anne False-belief task. However, False-belief tasks have not been designed/testsed against chatbots. In this section, we test multiple Language Models (LM) against the Sally-Anne task, and check whether they pass the test or not. 
+Some studies [3, 4] have shown that specially designed Multi-Agent Reinforcement Learning algorithms pass the Sally-Anne False-belief task. However, False-belief tasks have not been designed for/tested against chatbots. In this section, we test multiple Language Models (LM) against the Sally-Anne and Smarties tasks, and check whether they pass the tests or not. 
 
 ### Methodology
 All of the experiments were done using Huggingface's Hub has inference interface. These experiments can be easily re-ran, however, it is not guarrenteed to get the same results since the inference is non-detereministic. The tasks are widely used and are available in Wikipedia and other scientific papers on which some/all of the LMs may have been trained on, hence these tests are not conclusive. 
