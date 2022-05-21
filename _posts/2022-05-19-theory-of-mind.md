@@ -135,10 +135,13 @@ There are two possible ways to "solve" this problem:
 1. `Explicit`: Design the product in a way that inspires trust. Come up with the _best possible_ responses for all possible combination of dialog history and user states.
 2. `Implicit`: Design the product in a top-down fashion rather than a bottom-up. Many believe that optimizing components with their local objective (Word-error-rate for ASR, F1 Scores for Intent classifiers etc.) would lead to a higher resolution rate. In biological systems, the higher-order function (survival) dictates lower order function (communication, language). Learning to communicate better can not ensure survival on its own. However, learning to survive _may lead to a better ability to communicate_. In other words, optimize ML models against objective (resolution rate) in-addition to the local objective. This _will_ force the chatbot to behave in a way that inspires trust from the user and effectively learn to have theory of mind of the users.
 
-Clearly, the first method doesn't seem to be working well, and the second method has the clear advantage of being data-driven and scalable.
+The first method is the industry standard, and it doesn't seem to be working well. The second method has the clear advantage of being data-driven and scalable.
 
 # References
 [1] Astington, J.W., & Edward, M.J. (2010). The Development of Theory of Mind in Early Childhood.
+
 [2] Demetriou, A., Mouyi, A., & Spanoudis, G. (2010). "The development of mental processing", Nesselroade, J. R. (2010). "Methods in the study of life-span human development: Issues and answers." In W. F. Overton (Ed.), _Biology, cognition and methods across the life-span._ Volume 1 of the _Handbook of life-span development_ (pp. 36–55), Editor-in-chief: R. M. Lerner. Hoboken, New Jersey: Wiley.
+
 [3] Rabinowitz, N.C., Perbet, F., Song, H.F., Zhang, C., Eslami, S.M., & Botvinick, M.M. (2018). Machine Theory of Mind. _ICML_.
+
 [4] Nguyen, T.N., & González, C. (2020). Cognitive Machine Theory of Mind. _CogSci_.
