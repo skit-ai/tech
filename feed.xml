@@ -1,4 +1,148 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-05-05T08:56:36+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">TTS Enhancement</title><link href="/woc/" rel="alternate" type="text/html" title="TTS Enhancement" /><published>2022-03-09T00:00:00+00:00</published><updated>2022-03-09T00:00:00+00:00</updated><id>/woc</id><content type="html" xml:base="/woc/">&lt;h1 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-05-23T08:30:17+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">End of Utterance Detection</title><link href="/end-of-utterance-detection/" rel="alternate" type="text/html" title="End of Utterance Detection" /><published>2022-04-24T00:00:00+00:00</published><updated>2022-04-24T00:00:00+00:00</updated><id>/end-of-utterance-detection</id><content type="html" xml:base="/end-of-utterance-detection/">&lt;blockquote&gt;
+  &lt;p&gt;This blog post is based on the work done by &lt;a href=&quot;https://github.com/Anirudh257&quot;&gt;Anirudh 
+Thatipelli&lt;/a&gt; as an ML research fellow at Skit.ai&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;end-of-utterance-detection---when-does-a-speaker-stop-speaking&quot;&gt;End Of Utterance Detection - When does a speaker stop speaking?&lt;/h1&gt;
+
+&lt;p&gt;End-of-utterance detection is the problem of detecting when a user has stopped speaking in a conversation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16001446/164991645-fadf9a68-3e75-4077-8050-5aabdc30b2d1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the above image, there are four turns in total that are time-aligned.. The system initiates the conversation by speaking first (“How may I help you?”), then the user (“I want to go to Miami.”), then the system again (“Miami?”) and finally the system (“Yes.”).&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The speaker who utters the first unilateral sound both initiates the conversation and gains possession of the floor. Having gained possession, a speaker maintains it until the first unilateral sounds by another speaker, at which time the latter gains possession of the floor.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;motivation&quot;&gt;Motivation&lt;/h1&gt;
+
+&lt;p&gt;Despite going through many advances, the performance of spoken dialogue systems remains unsatisfactory. For example, turn-taking is a fundamental aspect of natural human conversation that helps to decide which participant has the floor in a conversation and who can speak next. Humans use many multimodal cues like prosodic features, gaze, etc to determine who has the floor in a particular conversation. The interaction is very smooth with very less gaps and overlaps between participants’ speech, making its modeling difficult. Currently, dialogue systems use a silence threshold to determine whether it should start speaking. This approach is too simplistic and can lead to many issues. The system can interrupt the user mid-utterance, known as &lt;em&gt;cut-in&lt;/em&gt;. Or it can wait too long and leads to sluggish responses and possible misrecognition, causing an increase in &lt;em&gt;latency&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;As speech-dialogue systems become more ubiquitous, it is essential to design dialogue systems that can predict end of utterance and predict turns.&lt;/p&gt;
+
+&lt;p&gt;A dialogue system designer should also consider the trade-offs between cut-ins and latency. For Skit, an effective turn-taking system will improve customer service and decrease call-drop rate. Imbibing turn-taking capabilities into our product will make it more natural and improve the conversations with customers.&lt;/p&gt;
+
+&lt;h1 id=&quot;previous-approaches-to-solve-the-problem&quot;&gt;Previous approaches to solve the problem&lt;/h1&gt;
+
+&lt;p&gt;One of the earliest models to study conversations was designed by &lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S088523082030111X&quot;&gt;Harvey Sacks et al&lt;/a&gt; in which he divided a conversation into two units of speech: &lt;strong&gt;Turn-constructional units (TCU)&lt;/strong&gt; and &lt;strong&gt;Transition-relevant place (TRP)&lt;/strong&gt; respectively.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16001446/164993172-cc7293f1-5267-434a-9f77-a241b44a0421.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Turn-constructional units are utterances from one speaker during which other participants assume the role as listeners. And each TCU is followed by a 
+TRP, where a turn-shift can occur by the following rules:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;The current speaker may select a next speaker (other-select), using for example gaze or an address term. In the case of
+dyadic conversation, this may default to the other speaker.&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;If the current speaker does not select a next speaker, then any participant can self-select. The first to start gains the turn.&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;If no other party self-selects, the current speaker may continue.&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To identify these TCUs and TRPs, researchers segment the speech into &lt;strong&gt;Inter-Pausal Units (IPUs)&lt;/strong&gt;, which are stretches of audio from one speaker without any silence exceeding a stipulated amount(say, 200 ms). A voice activity detection(VAD) can detect these IPUs. Hence, a turn can be considered as a sequence of IPUs from a speaker, that are not interrupted by IPUs from another speaker.&lt;/p&gt;
+
+&lt;p&gt;To identify TRPs(turn-yielding cues) and non-TRPs(turn-hlding)cues, many cues such as syntactic completion, prosody and non-verbal cues like eye-contact have been investigated. However, it is very complicated to directly detect such cues from the data. This problem is compounded by the absence of facial cues in our data. End of utterance task can be also defined as the detection of TRPs, i.e. when the user’s turn is yielded and the system can start to speak. There are a multitude of works done in this regard, that can be divided into three types:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Silence-based models. The end of the user’s utterance is detected using a VAD. A silence duration threshold is used to determine when to take the turn. 
+As discussed above, this is too simplistic and can lead to misrecognitions.&lt;/li&gt;
+  &lt;li&gt;IPU-based models. Potential turn-taking points (IPUs) are detecting using a VAD. Turn-taking cues in the user’s speech are processed to determine whether the turn is yielded or not (potentially also considering the length of the pause).&lt;/li&gt;
+  &lt;li&gt;Continuous models. The user’s speech is processed continuously to find suitable places to take the turn, but also for identifying backchannel relevant places (BRP), or for making projections.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16001446/165028917-d3639f4c-8fa9-44d9-88ec-5dd0928f325a.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We will go through each of the approaches in the following sections:&lt;/p&gt;
+
+&lt;h2 id=&quot;silence-based-models&quot;&gt;Silence-based models&lt;/h2&gt;
+
+&lt;p&gt;As mentioned above, existing architectures use a fixed silence duration detection threshold to determine if the speech has ended. VAD utilizes energy and spectral features to distinguish between noise and speech in the audio. Two types of parameters are taken into consideration while designing these kinds of models.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;After the system has yielded the turn, it awaits a user response, allowing for a certain silence (a gap). If this silence exceeds the
+no-input-timeout threshold (such as 5 s), the system should continue speaking, for example by repeating the last question.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Once the user has started to speak, the end-silence-timeout (such as 700ms) marks the end of the turn. As the figure shows,
+this allows for brief pauses (shorter than the end-silence-timeout) within the user’s speech.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16001446/166442067-1e01892b-de3a-483a-998b-d9aa8b838345.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;These simplistic models break down if the user takes too long to respond. Or when the system might interrupt the user’s speech.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16001446/166442480-fced182c-1d42-4af0-be17-842254c4236a.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tuning the threshold for different domains is extremely difficult and user satisfaction will be affected.&lt;/p&gt;
+
+&lt;h2 id=&quot;ipu-based-models&quot;&gt;IPU-based models&lt;/h2&gt;
+
+&lt;p&gt;These systems are built on an assumption that the system should not start to speak while the user is speaking. Turn-taking cues at the end of pauses are used to determine whether a turn has ended. These approaches run the gamut from hand-crafted rule-based semantic parsers to machine-learning and reinforcement learning models.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.cs.cmu.edu/afs/cs/Web/People/dod/papers/sato-icslp02.pdf&quot;&gt;Sato et al’s&lt;/a&gt; work inputs over 100 different kinds of features like syntactic, semantic, final word, and prosody to decision trees to model when to take a turn. Albeit simplistic, their model achieved an accuracy of 83.9%, compared to the baseline of 76.2%. However, this approach can misclassify the IPU as a pause and uses a fixed threshold of 750 ms for pauses. To overcome this limitation, &lt;a href=&quot;https://www.sri.com/wp-content/uploads/2021/12/is_the_speaker_done_yet.pdf&quot;&gt;Ferrer et al&lt;/a&gt; condition a decision-tree classifier on the length of the pause after IPU continuously and classify on the prosodic features and n-grams of the words. &lt;a href=&quot;https://aclanthology.org/W08-0101.pdf&quot;&gt;Raux and Eskenazi&lt;/a&gt; cluster silences based on dialogue features and set a single threshold for each cluster, minimizing the overall latency by over 50% on the Let’s Go dataset.&lt;/p&gt;
+
+&lt;p&gt;Another shortcoming with the above approaches is that they are trained on human-computer dialogue corpus. But we want to learn a model for human-human dialogues. Transferring models from human-human to human-computer based systems is not feasible. So, some authors like (&lt;a href=&quot;https://aclanthology.org/W08-0101.pdf&quot;&gt;Raux, Eskenazi&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.704.2085&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;Meena et al.&lt;/a&gt; use &lt;strong&gt;bootstrapping&lt;/strong&gt;. First, a more simplistic model of turn-taking is implemented in a system and interactions are recorded. Then, the data is then manually annotated with suitable TRPs, and trained using a machine learning model like LSTM. Another approach is a &lt;strong&gt;Wizard-of-Oz&lt;/strong&gt; setup, where a hidden operator controls the system and makes the turn-taking decisions as used in &lt;a href=&quot;https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/55075/Maier%20et%20al.%202017.%20Towards%20Deep%20End-of-Turn%20Prediction.pdf?sequence=1&quot;&gt;Maier et al.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Some previous approaches utilize reinforcement learning as well. For example, &lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.149.6018&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;Jonsdottir et al&lt;/a&gt; train two agents to talk to each other, picking up prosodic cues and develop turn-taking skills. &lt;a href=&quot;https://aclanthology.org/W15-4643.pdf&quot;&gt;Khouzaimi et al.&lt;/a&gt; train a dialogue management model intending to minimize the dialogue duration and maximize the completion task ratio. But these approaches are trained in simulated environments and it is unclear if they transfer to real users.&lt;/p&gt;
+
+&lt;h2 id=&quot;continuous-models&quot;&gt;Continuous models&lt;/h2&gt;
+
+&lt;p&gt;Continuous models process the utterances in an incremental manner. These modules process the input frame-by-frame and pass their results to subsequent modules. It enables the system to make continuous TRP predictions, project turn completions and backchannels. Unlike previous approaches, the processing starts before the input is complete. The processing time is improved, and the output becomes more &lt;em&gt;natural&lt;/em&gt;. There is no need to train the model for end-of-turn detection. It enables a deeper understanding of utterances and project backchannels and even interrupt the user.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16001446/165454581-fceb250f-342f-4ca8-981d-bd635b922478.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the first works in incremental processing was &lt;a href=&quot;https://aclanthology.org/E09-1085.pdf&quot;&gt;Skantze and Schlangen&lt;/a&gt; on the task of number dictation. A benefit of incremental models is revision, as shown by  &lt;a href=&quot;https://www.researchgate.net/profile/Gabriel-Skantze/publication/257267620_Towards_incremental_speech_generation_in_conversational_systems/links/5c473188299bf12be3db10e6/Towards-incremental-speech-generation-in-conversational-systems.pdf&quot;&gt;Skantze and Hjalmarsson&lt;/a&gt;. For example, the word “four” might be amended with more speech, resulting in a revision to the word “forty”.&lt;/p&gt;
+
+&lt;p&gt;Another work by &lt;a href=&quot;https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf&quot;&gt;Skantze&lt;/a&gt; doesn’t train the model for end-of-turn detection. The audio from the speakers is processed frame-by-frame (20 frames per second) and fed to an LSTM. The LSTM predicts the speech activity for the two speakers for each frame in a future 3s window. The model outperforms human judges in this task. In an extension to this work, &lt;a href=&quot;https://arxiv.org/pdf/1808.10785.pdf&quot;&gt;Roddy et al.&lt;/a&gt; propose a new LSTM architcture where the acoustic and linguistic features get processed in separate LSTM systems with different timescales.&lt;/p&gt;
+
+&lt;h2 id=&quot;datasets&quot;&gt;Datasets&lt;/h2&gt;
+
+&lt;p&gt;Most of the aforementioned works evaluate their performance on dialogue based datasets like:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://groups.inf.ed.ac.uk/cgi/maptask/estimate.cgi&quot;&gt;HCRC MapTask Corpus&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mahnob-db.eu/mimicry/&quot;&gt;Mahnob Corpus&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;that have a limited purpose and may not generalize well to our problem.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;While significant work has been done in end-of-utterance detection, most of these models have shortcomings. Firstly, most are trained on dialogue-based datasets only without accounting for speech-level features. Secondly, these datasets are well-curated with less noise in the background which is not the case for our datasets. To account for noise and model audio and text jointly, we will need to retrain our models with new baselines.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.lti.cs.cmu.edu/sites/default/files/research/thesis/2008/antoine_raux_flexible_turn-taking_for_spoken_dialog_systems.pdf&quot;&gt;Flexible Turn-Taking for Spoken Dialog Systems&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S088523082030111X&quot;&gt;Turn-taking in Conversational Systems and Human-Robot Interaction: A Review&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.cs.cmu.edu/afs/cs/Web/People/dod/papers/sato-icslp02.pdf&quot;&gt;Learning decision trees to determine turn-taking by spoken dialogue systems&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.384.968&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;Rhythms of Dialogue.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pure.mpg.de/rest/items/item_2376846/component/file_2376845/content&quot;&gt; simplest systematics for the organization of turn-taking for conversation.&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf&quot;&gt;Towards a general, continuous model of turn-taking in spoken dialogue using LSTM recurrent neural networks&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.sri.com/wp-content/uploads/2021/12/is_the_speaker_done_yet.pdf&quot;&gt;IS THE SPEAKER DONE YET? FASTER AND MORE ACCURATE END-OF-UTTERANCE DETECTION USING PROSODY&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://aclanthology.org/W08-0101.pdf&quot;&gt;Optimizing Endpointing Thresholds using Dialogue 2Features in a Spoken Dialogue System&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://qmro.qmul.ac.uk/xmlui/bitstream/handle/123456789/55075/Maier%20et%20al.%202017.%20Towards%20Deep%20End-of-Turn%20Prediction.pdf?sequence=1&quot;&gt;Towards Deep End-of-Turn Prediction for Situated Spoken Dialogue Systems&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.149.6018&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;Learning smooth, human-like turntaking in realtime dialogue&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://aclanthology.org/W15-4643.pdf&quot;&gt;Optimising Turn-Taking Strategies With Reinforcement Learning&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://aclanthology.org/E09-1085.pdf&quot;&gt;Incremental Dialogue Processing in a Micro-Domain &lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.researchgate.net/profile/Gabriel-Skantze/publication/257267620_Towards_incremental_speech_generation_in_conversational_systems/links/5c473188299bf12be3db10e6/Towards-incremental-speech-generation-in-conversational-systems.pdf&quot;&gt;Towards incremental speech generation in conversational systems&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.diva-portal.org/smash/get/diva2:1141130/FULLTEXT01.pdf&quot;&gt;Towards a General, Continuous Model of Turn-taking in Spoken Dialogue using LSTM Recurrent Neural Networks&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1808.10785.pdf&quot;&gt;Multimodal Continuous Turn-Taking Prediction Using Multiscale RNNs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>anirudhthatipelli</name></author><category term="Machine Learning" /><category term="end-of-utterance" /><category term="turn-taking" /><summary type="html">This blog post is based on the work done by Anirudh Thatipelli as an ML research fellow at Skit.ai</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">TTS Enhancement</title><link href="/woc/" rel="alternate" type="text/html" title="TTS Enhancement" /><published>2022-03-09T00:00:00+00:00</published><updated>2022-03-09T00:00:00+00:00</updated><id>/woc</id><content type="html" xml:base="/woc/">&lt;h1 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h1&gt;
 
 &lt;p&gt;Text-To-Speech (TTS) systems of Skit, as well as TTS systems in general, have a tendency to mix some ambient noise along with the speech it outputs. This aim of this research project was to remove that noise and quantify how well the noise has been removed using standard metrics.&lt;/p&gt;
 
@@ -1610,118 +1754,4 @@ followed by a multi-class classifier that predicts the value for each act-slot p
 &lt;h1 id=&quot;references-&quot;&gt;References :&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Tür, G., Deoras, A., &amp;amp; Hakkani-Tür, D. (2013, September). Semantic parsing using word confusion networks with conditional random fields. In &lt;em&gt;INTERSPEECH&lt;/em&gt; (pp. 2579-2583).&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="SLU" /><summary type="html">This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/n-best-asr.jpg" /><media:content medium="image" url="/assets/images/n-best-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Authentication in gRPC</title><link href="/authentication-in-grpc/" rel="alternate" type="text/html" title="Authentication in gRPC" /><published>2021-10-31T00:00:00+00:00</published><updated>2021-10-31T00:00:00+00:00</updated><id>/authentication-in-grpc</id><content type="html" xml:base="/authentication-in-grpc/">&lt;p&gt;In gRPC, there are a number of ways you can add authentication between client
-and server. It is handled via Credentials Objects.&lt;/p&gt;
-
-&lt;p&gt;There are two types of credential objects:&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Channel Credentials&lt;/strong&gt;: These are handled on the channel level, i.e when
-the connection is established and a channel is created.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Call Credentials&lt;/strong&gt;: These are handled on per request level, i.e for every
-RPC call that is made. These Credential objects can also be combined to
-create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CompositeChannelCredentials&lt;/code&gt; with one Channel Credential and one
-Call Credential object.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Now let us see how we can use these credential objects.&lt;/p&gt;
-
-&lt;h2 id=&quot;client-side-tlsssl-authentication&quot;&gt;Client-Side TLS/SSL Authentication&lt;/h2&gt;
-&lt;p&gt;gRPC provides a way to establish a connection without any secure connection i.e just like HTTP.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithInsecure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// server.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tcp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For secure communication, we will create &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TransportCredentials&lt;/code&gt; which is a type
-of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ChannelCredential&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewClientTLSFromFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;certFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;localhost:5000&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithTransportCredentials&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// server.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tcp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;localhost:50051&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServerTLSFromFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;certFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keyFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Serve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lis&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can read more about generating own ssl certificates &lt;a href=&quot;https://www.linuxjournal.com/content/understanding-public-key-infrastructure-and-x509-certificates&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;In the case where you don’t own the client, it means you are creating a gRPC
-API for public use, you cannot give your certificate to everyone using your
-client. In that case, we rely on well known &lt;a href=&quot;https://en.wikipedia.org/wiki/Certificate_authority&quot;&gt;Certificate
-Authority&lt;/a&gt; like LetsEncrypt, Amazon, etc. to generate a
-certificate. So let us change our client code a little.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tls&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;InsecureSkipVerify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;conn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WithTransportCredentials&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewTLS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
-&lt;span class=&quot;c&quot;&gt;// server code remains the same&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;In this case what happens is that grpc loads the certificates of well-known
-Certificate Authorities from the OS and sends it to the server, hence no need
-to manually provide a certificate.&lt;/p&gt;
-
-&lt;h2 id=&quot;token-based-authentication--oauth2&quot;&gt;Token-Based Authentication / OAuth2&lt;/h2&gt;
-
-&lt;p&gt;Many a time we want to differentiate a client by issuing them different tokens.
-TLS Authentication is a good way to secure your connection but it does not tell
-us from which client the request is coming from. We will send the token in
-request metadata just like HTTP Headers.&lt;/p&gt;
-
-&lt;p&gt;gRPC has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google.golang.org/grpc/metadata&lt;/code&gt; package to send and receive metadata
-with a RPC request.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// client.go&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// add metadata to request context&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;md&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Pairs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Bearer xxx-xxx-xxx&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;md&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// use this context to call rpc&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CallRPC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requestObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We will use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnaryInterceptor&lt;/code&gt; on the server which acts as middleware and
-checks for the token for all the requests.&lt;/p&gt;
-
-&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;// create a middleware&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AuthInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryServerInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;interface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{},&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metadata&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FromContext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ok&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;missing context metadata&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  
-    &lt;span class=&quot;c&quot;&gt;// Take care: grpc internally reduce key values to lowercase&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;invalid token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;meta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;authorization&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;xxx-xxx-xxx&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Errorf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;codes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Unauthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;invalid token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;// pass this when creating server&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NewServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-   &lt;span class=&quot;n&quot;&gt;grpc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnaryInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AuthInterceptor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;But above code only works for non-streaming RPCs. For Streaming RPCs you can
-implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StreamInterceptor&lt;/code&gt;. Instead of implementing it again you can use
-this package. I hope this article helps you with authentication in gRPC.&lt;/p&gt;
-
-&lt;p&gt;If you are interested in working with cutting-edge technologies, come work with
-&lt;a href=&quot;https://skit.ai&quot;&gt;Skit&lt;/a&gt;. Apply &lt;a href=&quot;https://skit.recruiterbox.com/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name>Deepankar Agrawal</name></author><category term="Engineering" /><category term="authentication" /><category term="gRPC" /><summary type="html">In gRPC, there are a number of ways you can add authentication between client and server. It is handled via Credentials Objects.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/thumbnail-authentication-in-grpc.svg" /><media:content medium="image" url="/assets/images/thumbnail-authentication-in-grpc.svg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="SLU" /><summary type="html">This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/n-best-asr.jpg" /><media:content medium="image" url="/assets/images/n-best-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
