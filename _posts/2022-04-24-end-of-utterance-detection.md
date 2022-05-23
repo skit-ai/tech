@@ -1,7 +1,7 @@
 ---
 title: End of Utterance Detection
 date: 2022-04-24
-tags: [end-of-utterance][turn-taking]
+tags: [end-of-utterance, turn-taking]
 categories: [Machine Learning]
 image: assets/images/demo1.jpg
 layout: post
