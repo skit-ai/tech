@@ -1,4 +1,192 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-05-23T08:30:17+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">End of Utterance Detection</title><link href="/end-of-utterance-detection/" rel="alternate" type="text/html" title="End of Utterance Detection" /><published>2022-04-24T00:00:00+00:00</published><updated>2022-04-24T00:00:00+00:00</updated><id>/end-of-utterance-detection</id><content type="html" xml:base="/end-of-utterance-detection/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-05-25T04:38:08+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Theory of Mind and Implications for Chatbots</title><link href="/theory-of-mind/" rel="alternate" type="text/html" title="Theory of Mind and Implications for Chatbots" /><published>2022-05-19T00:00:00+00:00</published><updated>2022-05-19T00:00:00+00:00</updated><id>/theory-of-mind</id><content type="html" xml:base="/theory-of-mind/">&lt;p&gt;When a diplomat says &lt;em&gt;yes&lt;/em&gt;, he means ‘perhaps’;&lt;br /&gt;
+When he says &lt;em&gt;perhaps&lt;/em&gt;, he means ‘no’;&lt;br /&gt;
+When he says &lt;em&gt;no&lt;/em&gt;, he is not a diplomat.&lt;/p&gt;
+
+&lt;p&gt;                        —&lt;em&gt;Voltaire&lt;/em&gt; (Quoted, in Spanish, in Escandell 1993.)&lt;/p&gt;
+
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;Consider this example: You’re out in the street in a crowded area. A stranger walks upto you and asks for directions in your local language, &lt;em&gt;L&lt;/em&gt;. You responded, you notice the facial expressions of the stranger and that they seem to be confused, and do not understand what you said. Now, you’re confused as well, and try to clarify your instructions, but the stranger later reveals that he isn’t very fluent in the language &lt;em&gt;L&lt;/em&gt;; hence you ask for whether they understand a globally-used language &lt;em&gt;E&lt;/em&gt;, the stranger confirms, and the conversation continues.&lt;/p&gt;
+
+&lt;p&gt;Let’s breakdown what occurred here.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The stranger asked a question in a local language &lt;em&gt;L&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;You now have a belief that the stranger is speaks the local language &lt;em&gt;L&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Due to your belief, you respond in the same language &lt;em&gt;L&lt;/em&gt;, &lt;em&gt;expecting&lt;/em&gt; the stranger to understand the information you’re trying to convey. This is a &lt;em&gt;false belief&lt;/em&gt;, as it is later revealed.&lt;/li&gt;
+  &lt;li&gt;You look for verbal/non-verbal cues from the stranger that they understood.&lt;/li&gt;
+  &lt;li&gt;However, the stranger &lt;em&gt;denies&lt;/em&gt; your expectation by showing absence of such cues and instead, show cues of confusion.&lt;/li&gt;
+  &lt;li&gt;You attempt to further elaborate your instructions taking these cues into account, however the stranger still seems confused.&lt;/li&gt;
+  &lt;li&gt;The conversation at this point feels “awkward” since your expectations of the conversation were being denied multiple times.&lt;/li&gt;
+  &lt;li&gt;The stranger reveals that they aren’t very fluent in &lt;em&gt;L&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;This confirms that your &lt;em&gt;belief&lt;/em&gt; that the stranger understood &lt;em&gt;L&lt;/em&gt; was &lt;em&gt;false&lt;/em&gt;. This brings a sense of comfort since now you understand why your expectations were being denied.&lt;/li&gt;
+  &lt;li&gt;You now correct for your &lt;em&gt;false belief&lt;/em&gt; and ask whether the stranger understands a globally-used language &lt;em&gt;E&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;The stranger confirms.&lt;/li&gt;
+  &lt;li&gt;And the conversation continues.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This mechanism of having expectations from the other participant is a basis for successful conversation. If we lacked such an ability, the emergence of mutually accepted meanings of words, and language itself would be impossible. This also applies to non-verbal communication, such as body language and facial expressions, and to some degree, is observed in many animal species.&lt;/p&gt;
+
+&lt;p&gt;We now dive deeper into this aspect of communication, and formalize why both, human-human and human-machine conversations breakdown and/or lead to frustration of the participants.&lt;/p&gt;
+
+&lt;h1 id=&quot;theory-of-mind&quot;&gt;Theory of Mind&lt;/h1&gt;
+
+&lt;p&gt;Whenever we converse, we take into account what we expect the other person to understand through our words as well as their possible responses. The ability to conceive such “theories” of other participants’ mental states is termed as the Theory of Mind (ToM).&lt;/p&gt;
+
+&lt;p&gt;Having ToM requires the agent to acknowledge the fact that others (including the agent itself) can &lt;em&gt;believe&lt;/em&gt; in things which are not true. These beliefs are called &lt;em&gt;false beliefs&lt;/em&gt;. An agent possessing ToM can identify their own as well as other’s false beliefs and take actions to confirm and hence correct these false-beliefs.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-makes-a-conversation-human-like&quot;&gt;What makes a conversation &lt;em&gt;human-like&lt;/em&gt;?&lt;/h1&gt;
+
+&lt;p&gt;Proposition:&lt;/p&gt;
+
+&lt;p&gt;               &lt;em&gt;A dialogue is human-like if both agents participating have some degree of Theory of Mind.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Theory of Mind is not limited to the content of the speech (such as the words spoken), but also addresses the mannerism of speech (prosody), facial and other non-verbal cues etc. It is easy to see that if any one of the agents lack ToM or have a poor ability, the conversation becomes uncomfortable and frustrating.&lt;/p&gt;
+
+&lt;p&gt;However, Theory of Mind is an acquired skill, expertise of humans on ToM matures over the lifespan [2], in-addition to depending on the amount of socialization the person part-takes in. This makes quantifying the degree of expertise over ToM difficult, hence quantifying the degree of &lt;em&gt;human-likeness&lt;/em&gt; is also difficult, in-addition to being be subjective.&lt;/p&gt;
+
+&lt;h2 id=&quot;testing-the-presence-of-theory-of-mind&quot;&gt;Testing the Presence of Theory of Mind&lt;/h2&gt;
+
+&lt;p&gt;Testing whether or not an agent is capable of modeling mental states of others is important for many reasons, one such application is diagonosing mental disorders. Such tests are called false-belief tasks. These tests check whether the agent can model other’s false-beliefs and/or confirm and correct its own false-beliefs. We will discuss two popular false-belief tasks: “Sally-Anne” and “Smarties” tasks .&lt;/p&gt;
+
+&lt;h3 id=&quot;sally-anne-task&quot;&gt;Sally-Anne Task&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/en/a/ac/Sally-Anne_test.jpg&quot; alt=&quot;Illustration of the &amp;quot;Sally-Anne&amp;quot; Test&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The participating agent is told the following scenario:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Sally and Anne are inside a room.&lt;/li&gt;
+  &lt;li&gt;Sally has a basket with one marble inside it.&lt;/li&gt;
+  &lt;li&gt;Anne has an empty box with her.&lt;/li&gt;
+  &lt;li&gt;Sally leaves the room without her basket.&lt;/li&gt;
+  &lt;li&gt;Anne takes the marble out of Sally’s basket and puts it in her own box.&lt;/li&gt;
+  &lt;li&gt;Sally comes back inside the room.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now, the participant is asked, “Where will Sally look for her marble?”. If the participant replies with “the basket”, this means that the participant is able to model the mental state of a fictional character Sally, and that she doesn’t know that Anne took her marble. Children below the age of 3-4 answer with “the box”, however, older children answer with “the basket”. Some children with mental disabilities such as Down syndrome and Autism are unable to pass this test.&lt;/p&gt;
+
+&lt;h3 id=&quot;smarties-task&quot;&gt;Smarties Task&lt;/h3&gt;
+&lt;p&gt;Smarties is a popular brand of candies.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The participant is presented with a box labelled “Smarties”.&lt;/li&gt;
+  &lt;li&gt;The participant is asked “what is in the box?”.&lt;/li&gt;
+  &lt;li&gt;The participant replies with “candies”.&lt;/li&gt;
+  &lt;li&gt;The box is opened and is revealed that the box actually contains pencils.&lt;/li&gt;
+  &lt;li&gt;The participant is asked “What would someone else think is inside the box?”.&lt;/li&gt;
+  &lt;li&gt;The participant passes the test if they respond with “candies”.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Theory of Mind is an acquired skill, and is not innate, i.e., we aren’t born with the ability to model other’s mental states. A study [1] shows that children first pass False-belief tasks at around 3-4 years of age, around the same time as children first learn to tell lies, suggesting that learning to lie is a pre-cursor to possessing ToM. This does make sense, as lying would &lt;em&gt;only help if the other participant is capable of having false-beliefs&lt;/em&gt;. Language and communication are also acquired skills.&lt;/p&gt;
+
+&lt;h2 id=&quot;theory-of-mind-relevance-to-chatbots&quot;&gt;Theory of Mind: Relevance to Chatbots&lt;/h2&gt;
+&lt;p&gt;Having ToM allows for certain mechanisms that would not be possible otherwise. Some are listed below:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The ability of the agent to recognize its own errors in perceiving (mis-hearing), i.e., discover its own false-beliefs and ask for clarifications. This also leads to a higher order reasoning capability of the agent.&lt;/li&gt;
+  &lt;li&gt;The ability of the agent to dynamically model its counterpart throughout the conversation and adjust its own behaviour inorder to maximize the success of the dialog. Dynamic response and prosody generation, turn-taking, barge-in handling, etc. are such examples.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;do-machines-have-a-theory-of-mind&quot;&gt;Do Machines have a Theory of Mind?&lt;/h2&gt;
+
+&lt;p&gt;One of the important goals of AI is to blend in the lives of Humans and solve problems &lt;em&gt;with humans-in-the-loop&lt;/em&gt;, achieving this requires modeling humans and other machines around the agent, similar to how we humans do.&lt;/p&gt;
+
+&lt;p&gt;Some studies [3, 4] have shown that specially designed Multi-Agent Reinforcement Learning algorithms pass the Sally-Anne False-belief task. However, False-belief tasks have not been designed for/tested against chatbots. In this section, we test multiple Language Models (LM) against the Sally-Anne and Smarties tasks, and check whether they pass the tests or not.&lt;/p&gt;
+
+&lt;h3 id=&quot;methodology&quot;&gt;Methodology&lt;/h3&gt;
+&lt;p&gt;All of the experiments were done using Huggingface’s Hub has inference interface. These experiments can be easily re-ran, however, it is not guarrenteed to get the same results since the inference is non-detereministic. The tasks are widely used and are available in Wikipedia and other scientific papers on which some/all of the LMs may have been trained on, hence these tests are not conclusive.&lt;/p&gt;
+
+&lt;h4 id=&quot;sally-anne-task-1&quot;&gt;Sally-Anne Task&lt;/h4&gt;
+&lt;p&gt;Input Text: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sally and Anne are inside a room. Sally has a basket with one marble inside it. Anne has an empty box with her. Sally leaves the room without her basket. Anne takes the marble out of Sally's basket and puts it in her own box. Sally comes back inside the room. Sally will look for her marble in &lt;/code&gt;
+If the LMs continue with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;her basket&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;the basket&lt;/code&gt; or anything similar, the LM passes the test, else it doesn’t.&lt;/p&gt;
+
+&lt;h4 id=&quot;smarties-task-1&quot;&gt;Smarties Task&lt;/h4&gt;
+&lt;p&gt;Input Text: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sally is presented with a box labeled &quot;Candies&quot;. Sally is asked, &quot;what is in the box?&quot;. Sally replies with &quot;candies&quot;. The box is opened and is revealed that the box actually contains pencils. Sally is asked, &quot;What would someone else think is in the box?&quot;. Sally answers &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If the LMs continue with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;candies&lt;/code&gt; or anything similar, the LM passes the test, else it doesn’t.&lt;/p&gt;
+
+&lt;h3 id=&quot;results&quot;&gt;Results&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Language Model&lt;/th&gt;
+      &lt;th&gt;# Params&lt;/th&gt;
+      &lt;th&gt;Sally-Anne&lt;/th&gt;
+      &lt;th&gt;Smarties&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DistilGPT2&lt;/td&gt;
+      &lt;td&gt;82M&lt;/td&gt;
+      &lt;td&gt;Fail&lt;/td&gt;
+      &lt;td&gt;Fail&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GPT-Neo-125M&lt;/td&gt;
+      &lt;td&gt;125M&lt;/td&gt;
+      &lt;td&gt;Fail&lt;/td&gt;
+      &lt;td&gt;Fail&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GPT-Neo-1.3B&lt;/td&gt;
+      &lt;td&gt;1.3B&lt;/td&gt;
+      &lt;td&gt;Fail&lt;/td&gt;
+      &lt;td&gt;Fail&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GPT-2&lt;/td&gt;
+      &lt;td&gt;1.5B&lt;/td&gt;
+      &lt;td&gt;Pass&lt;/td&gt;
+      &lt;td&gt;Pass&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GPT-Neo-2.7B&lt;/td&gt;
+      &lt;td&gt;2.7B&lt;/td&gt;
+      &lt;td&gt;Pass&lt;/td&gt;
+      &lt;td&gt;Pass&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GPT-J-6B&lt;/td&gt;
+      &lt;td&gt;6B&lt;/td&gt;
+      &lt;td&gt;Pass&lt;/td&gt;
+      &lt;td&gt;Pass&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The largest three of the models pass both the tests. This suggests that scale might help LMs achieve some basic reasoning capabilities. This result is not surprising, since larger LMs usually do better in reasoning benchmarks.&lt;/p&gt;
+
+&lt;p&gt;P.S. The most entertaining response award goes to DistilGPT2 for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;I don't give a fig about the box&quot;&lt;/code&gt; for the Sally-Anne task. This is not made up, I swear!&lt;/p&gt;
+
+&lt;h2 id=&quot;implications-for-goal-oriented-chatbots&quot;&gt;Implications for Goal-Oriented Chatbots&lt;/h2&gt;
+
+&lt;p&gt;Open-domain chat has one important goal, &lt;em&gt;engagement with the user&lt;/em&gt;. The user engages with the chatbot &lt;em&gt;if the chatbot is entertaining the user&lt;/em&gt;. For this statement to hold true, the bot should appropriately make responses, which in-turn requires modeling the user, i.e., having a Theory of Mind. The &lt;em&gt;degree of engagement&lt;/em&gt; can be seen as a measure of &lt;em&gt;degree of ToM&lt;/em&gt; of the chatbot.&lt;/p&gt;
+
+&lt;p&gt;Testing ToM is straight-forward for Open-domain (chit-chat) chatbot. However, this is tricky for goal-oriented chatbots, as they are designed to handle dialog under a specific domain. False-belief task defined on one domain maybe out-of-domain for another domain.&lt;/p&gt;
+
+&lt;p&gt;Open-domain dialog is a strict generalization of goal-oriented dialog. However, goal-oriented may have goals which are defined differently from &lt;em&gt;engagement&lt;/em&gt;. In many call-center settings, &lt;em&gt;call resolution&lt;/em&gt; is the most important goal. However, when voice chatbots are used in-place of human agents in call centers, a new and different behaviour of users arises: &lt;em&gt;call drop&lt;/em&gt;. Users simply drop from the call if they:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;get frustrated (due to mishearing, poor reasoning capabilities etc.).&lt;/li&gt;
+  &lt;li&gt;think the chatbot is &lt;em&gt;incapable&lt;/em&gt; of answering their queries, even if the bot is capable. This is a false-belief of the user, and the chatbot is unable to correct the user’s false-belief.
+Call drops occur in a major chunk of the calls (40-50%).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Most chatbots in the industry are designed in a way that assumes &lt;em&gt;the user trusts the chatbot and has infinite patience&lt;/em&gt;. Chatbot’s behaviour is apparrently designed to optimize for resolving queries of the user, however, not to &lt;em&gt;inspire trust in the user that the bot is capable to resolve queries&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are two possible ways to “solve” this problem:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Explicit&lt;/code&gt;: Design the product in a way that inspires trust. Come up with the &lt;em&gt;best possible&lt;/em&gt; responses for all possible combination of dialog history and user states.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Implicit&lt;/code&gt;: Design the product in a top-down fashion rather than a bottom-up. Many believe that optimizing components with their local objective (Word-error-rate for ASR, F1 Scores for Intent classifiers etc.) would lead to a higher resolution rate. In biological systems, the higher-order function (survival) dictates lower order function (communication, language). Learning to communicate better can not ensure survival on its own. However, learning to survive &lt;em&gt;may lead to a better ability to communicate&lt;/em&gt;. In other words, optimize ML models against objective (resolution rate) in-addition to the local objective. This &lt;em&gt;will&lt;/em&gt; force the chatbot to behave in a way that inspires trust from the user and effectively learn to have theory of mind of the users.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first method is the industry standard, and it doesn’t seem to be working well. The second method has the clear advantage of being data-driven and scalable.&lt;/p&gt;
+
+&lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
+&lt;p&gt;[1] Astington, J.W., &amp;amp; Edward, M.J. (2010). The Development of Theory of Mind in Early Childhood.&lt;/p&gt;
+
+&lt;p&gt;[2] Demetriou, A., Mouyi, A., &amp;amp; Spanoudis, G. (2010). “The development of mental processing”, Nesselroade, J. R. (2010). “Methods in the study of life-span human development: Issues and answers.” In W. F. Overton (Ed.), &lt;em&gt;Biology, cognition and methods across the life-span.&lt;/em&gt; Volume 1 of the &lt;em&gt;Handbook of life-span development&lt;/em&gt; (pp. 36–55), Editor-in-chief: R. M. Lerner. Hoboken, New Jersey: Wiley.&lt;/p&gt;
+
+&lt;p&gt;[3] Rabinowitz, N.C., Perbet, F., Song, H.F., Zhang, C., Eslami, S.M., &amp;amp; Botvinick, M.M. (2018). Machine Theory of Mind. &lt;em&gt;ICML&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;[4] Nguyen, T.N., &amp;amp; González, C. (2020). Cognitive Machine Theory of Mind. &lt;em&gt;CogSci&lt;/em&gt;.&lt;/p&gt;</content><author><name>Surya Kant Sahu</name></author><category term="Machine Learning" /><category term="Theory of Mind" /><category term="chatbot" /><category term="voice assistant" /><summary type="html">When a diplomat says yes, he means ‘perhaps’; When he says perhaps, he means ‘no’; When he says no, he is not a diplomat.</summary></entry><entry><title type="html">End of Utterance Detection</title><link href="/end-of-utterance-detection/" rel="alternate" type="text/html" title="End of Utterance Detection" /><published>2022-04-24T00:00:00+00:00</published><updated>2022-04-24T00:00:00+00:00</updated><id>/end-of-utterance-detection</id><content type="html" xml:base="/end-of-utterance-detection/">&lt;blockquote&gt;
   &lt;p&gt;This blog post is based on the work done by &lt;a href=&quot;https://github.com/Anirudh257&quot;&gt;Anirudh 
 Thatipelli&lt;/a&gt; as an ML research fellow at Skit.ai&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1641,117 +1829,4 @@ conversations. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot
       &lt;p&gt;Including the other factors around PAC learning. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><summary type="html">Consider a restaurant booking voice bot built using a frames and slots approach. While this can easily solve the problem of booking with high automation accuracy, such slot-filling framework can’t carry on a meaningful conversation in a debate unless you over-engineer the frames and slots to monstrous complexity. Booking a restaurant is a form of conversation that’s innately simpler than arguing with someone in a debate competition. We can roughly say that these two conversations lie in different complexity classes. In this first post of a series, we will lay down a few factors that will help us define a map of conversations arranged according to their complexities.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">On using ASR Alternatives for a Better SLU</title><link href="/on-using-asr-alternatives-for-a-better-slu/" rel="alternate" type="text/html" title="On using ASR Alternatives for a Better SLU" /><published>2021-11-29T00:00:00+00:00</published><updated>2021-11-29T00:00:00+00:00</updated><id>/on-using-asr-alternatives-for-a-better-slu</id><content type="html" xml:base="/on-using-asr-alternatives-for-a-better-slu/">&lt;p&gt;This blog discusses some concepts from the recently published &lt;a href=&quot;https://arxiv.org/pdf/2106.06519.pdf&quot;&gt;paper&lt;/a&gt; by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in &lt;a href=&quot;https://2021.aclweb.org/&quot;&gt;ACL-IJCNLP’21&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;Voice bots in the industry heavily rely on the use of Automatic Speech Recognition (ASR) transcripts to understand the user and capture intents &amp;amp; entities which are then used to resolve the customer’s problem. ASR’s however are far from perfect, especially on noisy real world data and on instances with acoustic confusion. The downstream Spoken Language Understanding (SLU) components would benefit greatly if they take the ASR’s confusion into account.&lt;/p&gt;
-
-&lt;p&gt;Example use-case with confounding ASR transcripts (over voice):&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Bot: When would you like to make the reservation ?
-User (actually said): right now
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;ASR alternatives for given user’s speech:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- like, now
-- right now
-- write no
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Often the downstream SLU services which act on ASR transcripts use only the most probable alternative (also called 1-best alternative), thereby leaving out a lot of other information that exists in the form of alternative probabilities. This paper presents a simple way of using the information that exists in the alternatives to get SOTA performance on a standard benchmark for a SLU system.&lt;/p&gt;
-
-&lt;h1 id=&quot;types-of-asr-outputs&quot;&gt;Types of ASR Outputs&lt;/h1&gt;
-
-&lt;p&gt;Before we get into how to best use ASR’s confusion to increase the performance of the SLU, we discuss the different ways an ASR outputs the probable word sequence probabilities.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;N-best alternatives : this is a list of the top N alternative sentences for the given spoken utterance. These are usually ranked based on probability of occurrence.&lt;/li&gt;
-  &lt;li&gt;Word lattices : As shown in the below figure, they have no a-priori structure per se. Every path from the start node to the end node represents a possible hypothesis transcript. Every transition adds a word to the hypothesis.&lt;/li&gt;
-  &lt;li&gt;Word confusion networks : They are a more compact and normalised topology for word lattices. They enforce certain constaints such that competing words should be in the same group and there by also ensure aligment of words that occur at the same time interval. Though these graphs capture lesser number of possibilities, this topology can be used to get as high recognition accuracy as using word lattices.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The transitions probabilities of both, word lattices and word confusion networks are weighted by the acoustic and language model probabilities.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/n-best-asr/word-lattices.jpg&quot; /&gt;
-  &lt;figcaption&gt;Fig 1: The structure of a word lattice as contrasted with a word confusion network.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;h1 id=&quot;dataset&quot;&gt;Dataset&lt;/h1&gt;
-
-&lt;p&gt;The task that is used to compare the modelling approaches is the &lt;a href=&quot;https://aclanthology.org/W14-4337.pdf&quot;&gt;DSTC - 2 challenge&lt;/a&gt; where one is required to predict intent act-slot-value triplets. Pairs of sentences i.e. a sentence whose intent is required to be predicted along with its context is given. For each sentence the top 10 best ASR alternatives are also provided.&lt;/p&gt;
-
-&lt;h1 id=&quot;modelling-approach&quot;&gt;Modelling Approach&lt;/h1&gt;
-
-&lt;p&gt;The central idea of the paper is to leverage pre-trained transformer models BERT and XLMRoBERTa and fine-tune them with a simple input representation shown below. The input consists of the ASR alternatives seperated by a seperator token concatenated with the context. A segment id (not shown below) is also used, which is used to contrast the context (in green) with the alternatives (in purple).&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/n-best-asr/example-input.jpg&quot; /&gt;
-  &lt;figcaption&gt;Fig 2: Input representation used to fine-tune transformer models.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;On top of the transformer model a semantic tuple classifier (STC) is applied to predict the act-slot-value triplets. Using this approach, we achieve a performance equivalent to the prior state-of-the-art model on DSTC-2 dataset. We get comparable F1 and SOTA accuracy. The previous SOTA model, WCN-BERT uses word confusion networks.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/n-best-asr/model-architecture.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 3: Model Architecture, The input representation is encoded by a transformer model which forms an
-input for a Semantic Tuple Classifier (STC). STC uses binary classifiers to predict the presence of act-slot pairs,
-followed by a multi-class classifier that predicts the value for each act-slot pair.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Here, using a simple ASR output such an N-best alternatives we get a comparable performance to the SOTA model that uses a much more informative probability graph such as a word confusion network.&lt;/p&gt;
-
-&lt;h1 id=&quot;ablation-experiments&quot;&gt;Ablation Experiments&lt;/h1&gt;
-
-&lt;p&gt;Two ablation experiments are performed. One on low data regimes and another to check the impact of the context on performance.&lt;/p&gt;
-
-&lt;h2 id=&quot;low-data-regime&quot;&gt;Low Data Regime&lt;/h2&gt;
-
-&lt;p&gt;Here, the baseline models are compared with our approach using 5%, 10%, 20% and 50% of the training data respectively. In all these situations our approach beats SOTA by a considerable margin, proving that our training approach effectively transfer learns. We hypothesise, that this is due to the structural similarity between the input representations of the initial training of these open sourced models and the fine-turning that is done on DSTC-2 dataset. It also demonstrates that n-best alternatives are a more natural representation to fine-tune transformer models compared to word lattices or word confusion networks.&lt;/p&gt;
-
-&lt;h2 id=&quot;context-dependency&quot;&gt;Context Dependency&lt;/h2&gt;
-
-&lt;p&gt;In this experiment we wanted to test the impact of adding context (last turn) to performance and to check if it is relevant at all. An improvement of around ~1.5% F1 score is obtained using context. An example situation where context is relevance is shown below. Dialog context can help in resolving ambiguities in parses and reducing the impact of ASR noise.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/n-best-asr/context-dependence.jpg&quot; /&gt;
-  &lt;figcaption&gt;Fig 4: Example to demonstrate context dependence.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Lastly, this methodology can be used by users of third-party ASR APIs which do not provide word-lattice information and thereby is more accessible.&lt;/p&gt;
-
-&lt;h1 id=&quot;implementation-and-citation&quot;&gt;Implementation and Citation&lt;/h1&gt;
-
-&lt;p&gt;The code for the project can be found &lt;a href=&quot;https://github.com/skit-ai/N-Best-ASR-Transformer&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you use our work, please cite using the following BibTex Citation:&lt;/p&gt;
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@inproceedings{ganesan-etal-2021-n,
-    title = &quot;N-Best {ASR} Transformer: Enhancing {SLU} Performance using Multiple {ASR} Hypotheses&quot;,
-    author = &quot;Ganesan, Karthik  and
-      Bamdev, Pakhi  and
-      B, Jaivarsan  and
-      Venugopal, Amresh  and
-      Tushar, Abhinav&quot;,
-    booktitle = &quot;Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 2: Short Papers)&quot;,
-    month = aug,
-    year = &quot;2021&quot;,
-    address = &quot;Online&quot;,
-    publisher = &quot;Association for Computational Linguistics&quot;,
-    url = &quot;https://aclanthology.org/2021.acl-short.14&quot;,
-    doi = &quot;10.18653/v1/2021.acl-short.14&quot;,
-    pages = &quot;93--98&quot;,
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h1 id=&quot;references-&quot;&gt;References :&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Tür, G., Deoras, A., &amp;amp; Hakkani-Tür, D. (2013, September). Semantic parsing using word confusion networks with conditional random fields. In &lt;em&gt;INTERSPEECH&lt;/em&gt; (pp. 2579-2583).&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="SLU" /><summary type="html">This blog discusses some concepts from the recently published paper by members of the ML team at Skit (formerly Vernacular.ai). The paper is titled “N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses” and was published in ACL-IJCNLP’21.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/n-best-asr.jpg" /><media:content medium="image" url="/assets/images/n-best-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><summary type="html">Consider a restaurant booking voice bot built using a frames and slots approach. While this can easily solve the problem of booking with high automation accuracy, such slot-filling framework can’t carry on a meaningful conversation in a debate unless you over-engineer the frames and slots to monstrous complexity. Booking a restaurant is a form of conversation that’s innately simpler than arguing with someone in a debate competition. We can roughly say that these two conversations lie in different complexity classes. In this first post of a series, we will lay down a few factors that will help us define a map of conversations arranged according to their complexities.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
