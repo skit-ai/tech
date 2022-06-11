@@ -79,7 +79,7 @@ Smarties is a popular brand of candies.
 
 Theory of Mind is an acquired skill, and is not innate, i.e., we aren't born with the ability to model other's mental states. A study [1] shows that children first pass False-belief tasks at around 3-4 years of age, around the same time as children first learn to tell lies, suggesting that learning to lie is a pre-cursor to possessing ToM. This does make sense, as lying would _only help if the other participant is capable of having false-beliefs_. Language and communication are also acquired skills.
 
-## Theory of Mind: Relevance to Chatbots
+## Theory of Mind: Relevance to Conversational AI
 Having ToM allows for certain mechanisms that would not be possible otherwise. Some are listed below:
 1. The ability of the agent to recognize its own errors in perceiving (mis-hearing), i.e., discover its own false-beliefs and ask for clarifications. This also leads to a higher order reasoning capability of the agent.
 2. The ability of the agent to dynamically model its counterpart throughout the conversation and adjust its own behaviour inorder to maximize the success of the dialog. Dynamic response and prosody generation, turn-taking, barge-in handling, etc. are such examples.
@@ -88,7 +88,7 @@ Having ToM allows for certain mechanisms that would not be possible otherwise. S
 
 One of the important goals of AI is to blend in the lives of Humans and solve problems _with humans-in-the-loop_, achieving this requires modeling humans and other machines around the agent, similar to how we humans do.
 
-Some studies [3, 4] have shown that specially designed Multi-Agent Reinforcement Learning algorithms pass the Sally-Anne False-belief task. However, False-belief tasks have not been designed for/tested against chatbots. In this section, we test multiple Language Models (LM) against the Sally-Anne and Smarties tasks, and check whether they pass the tests or not. 
+Some studies [3, 4] have shown that specially designed Multi-Agent Reinforcement Learning algorithms pass the Sally-Anne False-belief task. However, False-belief tasks have not been designed for/tested against chat/voice bots. In this section, we test multiple Language Models (LM) against the Sally-Anne and Smarties tasks, and check whether they pass the tests or not. 
 
 ### Methodology
 All of the experiments were done using Huggingface's Hub has inference interface. These experiments can be easily re-ran, however, it is not guarrenteed to get the same results since the inference is non-detereministic. The tasks are widely used and are available in Wikipedia and other scientific papers on which some/all of the LMs may have been trained on, hence these tests are not conclusive. 
@@ -118,22 +118,22 @@ The largest three of the models pass both the tests. This suggests that scale mi
 
 P.S. The most entertaining response award goes to DistilGPT2 for `"I don't give a fig about the box"` for the Sally-Anne task. This is not made up, I swear!
 
-## Implications for Goal-Oriented Chatbots
+## Implications for Goal-Oriented Conversational AI
 
-Open-domain chat has one important goal, _engagement with the user_. The user engages with the chatbot _if the chatbot is entertaining the user_. For this statement to hold true, the bot should appropriately make responses, which in-turn requires modeling the user, i.e., having a Theory of Mind. The _degree of engagement_ can be seen as a measure of _degree of ToM_ of the chatbot.
+Open-domain chat has one important goal, _engagement with the user_. The user engages with the bot _if the bot is entertaining the user_. For this statement to hold true, the bot should appropriately make responses, which in-turn requires modeling the user, i.e., having a Theory of Mind. The _degree of engagement_ can be seen as a measure of _degree of ToM_ of the bot.
 
-Testing ToM is straight-forward for Open-domain (chit-chat) chatbot. However, this is tricky for goal-oriented chatbots, as they are designed to handle dialog under a specific domain. False-belief task defined on one domain maybe out-of-domain for another domain.
+Testing ToM is straight-forward for Open-domain (chit-chat) bot. However, this is tricky for goal-oriented bots, as they are designed to handle dialog under a specific domain. False-belief task defined on one domain maybe out-of-domain for another domain.
 
-Open-domain dialog is a strict generalization of goal-oriented dialog. However, goal-oriented may have goals which are defined differently from _engagement_. In many call-center settings, _call resolution_ is the most important goal. However, when voice chatbots are used in-place of human agents in call centers, a new and different behaviour of users arises: _call drop_. Users simply drop from the call if they:
+Open-domain dialog is a strict generalization of goal-oriented dialog. However, goal-oriented may have goals which are defined differently from _engagement_. In many call-center settings, _call resolution_ is the most important goal. However, when voice bots are used in-place of human agents in call centers, a new and different behaviour of users arises: _call drop_. Users simply drop from the call if they:
 1. get frustrated (due to mishearing, poor reasoning capabilities etc.).
-2. think the chatbot is _incapable_ of answering their queries, even if the bot is capable. This is a false-belief of the user, and the chatbot is unable to correct the user's false-belief.
+2. think the bot is _incapable_ of answering their queries, even if the bot is capable. This is a false-belief of the user, and the bot is unable to correct the user's false-belief.
 Call drops occur in a major chunk of the calls (40-50%).
 
-Most chatbots in the industry are designed in a way that assumes _the user trusts the chatbot and has infinite patience_. Chatbot's behaviour is apparrently designed to optimize for resolving queries of the user, however, not to _inspire trust in the user that the bot is capable to resolve queries_.
+Most bots in the industry are designed in a way that assumes _the user trusts the bot and has infinite patience_. The bot's behaviour is apparrently designed to optimize for resolving queries of the user, however, not to _inspire trust in the user that the bot is capable to resolve queries_.
 
 There are two possible ways to "solve" this problem:
 1. `Explicit`: Design the product in a way that inspires trust. Come up with the _best possible_ responses for all possible combination of dialog history and user states.
-2. `Implicit`: Design the product in a top-down fashion rather than a bottom-up. Many believe that optimizing components with their local objective (Word-error-rate for ASR, F1 Scores for Intent classifiers etc.) would lead to a higher resolution rate. In biological systems, the higher-order function (survival) dictates lower order function (communication, language). Learning to communicate better can not ensure survival on its own. However, learning to survive _may lead to a better ability to communicate_. In other words, optimize ML models against objective (resolution rate) in-addition to the local objective. This _will_ force the chatbot to behave in a way that inspires trust from the user and effectively learn to have theory of mind of the users.
+2. `Implicit`: Design the product in a top-down fashion rather than a bottom-up. Many believe that optimizing components with their local objective (Word-error-rate for ASR, F1 Scores for Intent classifiers etc.) would lead to a higher resolution rate. In biological systems, the higher-order function (survival) dictates lower order function (communication, language). Learning to communicate better can not ensure survival on its own. However, learning to survive _may lead to a better ability to communicate_. In other words, optimize ML models against objective (resolution rate) in-addition to the local objective. This _will_ force the bot to behave in a way that inspires trust from the user and effectively learn to have theory of mind of the users.
 
 The first method is the industry standard, and it doesn't seem to be working well. The second method has the clear advantage of being data-driven and scalable.
 
