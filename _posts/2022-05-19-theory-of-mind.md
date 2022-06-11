@@ -1,7 +1,7 @@
 ﻿---
-title: Theory of Mind and Implications for Chatbots
+title: Theory of Mind and Implications for Conversational AI
 date: 2022-05-19
-tags: [chatbot, voice assistant]
+tags: [conversational ai, voicebot, chatbot, voice assistant]
 categories: [Machine Learning, Theory of Mind]
 layout: post
 authors: [ojus1]
