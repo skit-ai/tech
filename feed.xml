@@ -1,4 +1,178 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-06-11T04:09:00+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Theory of Mind and Implications for Conversational AI</title><link href="/theory-of-mind/" rel="alternate" type="text/html" title="Theory of Mind and Implications for Conversational AI" /><published>2022-05-19T00:00:00+00:00</published><updated>2022-05-19T00:00:00+00:00</updated><id>/theory-of-mind</id><content type="html" xml:base="/theory-of-mind/">&lt;p&gt;When a diplomat says &lt;em&gt;yes&lt;/em&gt;, he means ‘perhaps’;&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-06-20T08:27:41+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Investigating Label Noise in intent classification datasets and fixing it</title><link href="/label-noise-intro/" rel="alternate" type="text/html" title="Investigating Label Noise in intent classification datasets and fixing it" /><published>2022-06-19T00:00:00+00:00</published><updated>2022-06-19T00:00:00+00:00</updated><id>/label-noise-intro</id><content type="html" xml:base="/label-noise-intro/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Label noise has been a consistent problem even in the &lt;a href=&quot;https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/f2217062e9a397a1dca429e7d70bc6ca-Paper-round1.pdf&quot;&gt;most widely used open source datasets&lt;/a&gt;. Several papers have come up various &lt;a href=&quot;https://arxiv.org/pdf/2007.08199.pdf&quot;&gt;deep learning techniques&lt;/a&gt; to make models more robust to label noise present in their train sets. Even so, identifying label noise in your dataset and investigating it’s cause is an important process to further understand model behaviour and prevent label noise in future datasets.&lt;/p&gt;
+
+&lt;p&gt;In this blog, we discuss why we decided to fix label noise in our datasets followed by some statistic cleaning methods we tested to narrow down regions within the dataset where label noise could be present.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-fix-label-noise&quot;&gt;Why fix label noise?&lt;/h2&gt;
+
+&lt;p&gt;Test sets should be clean to serve as a benchmark for future decisions. To measure the impact of noisy train sets, we plot a graph of model performance versus % label noise. To conduct this experiment, we retagged an old dataset in one of our clients and thoroughly reviewed it to identify and fix mislabelled examples. The total number of mislabelled examples was 13% of the whole dataset (7591 instances). We flipped the gold labels into their noisy counterparts, trained a model on the newly formed dataset and plotted the results.&lt;/p&gt;
+
+&lt;h3 id=&quot;impact-of-train-set-label-noise-on-our-model-performance&quot;&gt;Impact of train set label noise on our model performance&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/label-noise-blog/training_noise.png&quot; alt=&quot;image info&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the above graph. we pbserve that at 0% label noise, the model performance is around 73.8% F1 and at ~13% label noise, the model performance drops to 70.8% F1.&lt;/p&gt;
+
+&lt;h2 id=&quot;different-cleaning-methods-to-fix-the-label-noise&quot;&gt;Different cleaning methods to fix the label noise&lt;/h2&gt;
+
+&lt;p&gt;By measuring the reduction in cleaning effort from the baseline, we can assess the efficacy of the cleaning method. We plotted label noise recall vs % of samples retagged (or annotator effort) - Relating these metrics with previous impact graph allows us to reach interesting conclusions like - &lt;em&gt;clean y% of the dataset using a method M, and you will get some x% bump in model performance&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;random-sampling&quot;&gt;Random Sampling&lt;/h3&gt;
+&lt;p&gt;Here we can sample some fixed number of instances and get them retagged. This serves as our baseline for other methods. The label noise we capture will be around 13% of each partial sample, and hence the recall will be the fraction of the partial sample (in the whole). On average, the plot will look similar to y=x, like this one for our dataset:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/label-noise-blog/random-sampling-plot.png&quot; alt=&quot;image info&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;biased-sampling&quot;&gt;Biased Sampling&lt;/h3&gt;
+&lt;p&gt;This requires intermittent involvement from ops (tagging after every sampling iteration)&lt;/p&gt;
+
+&lt;p&gt;In this method, we first randomly retag x % of samples. Then we identify the major tag confusions (as shown in the Dataset section) and pick the top 5 noisy tags and increase the weights associated to these tags in the sampling function. Then we sample again - pick top 5 tags - repeat.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/label-noise-blog/random-sampling-weights-plot.png&quot; alt=&quot;image info&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We see an improvement over the baseline. We can capture around 60% of the total label noise by just tagging around 32% of the total dataset by this heuristic.&lt;/p&gt;
+
+&lt;h3 id=&quot;datamaps&quot;&gt;Datamaps&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/2009.10795.pdf&quot;&gt;This&lt;/a&gt; paper introduces datamaps - a tool to diagnose training sets during the training process itself. They introduce two metrics - confidence and variability to understand training dynamics. They further plot each instance on a confience vs variability graph and create hard-to-learn, ambigous and easy regions. These regions correspond to how easy it is for the model to learn the particular instance. They also observe that the hard-to-learn regions also corresponded instances that had label noise.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Confidence&lt;/em&gt; - This is defined as the mean model probability of the true label across epochs.&lt;br /&gt;
+&lt;em&gt;Variability&lt;/em&gt; - This measures the spread of model probability across epochs, using the standard deviation.&lt;/p&gt;
+
+&lt;p&gt;The intuition is that instances with consistently lower confidence scores throughout the training process are hard for a model to learn. This could be because the model is not capable of learning the target label or that the target label was incorrect.&lt;/p&gt;
+
+&lt;p&gt;We leverage the training artefacts from the paper to define a label score for each sample - as the Euclidean distance between (0,0) and (confidence, variability). Following the hypothesis of hard-to-learn regions, we expect noisy samples to have a lower label score.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Threshold on label-score&lt;/strong&gt; &lt;br /&gt;
+Fixing a threshold on the label score means that all samples that score below it are considered label noise, and those that score above are considered clean. Assuming we do Human Retagging of all samples predicted as label noisy, fixing a threshold essentially fixes both the % of samples retagged and (given the clean tags-) label noise recall. Varying the threshold, we get a plot for our dataset:&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../assets/images/label-noise-blog/deja-vu-plot.png&quot; alt=&quot;image info&quot; /&gt;
+Looking at our metrics, we see an improvement in the partial recleaning process.
+Lets read the above plots. Say we fix the threshold at 0.43 which means we would be retagging around 28% of our dataset. This corresponds to a label noise recall of 60%, giving us a resulting dataset with 5.2% label noise from 13%. (= 0.40*13).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;n-consecutive correct instances&lt;/strong&gt; &lt;br /&gt;
+Here, we will use the ordering of the label scores. Our added assumption here, is that the ordering within the regions are also useful. Based on this, we sort our samples by label score, and in ascending order. This means the noisy samples should be nearer to the top, and we base our heuristic on this. We start Human Retagging from the top of the sorted list of samples, and stop once we see N-consecutive clean samples.
+Varying N, we get a plot for our dataset:&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../assets/images/label-noise-blog/deja-vu-n-consecutive.png&quot; alt=&quot;image info&quot; /&gt;&lt;br /&gt;
+Again, we see an improvement in the partial recleaning process. Lets read the above plots. Say we fix N at ~38, which means we would be retagging around 35% of our dataset. This corresponds to a corresponds to a label noise recall of 60%, which means we would capture and clean 76% of the label noise. Giving us a resulting dataset with 3.1% label noise (= (1-0.76)*0.13).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;cleanlab&quot;&gt;Cleanlab&lt;/h3&gt;
+
+&lt;p&gt;This is a label noise prediction tool. We have evaluated the accuracy of this tool instead. But we won’t be able to capture all the noisy labels via this tool. This tool takes in predicted probabilities. Since cleanlab depends on output model probabilities it can’t be used to correct train sets.&lt;/p&gt;
+
+&lt;h3 id=&quot;confident-learning&quot;&gt;Confident Learning&lt;/h3&gt;
+
+&lt;p&gt;Confident Learning high level idea - When the predicted probability of an example is greater than a per-class-threshold, we confidently count that example as actually belonging to that threshold’s class. The thresholds for each class are the average predicted probability of examples in that class.&lt;/p&gt;
+
+&lt;p&gt;Confident Learning estimates a joint distribution between noisy observed labels and the true latent labels. It assumes that the predicted probabilities are out-of-sample holdout probabilities (eg. K-fold cross validation). If this isn’t the case then overfitting may occur. Their algorithm also assumes that class-conditional label noise transitions are data independent.&lt;/p&gt;
+
+&lt;p&gt;Metrics using a model trained on noisy labels.&lt;/p&gt;
+
+&lt;p&gt;Tested on a separate test set&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;precision&lt;/th&gt;
+      &lt;th&gt;recall&lt;/th&gt;
+      &lt;th&gt;f1-score&lt;/th&gt;
+      &lt;th&gt;support&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wrong_tag_inscope&lt;/td&gt;
+      &lt;td&gt;0.22&lt;/td&gt;
+      &lt;td&gt;0.59&lt;/td&gt;
+      &lt;td&gt;0.32&lt;/td&gt;
+      &lt;td&gt;99&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wrong_tag_oos&lt;/td&gt;
+      &lt;td&gt;0.55&lt;/td&gt;
+      &lt;td&gt;0.63&lt;/td&gt;
+      &lt;td&gt;0.59&lt;/td&gt;
+      &lt;td&gt;136&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wrong_tags_aoos&lt;/td&gt;
+      &lt;td&gt;0.27&lt;/td&gt;
+      &lt;td&gt;0.59&lt;/td&gt;
+      &lt;td&gt;0.37&lt;/td&gt;
+      &lt;td&gt;99&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Results are slightly better when the model is trained on clean data&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;precision&lt;/th&gt;
+      &lt;th&gt;recall&lt;/th&gt;
+      &lt;th&gt;f1-score&lt;/th&gt;
+      &lt;th&gt;support&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wrong_tag_inscope&lt;/td&gt;
+      &lt;td&gt;0.25&lt;/td&gt;
+      &lt;td&gt;0.71&lt;/td&gt;
+      &lt;td&gt;0.37&lt;/td&gt;
+      &lt;td&gt;99&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wrong_tag_oos&lt;/td&gt;
+      &lt;td&gt;0.58&lt;/td&gt;
+      &lt;td&gt;0.72&lt;/td&gt;
+      &lt;td&gt;0.64&lt;/td&gt;
+      &lt;td&gt;136&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wrong_tags_aoos&lt;/td&gt;
+      &lt;td&gt;0.30&lt;/td&gt;
+      &lt;td&gt;0.69&lt;/td&gt;
+      &lt;td&gt;0.42&lt;/td&gt;
+      &lt;td&gt;99&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;We expect cleanlab to perform even better once our model test accuracies improve. Cleanlab wont be very useful if the model is performing poorly even on a clean dataset.&lt;/p&gt;
+
+&lt;h2 id=&quot;minimizing-tagging-errors-at-source&quot;&gt;Minimizing tagging errors at source&lt;/h2&gt;
+
+&lt;p&gt;To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag. Each instance was tagged X times (X is the number of annotators) and the highest tag was chosen as the correct tag.&lt;/p&gt;
+
+&lt;p&gt;| Type                             | Definition                                                                                                                                                                                    |
+|———————————-|———————————————————————————————————————————————————————————————–|
+| human_error                      | Mistake while tagging. The gold tag is very obvious. This error can also be caused due to poor onboarding/misunderstanding among annotators. Further analysis on these errors maybe required. |
+| audio_unclear (perception error) | Unable to understand the intent due to audio noise, low user speech volume, or unable to understand if it’s a background speaker or the user speaking, etc.                                   |
+| tool_problem                     | Audio could not be played, the problem with tagging interface, audio-clipping issue.                                                                                                          |
+| onboarding_error                 | Intent Definition is confusing or bad or incomplete.                                                                                                                                          |
+| multiple_intent*                  | Audio contains multiple intents - in this case both the noisy and gold intents are correct.                                                                                                   |
+| overlapping_intent               | Intent definitions are not mutually exclusive.                                                                                                                                                |
+| renamed_intent                   | Intent renamed after guideline changes. This is not exactly a tagging error, but it’s helpful to capture changes.                                                                             |
+| missing_context                  | Impossible to understand the intent unless more information is provided (bot prompt or previous state etc.)                                                                                   |
+| wrong_retag                      | The new label after re-tagging is wrong. This is not a cause but it allows to capture confusing intents after rechecks.                                                                                                                                                      |&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We observed that the label noise patterns for each of our clients were quite different, which made the problem of generalizing label noise prediction even more difficult.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;To conclude, we quantified how using datamaps helps in reducing effort taken to clean our existing train sets. We also correlated this reduced cleaning effort with the expected improvement in model performance with the help of some plots.&lt;/p&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="label-noise" /><summary type="html">Introduction</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/label-noise-blog/label-noise.png" /><media:content medium="image" url="/assets/images/label-noise-blog/label-noise.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Theory of Mind and Implications for Conversational AI</title><link href="/theory-of-mind/" rel="alternate" type="text/html" title="Theory of Mind and Implications for Conversational AI" /><published>2022-05-19T00:00:00+00:00</published><updated>2022-05-19T00:00:00+00:00</updated><id>/theory-of-mind</id><content type="html" xml:base="/theory-of-mind/">&lt;p&gt;When a diplomat says &lt;em&gt;yes&lt;/em&gt;, he means ‘perhaps’;&lt;br /&gt;
 When he says &lt;em&gt;perhaps&lt;/em&gt;, he means ‘no’;&lt;br /&gt;
 When he says &lt;em&gt;no&lt;/em&gt;, he is not a diplomat.&lt;/p&gt;
 
@@ -1715,118 +1889,4 @@ Hypothesis - Go from Boston to Baltimore on December 29&lt;/p&gt;
 
 &lt;p&gt;[14] : &lt;a href=&quot;https://aclanthology.org/W13-4064.pdf&quot;&gt;Which ASR should I choose for my dialogue system?&lt;/a&gt; (2013)&lt;/p&gt;
 
-&lt;p&gt;[15] : &lt;a href=&quot;https://arxiv.org/pdf/2010.11745.pdf&quot;&gt;Rethinking evaluation in ASR : Are out models robust enough ?&lt;/a&gt; (2021)&lt;/p&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="WER" /><category term="sticky" /><summary type="html">An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/evaluating-asr.jpg" /><media:content medium="image" url="/assets/images/evaluating-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Complexity of Conversations - I</title><link href="/complexity-of-conversations/" rel="alternate" type="text/html" title="Complexity of Conversations - I" /><published>2022-01-18T00:00:00+00:00</published><updated>2022-01-18T00:00:00+00:00</updated><id>/complexity-of-conversations</id><content type="html" xml:base="/complexity-of-conversations/">&lt;p&gt;Consider a restaurant booking voice bot built using a frames and slots approach.
-While this can easily &lt;em&gt;solve the problem&lt;/em&gt; of booking with high automation
-accuracy, such slot-filling framework can’t carry on a meaningful conversation
-in a debate unless you over-engineer the frames and slots to monstrous
-complexity. Booking a restaurant is a form of conversation that’s innately
-simpler than arguing with someone in a debate competition. We can roughly say
-that these two conversations lie in different complexity classes. In this first
-post of a series, we will lay down a few factors that will help us define a map
-of conversations arranged according to their complexities.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;At Skit we build many kinds of task-oriented dialog systems for call center
-automation. A very crude categorization of such systems, for us, is based on the
-interaction with a sibling call handling system&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and the direction of
-intention, user or agent initiation.&lt;/p&gt;
-
-&lt;p&gt;While we have used multiple approaches to measure difficulty of conversations
-for our product delivery purposes, it’s interesting to see if a purer framework
-could be built around this. Similar to computational complexity, this can tell
-us which problems are tractable under an algorithm. It can also help in
-identifying the path towards the next generation of human machine conversational
-systems.&lt;/p&gt;
-
-&lt;p&gt;We will cover a few thoughts around a few core constructs of the framework next.
-First is the definition of success in a conversation, second around the
-difficulty of doing so, and third about the algorithms and their complexities.&lt;/p&gt;
-
-&lt;h2 id=&quot;success&quot;&gt;Success&lt;/h2&gt;
-
-&lt;p&gt;The definition of success of a conversation depends on alignment between goals
-of the involved parties.&lt;/p&gt;
-
-&lt;p&gt;A regular goal oriented conversation with user initiation has a simple success
-definition. For example, a call with user asking for temperature of a place can
-be called successful if the temperature is provided. The metric here could be
-something like the following:&lt;/p&gt;
-
-\[\text{Resolution%} = \frac{\text{Calls where user goals were met}}{\text{Total calls}}\]
-
-&lt;p&gt;This simple formulation becomes tricky as the alignment between user and bot
-goals becomes inexact. For example when the &lt;em&gt;bot is calling&lt;/em&gt; the user for
-payment reminders, it might not just want to remind and collect next reminder
-time, but also want to persuade the users to pay as early as possible. In such
-cases, you might want to use another rate for &lt;em&gt;favorable outcomes&lt;/em&gt;:&lt;/p&gt;
-
-\[\text{Favorable%} = \frac{\text{Calls with favorable outcomes}}{\text{Resolved calls}}\]
-
-&lt;p&gt;Another example where this works is in &lt;em&gt;argumentative&lt;/em&gt; conversations where
-holding a reasonable conversation and reaching conclusion is important
-(&lt;em&gt;resolution&lt;/em&gt;), but winning the argument (the favorable outcome) is what defines
-success.&lt;/p&gt;
-
-&lt;h2 id=&quot;difficulty&quot;&gt;Difficulty&lt;/h2&gt;
-
-&lt;p&gt;We can look at difficulty of conversations from multiple levels. For the
-smallest unit of dialog, a turn&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, parsing and generating every utterance in a
-conversation can be rated for difficulty. Here are a few factors that drive
-difficulty for a turn:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Knowledge needed for understanding an entity. This could be general or
-specific to a situation, involving connection with a dynamic or static
-knowledge source.&lt;/li&gt;
-  &lt;li&gt;Speech Acts. Simpler acts like &lt;em&gt;greeting&lt;/em&gt; are easier to handle, while
-something like &lt;em&gt;pleading&lt;/em&gt; is hard.&lt;/li&gt;
-  &lt;li&gt;Expression complexity, intentional or unintentional. For speech systems, this
-is even more varied because of the richness of acoustic signals that adds to
-the underlying text. For example sarcasm could be expressed by changing the
-tone of speech and not just via textual constructs.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;But these are not sufficient since higher order behaviors across multiple turns
-also make conversations difficult. As an example, consider negotiation for the
-price in a market. In this situation, you need to use the conversational context
-across turns to decide your next steps in a way that’s harder than situations
-where context dependency is lesser.&lt;/p&gt;
-
-&lt;h2 id=&quot;algorithms&quot;&gt;Algorithms&lt;/h2&gt;
-
-&lt;p&gt;The frameworks of developing, and running, voice bots are the last pieces that
-will help us to map out the tractability of problems. A common method in the
-industry is the frame-filling model that roughly needs learning &lt;em&gt;intents&lt;/em&gt; and
-&lt;em&gt;entities&lt;/em&gt; for each utterance.&lt;/p&gt;
-
-&lt;p&gt;These frameworks, or algorithms, can be measured on their resource consumption.
-We can start with sample complexity of conversations as the resource and create
-statements like the following:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Under framework \(f\), you need an order of \(N\) data points to supervise a
-voice bot of class \(k\) to achieve a success rate of \(R(N)\)&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This can be mapped to the statistical learning problem and abstractions can be
-translated from there.&lt;/p&gt;
-
-&lt;p&gt;Having set the groundwork here, we will tackle the more interesting problem of
-complexity class definitions in a later post.&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;The sibling system could be non-existent, or backend human agents who can
-take over the more co plex conversations, or complex parts of running
-conversations. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;We can cover backchannel events also in a kind of &lt;em&gt;background&lt;/em&gt; turn. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;Including the other factors around PAC learning. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><summary type="html">Consider a restaurant booking voice bot built using a frames and slots approach. While this can easily solve the problem of booking with high automation accuracy, such slot-filling framework can’t carry on a meaningful conversation in a debate unless you over-engineer the frames and slots to monstrous complexity. Booking a restaurant is a form of conversation that’s innately simpler than arguing with someone in a debate competition. We can roughly say that these two conversations lie in different complexity classes. In this first post of a series, we will lay down a few factors that will help us define a map of conversations arranged according to their complexities.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/demo1.jpg" /><media:content medium="image" url="/assets/images/demo1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;[15] : &lt;a href=&quot;https://arxiv.org/pdf/2010.11745.pdf&quot;&gt;Rethinking evaluation in ASR : Are out models robust enough ?&lt;/a&gt; (2021)&lt;/p&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="WER" /><category term="sticky" /><summary type="html">An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/evaluating-asr.jpg" /><media:content medium="image" url="/assets/images/evaluating-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
