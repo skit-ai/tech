@@ -3,7 +3,7 @@ title: Investigating Label Noise in intent classification datasets and fixing it
 date: 2022-06-20
 tags: [label-noise]
 categories: [Machine Learning]
-image: 
+image: assets/images/label-noise-blog/label-noise.png
 layout: post
 authors: [kritianandan, janaab11]
 latex: True
