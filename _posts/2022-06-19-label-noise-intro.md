@@ -83,19 +83,11 @@ Metrics using a model trained on noisy labels.
 
 Tested on a separate test set
 
-|                                                                                                                            | precision | recall | f1-score | support |
-|----------------------------------------------------------------------------------------------------------------------------|-----------|--------|----------|---------|
-| wrong_tag_inscope                                                                                                          | 0.22      | 0.59   | 0.32     | 99      |
-| wrong_tag_oos                                                                                                              | 0.55      | 0.63   | 0.59     | 136     |
-| wrong_tags_aoos                                                                                                            | 0.27      | 0.59   | 0.37     | 99      |
+![image info](../assets/images/label-noise-blog/clean-set-table.png)
 
 Results are slightly better when the model is trained on clean data
 
-|                                                                                                                            | precision | recall | f1-score | support |
-|----------------------------------------------------------------------------------------------------------------------------|-----------|--------|----------|---------|
-| wrong_tag_inscope                                                                                                          | 0.25      | 0.71   | 0.37     | 99      |
-| wrong_tag_oos                                                                                                              | 0.58      | 0.72   | 0.64     | 136     |
-| wrong_tags_aoos                                                                                                            | 0.30      | 0.69   | 0.42     | 99      |
+![image info](../assets/images/label-noise-blog/noisy-set-table.png)
 
 We expect cleanlab to perform even better once our model test accuracies improve. Cleanlab wont be very useful if the model is performing poorly even on a clean dataset.
 
@@ -103,18 +95,8 @@ We expect cleanlab to perform even better once our model test accuracies improve
 
 To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag. Each instance was tagged X times (X is the number of annotators) and the highest tag was chosen as the correct tag.
 
+![image info](../assets/images/label-noise-blog/tagging-errors.png)
 
-| Type                             | Definition                                                                                                                                                                                    |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| human_error                      | Mistake while tagging. The gold tag is very obvious. This error can also be caused due to poor onboarding/misunderstanding among annotators. Further analysis on these errors maybe required. |
-| audio_unclear (perception error) | Unable to understand the intent due to audio noise, low user speech volume, or unable to understand if it's a background speaker or the user speaking, etc.                                   |
-| tool_problem                     | Audio could not be played, the problem with tagging interface, audio-clipping issue.                                                                                                          |
-| onboarding_error                 | Intent Definition is confusing or bad or incomplete.                                                                                                                                          |
-| multiple_intent*                  | Audio contains multiple intents - in this case both the noisy and gold intents are correct.                                                                                                   |
-| overlapping_intent               | Intent definitions are not mutually exclusive.                                                                                                                                                |
-| renamed_intent                   | Intent renamed after guideline changes. This is not exactly a tagging error, but it’s helpful to capture changes.                                                                             |
-| missing_context                  | Impossible to understand the intent unless more information is provided (bot prompt or previous state etc.)                                                                                   |
-| wrong_retag                      | The new label after re-tagging is wrong. This is not a cause but it allows to capture confusing intents after rechecks.                                                                                                                                                      |
 * since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.
 
 We observed that the label noise patterns for each of our clients were quite different, which made the problem of generalizing label noise prediction even more difficult.
