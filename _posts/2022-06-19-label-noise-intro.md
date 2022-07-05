@@ -95,7 +95,7 @@ We expect cleanlab to perform even better once our model test accuracies improve
 
 To understand why our datasets had noisy labels, we conducted several review sessions with our annotators after they retagged datasets across multiple clients. We further classified each mislabelled example into a list of possible reasons as shown below. Here, gold tag refers to the ground truth tag. Each instance was tagged X times (X is the number of annotators) and the highest tag was chosen as the correct tag.
 
-![image info](../assets/images/label-noise-blog/tagging-errors.png)
+![image info](../assets/images/label-noise-blog/tagging-errors-fix.png)
 
 * since our intent classifiers were not multi-label, we wanted to capture the total % of multiple intent scenarios.
 
