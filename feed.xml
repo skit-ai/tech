@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-07-05T09:17:58+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Investigating Label Noise in intent classification datasets and fixing it</title><link href="/label-noise-intro/" rel="alternate" type="text/html" title="Investigating Label Noise in intent classification datasets and fixing it" /><published>2022-06-19T00:00:00+00:00</published><updated>2022-06-19T00:00:00+00:00</updated><id>/label-noise-intro</id><content type="html" xml:base="/label-noise-intro/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-08-03T07:33:49+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Investigating Label Noise in intent classification datasets and fixing it</title><link href="/label-noise-intro/" rel="alternate" type="text/html" title="Investigating Label Noise in intent classification datasets and fixing it" /><published>2022-06-19T00:00:00+00:00</published><updated>2022-06-19T00:00:00+00:00</updated><id>/label-noise-intro</id><content type="html" xml:base="/label-noise-intro/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;Label noise has been a consistent problem even in the &lt;a href=&quot;https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/f2217062e9a397a1dca429e7d70bc6ca-Paper-round1.pdf&quot;&gt;most widely used open source datasets&lt;/a&gt;. Several papers have come up various &lt;a href=&quot;https://arxiv.org/pdf/2007.08199.pdf&quot;&gt;deep learning techniques&lt;/a&gt; to make models more robust to label noise present in their train sets. Even so, identifying label noise in your dataset and investigating it’s cause is an important process to further understand model behaviour and prevent label noise in future datasets.&lt;/p&gt;
 
@@ -97,7 +97,129 @@ Again, we see an improvement in the partial recleaning process. Lets read the ab
 
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
 
-&lt;p&gt;To conclude, we quantified how using datamaps helps in reducing effort taken to clean our existing train sets. We also correlated this reduced cleaning effort with the expected improvement in model performance with the help of some plots.&lt;/p&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="label-noise" /><summary type="html">Introduction</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/label-noise-blog/label-noise.png" /><media:content medium="image" url="/assets/images/label-noise-blog/label-noise.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Theory of Mind and Implications for Conversational AI</title><link href="/theory-of-mind/" rel="alternate" type="text/html" title="Theory of Mind and Implications for Conversational AI" /><published>2022-05-19T00:00:00+00:00</published><updated>2022-05-19T00:00:00+00:00</updated><id>/theory-of-mind</id><content type="html" xml:base="/theory-of-mind/">&lt;p&gt;When a diplomat says &lt;em&gt;yes&lt;/em&gt;, he means ‘perhaps’;&lt;br /&gt;
+&lt;p&gt;To conclude, we quantified how using datamaps helps in reducing effort taken to clean our existing train sets. We also correlated this reduced cleaning effort with the expected improvement in model performance with the help of some plots.&lt;/p&gt;</content><author><name>Kriti Anandan</name></author><category term="Machine Learning" /><category term="label-noise" /><summary type="html">Introduction</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/label-noise-blog/label-noise.png" /><media:content medium="image" url="/assets/images/label-noise-blog/label-noise.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Incorporating context to improve SLU</title><link href="/contextual-slu/" rel="alternate" type="text/html" title="Incorporating context to improve SLU" /><published>2022-06-19T00:00:00+00:00</published><updated>2022-06-19T00:00:00+00:00</updated><id>/contextual-slu</id><content type="html" xml:base="/contextual-slu/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In task-oriented dialogue systems, the spoken language understanding, or SLU, refers to the task of parsing the natural language utterances into
+semantic frames. The problem of contextual SLU majorly focuses on effectively incorporating dialogue information. Current SLU systems that work in tandem with
+ASR (voice bots) only incorporate the asr transcription as an input for the SLU systems to predict intent. As such, the amount of information these transcripts have is quite less.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-context&quot;&gt;Why context?&lt;/h2&gt;
+&lt;p&gt;The bot prompts are a treasure-trove of contextual information. This information can be used to build better intent classification model. Few examples with the bot prompts and their intents are shown below:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;Bot Prompt&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;User Response&lt;/strong&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;&lt;strong&gt;Intent&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Hi! I am Divya, your Hathway virtual assistant. Are you looking for a new Hathway Broadband connection?&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;yes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;confirm_new_connection&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Okay!. To start with, please tell me if you are next to your Hathway device?&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;I am&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;confirm_near_device&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;For how many people do you want to book the table for?&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;seven&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;em&gt;number_guests&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;If we observe the first example here, the trancription just consists of &lt;em&gt;‘yes’&lt;/em&gt;, but if we include the bot prompt, we enrich the input to our SLU, thereby increasing the overall intent classification performance. The context of &lt;em&gt;hathway broadband connection&lt;/em&gt; helps in enriching the context of the utterance &lt;em&gt;yes&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;using-bot-prompts-as-context&quot;&gt;Using Bot prompts as context&lt;/h2&gt;
+&lt;p&gt;We curated a private dataset of clients wherein we collect user utterances along with all the bot prompts. 
+We then concatenate the bot prompts with the user utterances. After retraining our intent classification model on some clients,
+we observed a performance jump of &lt;strong&gt;20-30%&lt;/strong&gt; in the intent-F1 scores. &lt;br /&gt; 
+This probably happened because our user prompts are not rich with enough information and
+closing that information deficit via the bot prompts helped us achieve better performance. Another probable reason for such a huge jump could be probably because the transcription generated while using voice bots are less accurate as compared to a chat bot’s transcription wherein a user types their response. As a result, the gap increment when supplied with contextual information when working with voice bots is much larger than let’s say a bot. However, this was not the case with all our datasets. We observed that
+the datasets with large number of classes didn’t perform well or at par with datasets with less number of classes. One probable reason for it could be the dataset having
+a large amount of granularity with respect to intents and as such there wasn’t any significant bump in the performance. We also observed that the performance with small-talk intents such as confirm, deny etc. had a massive jump in their performance as compared to other types of intents.&lt;/p&gt;
+
+&lt;!-- We curate a private data of our clients wherein we collect user utterances along with all the bot prompts. Earlier, our systems
+were dependent on solely using user utterances to build our Intent classifier but after conctenating bot prompts to our utterances, we
+observed around 30% jump in our intent-F1 scores for some of our clients. --&gt;
+
+&lt;h2 id=&quot;some-probable-approaches-from-literature&quot;&gt;Some probable approaches from literature&lt;/h2&gt;
+
+&lt;p&gt;After observing an improvement in our models by just using a single bot prompt, we decided to a delve a bit further and found out many 
+approaches that can be utilized for our use-case. While doing literature review, I observed that encoding the contextual prompt along with the user prompt gives the best performance amongst all the methods. The current approach of concatenating bot prompts with the user prompt acts as a natural baseline for our subsequent experiments in this direction. We discuss the encoding based approaches from the literature below:&lt;/p&gt;
+
+&lt;h3 id=&quot;encoding-dialogue-history-1-2&quot;&gt;Encoding dialogue History [1, 2]&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;We can encode [1] the complete dialogue history as shown below. Let us assume that the dialogue is
+a sequence of $D_{t} = {u_{1}, u_{2}.. u_{t}}$ bot and user utterance and at every time 
+step $t$ we are trying to output the classification for the user utterance $u_{t}$, given $D_{t}$.
+We then divide the model into 2 components, the context encoder that acts on $D_{t}$ to produce
+a vector representation of the dialogue context denoted by $h_{t} = H(D_{t})$ and the tagger, which takes
+this context encoding $h_{t}$, and the current utterance $u_{t}$ as input and produces the intent output. 
+&lt;br /&gt;
+ #### &lt;strong&gt;Context Encoder Architecture&lt;/strong&gt;
+ The &lt;strong&gt;baseline context encoder&lt;/strong&gt; is just encoding the previous bot prompt $u_{t-}$ into a single bidirectional RNN (BiRNN) layer with Gated Recurrent Unit (GRU). The final state of the context encoder GRU is used the dialogue context, $h_{t} = BiGRU(u_{t-1})$.
+ For &lt;strong&gt;memory networks&lt;/strong&gt;, we encode all the dialogue context utterances, ${u_{1}, u_{2}.. u_{t}}$ into memory networks denoted by ${m_{1}, m_{2}.. m_{t}}$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, we append special positional tokens to each utterance. $m_{k} = BiGRU_{m}(u_{k}) : : 0 &amp;lt;= k &amp;lt;= t-1$.
+ THe current utterance is also encoded using a BiGRU and denoted by $c$. Let $M$ be the matrix wherein the $i$th row given by $m_{i}$. A cosine similarity is obtained between each memory vector, $m_{i}$, and the context vector $c$. The softmax of this similarity is used as an attention distribution over the memory $M$, and an attention distribution over the moery $M$, and an attention weighted sum of $M$ is used to produce the dialogue context vector $h_{i}$.
+ \(a = softmax(M_{c}) \\
+h_{t} = a^{T}M\)&lt;/p&gt;
+
+    &lt;p&gt;#### &lt;strong&gt;Tagger Architecture&lt;/strong&gt;
+ A stacked BiRNN tagger is used to model intent classification.&lt;/p&gt;
+
+    &lt;p&gt;#### &lt;strong&gt;Results&lt;/strong&gt;
+ This approach was benchmarked on a multi-turn dialogue sessions and for intent classification specifically the task of reserving tables at the 
+ restaurant. The intent F1 scores with memory network as the contextual encoder is &lt;strong&gt;0.890&lt;/strong&gt; and just by encoding the last prompt is &lt;strong&gt;0.865&lt;/strong&gt;. &lt;br /&gt;
+&lt;img src=&quot;../assets/images/contextual/encoder_context.png&quot; alt=&quot;drawing&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Another approach [2] is to have a different encoding mechanism for bot and user utterances [2]. This approach uses a system act encoder to obtain a vector representation $a^{t}$ of all system dialogue acts $A^{t}$. An utterance encoder is then used
+to generate the user utterance encoding $u^{t}$ by processing the user utterance token embeddings $x^{t}$.
+We then have a dialogue encoder that summarizes the content of the dialogue using $a^{t}$ and $u^{t}$, and its previous
+hidden state $s^{t-1}$ to generate the dialogue context vector $o^{t}$, and also update the hidden state.
+The dialogue context vector is then used for intent classification. Both the encoders use a hierarchical RNN that processes a single utterance at a time.&lt;/p&gt;
+
+    &lt;p&gt;#### &lt;strong&gt;System Act Encoder&lt;/strong&gt;
+ The system act encoder encodes the set of dialogue acts $A^{t}$ at turn $t$ into a vector $a^{t}$ invariant to the order in which they appear.&lt;/p&gt;
+
+    &lt;p&gt;#### &lt;strong&gt;Utterance Encoder&lt;/strong&gt;
+ The utterance encoder takes in the list of user utterance tokens as input. Let $x^{t}$ denote the utterance token embeddings, which is encoded using a bi-directional GRU.
+ \(u^{t}, u^{t}_{o} = BRNN_{GRU}(x^{t})\)
+ We get the embedding representation $u^{t}$ of the user utterance and $u^{t}_{o}$ is the concatenation of the final states and the intermediate outputs of the forward and backward RNNs respectively.&lt;/p&gt;
+
+    &lt;p&gt;#### &lt;strong&gt;Dialogue Encoder&lt;/strong&gt;
+ The dialogue encoder incrementally generated the embedded representation of the dialogue context at every turn. As shown in the figure below, it takes in $a^{t} \bigoplus u^{t}$ and its previous state $s^{t-1}$ as inputs
+ and outputs the updated state $s^{t}$ and the encoded representation of the dialogue context $o^{t}$.&lt;/p&gt;
+
+    &lt;p&gt;The above encoded feature is then flattened to the number of intent classes using a linear layer. 
+ \(p_{i}^{t} = softmax(W_{i}.o^{t} + b_{i})\)&lt;/p&gt;
+
+    &lt;p&gt;#### &lt;strong&gt;Results&lt;/strong&gt;
+ The dialogues are obtained from simulated dialogues dataset.The dataset has dialogues from restaurant and movie domains with total of 3 intents. The baseline for this approach was getting results without any context and the overall intent accuracy was &lt;strong&gt;84.76%&lt;/strong&gt; whereas using the previous dialog encoder ($o^{t-1}$) and the current system encoder  ($a^{t}$) was &lt;strong&gt;99.54%&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/contextual/encoder_context_2.png&quot; alt=&quot;drawing&quot; width=&quot;600&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;probable-approaches&quot;&gt;Probable approaches&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;Another approach that has not been discussed in literature is using a time decay function to decay the effect of older bot prompts. This would help in focusing more
+towards the recent prompts and reduce the effect of older prompts.&lt;/li&gt;
+  &lt;li&gt;We can also experiment by fusing different modalities (text and speech) with utterance and dialogue. The emotion from the speech modality could help in infusing much better context into the input for the intent classification.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The above approaches and experiments show that context for SLU predictions can prove to be extremely useful for improving 
+intent F1 scores. These above approaches are also not computationally expensive and can be easily deployed at scale for various use-cases.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;p&gt;[1] Ankur Bapna, Gokhan Tür, Dilek Hakkani-Tür, and Larry Heck. 2017. Sequential Dialogue Context Modeling for Spoken Language Understanding. In Proceedings of the 18th Annual SIGdial Meeting on Discourse and Dialogue, pages 103–114, Saarbrücken, Germany. Association for Computational Linguistics. &lt;br /&gt;
+[2] Gupta, R., Rastogi, A., &amp;amp; Hakkani-Tür, D.Z. (2018). An Efficient Approach to Encoding Context for Spoken Language Understanding. ArXiv, abs/1807.00267.&lt;/p&gt;</content><author><name>sanchit-ahuja</name></author><category term="Machine Learning" /><category term="slu" /><category term="context" /><category term="nlp" /><summary type="html">Introduction In task-oriented dialogue systems, the spoken language understanding, or SLU, refers to the task of parsing the natural language utterances into semantic frames. The problem of contextual SLU majorly focuses on effectively incorporating dialogue information. Current SLU systems that work in tandem with ASR (voice bots) only incorporate the asr transcription as an input for the SLU systems to predict intent. As such, the amount of information these transcripts have is quite less.</summary></entry><entry><title type="html">Theory of Mind and Implications for Conversational AI</title><link href="/theory-of-mind/" rel="alternate" type="text/html" title="Theory of Mind and Implications for Conversational AI" /><published>2022-05-19T00:00:00+00:00</published><updated>2022-05-19T00:00:00+00:00</updated><id>/theory-of-mind</id><content type="html" xml:base="/theory-of-mind/">&lt;p&gt;When a diplomat says &lt;em&gt;yes&lt;/em&gt;, he means ‘perhaps’;&lt;br /&gt;
 When he says &lt;em&gt;perhaps&lt;/em&gt;, he means ‘no’;&lt;br /&gt;
 When he says &lt;em&gt;no&lt;/em&gt;, he is not a diplomat.&lt;/p&gt;
 
@@ -1625,193 +1747,4 @@ us on &lt;a href=&quot;mailto:join@skit.ai&quot;&gt;join@skit.ai&lt;/a&gt;.&lt;/
       &lt;p&gt;Epistolary communication aside. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><category term="speech" /><summary type="html">We often get asked about the differences between voice and chat bots. The most common perception is that the voice bot problem can be reduced to chat bot after plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS) system. We believe that’s an overly naive assumption about spoken conversations, even in restricted goal-oriented dialog systems. This post is an attempt to describe the differences involved and define what Speech-First Conversational AI means.</summary></entry><entry><title type="html">Evaluating an ASR in a Spoken Dialogue System</title><link href="/evaluating-an-asr-in-a-spoken-dialogue-system/" rel="alternate" type="text/html" title="Evaluating an ASR in a Spoken Dialogue System" /><published>2022-01-21T00:00:00+00:00</published><updated>2022-01-21T00:00:00+00:00</updated><id>/evaluating-an-asr-in-a-spoken-dialogue-system</id><content type="html" xml:base="/evaluating-an-asr-in-a-spoken-dialogue-system/">&lt;p&gt;An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent.&lt;/p&gt;
-
-&lt;p&gt;The ASR module takes as input a spoken utterance and outputs the most likely transcription. Most ASR’s output multiple alternatives with certain confidence scores. Some ASR’s including Kaldi’s implementations output N-Best alternatives in an order not necessarily reflective of the confidence. Some ASR systems output likelihood information of word sequences in the form of word-lattices or confusion networks [1] with probability information.&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-wer-&quot;&gt;What is WER ?&lt;/h2&gt;
-
-&lt;p&gt;Word Error Rate measures the transcription errors, treating words as the smallest unit. It takes 2 inputs, the actual transcript and a hypothesis transcript.&lt;/p&gt;
-
-&lt;p&gt;There are two types of WER:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Isolated word recognition (IWR-WER)&lt;/li&gt;
-  &lt;li&gt;Connected Speech Recognition (CSR-WER)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Isolated Word Recognition WER&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This considers the words in isolation and is not based on any alignment. It simply measures the number of non-hits.&lt;/p&gt;
-
-\[IWR-WER = 1-\frac{H}{N}\]
-
-&lt;p&gt;where,&lt;br /&gt;
-H = number of hits&lt;br /&gt;
-N = total matched I/O words&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Connected Speech Recognition WER&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This is calculated on the basis of alignment and uses the Levenshtein distance for words which measures the minimum edit distance. This is efficiently calculated using dynamic programming. It calculates the best alignment which minimises the number of substitutions, insertions and deletions necessary to map the actual transcript to the hypothesis transcript, giving equal weight to all the operations. WER is not input/output symmetric, as N is the total number of words in the actual transcripts.&lt;/p&gt;
-
-\[CSR-WER = (I+S+D)/(N)\]
-
-&lt;p&gt;where,
-I = insertions&lt;br /&gt;
-S = substitutions&lt;br /&gt;
-D = deletions&lt;br /&gt;
-N = total number of words in the actual transcript&lt;/p&gt;
-
-&lt;p&gt;An example calculation of the best alignment to calculate the CSR WER is shown below.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/evaluating-asr/wer.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 1: Taken from Speech and Language Processing by Jurafsky and Martin [2].&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;The CSR WER for the above hypothesis is = (6+3+1)/13 = 0.77&lt;/p&gt;
-
-&lt;p&gt;The upper bound of CSR WER is not 1, but \(\frac{max(N1, N2)}{N1}\) where N1 is length of true transcripts and N2 is length of hypothesis transcript.&lt;/p&gt;
-
-&lt;h2 id=&quot;statistical-significance-of-wer-&quot;&gt;Statistical Significance of WER ?&lt;/h2&gt;
-
-&lt;p&gt;Improvements in WER’s over a test set is one of the standard ways of evaluating upgrades in an ASR. Often, what is missed out is in this evaluation is whether the gain is statistically significant or not. One of the standard statistical tests is the Matched-Pair Sentence Segment Word Error (MAPSSWE) test, introduced in Gillick and Cox (1989) [2]. For an example on how to calculate the statistic, consult the book by Jurafsky.&lt;/p&gt;
-
-&lt;h2 id=&quot;issues-with-wer&quot;&gt;Issues with WER&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;It gives the same importance to words like “a”, “the” compared to verbs and nouns that carry more semantic value.&lt;/li&gt;
-  &lt;li&gt;WER is a purely 1 : 1 transcript based metric, and doesn’t take into account the rich output of ASR systems like alternatives or word lattices.&lt;/li&gt;
-  &lt;li&gt;The concept of edit-distance that WER is based on is appropriate for a dictation machine where the additional cost is that of correcting the transcripts rather than applications where communicating the meaning is of primary importance&lt;/li&gt;
-  &lt;li&gt;It doesn’t take into account the performance of an ASR in the context of the dialogue pipeline. For example if a higher WER makes no difference in the information retrieval for the downstream SLU then is the improvement worth it ?
-    &lt;ul&gt;
-      &lt;li&gt;An example of a context dependent metric is discussed in [4].&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;It is not a true % based metric, because it has no upper bound therefore it doesn’t tell you how good a system is, but only that one is better than another. Even for the later, it provides only a heuristic for ranking of performance.
-    &lt;ul&gt;
-      &lt;li&gt;Consider two ASR systems, ASR-1 that replaces 2 wrong words for every word it listens too, and another ASR system that replaces 1 wrong word for every word it listens to. Both communicate zero information, but the WER for ASR-1 is 2 and the WER for ASR-1 is 1. This 50% difference in WER is not reflective of performance, since both the systems communicate no correct information whatsoever.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;debunking-conventional-wisdom&quot;&gt;Debunking Conventional Wisdom&lt;/h2&gt;
-
-&lt;p&gt;One might assume that better ASR’s improve the performance of all downstream SLU systems. A paper in 2003 [7] found this was not always the case.  Their model had a 17% better slot accuracy despite a 46% worse WER performance. They have this gain by using a SLU model as the language model for speech recognition. Therefore it is not necessary that an oracular ASR will solve downstream inaccuracies. It is important to be aware that there might be non-linear correlations in metrics for the ASR vs the downstream task.&lt;/p&gt;
-
-&lt;h2 id=&quot;wer-variants&quot;&gt;WER Variants:&lt;/h2&gt;
-
-&lt;p&gt;A few WER variants are discussed below.&lt;/p&gt;
-
-&lt;p&gt;Metrics that look at a different granularity than that of words :
-&lt;em&gt;**&lt;/em&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Sentence Error Rate (SER)&lt;/strong&gt; : The percentage of sentences with at least one word error.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Character Error Rate (CER) :&lt;/strong&gt; Similar as WER with the smallest units as characters and not words&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The next two error rates are variations of WER, are are bounded between [0,1].&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Match Error Rate (MER)&lt;/strong&gt; [3] : Measures the probability of a given match being incorrect.&lt;/li&gt;
-&lt;/ul&gt;
-
-\[MER = \frac{I+S+D}{I+S+D+H} = 1 - \frac{H}{I+S+D+H}\]
-
-&lt;p&gt;where,&lt;br /&gt;
-H = number of hits
-N = total number of words in the actual transcript&lt;/p&gt;
-
-&lt;p&gt;MER is always &amp;lt;= WER.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Word Information Lost&lt;/strong&gt; &lt;strong&gt;(WIL)&lt;/strong&gt; [3] : Information theoretic measure based on entropy. For more details look at the paper.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Example values, comparing WER, MER and WIL are shown below:&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/evaluating-asr/mer.png&quot; /&gt;
-  &lt;figcaption&gt;Fig 2: Taken from [3].&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Note : For implementations of WER, WIL, and MER, have a look at &lt;a href=&quot;https://pypi.org/project/jiwer/&quot;&gt;Jiwer&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;additional-error-analysis&quot;&gt;Additional Error Analysis&lt;/h2&gt;
-
-&lt;p&gt;Apart from looking at just single metrics for evaluating an ASR there are few additional metrics that one should use to evaluate a goal oriented ASR deployed for a given application:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Which speaker demographic is most often misrecognised ?&lt;/li&gt;
-  &lt;li&gt;What (context-dependent) phones are least well recognised ?&lt;/li&gt;
-  &lt;li&gt;Which words are most confused ? Generate a confusion matrix of confused words.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These often help prioritise improvements in terms of what might benefit the goal the most.&lt;/p&gt;
-
-&lt;h1 id=&quot;semantics-based-metrics&quot;&gt;Semantics based Metrics&lt;/h1&gt;
-
-&lt;p&gt;WER doesn’t look at the meaning of what has been transcribed despite the fact that is the semantics that are most relevant in an ASR that is a part of a spoken dialogue system.&lt;/p&gt;
-
-&lt;h2 id=&quot;concept-accuracy&quot;&gt;Concept accuracy&lt;/h2&gt;
-
-&lt;p&gt;It is a simple metric that looks at the accuracy of the concepts that are of relevance in the transcripts.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;br /&gt;
-Reference - I want to go from Boston to Baltimore on September 29
-Hypothesis - Go from Boston to Baltimore on December 29&lt;/p&gt;
-
-&lt;p&gt;The WER is \(45\%\). However if one looks at concept accuracy, it is 2/3. Out of the 3 concepts : “Boston”, “Baltimore” and “September 29” it gets 2 of them right.&lt;/p&gt;
-
-&lt;h2 id=&quot;wer-with-embeddings&quot;&gt;WER with embeddings&lt;/h2&gt;
-
-&lt;p&gt;In &lt;a href=&quot;https://hal.archives-ouvertes.fr/hal-01350102/file/metrics_correlation_asr-smt.pdf&quot;&gt;this paper&lt;/a&gt; [9] they look at augmenting the WER metric for an ASR that is used for a Spoken Language Translation (SLT) task.&lt;/p&gt;
-
-&lt;p&gt;They argue that some morphological operations, like adding a plural doesn’t impact the translation task and that such substitution errors should be penalised differently. To decide which ones to penalise they use word embeddings. They call their new metric, WER-E i.e. WER with embeddings. The only change in this metric is that the substitution cost in WER is replaced by the cosine distance between the two words, so near identical words get assigned a very low cost.&lt;/p&gt;
-
-&lt;h2 id=&quot;other-metrics&quot;&gt;Other Metrics&lt;/h2&gt;
-
-&lt;p&gt;There are lots of different papers that augment the WER metric or introduce a new metric specific to a downstream task. Mentioning a few of them below :&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;In [10] a new measure called Automatic Transcription Evaluation for Named Entity (ATENE) is introduced for the NER downstream task&lt;/li&gt;
-  &lt;li&gt;3 new evaluation metrics are introduced in [12], where the downstream application is Information Retrieval&lt;/li&gt;
-  &lt;li&gt;SemDist metric is introduced in [13] for downstream SLU&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Downstream applications aside, it is quite pertinent to evaluate and benchmarks ASR across different social and demographic groups to evaluate bias and fairness. Systems don’t exist in isolation from the society in which they are deployed in and it is important that ML Engineers pay head to such metrics while deploying ASRs.&lt;/p&gt;
-
-&lt;h2 id=&quot;references-&quot;&gt;References :&lt;/h2&gt;
-
-&lt;p&gt;[1] : &lt;a href=&quot;https://arxiv.org/abs/2106.06519&quot;&gt;N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses&lt;/a&gt; (2021)&lt;/p&gt;
-
-&lt;p&gt;[2] : &lt;a href=&quot;https://web.stanford.edu/~jurafsky/slp3/&quot;&gt;Speech and Language Processing (3rd ed. draft)&lt;/a&gt; by &lt;a href=&quot;http://web.stanford.edu/people/jurafsky/&quot;&gt;Dan Jurafsky&lt;/a&gt; and &lt;a href=&quot;http://www.cs.colorado.edu/~martin/&quot;&gt;James H. Martin&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;[3] : &lt;a href=&quot;https://www.researchgate.net/profile/Phil-Green-4/publication/221478089_From_WER_and_RIL_to_MER_and_WIL_improved_evaluation_measures_for_connected_speech_recognition/links/00b4951f95799284d9000000/From-WER-and-RIL-to-MER-and-WIL-improved-evaluation-measures-for-connected-speech-recognition.pdf&quot;&gt;From WER and RIL to MER and WIL: improved evaluation measures for connected speech recognition&lt;/a&gt; (2004)&lt;/p&gt;
-
-&lt;p&gt;[4] : &lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.412.4023&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;Automatic Human Utility Evaluation of ASR Systems: Does WER Really Predict Performance&lt;/a&gt;? (2013)&lt;/p&gt;
-
-&lt;p&gt;[5] : http://www.cs.columbia.edu/~julia/courses/CS4706/asreval.pdf&lt;/p&gt;
-
-&lt;p&gt;[6] : &lt;a href=&quot;https://dl.acm.org/doi/pdf/10.1145/3447548.3467372&quot;&gt;Meaning Error Rate: ASR domain-specific metric framework&lt;/a&gt; (2021)&lt;/p&gt;
-
-&lt;p&gt;[7] : &lt;a href=&quot;https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.89.424&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;Is word error rate a good indicator for spoken language understanding accuracy&lt;/a&gt; (2003)&lt;/p&gt;
-
-&lt;p&gt;[8] : &lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S1877050918302187&quot;&gt;Automatic speech recognition errors detection and correction: A review&lt;/a&gt; (2015)&lt;/p&gt;
-
-&lt;p&gt;[9] : &lt;a href=&quot;https://hal.archives-ouvertes.fr/hal-01350102/file/metrics_correlation_asr-smt.pdf&quot;&gt;Better Evaluation of ASR in Speech Translation Context Using Word Embeddings&lt;/a&gt; (2016)&lt;/p&gt;
-
-&lt;p&gt;[10] : &lt;a href=&quot;https://www.isca-speech.org/archive_v0/interspeech_2015/papers/i15_1289.pdf&quot;&gt;How to Evaluate ASR Output for Named Entity Recognition ?&lt;/a&gt; (2015)&lt;/p&gt;
-
-&lt;p&gt;[11] : &lt;a href=&quot;https://ieeexplore.ieee.org/abstract/document/5947637&quot;&gt;Why word error rate is not a good metric for speech recognizer training for the speech translation task?&lt;/a&gt; (2011)&lt;/p&gt;
-
-&lt;p&gt;[12] : &lt;a href=&quot;https://d1wqtxts1xzle7.cloudfront.net/44281782/Evaluating_ASR_Output_for_Information_Re20160331-31804-1u2wdv8.pdf?1459484689=&amp;amp;response-content-disposition=inline%3B+filename%3DEvaluating_ASR_Output_for_Information_Re.pdf&amp;amp;Expires=1641991659&amp;amp;Signature=DMkXBKRcISYtsJw2M6l9P4Lth-0ZEF6plQyHD08TWaIhRZSaZdFCmtTagKLx7YMLGX~ZxvQtgiQe4EHJcZ-aGL5DiUh3Vfztn7feWDMZF~bEgFMluedYI6Jq39t0BBd2mVJjuUVCVtx1-S--pH89PQ9aFcfpbSH4W88uytgZHwXyZyeR9tIVzM45lblIVeFtvVNwREc6jmm1ijW4ir0lGbGlfI2DoLXwyYFM6pltQHngtoVtAfBrBF3XOMB2AwXA0hQkSDlO0v~iwletUK1o3xBdmb6MrK47A7nt8TlO9xFB33RA8hrN-KnafvJGdhI-Or8Ic2HN4cWlXvr~2uetNg__&amp;amp;Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA#page=19&quot;&gt;Evaluating ASR Output for Information Retrieval&lt;/a&gt; (2007)&lt;/p&gt;
-
-&lt;p&gt;[13] : &lt;a href=&quot;https://arxiv.org/pdf/2104.02138.pdf&quot;&gt;Semantic Distance: A New Metric for ASR Performance Analysis Towards Spoken Language Understanding&lt;/a&gt; (2021)&lt;/p&gt;
-
-&lt;p&gt;[14] : &lt;a href=&quot;https://aclanthology.org/W13-4064.pdf&quot;&gt;Which ASR should I choose for my dialogue system?&lt;/a&gt; (2013)&lt;/p&gt;
-
-&lt;p&gt;[15] : &lt;a href=&quot;https://arxiv.org/pdf/2010.11745.pdf&quot;&gt;Rethinking evaluation in ASR : Are out models robust enough ?&lt;/a&gt; (2021)&lt;/p&gt;</content><author><name>Swaraj Dalmia</name></author><category term="Machine Learning" /><category term="ASR" /><category term="WER" /><category term="sticky" /><summary type="html">An ASR (automatic speech recognition) is an integral component of any voice bot. The most popular metric that is used to evaluate the accuracy of an ASR model is WER or the word error rate. In this blog, we discuss metrics that can be used to evaluate an ASR, their flaws and suggestions for improvement in the context of a conversational agent.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/evaluating-asr.jpg" /><media:content medium="image" url="/assets/images/evaluating-asr.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><category term="speech" /><summary type="html">We often get asked about the differences between voice and chat bots. The most common perception is that the voice bot problem can be reduced to chat bot after plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS) system. We believe that’s an overly naive assumption about spoken conversations, even in restricted goal-oriented dialog systems. This post is an attempt to describe the differences involved and define what Speech-First Conversational AI means.</summary></entry></feed>
