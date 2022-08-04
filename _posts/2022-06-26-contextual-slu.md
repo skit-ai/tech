@@ -1,6 +1,6 @@
 ---
 title: Incorporating context to improve SLU
-date: 2022-06-19
+date: 2022-08-03
 tags: [slu, context, nlp]
 categories: [Machine Learning]
 # image: assets/images/label-noise-blog/label-noise.png
@@ -49,52 +49,53 @@ approaches that can be utilized for our use-case. While doing literature review,
 
 ### Encoding dialogue History [1, 2]
 1. We can encode [1] the complete dialogue history as shown below. Let us assume that the dialogue is
-a sequence of $D_{t} = {u_{1}, u_{2}.. u_{t}}$ bot and user utterance and at every time 
-step $t$ we are trying to output the classification for the user utterance $u_{t}$, given $D_{t}$.
-We then divide the model into 2 components, the context encoder that acts on $D_{t}$ to produce
-a vector representation of the dialogue context denoted by $h_{t} = H(D_{t})$ and the tagger, which takes
-this context encoding $h_{t}$, and the current utterance $u_{t}$ as input and produces the intent output. 
+a sequence of $$D_{t} = {u_{1}, u_{2}.. u_{t}}$$ bot and user utterance and at every time 
+step $$t$$ we are trying to output the classification for the user utterance $$u_{t}$$, given $$D_{t}$$.
+We then divide the model into 2 components, the context encoder that acts on $$D_{t}$$ to produce
+a vector representation of the dialogue context denoted by $$h_{t} = H(D_{t})$$ and the tagger, which takes
+this context encoding $$h_{t}$$, and the current utterance $$u_{t}$$ as input and produces the intent output. 
 <br>
     #### **Context Encoder Architecture**
-    The **baseline context encoder** is just encoding the previous bot prompt $u_{t-}$ into a single bidirectional RNN (BiRNN) layer with Gated Recurrent Unit (GRU). The final state of the context encoder GRU is used the dialogue context, $h_{t} = BiGRU(u_{t-1})$.
-    For **memory networks**, we encode all the dialogue context utterances, ${u_{1}, u_{2}.. u_{t}}$ into memory networks denoted by ${m_{1}, m_{2}.. m_{t}}$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, we append special positional tokens to each utterance. $m_{k} = BiGRU_{m}(u_{k}) \: \: 0 <= k <= t-1$.
-    THe current utterance is also encoded using a BiGRU and denoted by $c$. Let $M$ be the matrix wherein the $i$th row given by $m_{i}$. A cosine similarity is obtained between each memory vector, $m_{i}$, and the context vector $c$. The softmax of this similarity is used as an attention distribution over the memory $M$, and an attention distribution over the moery $M$, and an attention weighted sum of $M$ is used to produce the dialogue context vector $h_{i}$.
-    $$ a = softmax(M_{c}) \\
-h_{t} = a^{T}M $$
-
-    #### **Tagger Architecture**
-    A stacked BiRNN tagger is used to model intent classification.
+    The **baseline context encoder** is just encoding the previous bot prompt $$u_{t-}$$ into a single bidirectional RNN (BiRNN) layer with Gated Recurrent Unit (GRU). The final state of the context encoder GRU is used the dialogue context, $$h_{t} = BiGRU(u_{t-1})$$.
+    For **memory networks**, we encode all the dialogue context utterances, ${u_{1}, u_{2}.. u_{t}}$$ into memory networks denoted by $${m_{1}, m_{2}.. m_{t}}$$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, we append special positional tokens to each utterance. $$m_{k} = BiGRU_{m}(u_{k}) \: \: 0 <= k <= t-1$$.
+    The current utterance is also encoded using a BiGRU and denoted by $$c$$. Let $$M$$ be the matrix wherein the $$i$$th row given by $$m_{i}$$. A cosine similarity is obtained between each memory vector, $$m_{i}$$, and the context vector $c$. The softmax of this similarity is used as an attention distribution over the memory $M$, and an attention distribution over the moery $M$, and an attention weighted sum of $M$ is used to produce the dialogue context vector $h_{i}$.
+      $$ a = softmax(M_{c}) $$
+      $$ h_{t} = a^{T}M $$
 
 
-    #### **Results**
-    This approach was benchmarked on a multi-turn dialogue sessions and for intent classification specifically the task of reserving tables at the 
-    restaurant. The intent F1 scores with memory network as the contextual encoder is **0.890** and just by encoding the last prompt is **0.865**. <br>
+#### **Tagger Architecture**
+A stacked BiRNN tagger is used to model intent classification.
+
+
+#### **Results**
+This approach was benchmarked on a multi-turn dialogue sessions and for intent classification specifically the task of reserving tables at the 
+restaurant. The intent F1 scores with memory network as the contextual encoder is **0.890** and just by encoding the last prompt is **0.865**. <br>
 <img src='../assets/images/contextual/encoder_context.png' alt='drawing' width='600'>
 
 
 2. Another approach [2] is to have a different encoding mechanism for bot and user utterances [2]. This approach uses a system act encoder to obtain a vector representation $a^{t}$ of all system dialogue acts $A^{t}$. An utterance encoder is then used
-to generate the user utterance encoding $u^{t}$ by processing the user utterance token embeddings $x^{t}$.
-We then have a dialogue encoder that summarizes the content of the dialogue using $a^{t}$ and $u^{t}$, and its previous
-hidden state $s^{t-1}$ to generate the dialogue context vector $o^{t}$, and also update the hidden state.
+to generate the user utterance encoding $$u^{t}$$ by processing the user utterance token embeddings $$x^{t}$$.
+We then have a dialogue encoder that summarizes the content of the dialogue using $$a^{t}$$ and $$u^{t}$$, and its previous
+hidden state $$s^{t-1}$$ to generate the dialogue context vector $$o^{t}$$, and also update the hidden state.
 The dialogue context vector is then used for intent classification. Both the encoders use a hierarchical RNN that processes a single utterance at a time.
 
-    #### **System Act Encoder**
-    The system act encoder encodes the set of dialogue acts $A^{t}$ at turn $t$ into a vector $a^{t}$ invariant to the order in which they appear.
+#### **System Act Encoder**
+The system act encoder encodes the set of dialogue acts $$A^{t}$$ at turn $$t$$ into a vector $a^{t}$$ invariant to the order in which they appear.
 
-    #### **Utterance Encoder**
-    The utterance encoder takes in the list of user utterance tokens as input. Let $x^{t}$ denote the utterance token embeddings, which is encoded using a bi-directional GRU.
-    $$u^{t}, u^{t}_{o} = BRNN_{GRU}(x^{t})$$
-    We get the embedding representation $u^{t}$ of the user utterance and $u^{t}_{o}$ is the concatenation of the final states and the intermediate outputs of the forward and backward RNNs respectively.
+#### **Utterance Encoder**
+The utterance encoder takes in the list of user utterance tokens as input. Let $$x^{t}$$ denote the utterance token embeddings, which is encoded using a bi-directional GRU.
+$$u^{t}, u^{t}_{o} = BRNN_{GRU}(x^{t})$$
+We get the embedding representation $$u^{t}$$ of the user utterance and $$u^{t}_{o}$$ is the concatenation of the final states and the intermediate outputs of the forward and backward RNNs respectively.
 
-    #### **Dialogue Encoder**
-    The dialogue encoder incrementally generated the embedded representation of the dialogue context at every turn. As shown in the figure below, it takes in $a^{t} \bigoplus u^{t}$ and its previous state $s^{t-1}$ as inputs
-    and outputs the updated state $s^{t}$ and the encoded representation of the dialogue context $o^{t}$.
+#### **Dialogue Encoder**
+The dialogue encoder incrementally generated the embedded representation of the dialogue context at every turn. As shown in the figure below, it takes in $$a^{t} \bigoplus u^{t}$$ and its previous state $$s^{t-1}$$ as inputs
+and outputs the updated state $$s^{t}$$ and the encoded representation of the dialogue context $$o^{t}$$.
 
-    The above encoded feature is then flattened to the number of intent classes using a linear layer. 
-    $$ p_{i}^{t} = softmax(W_{i}.o^{t} + b_{i})$$
+The above encoded feature is then flattened to the number of intent classes using a linear layer. 
+    $$p_{i}^{t} = softmax(W_{i}.o^{t} + b_{i})$$
 
-    #### **Results**
-    The dialogues are obtained from simulated dialogues dataset.The dataset has dialogues from restaurant and movie domains with total of 3 intents. The baseline for this approach was getting results without any context and the overall intent accuracy was **84.76%** whereas using the previous dialog encoder ($o^{t-1}$) and the current system encoder  ($a^{t}$) was **99.54%**.
+#### **Results**
+The dialogues are obtained from simulated dialogues dataset.The dataset has dialogues from restaurant and movie domains with total of 3 intents. The baseline for this approach was getting results without any context and the overall intent accuracy was **84.76%** whereas using the previous dialog encoder ($$o^{t-1}$$) and the current system encoder  ($$a^{t}$$) was **99.54%**.
 
 <img src= '../assets/images/contextual/encoder_context_2.png' alt='drawing' width='600'>
 
