@@ -4,23 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Feature Disentanglement - I | Skit Tech</title>
+    <title> | Skit Tech</title>
 
     <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Feature Disentanglement - I | Skit Tech</title>
+<title>Skit Tech | Speech Technology from Skit</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Feature Disentanglement - I" />
-<meta name="author" content="Shangeth Rajaa" />
+<meta property="og:title" content="Skit Tech" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="The main advantage of deep learning is the ability to learn from the data in an end-to-end manner. The core of deep learning is representation, the deep learning models transform the representation of the data at each layer into a condensed representation with reduced dimension. Deep Learning models are often also termed as black-box models as these representations are difficult to interpret, understanding these representations can give us an insight about which feature of the data is more important and will allow us to control the learning process. Recently there has been a lot of interest in representation learning and controlling the learned representations which give an edge over multiple tasks like controlled synthesis, better representations for specific downstream tasks." />
-<meta property="og:description" content="The main advantage of deep learning is the ability to learn from the data in an end-to-end manner. The core of deep learning is representation, the deep learning models transform the representation of the data at each layer into a condensed representation with reduced dimension. Deep Learning models are often also termed as black-box models as these representations are difficult to interpret, understanding these representations can give us an insight about which feature of the data is more important and will allow us to control the learning process. Recently there has been a lot of interest in representation learning and controlling the learned representations which give an edge over multiple tasks like controlled synthesis, better representations for specific downstream tasks." />
+<meta name="description" content="Speech Technology from Skit" />
+<meta property="og:description" content="Speech Technology from Skit" />
 <meta property="og:site_name" content="Skit Tech" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-02-22T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Feature Disentanglement - I" />
+<meta property="twitter:title" content="Skit Tech" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Shangeth Rajaa"},"headline":"Feature Disentanglement - I","url":"/feature-disentanglement1/","dateModified":"2022-02-22T00:00:00+00:00","datePublished":"2022-02-22T00:00:00+00:00","description":"The main advantage of deep learning is the ability to learn from the data in an end-to-end manner. The core of deep learning is representation, the deep learning models transform the representation of the data at each layer into a condensed representation with reduced dimension. Deep Learning models are often also termed as black-box models as these representations are difficult to interpret, understanding these representations can give us an insight about which feature of the data is more important and will allow us to control the learning process. Recently there has been a lot of interest in representation learning and controlling the learned representations which give an edge over multiple tasks like controlled synthesis, better representations for specific downstream tasks.","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/feature-disentanglement1/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"},"name":"Shangeth Rajaa"},"@context":"https://schema.org"}</script>
+{"headline":"Skit Tech","url":"/authors/sanchit-ahuja/","description":"Speech Technology from Skit","@type":"WebPage","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/logo.png"}},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -314,7 +311,7 @@ var documents = [{
     "id": 41,
     "url": "/woc/",
     "title": "TTS Enhancement",
-    "body": "2022/03/09 - Problem StatementText-To-Speech (TTS) systems of Skit, as well as TTS systems in general, have a tendency to mix some ambient noise along with the speech it outputs. This aim of this research project was to remove that noise and quantify how well the noise has been removed using standard metrics. Listen to the clean speech sample here for reference- {% fancy_audio /assets/audios/posts/woc/sp01. wav %} and the distorted sample- {% fancy_audio /assets/audios/posts/woc/sp01_car_sn0. wav %} IntroductionSpeech enhancement can be done using the traditional signal processing techniques or using deep learning techniques. In this project, we mainly focused on the signal processing aspects of noise reduction. Signal processing techniques can be further divided into 3 more categories- Spectral Subtractive algorithms: The main principle is as follows- assuming additive noise, one can obtain an estimate of the clean signal spectrum by subtracting an estimate of the noise spectrum from the noisy speech spectrum. The noise spectrum can be estimated and updated, during periods when the signal is absent. The assumption made is that noise is stationary or a slowly varying process and that the noise spectrum does not change significantly between the updating periods. The enhanced signal is obtained by computing the IDFT of the estimated signal spectrum using the phase of the noisy signal. Statistical Model based algorithms: Given a set of measurements that depend on an unknown parameter, we wish to find a nonlinear estimator of the parameter of interest. These measurements correspond to the set of DFT coefficients of the noisy signal and the parameters of interest are the set of DFT coefficients of the clean signal. Various techniques from estimation theory which include maximum-likelihood (ML) estimators and the Bayesian estimators like MMSE and MAP estimators are used for this purpose. Subspace algorithms: These algorithms are based on the principle that the clean signal might be confined to a subspace of the noisy Euclidean space. Given a method for decomposing the vector space of the noisy signal into a direct sum of the subspace that is occupied by the clean signal and a subspace occupied by the noise signal, for example SVD, we could estimate the clean signal simply by nulling the component of the noisy vector residing in the noisy subspace. ContributionsFilters: Speech enhancement can be done using the traditional signal processing techniques or using deep learning techniques. We hypothesised that signal processing techniques would be suitable for task and tested them out. We implemented some of the popular speech enhancement methods which were suitably modified to tackle the problem at hand. Wiener Filter   Block Diagram of Wiener FilterThe input signal w[n] goes through a linear and time-invariant system to produce an output signal x[n]. We are to design the system in such a way that the output signal, x[n], is as close to the desired signal, s[n], as possible. This can be done by computing the estimation error, e[n], and making it as small as possible. The optimal filter that minimizes the estimation error is called the Wiener filter. {% fancy_audio /assets/audios/posts/woc/wiener_filtered_sp01_car_sn0. wav %} MMSE and MMSE Log Filter These fall under the umbrella of Bayesian estimation techniques. We saw above that the Wiener estimator can be derived by minimizing the error between a linear model of the clean spectrum and the true spectrum. The Wiener estimator is considered to be the optimal (in the mean-square-error sense) complex spectral estimator, but is not the optimal spectral magnitude estimator. Acknowledging the importance of the short-time spectral amplitude (STSA) on speech intelligibility and quality, several authors have proposed optimal methods for obtaining the spectral amplitudes from noisy observations. In particular, we are looking for sought that minimized the mean-square error between the estimated and true magnitudes: \[e = E{ (\hat{X_k} - X_k)^2 }\]where \(\hat{X_k}\) is the estimate spectral magnitude at frequency \(\omega_k\) and \(X_k\) is the true magnitude of the clean signal. The MMSE Log is an improvement upon the MMSE estimator. Although a metricbased on the squared error of the magnitude spectra is mathematically tractable, it may not be subjectively meaningful. It has been suggested that a metric based on the squared error of the log-magnitude spectra may be more suitable for speech processing. So we minimize : \[e = E \{ (log \hat X_k - log X_k)^2 \}\]and we notice a significant improvement in the results compared to the original MMSE estimator. {% fancy_audio /assets/audios/posts/woc/mmse_filtered_sp01_car_sn0. wav %} {% fancy_audio /assets/audios/posts/woc/mmse_log_filtered_sp01_car_sn0. wav %} Berouti’s Oversubstraction This method consists of subtracting an overestimate of the noise power spectrum, while preventing the resultant spectral components from going below a preset minimum value (spectral floor). \[\hat X(\omega)=\begin{cases} |Y(\omega)|^2 - \alpha |\hat D(\omega)|^2&amp; \text{if } |Y(\omega)|^2 \geq (\alpha + \beta) |D(\omega)|^2 \\ \beta |\hat D(\omega)|^2 &amp; \text{else} \end{cases}\]where \(\alpha (\geq 1)\) is the oversubtraction factor and \(0 \leq \beta \leq 1\) is the spectral floor parameter. When we subtract the estimate of the noise spectrum from the noisy speechspectrum, there remain peaks in the spectrum. Some of those peaks are broadband (encompassing a wide range of frequencies) whereas others are narrow band, appearing as spikes in the spectrum. By oversubtracting the noise spectrum, that is, by using \(\alpha\), we can reduce the amplitude of the broadband peaks and, in some cases, eliminate them altogether. This by itself, however, is not sufficient because the deep valleys surrounding the peaks still remain in the spectrum. For that reason, spectral flooring is used to “fill in” the spectral valleys and possibly mask the remaining peaks by the neighbouring spectral components of comparable value. The valleys between peaks are no longer deep when \(\beta &gt; 0\) compared to when \(\beta = 0\). The parameter \(\beta\) controls the amount of remaining residual noiseand the amount of perceived musical noise. If the spectral floor parameter \(\beta\) is toolarge, then the residual noise will be audible but the musical noise will not be perceptible. Conversely, if \(\beta\) is too small, the musical noise will become annoying but the residual noise will be markedly reduced. The parameter \(\alpha\) affects the amount of speech spectral distortion caused bythe subtraction. If \(\alpha\) is too large, then the resulting signal will be severely distorted to the point that intelligibility may suffer. \[\alpha = \alpha_0 - \frac{3}{20} \textit{SNR} : \text{ for} -5 \leq \textit{SNR} \leq -20\]where \(\alpha_0\) is the desired value of \(\alpha\) at 0 dB SNR and the \(\textit{SNR}\) is the short term SNR estimated at each frame. {% fancy_audio /assets/audios/posts/woc/ss_filtered_sp01_car_sn0. wav %} The Kalman filter is a general recursive state estimation technique which is modified to work on the speech denoising problem. {% fancy_audio /assets/audios/posts/woc/kalman_filtered_sp01_car_sn0. wav %} Intelligibility Metrics: Along with techniques for speech enhancement, it is important to quantify the degree of enhancement which our methods provide. For this, we tested several metrics as discussed below- Perceptual Evaluation of Speech Quality (PESQ) is a full-reference algorithm and analyzes the speech signal sample-by-sample after a temporal alignment of corresponding excerpts of reference and test signal. PESQ results essentially model mean opinion score (MOS) that cover a scale from 1 (bad) to 5 (excellent). Short-Time Objective Intelligibility (STOI) is an objective metric showing high correlation (\(\rho=0. 95\)) with the intelligibility of both noisy, and TF-weighted noisy speech. Gross Pitch Error (GPE) is the proportion of frames, considered voiced by both pitch tracker and ground truth, for which the relative pitch error is higher than a certain threshold, which is usually set to 20%. Voicing Error Decision (VED) is the proportion of frames for which an incorrect voiced/unvoiced decision is made. F0 Frame Error (FFE) is the proportion of frames for which an error (either according to the GPE or the VDE criterion) is made. FFE can be seen as a single measure for assessing the overall performance of a pitch tracker. Mel Cepstral Distortion (MCD) is a measure of how different two sequences of mel cepstra are. It is used in assessing the quality of parametric speech synthesis systems, including statistical parametric speech synthesis systems, the idea being that the smaller the MCD between synthesized and natural mel cepstral sequences, the closer the synthetic speech is to reproducing natural speech. ResultsWe apply our methods on 2 different datasets: First on the public NOIZEUS dataset and next on a dataset created by the in-house TTS systems of Skit. The results are quite satisfactory when we apply our methods on the NOIZEUS dataset and we found that the Wiener Filter and the Kalman Filters perform the best outperforming one another for different signal-to-noise ratios (SNR).   Effect of filters wrt MCD metric  Effect of filters wrt PESQ metricConclusionHowever they do not perform as well as we want on the TTS dataset. In fact, we observe that our models adversely affecting the input speech. There can be various reasons attributed to this, the primary one being that speech denoising of real life data and TTS Systems are quite different, since both have different noise types. Real life noise is either additive and can be subtracted by noise estimation or can be decomposed as a direct sum of a clean subspace and a pure noise subspace. But the noise in TTS systems are much more subtle and the noise cannot be modelled to be simply additive. Here the noise is generated along with the speech. Hence most of the traditional filters which although work well for real life noise separation, do not work well for this use case. This is where we planned to resort to deep learning models like the Facebook denoiser and SeGAN. Code: You can find more information on the Github Repository. References Berouti’s Spectral Subtraction Kalman Filter for Speech Enhancement Speech Enhancement by Philipos C. Loizou A comparative study of pitch extraction algorithms on a large variety of singing sounds, PESQAuthor: Ananyapam De, a final year student at IISER Kolkata, majoring in Statistics, while minoring in the Computational Sciences. "
+    "body": "2022/03/09 - Problem StatementText-To-Speech (TTS) systems of Skit, as well as TTS systems in general, have a tendency to mix some ambient noise along with the speech it outputs. This aim of this research project was to remove that noise and quantify how well the noise has been removed using standard metrics. Listen to the clean speech sample here for reference-     and the distorted sample-     IntroductionSpeech enhancement can be done using the traditional signal processing techniques or using deep learning techniques. In this project, we mainly focused on the signal processing aspects of noise reduction. Signal processing techniques can be further divided into 3 more categories- Spectral Subtractive algorithms: The main principle is as follows- assuming additive noise, one can obtain an estimate of the clean signal spectrum by subtracting an estimate of the noise spectrum from the noisy speech spectrum. The noise spectrum can be estimated and updated, during periods when the signal is absent. The assumption made is that noise is stationary or a slowly varying process and that the noise spectrum does not change significantly between the updating periods. The enhanced signal is obtained by computing the IDFT of the estimated signal spectrum using the phase of the noisy signal. Statistical Model based algorithms: Given a set of measurements that depend on an unknown parameter, we wish to find a nonlinear estimator of the parameter of interest. These measurements correspond to the set of DFT coefficients of the noisy signal and the parameters of interest are the set of DFT coefficients of the clean signal. Various techniques from estimation theory which include maximum-likelihood (ML) estimators and the Bayesian estimators like MMSE and MAP estimators are used for this purpose. Subspace algorithms: These algorithms are based on the principle that the clean signal might be confined to a subspace of the noisy Euclidean space. Given a method for decomposing the vector space of the noisy signal into a direct sum of the subspace that is occupied by the clean signal and a subspace occupied by the noise signal, for example SVD, we could estimate the clean signal simply by nulling the component of the noisy vector residing in the noisy subspace. ContributionsFilters: Speech enhancement can be done using the traditional signal processing techniques or using deep learning techniques. We hypothesised that signal processing techniques would be suitable for task and tested them out. We implemented some of the popular speech enhancement methods which were suitably modified to tackle the problem at hand. Wiener Filter   Block Diagram of Wiener FilterThe input signal w[n] goes through a linear and time-invariant system to produce an output signal x[n]. We are to design the system in such a way that the output signal, x[n], is as close to the desired signal, s[n], as possible. This can be done by computing the estimation error, e[n], and making it as small as possible. The optimal filter that minimizes the estimation error is called the Wiener filter.     MMSE and MMSE Log Filter These fall under the umbrella of Bayesian estimation techniques. We saw above that the Wiener estimator can be derived by minimizing the error between a linear model of the clean spectrum and the true spectrum. The Wiener estimator is considered to be the optimal (in the mean-square-error sense) complex spectral estimator, but is not the optimal spectral magnitude estimator. Acknowledging the importance of the short-time spectral amplitude (STSA) on speech intelligibility and quality, several authors have proposed optimal methods for obtaining the spectral amplitudes from noisy observations. In particular, we are looking for sought that minimized the mean-square error between the estimated and true magnitudes: [e = E{ (\hat{X_k} - X_k)^2 }] where \(\hat{X_k}\) is the estimate spectral magnitude at frequency \(\omega_k\) and \(X_k\) is the true magnitude of the clean signal. The MMSE Log is an improvement upon the MMSE estimator. Although a metricbased on the squared error of the magnitude spectra is mathematically tractable, it may not be subjectively meaningful. It has been suggested that a metric based on the squared error of the log-magnitude spectra may be more suitable for speech processing. So we minimize : [e = E { (log \hat X_k - log X_k)^2 }] and we notice a significant improvement in the results compared to the original MMSE estimator.         Berouti’s Oversubstraction This method consists of subtracting an overestimate of the noise power spectrum, while preventing the resultant spectral components from going below a preset minimum value (spectral floor).       [\hat X(\omega)=\begin{cases}   Y(\omega)   ^2 - \alpha   \hat D(\omega)   ^2&amp; \text{if }   Y(\omega)   ^2 \geq (\alpha + \beta)   D(\omega)   ^2 \ \beta   \hat D(\omega)   ^2 &amp; \text{else} \end{cases}]   where \(\alpha (\geq 1)\) is the oversubtraction factor and \(0 \leq \beta \leq 1\) is the spectral floor parameter. When we subtract the estimate of the noise spectrum from the noisy speechspectrum, there remain peaks in the spectrum. Some of those peaks are broadband (encompassing a wide range of frequencies) whereas others are narrow band, appearing as spikes in the spectrum. By oversubtracting the noise spectrum, that is, by using \(\alpha\), we can reduce the amplitude of the broadband peaks and, in some cases, eliminate them altogether. This by itself, however, is not sufficient because the deep valleys surrounding the peaks still remain in the spectrum. For that reason, spectral flooring is used to “fill in” the spectral valleys and possibly mask the remaining peaks by the neighbouring spectral components of comparable value. The valleys between peaks are no longer deep when \(\beta &gt; 0\) compared to when \(\beta = 0\). The parameter \(\beta\) controls the amount of remaining residual noiseand the amount of perceived musical noise. If the spectral floor parameter \(\beta\) is toolarge, then the residual noise will be audible but the musical noise will not be perceptible. Conversely, if \(\beta\) is too small, the musical noise will become annoying but the residual noise will be markedly reduced. The parameter \(\alpha\) affects the amount of speech spectral distortion caused bythe subtraction. If \(\alpha\) is too large, then the resulting signal will be severely distorted to the point that intelligibility may suffer. [\alpha = \alpha_0 - \frac{3}{20} \textit{SNR} : \text{ for} -5 \leq \textit{SNR} \leq -20] where \(\alpha_0\) is the desired value of \(\alpha\) at 0 dB SNR and the \(\textit{SNR}\) is the short term SNR estimated at each frame.     The Kalman filter is a general recursive state estimation technique which is modified to work on the speech denoising problem.     Intelligibility Metrics: Along with techniques for speech enhancement, it is important to quantify the degree of enhancement which our methods provide. For this, we tested several metrics as discussed below- Perceptual Evaluation of Speech Quality (PESQ) is a full-reference algorithm and analyzes the speech signal sample-by-sample after a temporal alignment of corresponding excerpts of reference and test signal. PESQ results essentially model mean opinion score (MOS) that cover a scale from 1 (bad) to 5 (excellent). Short-Time Objective Intelligibility (STOI) is an objective metric showing high correlation (\(\rho=0. 95\)) with the intelligibility of both noisy, and TF-weighted noisy speech. Gross Pitch Error (GPE) is the proportion of frames, considered voiced by both pitch tracker and ground truth, for which the relative pitch error is higher than a certain threshold, which is usually set to 20%. Voicing Error Decision (VED) is the proportion of frames for which an incorrect voiced/unvoiced decision is made. F0 Frame Error (FFE) is the proportion of frames for which an error (either according to the GPE or the VDE criterion) is made. FFE can be seen as a single measure for assessing the overall performance of a pitch tracker. Mel Cepstral Distortion (MCD) is a measure of how different two sequences of mel cepstra are. It is used in assessing the quality of parametric speech synthesis systems, including statistical parametric speech synthesis systems, the idea being that the smaller the MCD between synthesized and natural mel cepstral sequences, the closer the synthetic speech is to reproducing natural speech. ResultsWe apply our methods on 2 different datasets: First on the public NOIZEUS dataset and next on a dataset created by the in-house TTS systems of Skit. The results are quite satisfactory when we apply our methods on the NOIZEUS dataset and we found that the Wiener Filter and the Kalman Filters perform the best outperforming one another for different signal-to-noise ratios (SNR).   Effect of filters wrt MCD metric  Effect of filters wrt PESQ metricConclusionHowever they do not perform as well as we want on the TTS dataset. In fact, we observe that our models adversely affecting the input speech. There can be various reasons attributed to this, the primary one being that speech denoising of real life data and TTS Systems are quite different, since both have different noise types. Real life noise is either additive and can be subtracted by noise estimation or can be decomposed as a direct sum of a clean subspace and a pure noise subspace. But the noise in TTS systems are much more subtle and the noise cannot be modelled to be simply additive. Here the noise is generated along with the speech. Hence most of the traditional filters which although work well for real life noise separation, do not work well for this use case. This is where we planned to resort to deep learning models like the Facebook denoiser and SeGAN. Code: You can find more information on the Github Repository. References Berouti’s Spectral Subtraction Kalman Filter for Speech Enhancement Speech Enhancement by Philipos C. Loizou A comparative study of pitch extraction algorithms on a large variety of singing sounds, PESQAuthor: Ananyapam De, a final year student at IISER Kolkata, majoring in Statistics, while minoring in the Computational Sciences. "
     }, {
     "id": 42,
     "url": "/Turn_Taking_Dynamics_in_Voice_Bots/",
@@ -493,176 +490,55 @@ function lunr_search(term) {
     <!-- Content -->
     <main role="main" class="site-content">
         <div class="container">
-<div class="jumbotron jumbotron-fluid mb-3 pl-0 pt-0 pb-0 bg-white position-relative">
-		<div class="h-100 tofront">
-			<div class="row justify-content-center">
-				<div class="col-md-12 pr-0 pr-md-4 pt-4 align-self-center">
-					<p class="text-uppercase font-weight-bold">
-                        <span class="catlist">
-						
-                          <a class="sscroll text-danger" href="/categories.html#machine learning">machine learning</a><span class="sep">, </span>
-                        
-                        </span>
-					</p>
-					<h1 class="display-4 mb-4 article-headline">Feature Disentanglement - I</h1>
-					<div class="d-flex align-items-center">
-						<small>
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="row align-items-center mb-5">
+          <div class="col-md-9">
+            <h2 class="font-weight-bold">Sanchit Ahuja</h2>
+            <p class="excerpt"></p>
+            <div class="icon-block mt-3 d-flex justify-content-between">
+            <div>
               
-              <a target="_blank" href="/authors/Shangeth" class="">Shangeth Rajaa</a>
+              <a target="_blank" href="https://sanchit-ahuja.github.io/"><i class="fa fa-globe text-muted" aria-hidden="true"></i></a> &nbsp;
               
-              <span class="text-muted d-block mt-1">Feb 22, 2022 · <span class="reading-time">
-  
-  
-    7 mins read
-  
-</span>
-    </span>
-						</small>
-					</div>
-
-			    <!-- Tags -->
-			    <div class="mb-4 mt-4">
-				    <span class="taglist">
-				      
-				    </span>
-			    </div>
-
-				</div>
-				<div class="col-md-6 pr-0 align-self-center">
-				</div>
-			</div>
-		</div>
-	</div>
+              
+              <a target="_blank" href="https://github.com/sanchit-ahuja"><i class="fab fa-github text-muted" aria-hidden="true"></i></a> &nbsp;
+              
+              
+              
+            </div>
+            </div>
+          </div>
+          <div class="col-md-3 text-right">
+            <img alt="Sanchit Ahuja" src="/assets/images/authors/avatar-person.svg" class="rounded-circle" height="100" width="100">
+          </div>
+        </div>
+        <h4 class="font-weight-bold spanborder"><span>Posts</span></h4>
+        
+        <div class="mb-5 d-flex justify-content-between main-loop-card">
+<div class="pr-3">
+	<h2 class="mb-1 h4 font-weight-bold">
+	<a class="text-dark" href="/contextual-slu/">Incorporating context to improve SLU</a>
+	</h2>
+	<p class="excerpt">
+    Introduction In task-oriented dialogue systems, the spoken language understanding, or SLU, refers to the task of parsing the natural ...
+	</p>
+	<small class="d-block text-muted">
+		In <span class="catlist">
+		
+		<a class="text-capitalize text-muted smoothscroll" href="/categories.html#machine learning">Machine Learning</a><span class="sep">, </span>
+		
+		</span>
+	</small>
+	<small class="text-muted">
+		Aug 04, 2022
+	</small>
+</div>
 </div>
 
-<div class="container pt-4 pb-4">
-	<div class="row">
-		<div class="col-lg-10 col-md-12">
-      <!-- Article -->
-			<article class="article-post">
-			<p>The main advantage of deep learning is the ability to learn from the data in an end-to-end manner. The core of deep learning is representation, the deep learning models transform the representation of the data at each layer into a condensed representation with reduced dimension. Deep Learning models are often also termed as black-box models as these representations are difficult to interpret, understanding these representations can give us an insight about which feature of the data is more important and will allow us to control the learning process. Recently there has been a lot of interest in representation learning and controlling the learned representations which give an edge over multiple tasks like controlled synthesis, better representations for specific downstream tasks.</p>
-
-<h1 id="data-representation-and-latent-code">Data Representation and Latent Code</h1>
-<p>An image \((x)\) from the MNIST dataset has 28x28 = 784 dimensions which is a sparse representation of the image that can be visualized. But all these dimensions are not required to represent the image. The content of the images can be represented in a condensed form using lesser dimensions called latent code. Although the actual image has 784 dimensions \(x \in R^{784}\), one way of representing MNIST image can be with just an integer ie: \(z \in \{0, 1, 2, …, 9\}\). This representation \(z\) reduces the dimension of representing the image \(x\) to 1 which captures the content of which number is present in the image and the variability in the dataset. This is one example of discrete latent code for the MNIST dataset, a continuous latent code will contain more information about the image such as the style of the image, position of the number, size of the number in the image, etc.</p>
-
-<figure>
-<center>
-  <img width="600" height="300" alt="Can't See? Something went wrong!" src="https://www.mdpi.com/applsci/applsci-09-03169/article_deploy/html/images/applsci-09-03169-g001.png" />
-  <figcaption>Fig 2:  Sample Images of MNIST from [1]</figcaption>
-</center>
-</figure>
-
-<h2 id="autoencoder">AutoEncoder</h2>
-
-<p>Autoencoder[2] models are popularly used to learn such latent code in an unsupervised manner by compressing the image to a fixed dimension code \(z\) and generating the image back using this latent code with an encoder-decoder model.</p>
-
-<figure>
-<center>
-  <img alt="Can't See? Something went wrong!" src="https://d3i71xaburhd42.cloudfront.net/08b0b21725c236fb1860285677a00248f77c7587/2-Figure1-1.png" />
-  <figcaption>Fig 2: Autoencoder architecture from Autoencoders[2]</figcaption>
-</center>
-</figure>
-
-<p>The encoder \(q_{\phi}(z \mid x)\) of the autoencoder compresses the image to a fixed dimension\((d)\) latent code\((z)\), and the decoder \(p_{\theta}(x \mid z)\) is a conditional image generator. The dimension of z has to be such that, the image can be completely reconstructed by the decoder with the latent code. Choosing the dimension of the latent code is a problem on its own[3].</p>
-
-<p>The autoencoder models trained will successfully encode the images into a latent code \(z\), but there is no guarantee that the latent code can be easily inferred, ie: we do not know where in the d-dimensional space the model encoded the image into, and thus difficult to choose a latent code to generate image during inference. So the conclusion is we have no idea how and where the encoder encodes the images, so we do not have control over synthesis during inference. The following figure shows the latent code learned by the AutoEncoder model with different training, as we can observe the latent space keep changing the range and quadrant and thus difficult to infer.</p>
-
-<figure>
-<center>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/feature-disentanglement/fig1.png" />
-  <figcaption>Fig 3: Latent code of MNIST images learned by an Auto Encoder [4]</figcaption>
-</center>
-</figure>
-
-<h2 id="variational-autoencodervae">Variational AutoEncoder(VAE)</h2>
-
-<p>Variational autoencoders(VAE) [6] solve this problem by forcing the latent code (z) to be close to a known prior distribution(Gaussian), this gives us control over the latent space. During inference, the latent space can be sampled from this known distribution for image generation. The following figure shows the latent code learned by VAE with different training, and the latent space across training is centered to the mean 0 across dimensions.</p>
-
-<figure>
-<center>
-  <img alt="Can't See? Something went wrong!" src="/assets/images/posts/feature-disentanglement/fig2.png" />
-  <figcaption>Fig 4: Latent code of MNIST images learned by a VAE [4]</figcaption>
-</center>
-</figure>
-
-<p>VAE allows us to have control over the latent space and sample from the known prior distribution. But this again does not give us control over the generation of the image. Say if you want to generate an image of the number ‘3’ or ‘7’, you cannot do that(at least not directly). This is where the term “disentanglement” comes into play.</p>
-
-<h1 id="disentanglement">Disentanglement</h1>
-<p>Feature disentanglement is isolating the source of variation in observation data. There is a lot more factors/feature of an MNIST image other than the number itself, such as the location of the number in the image, size of the image, angle of the number, etc. These factors are independent of each other.</p>
-
-<p>Feature disentanglement involves separating underlying concepts of “Big one in the left”: ie: size(big), number(one), location(left).
-Our interest here is to see if we can isolate these factors in the latent code so that we can have control over the generation of the images. So we want the encoder to disentangle the representation into different factors and then we generate the image with desired factors say “small seven in the top rotated 30 degrees”.</p>
-
-<figure>
-<center>
-  <img width="800" height="400" alt="Can't See? Something went wrong!" src="https://d3i71xaburhd42.cloudfront.net/35da0a2001eea88486a5de677ab97868c93d0824/6-Figure2-1.png" />
-  <figcaption>Fig 5: Generated MNIST images by InfoGAN [5] varied digit, thickness and roatation.</figcaption>
-</center>
-</figure>
-
-<h2 id="beta-vae">Beta-VAE</h2>
-<p>Beta-VAE is a variant of VAE which allows disentanglement of the learned latent code. Beta-VAE adds hyperparameter to the loss function which modulates the learning constraint of VAE.</p>
-
-<figure>
-<center>
-  <img width="800" alt="Can't See? Something went wrong!" src="https://miro.medium.com/max/1400/1*Z6tj5bVoArekVgv65gfkfg.png" />
-  <figcaption>Fig 6: Loss function of beta-VAE [7].</figcaption>
-</center>
-</figure>
-
-<p>The first part of the loss function takes care of the reconstruction of the image, it is the second term that learns the latent code of VAE. Different dimensions that span across Gaussians are independent, so by making the prior distribution gaussian, we force the dimensions of the latent code to be independent of each other. So increasing the weight of the second part of the loss, makes the latent code to be disentangled and independent. But this also brings a tradeoff between disentanglement and the reconstruction capability of the VAE. Although Beta-VAE models are good in disentangling the features, the reconstruction ability of this model is not the best.</p>
-
-<figure>
-<center>
-  <img width="800" alt="Can't See? Something went wrong!" src="https://production-media.paperswithcode.com/methods/Screen_Shot_2020-06-28_at_4.00.13_PM.png" />
-  <figcaption>Fig 7: Samples generated by beta-VAE [7].</figcaption>
-</center>
-</figure>
-
-<h2 id="beta-tcvae">Beta-TCVAE</h2>
-<p>beta-TCVAE decomposes the KL divergence[10] term of the loss function of VAE into reconstruction loss, Index-code mutual information[8] between data and latent variable, Total Correlation[9] of z, and Dimension wise KL divergence[10] of \(z\)(respectively in the following formula). This helps to break the overall KL Divergence of \(z\) into dimension-wise quantities, which will focus on each dimension of the latent code \(z\). In this formulation, the beta hyperparameter is only on the Total Correlation term which is more important for disentanglement without affecting the reconstruction. So, Beta-TCVAE has better reconstruction ability than Beta-VAE with similar disentanglement property.</p>
-
-\[\mathcal{L}_{\beta-\mathrm{TC}}:=\mathbb{E}_{q(z \mid n) p(n)}[\log p(n \mid z)]-\alpha I_{q}(z ; n)-\beta \operatorname{KL}\left(q(z) \| \prod_{j} q\left(z_{j}\right)\right)-\gamma \sum_{j} \operatorname{KL}\left(q\left(z_{j}\right) \| p\left(z_{j}\right)\right)\]
-
-<p>where \(\alpha = \gamma = 1\) and only \(\beta\) is varies as the hyperparameter.</p>
-
-<figure>
-<center>
-  <img width="800" alt="Can't See? Something went wrong!" src="https://vitalab.github.io/article/images/IsolatingSourcesOfDisentanglementInVAEs/figure1.jpg" />
-  <figcaption>Fig 8: Samples generated by beta-TCVAE [8].</figcaption>
-</center>
-</figure>
-
-<p>In future posts, we will examine many new methods for feature disentanglement and how these methods can be applied to speech signals.</p>
-
-<h2 id="references-">References :</h2>
-
-<p>[1] : <a href="https://www.mdpi.com/2076-3417/9/15/3169/htm">A Survey of Handwritten Character Recognition with MNIST and EMNIST</a> (2019)</p>
-
-<p>[2] : <a href="https://arxiv.org/abs/2003.05991">Autoencoders</a> (2021)</p>
-
-<p>[3] : <a href="https://www.sciencedirect.com/science/article/abs/pii/S0925231215015994">Squeezing bottlenecks: Exploring the limits of autoencoder semantic representation capabilities</a> (2016)</p>
-
-<p>[4] : <a href="https://www.youtube.com/watch?v=itOlzH9FHkI">Disentangled Representations - How to do Interpretable Compression with Neural Models</a> (2020)</p>
-
-<p>[5] : <a href="https://arxiv.org/abs/1606.03657">InfoGAN: Interpretable Representation Learning by Information Maximizing Generative Adversarial Nets</a> (2016)</p>
-
-<p>[6] : <a href="https://arxiv.org/abs/1312.6114">Auto-Encoding Variational Bayes</a> (2013)</p>
-
-<p>[7] : <a href="https://openreview.net/forum?id=Sy2fzU9gl">beta-VAE: Learning Basic Visual Concepts with a Constrained Variational Framework </a> (2017)</p>
-
-<p>[8] : <a href="https://arxiv.org/abs/1802.04942">Isolating Sources of Disentanglement in Variational Autoencoders</a></p>
-
-<p>[9] : <a href="https://en.wikipedia.org/wiki/Total_correlation">Wikipedia</a></p>
-
-<p>[10] : <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Wikipedia</a></p>
-
-			</article>
-
-            <!-- Mailchimp Subscribe Form -->
-            
-		</div>
-	</div>
+        
+    </div>
+</div>
 </div>
 
     </main>
@@ -679,9 +555,6 @@ Our interest here is to see if we can isolate these factors in the latent code s
 
     
 
-    
-      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
 
     <!-- Footer -->
