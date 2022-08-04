@@ -73,7 +73,7 @@ restaurant. The intent F1 scores with memory network as the contextual encoder i
 <img src='../assets/images/contextual/encoder_context.png' alt='drawing' width='600'>
 
 
-2. Another approach [2] is to have a different encoding mechanism for bot and user utterances [2]. This approach uses a system act encoder to obtain a vector representation $a^{t}$ of all system dialogue acts $$A^{t}$$. An utterance encoder is then used
+2. Another approach [2] is to have a different encoding mechanism for bot and user utterances [2]. This approach uses a system act encoder to obtain a vector representation $$a^{t}$$ of all system dialogue acts $$A^{t}$$. An utterance encoder is then used
 to generate the user utterance encoding $$u^{t}$$ by processing the user utterance token embeddings $$x^{t}$$.
 We then have a dialogue encoder that summarizes the content of the dialogue using $$a^{t}$$ and $$u^{t}$$, and its previous
 hidden state $$s^{t-1}$$ to generate the dialogue context vector $$o^{t}$$, and also update the hidden state.
