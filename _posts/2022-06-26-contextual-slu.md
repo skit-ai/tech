@@ -1,6 +1,6 @@
 ---
 title: Incorporating context to improve SLU
-date: 2022-08-03
+date: 2022-08-04
 tags: [slu, context, nlp]
 categories: [Machine Learning]
 # image: assets/images/label-noise-blog/label-noise.png
@@ -32,8 +32,8 @@ If we observe the first example here, the trancription just consists of _'yes'_,
 We curated a private dataset of clients wherein we collect user utterances along with all the bot prompts. 
 We then concatenate the bot prompts with the user utterances. After retraining our intent classification model on some clients,
 we observed a performance jump of **20-30%** in the intent-F1 scores. <br> 
-This probably happened because our user prompts are not rich with enough information and
-closing that information deficit via the bot prompts helped us achieve better performance. Another probable reason for such a huge jump could be probably because the transcription generated while using voice bots are less accurate as compared to a chat bot's transcription wherein a user types their response. As a result, the gap increment when supplied with contextual information when working with voice bots is much larger than let's say a bot. However, this was not the case with all our datasets. We observed that
+This probably happened because our user transcriptions are not rich with enough information. By
+closing that information deficit via the bot prompts, the overall input helped us in achieving better performance. Another probable reason for such a huge jump could be probably because the transcription generated while using voice bots are less accurate as compared to a chat bot's transcription wherein a user types their response. As a result, the gap increment when supplied with contextual information when working with voice bots is much larger than let's say a bot. However, this was not the case with all our datasets. We observed that
 the datasets with large number of classes didn't perform well or at par with datasets with less number of classes. One probable reason for it could be the dataset having
 a large amount of granularity with respect to intents and as such there wasn't any significant bump in the performance. We also observed that the performance with small-talk intents such as confirm, deny etc. had a massive jump in their performance as compared to other types of intents.
 
@@ -45,7 +45,7 @@ observed around 30% jump in our intent-F1 scores for some of our clients. -->
 ## Some probable approaches from literature
 
 After observing an improvement in our models by just using a single bot prompt, we decided to a delve a bit further and found out many 
-approaches that can be utilized for our use-case. While doing literature review, I observed that encoding the contextual prompt along with the user prompt gives the best performance amongst all the methods. The current approach of concatenating bot prompts with the user prompt acts as a natural baseline for our subsequent experiments in this direction. We discuss the encoding based approaches from the literature below:
+approaches that can be utilized for our use-case. While doing literature review, we observed that encoding the contextual prompt along with the user prompt gives the best performance amongst all the methods. The current approach of concatenating bot prompts with the user prompt acts as a natural baseline for our subsequent experiments in this direction. We discuss the encoding based approaches from the literature below:
 
 ### Encoding dialogue History [1, 2]
 1. We can encode [1] the complete dialogue history as shown below. Let us assume that the dialogue is
@@ -53,18 +53,18 @@ a sequence of $$D_{t} = {u_{1}, u_{2}.. u_{t}}$$ bot and user utterance and at e
 step $$t$$ we are trying to output the classification for the user utterance $$u_{t}$$, given $$D_{t}$$.
 We then divide the model into 2 components, the context encoder that acts on $$D_{t}$$ to produce
 a vector representation of the dialogue context denoted by $$h_{t} = H(D_{t})$$ and the tagger, which takes
-this context encoding $$h_{t}$$, and the current utterance $$u_{t}$$ as input and produces the intent output. \\
+this context encoding $$h_{t}$$, and the current utterance $$u_{t}$$ as input and produces the intent output. 
 
 #### **Context Encoder Architecture**
-The **baseline context encoder** is just encoding the previous bot prompt $$u_{t-}$$ into a single bidirectional RNN (BiRNN) layer with Gated Recurrent Unit (GRU). The final state of the context encoder GRU is used the dialogue context, $$h_{t} = BiGRU(u_{t-1})$$.
-For **memory networks**, we encode all the dialogue context utterances, $${u_{1}, u_{2}.. u_{t}}$$ into memory networks denoted by $${m_{1}, m_{2}.. m_{t}}$$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, we append special positional tokens to each utterance. $$m_{k} = BiGRU_{m}(u_{k}) \: \: 0 <= k <= t-1$$.
-The current utterance is also encoded using a BiGRU and denoted by $$c$$. Let $$M$$ be the matrix wherein the $$i$$th row given by $$m_{i}$$. A cosine similarity is obtained between each memory vector, $$m_{i}$$, and the context vector $c$. The softmax of this similarity is used as an attention distribution over the memory $$M$$, and an attention distribution over the memory $$M$$, and an attention weighted sum of $$M$$ is used to produce the dialogue context vector $$h_{i}$$.
+The **baseline context encoder** is just encoding the previous bot prompt $$u_{t-1}$$ into a single bidirectional RNN (BiRNN) layer with Gated Recurrent Unit (GRU). The final state of the context encoder GRU is used the dialogue context, $$h_{t} = BiGRU(u_{t-1})$$.
+For **memory networks**, we encode all the dialogue context utterances, $${u_{1}, u_{2}.. u_{t}}$$ into memory networks denoted by $${m_{1}, m_{2}.. m_{t}}$$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, for that we append special positional tokens to each utterance, $$m_{k} = BiGRU_{m}(u_{k}) \: \: 0 <= k <= t-1$$.
+The current utterance is also encoded using a BiGRU and is denoted by $$c$$. Let $$M$$ be the matrix wherein the $$i$$th row given by $$m_{i}$$. A cosine similarity is obtained between each memory vector, $$m_{i}$$, and the context vector $$c$$. The softmax of this similarity is used as an attention distribution over the memory $$M$$, and an attention distribution over the memory $$M$$, and an attention weighted sum of $$M$$ is used to produce the dialogue context vector $$h_{i}$$.
       $$a = softmax(M_{c})$$
       $$h_{t} = a^{T}M$$
 
 
 #### **Tagger Architecture**
-A stacked BiRNN tagger is used to model intent classification.
+A stacked BiRNN tagger is then used to model intent classification.
 
 
 #### **Results**
