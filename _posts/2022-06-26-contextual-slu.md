@@ -53,12 +53,12 @@ a sequence of $$D_{t} = {u_{1}, u_{2}.. u_{t}}$$ bot and user utterance and at e
 step $$t$$ we are trying to output the classification for the user utterance $$u_{t}$$, given $$D_{t}$$.
 We then divide the model into 2 components, the context encoder that acts on $$D_{t}$$ to produce
 a vector representation of the dialogue context denoted by $$h_{t} = H(D_{t})$$ and the tagger, which takes
-this context encoding $$h_{t}$$, and the current utterance $$u_{t}$$ as input and produces the intent output. 
-<br>
-    #### **Context Encoder Architecture**
-    The **baseline context encoder** is just encoding the previous bot prompt $$u_{t-}$$ into a single bidirectional RNN (BiRNN) layer with Gated Recurrent Unit (GRU). The final state of the context encoder GRU is used the dialogue context, $$h_{t} = BiGRU(u_{t-1})$$.
-    For **memory networks**, we encode all the dialogue context utterances, ${u_{1}, u_{2}.. u_{t}}$$ into memory networks denoted by $${m_{1}, m_{2}.. m_{t}}$$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, we append special positional tokens to each utterance. $$m_{k} = BiGRU_{m}(u_{k}) \: \: 0 <= k <= t-1$$.
-    The current utterance is also encoded using a BiGRU and denoted by $$c$$. Let $$M$$ be the matrix wherein the $$i$$th row given by $$m_{i}$$. A cosine similarity is obtained between each memory vector, $$m_{i}$$, and the context vector $c$. The softmax of this similarity is used as an attention distribution over the memory $M$, and an attention distribution over the moery $M$, and an attention weighted sum of $M$ is used to produce the dialogue context vector $h_{i}$.
+this context encoding $$h_{t}$$, and the current utterance $$u_{t}$$ as input and produces the intent output. \\
+
+#### **Context Encoder Architecture**
+The **baseline context encoder** is just encoding the previous bot prompt $$u_{t-}$$ into a single bidirectional RNN (BiRNN) layer with Gated Recurrent Unit (GRU). The final state of the context encoder GRU is used the dialogue context, $$h_{t} = BiGRU(u_{t-1})$$.
+For **memory networks**, we encode all the dialogue context utterances, ${u_{1}, u_{2}.. u_{t}}$$ into memory networks denoted by $${m_{1}, m_{2}.. m_{t}}$$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, we append special positional tokens to each utterance. $$m_{k} = BiGRU_{m}(u_{k}) \: \: 0 <= k <= t-1$$.
+The current utterance is also encoded using a BiGRU and denoted by $$c$$. Let $$M$$ be the matrix wherein the $$i$$th row given by $$m_{i}$$. A cosine similarity is obtained between each memory vector, $$m_{i}$$, and the context vector $c$. The softmax of this similarity is used as an attention distribution over the memory $M$, and an attention distribution over the moery $M$, and an attention weighted sum of $M$ is used to produce the dialogue context vector $h_{i}$.
       $$ a = softmax(M_{c}) $$
       $$ h_{t} = a^{T}M $$
 
@@ -80,7 +80,7 @@ hidden state $$s^{t-1}$$ to generate the dialogue context vector $$o^{t}$$, and 
 The dialogue context vector is then used for intent classification. Both the encoders use a hierarchical RNN that processes a single utterance at a time.
 
 #### **System Act Encoder**
-The system act encoder encodes the set of dialogue acts $$A^{t}$$ at turn $$t$$ into a vector $a^{t}$$ invariant to the order in which they appear.
+The system act encoder encodes the set of dialogue acts $$A^{t}$$ at turn $$t$$ into a vector $$a^{t}$$ invariant to the order in which they appear.
 
 #### **Utterance Encoder**
 The utterance encoder takes in the list of user utterance tokens as input. Let $$x^{t}$$ denote the utterance token embeddings, which is encoded using a bi-directional GRU.
