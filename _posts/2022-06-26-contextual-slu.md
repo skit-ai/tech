@@ -57,10 +57,10 @@ this context encoding $$h_{t}$$, and the current utterance $$u_{t}$$ as input an
 
 #### **Context Encoder Architecture**
 The **baseline context encoder** is just encoding the previous bot prompt $$u_{t-}$$ into a single bidirectional RNN (BiRNN) layer with Gated Recurrent Unit (GRU). The final state of the context encoder GRU is used the dialogue context, $$h_{t} = BiGRU(u_{t-1})$$.
-For **memory networks**, we encode all the dialogue context utterances, ${u_{1}, u_{2}.. u_{t}}$$ into memory networks denoted by $${m_{1}, m_{2}.. m_{t}}$$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, we append special positional tokens to each utterance. $$m_{k} = BiGRU_{m}(u_{k}) \: \: 0 <= k <= t-1$$.
-The current utterance is also encoded using a BiGRU and denoted by $$c$$. Let $$M$$ be the matrix wherein the $$i$$th row given by $$m_{i}$$. A cosine similarity is obtained between each memory vector, $$m_{i}$$, and the context vector $c$. The softmax of this similarity is used as an attention distribution over the memory $M$, and an attention distribution over the moery $M$, and an attention weighted sum of $M$ is used to produce the dialogue context vector $h_{i}$.
-      $$ a = softmax(M_{c}) $$
-      $$ h_{t} = a^{T}M $$
+For **memory networks**, we encode all the dialogue context utterances, $${u_{1}, u_{2}.. u_{t}}$$ into memory networks denoted by $${m_{1}, m_{2}.. m_{t}}$$ using a BiGRU encoder. We add temporal context to the dialogue history utterances, we append special positional tokens to each utterance. $$m_{k} = BiGRU_{m}(u_{k}) \: \: 0 <= k <= t-1$$.
+The current utterance is also encoded using a BiGRU and denoted by $$c$$. Let $$M$$ be the matrix wherein the $$i$$th row given by $$m_{i}$$. A cosine similarity is obtained between each memory vector, $$m_{i}$$, and the context vector $c$. The softmax of this similarity is used as an attention distribution over the memory $$M$$, and an attention distribution over the memory $$M$$, and an attention weighted sum of $$M$$ is used to produce the dialogue context vector $$h_{i}$$.
+      $$a = softmax(M_{c})$$
+      $$h_{t} = a^{T}M$$
 
 
 #### **Tagger Architecture**
@@ -73,7 +73,7 @@ restaurant. The intent F1 scores with memory network as the contextual encoder i
 <img src='../assets/images/contextual/encoder_context.png' alt='drawing' width='600'>
 
 
-2. Another approach [2] is to have a different encoding mechanism for bot and user utterances [2]. This approach uses a system act encoder to obtain a vector representation $a^{t}$ of all system dialogue acts $A^{t}$. An utterance encoder is then used
+2. Another approach [2] is to have a different encoding mechanism for bot and user utterances [2]. This approach uses a system act encoder to obtain a vector representation $a^{t}$ of all system dialogue acts $$A^{t}$$. An utterance encoder is then used
 to generate the user utterance encoding $$u^{t}$$ by processing the user utterance token embeddings $$x^{t}$$.
 We then have a dialogue encoder that summarizes the content of the dialogue using $$a^{t}$$ and $$u^{t}$$, and its previous
 hidden state $$s^{t-1}$$ to generate the dialogue context vector $$o^{t}$$, and also update the hidden state.
