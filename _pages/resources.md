@@ -41,13 +41,15 @@ Open problem statements and idea pages.
 ## Publications
 
 - [N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses](https://arxiv.org/abs/2106.06519)
-
+- [TaskMix: Data Augmentation for Meta-Learning of Spoken Intent Understanding](https://arxiv.org/abs/2210.06341)
 
 ---
 
 ## Datasets
 
 - [Emotional TTS dataset release](https://github.com/skit-ai/emotion-tts-dataset) 
+- [Phone Number Entity Dataset](https://github.com/skit-ai/phone-number-entity-dataset)
+- [Speech to Intent Dataset](https://github.com/skit-ai/speech-to-intent-dataset)
 
 ---
 
