@@ -40,16 +40,17 @@ Open problem statements and idea pages.
 
 ## Publications
 
-- [N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses](https://arxiv.org/abs/2106.06519)
-- [TaskMix: Data Augmentation for Meta-Learning of Spoken Intent Understanding](https://arxiv.org/abs/2210.06341)
+- [N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses](https://arxiv.org/abs/2106.06519) by Karthik Ganesan, Pakhi Bamdev, Jaivarsan B, Amresh Venugopal, Abhinav Tushar
+- [TaskMix: Data Augmentation for Meta-Learning of Spoken Intent Understanding](https://arxiv.org/abs/2210.06341) by Surya Kant Sahu
+- On The Diversity of ASR Hypotheses In Spoken Language Understanding by Surya Kant Sahu and Swaraj Dalmia
 
 ---
 
 ## Datasets
 
-- [Emotional TTS dataset release](https://github.com/skit-ai/emotion-tts-dataset) 
-- [Phone Number Entity Dataset](https://github.com/skit-ai/phone-number-entity-dataset)
-- [Speech to Intent Dataset](https://github.com/skit-ai/speech-to-intent-dataset)
+- [Emotional TTS dataset release](https://github.com/skit-ai/emotion-tts-dataset) by Swaraj Dalmia, Kaustav Tamuly, Pulkit Mishra, Shangeth Raaja, Kumarmanas Nethil & Abhinav Tushar
+- [Phone Number Entity Dataset](https://github.com/skit-ai/phone-number-entity-dataset) by Kumarmanas Nethil, Anirudh Thatipelli & Sachin Kumar
+- [Speech to Intent Dataset](https://github.com/skit-ai/speech-to-intent-dataset) by Kumarmanas Nethil, Kriti Anandan, & Unnati Senani
 
 ---
 
