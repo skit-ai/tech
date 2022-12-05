@@ -4,7 +4,7 @@ layout: page
 permalink: "/resources/"
 ---
 
-Conatins links to publications, dataset releases, reading resources, and other artifacts. For technology demos go to the
+Contains links to publications, dataset releases, reading resources, and other artifacts. For technology demos go to the
 [Explore](/explore.html) tab.
 
 <br>
@@ -14,7 +14,7 @@ Conatins links to publications, dataset releases, reading resources, and other a
 
 - [N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses](https://arxiv.org/abs/2106.06519) by Karthik Ganesan, Pakhi Bamdev, Jaivarsan B, Amresh Venugopal, Abhinav Tushar
 - [TaskMix: Data Augmentation for Meta-Learning of Spoken Intent Understanding](https://arxiv.org/abs/2210.06341) by Surya Kant Sahu
-- On The Diversity of ASR Hypotheses In Spoken Language Understanding by Surya Kant Sahu and Swaraj Dalmia
+- [On The Diversity of ASR Hypotheses In Spoken Language Understanding](https://drive.google.com/file/d/1sL81V_9Lo0rvjla3zc6oVFTN8LRUB4rn/view) by Surya Kant Sahu and Swaraj Dalmia
 
 ---
 
