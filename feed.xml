@@ -1,4 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-05T07:55:20+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Incorporating context to improve SLU</title><link href="/contextual-slu/" rel="alternate" type="text/html" title="Incorporating context to improve SLU" /><published>2022-08-04T00:00:00+00:00</published><updated>2022-08-04T00:00:00+00:00</updated><id>/contextual-slu</id><content type="html" xml:base="/contextual-slu/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-05-11T12:51:40+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Speech-First Conversational AI Revisited</title><link href="/speech-first-conversational-ai-revisited/" rel="alternate" type="text/html" title="Speech-First Conversational AI Revisited" /><published>2023-05-11T00:00:00+00:00</published><updated>2023-05-11T00:00:00+00:00</updated><id>/speech-first-conversational-ai-revisited</id><content type="html" xml:base="/speech-first-conversational-ai-revisited/">&lt;p&gt;Around last year, &lt;a href=&quot;https://tech.skit.ai/speech-first-conversational-ai/&quot;&gt;we shared our views&lt;/a&gt; on how nuances of spoken conversations make voicebots different than chatbots. With the recent advancements in conversational technology, thanks to Large Language Models (LLMs), we wanted to revisit the implications on what we call Speech-First Conversational AI. This post is one of many such reexaminations.&lt;/p&gt;
+
+&lt;p&gt;We will try quoting the older blog post wherever possible, but if you haven’t read the older post, you are encouraged to &lt;a href=&quot;https://tech.skit.ai/speech-first-conversational-ai/&quot;&gt;do so here&lt;/a&gt; before going any further.&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-changed&quot;&gt;What’s Changed?&lt;/h2&gt;
+
+&lt;p&gt;In one line, the problem of having believable and reasonable conversations is solved with the current generation of LLMs. You would still get factual problems and minor niggles, but I could ask my grandmother to sit and chat with an LLM based text bot without breaking her mental model of how human conversations could happen, at all.&lt;/p&gt;
+
+&lt;p&gt;Internally, we use the phrase “text conversations are solved” to describe the impact of LLMs on our technology. But how does this reflect in spoken conversations? Will they also be solved? Sooner than later, sure. But there are some details to look in that go beyond raw textual models to do this well.&lt;/p&gt;
+
+&lt;p&gt;Beyond the statement of “text conversations are solved”, there are more upgrades that make us excited about their implications for spoken conversations. The most important being the hugely improved capability to model any behavior that can be &lt;em&gt;meaningfully-translated&lt;/em&gt; in text. For example, if you want to do speech backchannel modeling right now, you might get very far by connecting a perception system with an LLM rather than building something else altogether. This pattern is part of the promises of AGI, and knowing that we are getting there gradually is very stimulating.&lt;/p&gt;
+
+&lt;h2 id=&quot;spoken-dialog&quot;&gt;Spoken Dialog&lt;/h2&gt;
+
+&lt;p&gt;Let’s revisit the points that make spoken conversations different than textual ones, as described in &lt;a href=&quot;https://tech.skit.ai/speech-first-conversational-ai/&quot;&gt;the post last year&lt;/a&gt;. In the main, all the points are still relevant, but the complexities involved in solutions are different now. As a Speech AI company, this is helping us get better answers to the question of how should we go about more natural interactions between humans and machines.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-signal&quot;&gt;1. Signal&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Speech isn’t merely a redundant modality, but adds valuable extra information. Different styles of uttering the same utterance can drastically change the meaning, something that’s used a lot in human-human conversations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is still relevant and important. While speech recognition systems have started to become better in transcribing content, robust consumption of non-lexical content is still a problem to solve for doing &lt;em&gt;spoken conversations&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;One of our fresh research works (releasing soon) involves utilizing &lt;em&gt;prosodic&lt;/em&gt; information along with lexical to increase language understanding and the &lt;em&gt;gain we got is still significant&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-noise&quot;&gt;2. Noise&lt;/h3&gt;
+
+&lt;p&gt;Speech recognition systems have come a long way from 2022. WER performance, even in noisy audios, is extremely good and one could trust ASRs a lot more for downstream consumption than one could do last year.&lt;/p&gt;
+
+&lt;p&gt;More non-speech markers, timing information, etc. are accessible easily and accurately which could be clubbed with LLMs directly to simplify modeling behaviors like disfluencies.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-interaction-behavior&quot;&gt;3. Interaction Behavior&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We don’t take turns in a half-duplex manner while talking. Even then, most dialog management systems are designed like sequential turn-taking state machines where party A says something, then hands over control to party B, then takes back after B is done. The way we take turns in true spoken conversations is more &lt;em&gt;full-duplex&lt;/em&gt; and that’s where a lot of interesting conversational phenomena happen.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;While conversing, we freely barge-in, attempt corrections, and show other backchannel behaviors. When the other party also starts doing the same and utilizing these both parties can have much more effective and grounded conversations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Simulacrums of full duplex systems Google Duplex already have hinted at why this is important. While the product impact of full-duplex conversations has been elusive because of technology’s brittleness, with LLMs and better speech models, the practical viability of this is pretty high now.&lt;/p&gt;
+
+&lt;p&gt;A natural thread of work is modeling conversations speech to speech which is already happening in the research community. But even before perfecting that, we can significantly get better in spoken interactions with currently available technologies and some clever engineering.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-runtime-performance&quot;&gt;4. Runtime Performance&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In chat conversations, model latencies and the variance over a sample don’t impact user experience a lot. Humans look at chat differently and latency, even in seconds doesn’t change the user experience as much as in voice.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This makes it important for the voice stack to run much faster to avoid any violation of implicit contracts of spoken conversations.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is something where heavy LLMs don’t do well natively. Large, high-quality models often require a GPU and optimization to meet speech latency requirements efficiently.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-personalization-and-adaptation&quot;&gt;5. Personalization and Adaptation&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;With all the extra added richness in the signals, the potential of personalization and adaptation goes up. A human talking to another human does many micro-adaptations including the choice of words (common with text conversations) and the acoustics of their voices based on the ongoing conversation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Sometimes these adaptations get ossified and form &lt;em&gt;sub-languages&lt;/em&gt; that need different approaches for designing conversations. In our experience, people talking to voice bots talks in a different sub-language, a relatively understudied phenomenon.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;As LLMs reduce the complexity and effort needed to model and design behaviors, we should get more product-level work on this in both textual and speech conversations. You might already see a bunch of AI talking heads, personas, etc. with the promise of adapting to &lt;em&gt;you&lt;/em&gt;. Something like this was possible earlier but with much more effort than now.&lt;/p&gt;
+
+&lt;h3 id=&quot;6-response-generation&quot;&gt;6. Response Generation&lt;/h3&gt;
+
+&lt;p&gt;With LLMs, the quality of responses content is extremely high and natural. And if they are not, you can always make them so by providing a few examples. Specifically for speech, LLMs are good substrate for modelling inputs to speech synthesis. Instead of hand-tuning SSMLs, we can now let an LLM model high-level markers to guide the right generation of spoken responses at the right time.&lt;/p&gt;
+
+&lt;p&gt;Additionally, similar to speech recognition, speech synthesis has got huge upgrades from last year. Systems like &lt;a href=&quot;https://github.com/suno-ai/bark&quot;&gt;bark&lt;/a&gt; provide a glimpse of the high quality of utterance along with the higher order control that could be driven by an LLM.&lt;/p&gt;
+
+&lt;h3 id=&quot;7-development&quot;&gt;7. Development&lt;/h3&gt;
+
+&lt;p&gt;This stays the same as before. Audio datasets still have more information than text and the maintenance burden is higher.&lt;/p&gt;
+
+&lt;p&gt;Though there is a general reduction of complexity in the language understanding side because of one model handling many problems together. Thus reducing annotation, system maintenance, and other related efforts.&lt;/p&gt;
+
+&lt;h2 id=&quot;whats-next&quot;&gt;What’s Next?&lt;/h2&gt;
+
+&lt;p&gt;With higher order emergent behaviors coming in LLMs, there is a general &lt;em&gt;lifting up&lt;/em&gt; of problems that we solve in ML. All this has led to an unlocking of a sort where everyone is rethinking the limits of automation. For a product like ours—goal-oriented voicebots—we expect the reduction in modeling complexity to increase the extent of automation, even for dialogs that were considered forte of &lt;em&gt;human-agents.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Technologically, the time is ripe to achieve great strides towards truly natural spoken conversations with machines. Something that was always undercut because of the, rightfully present, friction between user experience and technological limitations. Note that the definition of &lt;em&gt;natural&lt;/em&gt; here still hangs on the evolving dynamics of human machine interactions, but we will see a phase transition for sure.&lt;/p&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><category term="speech" /><category term="llm" /><summary type="html">Around last year, we shared our views on how nuances of spoken conversations make voicebots different than chatbots. With the recent advancements in conversational technology, thanks to Large Language Models (LLMs), we wanted to revisit the implications on what we call Speech-First Conversational AI. This post is one of many such reexaminations.</summary></entry><entry><title type="html">Incorporating context to improve SLU</title><link href="/contextual-slu/" rel="alternate" type="text/html" title="Incorporating context to improve SLU" /><published>2022-08-04T00:00:00+00:00</published><updated>2022-08-04T00:00:00+00:00</updated><id>/contextual-slu</id><content type="html" xml:base="/contextual-slu/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In task-oriented dialogue systems, the spoken language understanding, or SLU, refers to the task of parsing the natural language utterances into
 semantic frames. The problem of contextual SLU majorly focuses on effectively incorporating dialogue information. Current SLU systems that work in tandem with
 ASR (voice bots) only incorporate the asr transcription as an input for the SLU systems to predict intent. As such, the amount of information these transcripts have is quite less.&lt;/p&gt;
@@ -1562,188 +1648,4 @@ Basics: Speech Recognition, Language Modeling, Deep Learning&lt;/p&gt;
 
 &lt;p&gt;[13] R. Levitan, “Developing an Integrated Model of Speech Entrainment,” in Proceedings of the Twenty-Ninth International Joint Conference on Artificial Intelligence, Yokohama, Japan, Jul. 2020, pp. 5159–5163. doi: 10.24963/ijcai.2020/727.&lt;/p&gt;
 
-&lt;p&gt;[14] Levitan, Rivka, et al. “Implementing Acoustic-Prosodic Entrainment in a Conversational Avatar.” Interspeech. Vol. 16. 2016.&lt;/p&gt;</content><author><name>Shikhar Mohan</name></author><category term="Machine Learning" /><category term="ASR" /><summary type="html">In this post, we will discuss the phenomenon of speaker entrainment and the insights we gained when designing a voice-bot that entrains on the user’s speech. This work was done by me as a ML Research Intern at Skit, supervised by Swaraj Dalmia.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/entrain.png" /><media:content medium="image" url="/assets/images/entrain.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Speech-First Conversational AI</title><link href="/speech-first-conversational-ai/" rel="alternate" type="text/html" title="Speech-First Conversational AI" /><published>2022-02-02T00:00:00+00:00</published><updated>2022-02-02T00:00:00+00:00</updated><id>/speech-first-conversational-ai</id><content type="html" xml:base="/speech-first-conversational-ai/">&lt;p&gt;We often get asked about the differences between voice and chat bots. The most
-common perception is that the voice bot problem can be reduced to chat bot after
-plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS)
-system. We believe that’s an overly naive assumption about spoken conversations,
-even in restricted goal-oriented dialog systems. This post is an attempt to
-describe the differences involved and define what &lt;em&gt;Speech-First&lt;/em&gt; Conversational
-AI means.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Speech is the most sophisticated behavior of the most complex organism in the
-known universe. - &lt;a href=&quot;https://youtu.be/Zy3Ny-WjyGE?t=251&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Conversational AI systems solve problems of conversations, either using text or
-voice. Since &lt;em&gt;conversations&lt;/em&gt; are specific to humans, there are many
-anthropomorphic expectations from these systems. These expectations, while still
-strong, are less restraining in text conversations as compared to speech. Speech
-is deeply ingrained in human communication and minor misses could lead to
-violation of user expectations. Contrast this with text messaging which is a,
-relatively new, human-constructed channel&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; where expectations are different
-and more lenient.&lt;/p&gt;
-
-&lt;p&gt;There are multiple academic sources on differences between speech and text, here
-we will describing a few key differences that we have noticed while building
-speech-first conversation systems in more practical settings.&lt;/p&gt;
-
-&lt;h2 id=&quot;signal&quot;&gt;Signal&lt;/h2&gt;
-
-&lt;p&gt;In addition to the textual content, speech signals contain information about the
-user’s state, trait, and the environment. Speech isn’t merely a redundant
-modality, but adds valuable extra information. Different style of uttering the
-same utterance can drastically change the meaning, something that’s used a lot
-in human-human conversations.&lt;/p&gt;
-
-&lt;p&gt;Environmental factors like recording quality, background ambience, and audio
-events impact signals’ reception and semantics. Even beyond the immediate
-environment, a lot of socio-cultural factors are embedded in speech beyond the
-level they are in text chats. Because the signals are rich, the difficulty of a
-few common problems across text and speech, like low-resource languages, is
-higher.&lt;/p&gt;
-
-&lt;h2 id=&quot;noise&quot;&gt;Noise&lt;/h2&gt;
-
-&lt;p&gt;Once you go on transcribing audios utterances using ASRs, transcription errors
-will add on to your burden. While ASR systems are improving day-on-day, there
-still is error potential in handling acoustically similar utterances. Overall,
-an entirely new set of problems like far-field ASR, signal enhancement, etc.
-exist in spoken conversations.&lt;/p&gt;
-
-&lt;p&gt;Additionally many &lt;em&gt;noisy&lt;/em&gt; deviations from fluent speech are not mere errors but
-develop their own pragmatic sense and convey strong meaning. Speech
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Speech_disfluency&quot;&gt;disfluencies&lt;/a&gt; are commonly
-assumed behaviors of natural conversations and lack of them could even cause
-discomfort.&lt;/p&gt;
-
-&lt;h2 id=&quot;interaction-behavior&quot;&gt;Interaction Behavior&lt;/h2&gt;
-
-&lt;p&gt;We don’t take turns in a half-duplex manner while talking. Even then, most
-dialog management systems are designed like sequential turn-taking state
-machines where party A says something, then hands over control to party B, then
-takes back after B is done. The way we take turns in true spoken conversations
-is more &lt;em&gt;full-duplex&lt;/em&gt; and that’s where a lot of interesting conversational
-phenomenon happen.&lt;/p&gt;
-
-&lt;p&gt;While conversing, we freely barge-in, attempt corrections, and show other
-backchannel behaviors. When the other party also start doing the same and
-utilizing these both parties can have much more effective and grounded
-conversations.&lt;/p&gt;
-
-&lt;p&gt;Additionally, because of lack of a visual interface to keep the context, user
-recall around dialog history is different and that leads to different flow
-designs.&lt;/p&gt;
-
-&lt;h2 id=&quot;personalization-and-adaptations&quot;&gt;Personalization and adaptations&lt;/h2&gt;
-
-&lt;p&gt;With all the extra added richness in the signals, the potential of
-personalization and adaptations goes up. A human talking to another human does
-many micro-adaptations including the choice-of-words (common with text
-conversations) and the acoustics of their voices based on the ongoing
-conversation.&lt;/p&gt;
-
-&lt;p&gt;Sometimes these adaptations get ossified and form &lt;em&gt;sub-languages&lt;/em&gt; that need
-different approaches of designing conversations. In our experience, people
-talking to voice bots talks in a different sub-language, a relatively
-understudied phenomenon.&lt;/p&gt;
-
-&lt;h2 id=&quot;response-generation&quot;&gt;Response Generation&lt;/h2&gt;
-
-&lt;p&gt;Similar to the section on input &lt;em&gt;signals&lt;/em&gt;, the output &lt;em&gt;signal&lt;/em&gt; from the voice
-bot is also (should also be) extremely rich. This puts a lot of stake in
-response production for natural conversation. The timing and content of sounds,
-along with their tones impart strong semantic and pragmatic sense to the
-utterance. Clever use of these also drive the conversations in a more fruitful
-direction for both parties.&lt;/p&gt;
-
-&lt;p&gt;Possibilities concerning this area of work is &lt;em&gt;extremely&lt;/em&gt; limited in text
-messaging.&lt;/p&gt;
-
-&lt;h2 id=&quot;development&quot;&gt;Development&lt;/h2&gt;
-
-&lt;p&gt;Finally, working with audios is more difficult than text because of additional
-and storage processing capabilities needed. Here is an audio utterance for the
-text “1 2 3”:&lt;/p&gt;
-
-&lt;script&gt;
-       $(document).ready(function () {
-         var ws3 = WaveSurfer.create({
-           container: '#waveform-3',
-           backend: 'MediaElement'
-         });
-         ws3.load('/assets/audios/posts/speech-first-conversational-ai/counts.wav');
-
-         ws3.on('audioprocess', function () {
-           let progressText = ws3.getCurrentTime().toFixed(2) + ' / ' + ws3.getDuration().toFixed(2)
-           document.getElementById('player-progress-3').innerHTML = progressText
-         });
-
-         ws3.on('ready', function () {
-           let progressText = ws3.getCurrentTime().toFixed(2) + ' / ' + ws3.getDuration().toFixed(2)
-           document.getElementById('player-progress-3').innerHTML = progressText
-         });
-
-         ws3.on('finish', function () {
-           let button = $('#controls-3 &gt; [data-action=&quot;play-pause&quot;]')
-           button.find('i:first').toggleClass('fa-play')
-           button.find('i:first').toggleClass('fa-pause')
-           button.toggleClass('btn-dark')
-         });
-
-         for (let button of document.getElementById('controls-3').children) {
-           button.onclick = function (e) {
-             let action = button.getAttribute('data-action')
-             switch (action) {
-               case 'play-pause':
-                 ws3.playPause()
-                 $(button).find('i:first').toggleClass('fa-play')
-                 $(button).find('i:first').toggleClass('fa-pause')
-                 $(button).toggleClass('btn-dark')
-                 break
-               case 'backward':
-                 ws3.skipBackward()
-                 break
-               case 'forward':
-                 ws3.skipForward()
-                 break
-             }
-           }
-         }
-       });
-     &lt;/script&gt;
-
-&lt;style&gt;
-  .player-controls {
-    margin: 20px 0;
-  }
-&lt;/style&gt;
-
-&lt;div id=&quot;waveform-3&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;player-controls&quot; id=&quot;controls-3&quot;&gt;
-  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;backward&quot;&gt;&lt;i class=&quot;fa fa-backward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;play-pause&quot;&gt;&lt;i class=&quot;fa fa-play&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-  &lt;button class=&quot;btn btn-sml&quot; data-action=&quot;forward&quot;&gt;&lt;i class=&quot;fa fa-forward&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-  &lt;code class=&quot;btn btn-sml disabled&quot; id=&quot;player-progress-3&quot;&gt;&lt;/code&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;❯ file counts.wav  # 48.0 kB (48,044 bytes)
-counts.wav: RIFF (little-endian) data, WAVE audio, Microsoft PCM, 16 bit, mono 8000 Hz
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Compare this with just 6 bytes needed for the string itself (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;echo &quot;1 2 3&quot; | wc
---bytes&lt;/code&gt;).&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;These differences lead to gaps that are difficult to bridge and that’s what
-keeps us busy at Skit. If these problems interest you, you should reach out to
-us on &lt;a href=&quot;mailto:join@skit.ai&quot;&gt;join@skit.ai&lt;/a&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;Epistolary communication aside. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>Abhinav Tushar</name></author><category term="Machine Learning" /><category term="speech" /><summary type="html">We often get asked about the differences between voice and chat bots. The most common perception is that the voice bot problem can be reduced to chat bot after plugging in an Automatic Speech Recognition (ASR) and Text to Speech (TTS) system. We believe that’s an overly naive assumption about spoken conversations, even in restricted goal-oriented dialog systems. This post is an attempt to describe the differences involved and define what Speech-First Conversational AI means.</summary></entry></feed>
+&lt;p&gt;[14] Levitan, Rivka, et al. “Implementing Acoustic-Prosodic Entrainment in a Conversational Avatar.” Interspeech. Vol. 16. 2016.&lt;/p&gt;</content><author><name>Shikhar Mohan</name></author><category term="Machine Learning" /><category term="ASR" /><summary type="html">In this post, we will discuss the phenomenon of speaker entrainment and the insights we gained when designing a voice-bot that entrains on the user’s speech. This work was done by me as a ML Research Intern at Skit, supervised by Swaraj Dalmia.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/entrain.png" /><media:content medium="image" url="/assets/images/entrain.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
