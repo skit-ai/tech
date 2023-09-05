@@ -12,17 +12,44 @@ Contains links to publications, dataset releases, reading resources, and other a
 
 ## Publications
 
-- [N-Best ASR Transformer: Enhancing SLU Performance using Multiple ASR Hypotheses](https://arxiv.org/abs/2106.06519) by Karthik Ganesan, Pakhi Bamdev, Jaivarsan B, Amresh Venugopal, Abhinav Tushar
-- [TaskMix: Data Augmentation for Meta-Learning of Spoken Intent Understanding](https://arxiv.org/abs/2210.06341) by Surya Kant Sahu
-- [On The Diversity of ASR Hypotheses In Spoken Language Understanding](https://drive.google.com/file/d/1sL81V_9Lo0rvjla3zc6oVFTN8LRUB4rn/view) by Surya Kant Sahu and Swaraj Dalmia
+- Rajaa, S., 2023. [Improving End-to-End SLU performance with Prosodic Attention
+  and Distillation](https://arxiv.org/abs/2305.08067). In Interspeech 2023.
+- Rajaa, S., Anandan, K., Dalmia, S., Gupta, T. and Chng, E.S., 2023, June.
+  [Improving Spoken Language Identification with
+  Map-Mix](https://ieeexplore.ieee.org/abstract/document/10095765/). In ICASSP
+  2023-2023 IEEE International Conference on Acoustics, Speech and Signal
+  Processing (ICASSP) (pp. 1-5). IEEE.
+- Sahu, S.K. and Dalmia, S., 2022. [On The Diversity of ASR Hypotheses In Spoken
+  Language
+  Understanding](https://drive.google.com/file/d/1sL81V_9Lo0rvjla3zc6oVFTN8LRUB4rn/view).
+  In I Can't Believe It's Not Better Workshop: Understanding Deep Learning
+  Through Empirical Falsification.
+- Surya Kant Sahu. 2022. [TaskMix: Data Augmentation for Meta-Learning of Spoken
+  Intent Understanding](https://aclanthology.org/2022.findings-aacl.6/). In
+  Findings of the Association for Computational Linguistics: AACL-IJCNLP 2022,
+  pages 67–72, Online only. Association for Computational Linguistics.
+- Karthik Ganesan, Pakhi Bamdev, Jaivarsan B, Amresh Venugopal, and Abhinav
+  Tushar. 2021. [N-Best ASR Transformer: Enhancing SLU Performance using
+  Multiple ASR Hypotheses](https://aclanthology.org/2021.acl-short.14/). In
+  Proceedings of the 59th Annual Meeting of the Association for Computational
+  Linguistics and the 11th International Joint Conference on Natural Language
+  Processing (Volume 2: Short Papers), pages 93–98, Online. Association for
+  Computational Linguistics.
 
 ---
 
 ## Datasets
 
-- [Emotional TTS dataset release](https://github.com/skit-ai/emotion-tts-dataset) by Swaraj Dalmia, Kaustav Tamuly, Pulkit Mishra, Shangeth Raaja, Kumarmanas Nethil & Abhinav Tushar
-- [Phone Number Entity Dataset](https://github.com/skit-ai/phone-number-entity-dataset) by Kumarmanas Nethil, Anirudh Thatipelli & Sachin Kumar
-- [Speech to Intent Dataset](https://github.com/skit-ai/speech-to-intent-dataset) by Kumarmanas Nethil, Kriti Anandan, & Unnati Senani
+- [Emotional TTS dataset
+  release](https://github.com/skit-ai/emotion-tts-dataset) by Swaraj Dalmia,
+  Kaustav Tamuly, Pulkit Mishra, Shangeth Raaja, Kumarmanas Nethil & Abhinav
+  Tushar
+- [Phone Number Entity
+  Dataset](https://github.com/skit-ai/phone-number-entity-dataset) by Kumarmanas
+  Nethil, Anirudh Thatipelli & Sachin Kumar
+- [Speech to Intent
+  Dataset](https://github.com/skit-ai/speech-to-intent-dataset) by Kumarmanas
+  Nethil, Kriti Anandan, & Unnati Senani
 
 ---
 
