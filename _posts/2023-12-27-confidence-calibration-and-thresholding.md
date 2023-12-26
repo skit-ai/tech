@@ -14,11 +14,11 @@ In the past 6 months, our team’s current focus has shifted to building robust 
 
 We wanted to do a deep dive of the problem from an ML standpoint. We noticed that we needed to be more confident in our predictions. But what do we mean by confidence in our predictions? It is defined as the ability of the model to provide an accurate probability of correctness for any of its predictions. For example, if our SLU model predicts that the intent is `_confirm_` with a probability of 0.3 then the prediction has a 30% of being correct provided the model has been calibrated properly. 
 
-![Untitled](Improving%20consumer%20verification%20using%20confidence%20c%209d06ad11cb8b49f189da1c9b9c4b4e50/Untitled.png)
+![image info](../assets/images/confidence-calibration-blog/slu-model.png)
 
-![This plot shows how under-confident we are on lower probabilities. Naturally, classes with low probabilities should be classified as wrong class predictions but our uncalibrated model is unable to do so.](Improving%20consumer%20verification%20using%20confidence%20c%209d06ad11cb8b49f189da1c9b9c4b4e50/Untitled%201.png)
-
-This plot shows how under-confident we are on lower probabilities. Naturally, classes with low probabilities should be classified as wrong class predictions but our uncalibrated model is unable to do so.
+| ![image info](../assets/images/confidence-calibration-blog/uncal-score-plot.png) | 
+|:--:| 
+| *This plot shows how under-confident we are on lower probabilities. Naturally, classes with low probabilities should be classified as wrong class predictions but our uncalibrated model is unable to do so.* |
 
 We realized that **model miscalibration** and rejecting **low confidence prediction** is the major problem that we need to solve. But how do we quantify model calibration?
 
@@ -49,9 +49,9 @@ The lower the ECE and MCE values, the better calibrated the model is.
 
 Reliability diagrams depict accuracy on the y-axis and average confidence scores on the x-axis. A line plot is formed using the accuracy and the confidence points. A diagonal line through the origin indicates a perfectly calibrated model where confidence is equal to accuracy for each bin. 
 
-![Reliability diagram of our deployed model. The dashed line represents perfect calibration. The blue bins are the actual bins with these many predictions and their corresponding accuracy falling under one bin](Improving%20consumer%20verification%20using%20confidence%20c%209d06ad11cb8b49f189da1c9b9c4b4e50/Untitled%202.png)
-
-Reliability diagram of our deployed model. The dashed line represents perfect calibration. The blue bins are the actual bins with these many predictions and their corresponding accuracy falling under one bin
+| ![image info](../assets/images/confidence-calibration-blog/reliability-graph-deployed.png) | 
+|:--:| 
+| *Reliability diagram of our deployed model. The dashed line represents perfect calibration. The blue bins are the actual bins with these many predictions and their corresponding accuracy falling under one bin* |
 
 # Adopted Solution
 
@@ -79,25 +79,27 @@ The intuition behind temperature scaling is that the `T` value penalizes high pr
 
 After tuning a temperature scaling value on our validation dataset, we noticed that our model was better calibrated(Lower ECE and MCE values as well) and was able to better classify low-confidence score predictions.
 
-![Post calibration, we notice that we are able to better classify low-confidence scores under wrong prediction bins.](Improving%20consumer%20verification%20using%20confidence%20c%209d06ad11cb8b49f189da1c9b9c4b4e50/Untitled%203.png)
+| ![image info](../assets/images/confidence-calibration-blog/cal-score-plot.png) | 
+|:--:| 
+| *Post calibration, we notice that we are able to better classify low-confidence scores under wrong prediction bins.* |
 
-Post calibration, we notice that we are able to better classify low-confidence scores under wrong prediction bins.
 
-![Old Reliability Graph on **Validation** **Set**](Improving%20consumer%20verification%20using%20confidence%20c%209d06ad11cb8b49f189da1c9b9c4b4e50/old_reliability_graph.png)
+| ![image info](../assets/images/confidence-calibration-blog/old_reliability_graph.png) | 
+|:--:| 
+| *Old Reliability Graph on Validation Set* |
 
-Old Reliability Graph on **Validation** **Set**
+| ![image info](../assets/images/confidence-calibration-blog/new_reliability_graph.png) | 
+|:--:| 
+| *New Reliability Graph on Validation Set* |
 
-![New Reliability Graph on ****************************Validation Set****************************](Improving%20consumer%20verification%20using%20confidence%20c%209d06ad11cb8b49f189da1c9b9c4b4e50/new_reliability_graph.png)
-
-New Reliability Graph on ****************************Validation Set****************************
 
 ## Thresholding
 
 Keeping our current objective in mind where we reject low-confidence predictions, we realized that thresholding individual intents on a temperature-scaled model could work quite well for us. We wanted an increment in our precision numbers without hitting recall for our intents. This is because we want to maximize our confidence in the current prediction without inadvertently increasing our **False Negatives** i.e. we still want to be accurate while predicting our positive class (could be any intent here). We plotted precision-recall curves with thresholds on the x-axis and precision/recall on the y-axis. We have default recipes to generate these threshold values that ensure that we maximize precision without affecting the recall. The data scientist or an ML engineer then can have a look at these plots and accordingly decide which threshold values to go with if they feel that 
 
-![A precision-recall curve for the `_confirm_` intent.](Improving%20consumer%20verification%20using%20confidence%20c%209d06ad11cb8b49f189da1c9b9c4b4e50/Untitled%204.png)
-
-A precision-recall curve for the `_confirm_` intent.
+| ![image info](../assets/images/confidence-calibration-blog/precision-recall-curve.png) | 
+|:--:| 
+| *A precision-recall curve for the `_confirm_` intent.* |
 
 # Results
 
