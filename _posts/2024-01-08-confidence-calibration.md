@@ -1,10 +1,10 @@
 ---
 title: Improving consumer verification using confidence calibration and thresholding
-date: 2023-05-11
-tags: [voicebot, compliance]
+date: 2024-01-08
+tags: [slu, compliance, nlp]
 categories: [Machine Learning]
 layout: post
-authors: [lepisma]
+authors: [sanchit-ahuja]
 latex: True
 ---
 
