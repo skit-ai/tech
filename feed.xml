@@ -1,4 +1,150 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-09-05T07:40:36+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Speech-First Conversational AI Revisited</title><link href="/speech-first-conversational-ai-revisited/" rel="alternate" type="text/html" title="Speech-First Conversational AI Revisited" /><published>2023-05-11T00:00:00+00:00</published><updated>2023-05-11T00:00:00+00:00</updated><id>/speech-first-conversational-ai-revisited</id><content type="html" xml:base="/speech-first-conversational-ai-revisited/">&lt;p&gt;Around last year, &lt;a href=&quot;https://tech.skit.ai/speech-first-conversational-ai/&quot;&gt;we shared our views&lt;/a&gt; on how nuances of spoken conversations make voicebots different than chatbots. With the recent advancements in conversational technology, thanks to Large Language Models (LLMs), we wanted to revisit the implications on what we call Speech-First Conversational AI. This post is one of many such reexaminations.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2024-01-09T08:08:32+00:00</updated><id>/feed.xml</id><title type="html">Skit Tech</title><subtitle>Speech Technology from Skit</subtitle><entry><title type="html">Improving consumer verification using confidence calibration and thresholding</title><link href="/confidence-calibration/" rel="alternate" type="text/html" title="Improving consumer verification using confidence calibration and thresholding" /><published>2024-01-09T00:00:00+00:00</published><updated>2024-01-09T00:00:00+00:00</updated><id>/confidence-calibration</id><content type="html" xml:base="/confidence-calibration/">&lt;p&gt;In the past year, our team’s current focus has shifted to building robust and scalable voice-bots for US companies.
+In particular, we are honing in on the use case of facilitating the collection of borrowed funds. Given the stringent 
+compliance standards for user verification in the US, our voicebot must excel in this aspect, leaving no room for error. 
+Our top priority is to avoid any inadvertent verification of false users, which could potentially lead to the exposure 
+of sensitive debt-related information. On a biased dataset, curated to tackle this problem, false consumer verifications 
+are estimated to occur in &lt;strong&gt;~0.67% of samples&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;technical-analysis&quot;&gt;Technical Analysis&lt;/h1&gt;
+
+&lt;p&gt;We wanted to do a deep dive of the problem from an ML standpoint. We noticed that we needed to be more confident in our 
+predictions. But what do we mean by confidence in our predictions? It is defined as the ability of the model to provide 
+an accurate probability of correctness for any of its predictions. For example, if our SLU model predicts that the intent 
+is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_confirm_&lt;/code&gt; with a probability of 0.3 then the prediction has a 30% of being correct provided the model has been calibrated 
+properly.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img width=&quot;800&quot; alt=&quot;Can't See? Something went wrong!&quot; src=&quot;../assets/images/confidence-calibration-blog/slu-model.png&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;../assets/images/confidence-calibration-blog/uncal-score-plot.png&quot; /&gt;
+  &lt;figcaption style=&quot;font-style: italic; text-align: center;&quot;&gt;
+    This plot shows how under-confident we are on lower probabilities. Naturally, classes with low probabilities should be 
+    classified as wrong class predictions but our uncalibrated model is unable to do so.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;metrics-and-diagrams&quot;&gt;Metrics and Diagrams&lt;/h2&gt;
+
+&lt;p&gt;We realized that &lt;strong&gt;model miscalibration&lt;/strong&gt; and rejecting &lt;strong&gt;low confidence prediction&lt;/strong&gt; is the major problem that we need to solve. 
+But how do we quantify model calibration?&lt;/p&gt;
+
+&lt;h3 id=&quot;expected-and-max-calibration-error&quot;&gt;Expected and Max Calibration Error&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Expected Calibration Error (ECE)&lt;/strong&gt; measures the disparity between a model’s confidence and its accuracy. It can be computed directly 
+using a closed-form formula or approximated by dividing predictions into bins based on their confidence scores. Within each bin, the 
+average confidence and accuracy differences are calculated, and then ECE is obtained by taking a weighted average of these bin-wise 
+differences proportional to the bin sizes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Maximum Calibration Error (MCE)&lt;/strong&gt; is similar to ECE but is equal to the maximum difference between average confidence and accuracy across bins.&lt;/p&gt;
+
+\[ECE = \sum_{i=1}^M \frac{|Bin_{i}|}{N}.|a_{i} - c_{i}|\]
+
+\[MCE = \max_{i \in \{1,\ldots,M\}} |a_{i} - c_{i}|\]
+
+&lt;p&gt;The lower the ECE and MCE values, the better calibrated the model is.&lt;/p&gt;
+
+&lt;h3 id=&quot;reliability-diagrams&quot;&gt;Reliability Diagrams&lt;/h3&gt;
+
+&lt;p&gt;Reliability diagrams depict accuracy on the y-axis and average confidence scores on the x-axis. A line plot is formed using the accuracy 
+and the confidence points. A diagonal line through the origin indicates a perfectly calibrated model where confidence is equal to accuracy for each bin.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;../assets/images/confidence-calibration-blog/reliability-graph-deployed.png&quot; /&gt;
+  &lt;figcaption style=&quot;font-style: italic; text-align: center;&quot;&gt;
+    Reliability diagram of our deployed model. The dashed line represents perfect calibration. The blue bins are 
+    the actual bins with these many predictions and their corresponding accuracy falling under one bin
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h1 id=&quot;adopted-solution&quot;&gt;Adopted Solution&lt;/h1&gt;
+
+&lt;p&gt;Upon careful analysis of our data and model, we have found evidence suggesting that calibrating our SLU (Spoken Language Understanding) 
+models could effectively mitigate false positives and enhance the overall confidence of our model predictions. Subsequently, we delved 
+into the existing literature to explore potential solutions to address this issue.&lt;/p&gt;
+
+&lt;p&gt;We came across multiple solutions that tackle model miscalibration such as Ensemble based Calibration [5], mixup [3], using 
+Bayesian Neural Networks [4] etc. We narrowed it down to one solution that was easy to integrate and did not require us to re-train our 
+models i.e. Temperature Scaling.&lt;/p&gt;
+
+&lt;h2 id=&quot;temperature-scaling-1&quot;&gt;Temperature Scaling [1]&lt;/h2&gt;
+
+&lt;p&gt;Temperature scaling involves tuning a softmax temperature value to minimize Negative Log-likelihood loss on a held-out validation set. 
+This value is then used to &lt;em&gt;soften&lt;/em&gt; the output of the softmax layer.&lt;/p&gt;
+
+\[\text{Softmax}(y) = \frac{\exp(y_i)}{\sum_j \exp(y_j)}\]
+
+\[\text{Temp-Softmax}(y) = \frac{\exp(y_i/T)}{\sum_j \exp(y_j/T)}\]
+
+&lt;p&gt;The intuition behind temperature scaling is that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;T&lt;/code&gt; value penalizes high probability scores thereby resulting in better confidence in these values.&lt;/p&gt;
+
+&lt;p&gt;After tuning a temperature scaling value on our validation dataset, we noticed that our model was better calibrated(Lower ECE and MCE values as well) 
+and was able to better classify low-confidence score predictions.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;../assets/images/confidence-calibration-blog/cal-score-plot.png&quot; /&gt;
+  &lt;figcaption style=&quot;font-style: italic; text-align: center;&quot;&gt;
+    Post calibration, we notice that we are able to better classify low-confidence scores under wrong prediction bins.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure style=&quot;display: flex; flex-direction: row; justify-content: space-between;&quot;&gt;
+
+  &lt;div style=&quot;width: 48%;&quot;&gt;
+    &lt;img alt=&quot;Old Reliability Graph on Validation Set&quot; src=&quot;../assets/images/confidence-calibration-blog/old_reliability_graph.png&quot; /&gt;
+    &lt;figcaption style=&quot;font-style: italic; text-align: center;&quot;&gt;
+      Old Reliability Graph (on Validation Set)
+    &lt;/figcaption&gt;
+  &lt;/div&gt;
+
+  &lt;div style=&quot;width: 48%;&quot;&gt;
+    &lt;img alt=&quot;New Reliability Graph on Validation Set&quot; src=&quot;../assets/images/confidence-calibration-blog/new_reliability_graph.png&quot; /&gt;
+    &lt;figcaption style=&quot;font-style: italic; text-align: center;&quot;&gt;
+      New Reliability Graph
+    &lt;/figcaption&gt;
+  &lt;/div&gt;
+
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;thresholding&quot;&gt;Thresholding&lt;/h2&gt;
+
+&lt;p&gt;Keeping our current objective in mind where we reject low-confidence predictions, we realized that thresholding individual intents 
+on a temperature-scaled model could work quite well for us. We wanted an increment in our precision numbers without hitting recall 
+for our intents. This is because we want to maximize our confidence in the current prediction without inadvertently increasing our 
+&lt;strong&gt;False Negatives&lt;/strong&gt; i.e. we still want to be accurate while predicting our positive class (could be any intent here). We plotted 
+precision-recall curves with thresholds on the x-axis and precision/recall on the y-axis. We have default recipes to generate these 
+threshold values that ensure that we maximize precision without affecting the recall. The data scientist or an ML engineer then can 
+have a look at these plots and accordingly decide which threshold values to go with if they feel that&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;../assets/images/confidence-calibration-blog/precision-recall-curve.png&quot; /&gt;
+  &lt;figcaption style=&quot;font-style: italic; text-align: center;&quot;&gt;
+    A precision-recall curve for the `_confirm_` intent
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h1 id=&quot;results&quot;&gt;Results&lt;/h1&gt;
+
+&lt;p&gt;After performing the above experiments on our datasets, we noticed a bump of &lt;strong&gt;10 points&lt;/strong&gt; in macro-precision without affecting the 
+macro-recall (\(\pm\) 1 point in recall). Our model became more robust to mis-classifications and was able to reject low-confidence 
+predictions thereby increasing the confidence in the model to handle sensitive compliance-related turns. Our product metrics also 
+improved by a margin - after implementing the above solution we were able to bring down false consumer verification from
+&lt;strong&gt;~0.67% to ~0.18%&lt;/strong&gt; on the dataset.&lt;/p&gt;
+
+&lt;h1 id=&quot;caveats&quot;&gt;Caveats&lt;/h1&gt;
+
+&lt;p&gt;Temperature Scaling does not work well when the dataset distributions differ i.e. whenever there’s data drift between the production data and the validation data, the calibration of the model is not accurate.  If there’s a data drift, the above methodology needs to be performed again to maintain data sanity. Thresholding affects recall (read reduce) when we go forward with maximizing precision gains.&lt;/p&gt;
+
+&lt;h1 id=&quot;citations&quot;&gt;Citations&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Guo, Chuan, et al. “On calibration of modern neural networks.” &lt;em&gt;International Conference on Machine Learning&lt;/em&gt;. PMLR, 2017&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/confidence-calibration-for-deep-networks-why-and-how-e2cd4fe4a086&quot;&gt;https://towardsdatascience.com/confidence-calibration-for-deep-networks-why-and-how-e2cd4fe4a086&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Zhang, Hongyi, et al. “mixup: Beyond empirical risk minimization.” &lt;em&gt;arXiv preprint arXiv:1710.09412&lt;/em&gt; (2017)&lt;/li&gt;
+  &lt;li&gt;Neal, Radford M. &lt;em&gt;Bayesian learning for neural networks&lt;/em&gt;. Vol. 118. Springer Science &amp;amp; Business Media, 2012.&lt;/li&gt;
+  &lt;li&gt;Lakshminarayanan, Balaji, Alexander Pritzel, and Charles Blundell. “Simple and scalable predictive uncertainty estimation using deep ensembles.” &lt;em&gt;Advances in neural information processing systems&lt;/em&gt; 30 (2017).&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Sanchit Ahuja</name></author><category term="Machine Learning" /><category term="slu" /><category term="compliance" /><category term="nlp" /><summary type="html">In the past year, our team’s current focus has shifted to building robust and scalable voice-bots for US companies. In particular, we are honing in on the use case of facilitating the collection of borrowed funds. Given the stringent compliance standards for user verification in the US, our voicebot must excel in this aspect, leaving no room for error. Our top priority is to avoid any inadvertent verification of false users, which could potentially lead to the exposure of sensitive debt-related information. On a biased dataset, curated to tackle this problem, false consumer verifications are estimated to occur in ~0.67% of samples.</summary></entry><entry><title type="html">Speech-First Conversational AI Revisited</title><link href="/speech-first-conversational-ai-revisited/" rel="alternate" type="text/html" title="Speech-First Conversational AI Revisited" /><published>2023-05-11T00:00:00+00:00</published><updated>2023-05-11T00:00:00+00:00</updated><id>/speech-first-conversational-ai-revisited</id><content type="html" xml:base="/speech-first-conversational-ai-revisited/">&lt;p&gt;Around last year, &lt;a href=&quot;https://tech.skit.ai/speech-first-conversational-ai/&quot;&gt;we shared our views&lt;/a&gt; on how nuances of spoken conversations make voicebots different than chatbots. With the recent advancements in conversational technology, thanks to Large Language Models (LLMs), we wanted to revisit the implications on what we call Speech-First Conversational AI. This post is one of many such reexaminations.&lt;/p&gt;
 
 &lt;p&gt;We will try quoting the older blog post wherever possible, but if you haven’t read the older post, you are encouraged to &lt;a href=&quot;https://tech.skit.ai/speech-first-conversational-ai/&quot;&gt;do so here&lt;/a&gt; before going any further.&lt;/p&gt;
 
@@ -1546,106 +1692,4 @@ Basics: Speech Recognition, Language Modeling, Deep Learning&lt;/p&gt;
 &lt;p&gt;175 hours&lt;/p&gt;
 
 &lt;h3 id=&quot;difficulty-2&quot;&gt;Difficulty&lt;/h3&gt;
-&lt;p&gt;Medium&lt;/p&gt;</content><author><name>Jaivarsan B</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Google Summer of Code - 2022</summary></entry><entry><title type="html">Speaker Entrainment</title><link href="/speaker-entrainment/" rel="alternate" type="text/html" title="Speaker Entrainment" /><published>2022-02-04T00:00:00+00:00</published><updated>2022-02-04T00:00:00+00:00</updated><id>/speaker-entrainment</id><content type="html" xml:base="/speaker-entrainment/">&lt;p&gt;In this post, we will discuss the phenomenon of speaker entrainment and the insights we gained when designing a voice-bot that entrains on the user’s speech. This work was done by me as a ML Research Intern at Skit, supervised by Swaraj Dalmia.&lt;/p&gt;
-
-&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;Speaker Entrainment (also known as accomodation or alignment) is a psycho-social phenomenon that has been observed in human-human conversations in which interlocutors tend to match each other’s speech features. Believed to be crucial to the success and naturalness of human-human conversations, this can look like matching style related aspects such as pitch, rate of articulation or intensity, or content related factors, such as lexical patterns.&lt;/p&gt;
-
-&lt;p&gt;This phenomenon essentially helps one manage the social “distance” between the two speakers, and hence serves to build trust. This trust has the potential to increase call resolution rates and improve customer satisfaction in task-oriented dialog systems.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/speaker-entrainment/user-study.jpg&quot; /&gt;
-  &lt;figcaption&gt;User study for speaker entrainment.&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Much research has gone into what features are relevant for speaker entrainment, such as phonetic features [1], linguistic features such as word choice [2], structure/syntax [3], style [4] and acoustic-prosodic features (pitch, intensity, rate of articulation, NHR, jitter, shimmer) [5, 6, 7].&lt;/p&gt;
-
-&lt;p&gt;Based on this, our research work in this project aims at building a baseline bot using low-level understanding of the above features to establish the statistical significance of speaker entrainment as well as understand its potential to improve customer experience. We also publish a &lt;a href=&quot;https://tech.skit.ai/explore/speaker-entrainment&quot;&gt;demo&lt;/a&gt; to show what this looks like in real-world conversations.&lt;/p&gt;
-
-&lt;h1 id=&quot;methodology&quot;&gt;Methodology&lt;/h1&gt;
-
-&lt;p&gt;There have been a few implementations of speaker entrainment modules in research, such as Lubold &lt;em&gt;et al.&lt;/em&gt; (2016) [8], which discusses a system of entrainment based only on modelling pitch and Levitan &lt;em&gt;et al.&lt;/em&gt; (2016) [9] which details a system based on \(f_0\), intensity and rate of articulation. Subsequently Hoegen &lt;em&gt;et al.&lt;/em&gt; (2019) [10] discusses a system of modelling acoustic and content (lexical) variables separately, and Entrainment2Vec (2020) [11] details a graph based model of entrainment with vector representations in multi-party dialog systems.&lt;/p&gt;
-
-&lt;figure&gt;
-&lt;center&gt;
-  &lt;img alt=&quot;Can't See? Something went wrong!&quot; src=&quot;/assets/images/posts/speaker-entrainment/entrainer.png&quot; /&gt;
-  &lt;figcaption&gt;Basic structure of a Speaker Entrainment dialog system (reproduced from [14]).&lt;/figcaption&gt;
-&lt;/center&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;For our baseline model, we choose mean \(f_0\), intensity and rate of articulation (calculated by utterances/sec). We average over these over the past three utterances (two speaker utterances and one bot utterance) to calculate the value for next bot utterance. This is inspired from [10] and prevents drastic jumps in the bot’s voice profile, which might lead to unnaturalness. For the value of any feature \(F\) at turn \(i\) we have,&lt;/p&gt;
-
-\[F_{bot, i} = \frac{F_{user, i-1} + F_{bot, i-1} + F_{user, i-2}}{3}\]
-
-&lt;p&gt;as the value of the feature at \(i\)-th turn in the bot’s speech.&lt;/p&gt;
-&lt;h1 id=&quot;experimental-setup&quot;&gt;Experimental Setup&lt;/h1&gt;
-
-&lt;p&gt;We record 11 scripts with varying measures in each of the three features (e.g. pitch rising, intensity low/high, rate of articulation low) and one with an angry user using the entraining bot and a control bot which does not entrain. We involve 30 participants in this experiment who are asked to rate the bots on factors such as likeability and naturalness. We then conduct a paired right taled t-test to determine the statistical significance of speaker entrainment over the three features and combinations thereof.&lt;/p&gt;
-
-&lt;p&gt;The questions have been inspired from Shamekhi &lt;em&gt;et al.&lt;/em&gt; [12], which are posed comparatively, e.g. “Does Bot A sound more natural than Bot B?”. These are answered on a comparative scale as well (from Strongly Disagree to Strongly Agree) to encourage decisiveness in differentiation among participants. Note that if one assumes the comparative scale comes from a difference of scores that the participant evaluates internally, the paired t-test can still be conducted. This is because if we assume \(X_C\) to be the comparative score arising from the difference of \(X_A\) and \(X_B\) (score for Bot A and Bot B respectively), we have,&lt;/p&gt;
-
-\[X_C = X_B - X_A\]
-
-&lt;p&gt;Note that for performing a t-test we only need the difference in mean and the sum of squares of standard deviation.&lt;/p&gt;
-
-\[t=\frac{E[X_B]-E[X_A]}{\sqrt{\frac{Var(X_B)}{n}+\frac{Var(X_B)}{n}}}\]
-
-&lt;p&gt;This can be easily rearranged to&lt;/p&gt;
-
-\[t=\frac{E[X_c]}{\sqrt{\frac{Var(X_c)}{n}}}\]
-
-&lt;p&gt;With this t-value, knowing what side of the tail our data lies on, we use the right tailed cumulative distribution and calculate the p-values accordingly.&lt;/p&gt;
-
-&lt;h1 id=&quot;results&quot;&gt;Results&lt;/h1&gt;
-
-&lt;p&gt;We find that the entrained bot performs better than the non-entrained bot in most cases. Keeping our \(\alpha=0.01\), we reject the null hypothesis for entrainment in multiple feature-sets, namely: pitch, intensity, pitch and rate of articulation combined and loudness and rate of articulation combined. In most other cases, including that of the angry user, we find that the entrained bot performs better as well, however the p-values aren’t as signficant. There are cases when the non-entrained bot performs better than the the entrained bot, but they have a large overlap with the cases in which our perception module performs inaccurately, e.g. rate of articulation is higher in shorter utterances due to lesser number of silent periods.&lt;/p&gt;
-
-&lt;h2 id=&quot;issues&quot;&gt;Issues&lt;/h2&gt;
-
-&lt;p&gt;There are a few issues with our investigations in terms of the insights we can draw. Firstly, in cases of the entrained bot performing better, it is difficult to disentangle whether this is a result of the changed voice sounding better in absolute (e.g. perhaps the participants have a preference to higher pitched/faster speaking voices as a result of shared socio-cultural factors).&lt;/p&gt;
-
-&lt;p&gt;Secondly, in the cases of entrained bot performing worse, it is again difficult to disentangle if this poor performance arises from entraining poorly or whether speaker entrainment over this feature leads to bad performance in general.&lt;/p&gt;
-
-&lt;h1 id=&quot;future-work&quot;&gt;Future Work&lt;/h1&gt;
-
-&lt;p&gt;Levitan (2020) [13] is an inspiration of future directions in speaker entrainment research. So far, there is a significant lacunae in speaker entrainment research as far as incorporation of deep learning is concerned, be it in the perception module (i.e. rich representation spaces for audio) or control module (TTS with a natural control over features and emotions).&lt;/p&gt;
-
-&lt;p&gt;Classifying user speech should also be incorporated to understand the degree of entrainment that is necessary, rather than just entraining for every user, which can look like discriminating based on the style of conversation such as High Involvement and High Consideration (described in Hoegen &lt;em&gt;et al.&lt;/em&gt; [10]). This layer of classification serves to decide the quality/degree of entrainment, which has the potential to improve customer experience. Furthermore, this layer can help detect angry/dissatisfied users as well to plan appropriate course of action by detecting high intensity speech, hyper-articulation, etc.&lt;/p&gt;
-
-&lt;p&gt;One can stand to improve the quality of experimentation as well. Apart from having more granular options for providing opinions (like a 7-point scale), we can have more speakers as users and more voice profiles for the bot to disentangle the experiment’s results from inherent voice qualities. Moreover, any improvement in the entrainment module will improve the quality of results as well.&lt;/p&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;Many psycho-sociologists deem speaker entrainment to be crucial to naturalness and trust building in human-human conversations. Recent advancements discussed in Levitan (2020) [13] imply that speaker entrainment is more nuanced than previously thought, but this means if implemented and modelled well, speaker entrainment has the potential of significantly changing the way voicebots interact with users.&lt;/p&gt;
-
-&lt;h1 id=&quot;references-&quot;&gt;References :&lt;/h1&gt;
-&lt;p&gt;[1] J. S. Pardo, “On phonetic convergence during conversational interaction,” J. Acoust. Soc. Am., vol. 119, no. 4, pp. 2382–2393, 2006.&lt;/p&gt;
-
-&lt;p&gt;[2]	K. G. Niederhoffer and J. W. Pennebaker, “Linguistic style matching in social interaction,” J. Lang. Soc. Psychol., vol. 21, no. 4, pp. 337–360, 2002.&lt;/p&gt;
-
-&lt;p&gt;[3]	D. Reitter, J. D. Moore, and F. Keller, “Priming of syntactic rules in task-oriented dialogue and spontaneous conversation,” 2010.&lt;/p&gt;
-
-&lt;p&gt;[4]	C. Danescu-Niculescu-Mizil and L. Lee, “Chameleons in imagined conversations: A new approach to understanding coordination of linguistic style in dialogs,” ArXiv Prepr. ArXiv11063077, 2011.&lt;/p&gt;
-
-&lt;p&gt;[5]	R. Levitan and J. Hirschberg, “Measuring Acoustic-Prosodic Entrainment with Respect to Multiple Levels and Dimensions,” 2011.&lt;/p&gt;
-
-&lt;p&gt;[6]	R. Levitan, A. Gravano, L. Willson, Š. Beňuš, J. Hirschberg, and A. Nenkova, “Acoustic-prosodic entrainment and social behavior,” in Proceedings of the 2012 Conference of the North American Chapter of the Association for Computational Linguistics: Human language technologies, 2012, pp. 11–19.&lt;/p&gt;
-
-&lt;p&gt;[7]	N. Lubold and H. Pon-Barry, “Acoustic-prosodic entrainment and rapport in collaborative learning dialogues,” in Proceedings of the 2014 ACM workshop on Multimodal Learning Analytics Workshop and Grand Challenge, 2014, pp. 5–12.&lt;/p&gt;
-
-&lt;p&gt;[8] N. Lubold, H. Pon-Barry, and E. Walker, “Naturalness and rapport in a pitch adaptive learning companion,” Dec. 2015, pp. 103–110. doi: 10.1109/ASRU.2015.7404781.&lt;/p&gt;
-
-&lt;p&gt;[9]	R. Levitan et al., “Implementing Acoustic-Prosodic Entrainment in a Conversational Avatar,” in Proc. Interspeech 2016, 2016, pp. 1166–1170. doi: 10.21437/Interspeech.2016-985.&lt;/p&gt;
-
-&lt;p&gt;[10]	R. Hoegen, D. Aneja, D. McDuff, and M. Czerwinski, “An End-to-End Conversational Style Matching Agent,” Proc. 19th ACM Int. Conf. Intell. Virtual Agents, pp. 111–118, Jul. 2019, doi: 10.1145/3308532.3329473.&lt;/p&gt;
-
-&lt;p&gt;[11]	Z. Rahimi and D. Litman, “Entrainment2vec: Embedding entrainment for multi-party dialogues,” in Proceedings of the AAAI Conference on Artificial Intelligence, 2020, vol. 34, no. 05, pp. 8681–8688.&lt;/p&gt;
-
-&lt;p&gt;[12] A. Shamekhi, M. Czerwinski, G. Mark, M. Novotny, and G. Bennett, “An Exploratory Study Toward the Preferred Conversational Style for Compatible Virtual Agents,” Oct. 2017, Accessed: May 28, 2021. &lt;a href=&quot;https://www.microsoft.com/en-us/research/publication/exploratory-study-toward-preferred-conversational-style-compatible-virtual-agents-2/&quot;&gt;Online Available&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;[13] R. Levitan, “Developing an Integrated Model of Speech Entrainment,” in Proceedings of the Twenty-Ninth International Joint Conference on Artificial Intelligence, Yokohama, Japan, Jul. 2020, pp. 5159–5163. doi: 10.24963/ijcai.2020/727.&lt;/p&gt;
-
-&lt;p&gt;[14] Levitan, Rivka, et al. “Implementing Acoustic-Prosodic Entrainment in a Conversational Avatar.” Interspeech. Vol. 16. 2016.&lt;/p&gt;</content><author><name>Shikhar Mohan</name></author><category term="Machine Learning" /><category term="ASR" /><summary type="html">In this post, we will discuss the phenomenon of speaker entrainment and the insights we gained when designing a voice-bot that entrains on the user’s speech. This work was done by me as a ML Research Intern at Skit, supervised by Swaraj Dalmia.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/entrain.png" /><media:content medium="image" url="/assets/images/entrain.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Medium&lt;/p&gt;</content><author><name>Jaivarsan B</name></author><category term="Machine Learning" /><category term="work" /><summary type="html">Google Summer of Code - 2022</summary></entry></feed>
