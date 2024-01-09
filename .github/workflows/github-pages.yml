@@ -16,7 +16,7 @@ jobs:
           ruby-version: 2.7
       - name: Build site
         run: |
-          gem install bundler
+          gem install bundler -v 2.4.22
           bundle
       # - name: Test site
       #   run: bundle exec rake test
