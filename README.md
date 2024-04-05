@@ -11,7 +11,7 @@ This is source for the [tech team webpage][tech_blog] at Skit. Template is [Mund
 - Install ruby version for this repo. `rbenv install 2.7.2`. A local
   `.ruby-version` file will make sure the repository uses consistent ruby
   version.
-- Install [bundler](https://bundler.io/) using `gem install bundler`.
+- Install [bundler](https://bundler.io/) using `gem install bundler -v 2.4.22`. Note that newer versions of bundler need newer ruby so we will work with an older version for now.
 - Run `bundle` for installing dependencies.
 - Run the blog locally: `bundle exec jekyll serve --host=0.0.0.0`
 
