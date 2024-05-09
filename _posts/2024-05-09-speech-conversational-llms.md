@@ -19,7 +19,7 @@ come.
 
 [Earlier](/speech-first-conversational-ai-revisited/) we discussed how spoken
 conversations are richer than pure text and how the gap would be not bridged by
-LLMs purely working on transcriptions. In one of our recent experiments we build
+LLMs purely working on transcriptions. In one of our recent experiments we built
 an efficient multi-modal LLM that takes speech directly to provide better
 conversational experience. For production usage, the constraint here is that
 this should happen without losing the flexibility that you get in a text-only
