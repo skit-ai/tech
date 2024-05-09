@@ -5,6 +5,8 @@ permalink: "/explore/emotional-tts/"
 fancy_audio_player: True
 ---
 
+*This is a work from 2021*
+
 Using our rich Emotional TTS system, we deliver the right tonality and superior
 customer experience in our dialog systems. This page showcases a sample of
 emotional presets and variations from our synthesizer.

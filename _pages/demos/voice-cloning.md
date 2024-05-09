@@ -5,6 +5,8 @@ permalink: "/explore/voice-cloning/"
 fancy_audio_player: True
 ---
 
+*This is a work from 2021*
+
 Presenting some results of the Beta Feature of Voice Cloning that we currently support in our TTS.
 We trained our model on 30 mins of recordings from a new speaker. Some examples of both the target and generated audio are added below.
 

@@ -5,6 +5,8 @@ permalink: "/explore/speaker-entrainment/"
 fancy_audio_player: True
 ---
 
+*This is a work from 2021*
+
 Speaker entrainment is a phenomenon observed in human-human conversations where one interlocutor attunes their speech's acoustic, lexical and semantic features to the other interlocutor.
 
 This project aims to create a bot which can entrain on the acoustic features of user's speech. Incorporating such behavior into bots is known to increase trust, naturalness and likeability, which is likely to increase customer satisfaction and call resolution rate.
