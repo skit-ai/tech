@@ -9,6 +9,28 @@ Explore Speech Technologies from Skit.
 
 <br>
 
+## Conversational AI
+
+<br>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="explore-card">
+    <a href="/speech-conversational-llms/">
+      <div class="explore-card-banner"></div>
+      <div class="explore-card-content">
+        <h4 class="explore-card-title">Speech LLMs</h4>
+        <div class="explore-card-description">
+          Multimodal-LLMs for speech-first Conversational AI
+        </div>
+      </div>
+    </a>
+    </div>
+  </div>
+</div>
+
+<br>
+
 ## Response Production
 
 <br>
