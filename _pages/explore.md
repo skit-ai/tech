@@ -30,6 +30,22 @@ Explore Speech Technologies from Skit.ai.
     </a>
     </div>
   </div>
+  <div class="col-sm-4">
+    <div class="explore-card">
+    <a href="https://huggingface.co/skit-ai/speechllm-2B">
+      <div class="explore-card-banner"></div>
+      <div class="explore-card-content">
+        <h4 class="explore-card-title">Speech-LLM 2B</h4>
+        <div class="explore-card-description">
+          2B model for speech-first Conversational AI
+        </div>
+        <div class="explore-card-date-parent">
+          <span class="explore-card-date">2024</span>
+        </div>
+      </div>
+    </a>
+    </div>
+  </div>
 </div>
 
 <br>
